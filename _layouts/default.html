@@ -1,0 +1,15 @@
+---
+layout: compress
+---
+<!doctype html>
+{% assign site_lang = page.lang | default: site.lang | default: 'en' %}
+<html lang="{{ site_lang }}">
+  {% include head.html %}
+  <body>
+    <main>
+      {% include navigation.html %}
+      {{ content }}
+    </main>
+    {% include scripts.html %}
+  </body>
+</html>

@@ -1,0 +1,40 @@
+---
+layout: page
+title: Search
+---
+<style type="text/css">
+  #search-container {
+    max-width: 100%;
+  }
+  input[type='text'] {
+    font-size: normal;
+    outline: none;
+    padding: 1rem;
+    background: rgb(236, 237, 238);
+    width: 100%;
+    -webkit-appearance: none;
+    font-family: inherit;
+    font-size: 100%;
+    border: none;
+  }
+  #results-container {
+    margin: 0.5rem 0;
+  }
+</style>
+<div id="search-container">
+  <input type="text" id="search-input" placeholder="Search...">
+  <ol id="results-container"></ol>
+</div>
+<script type="text/javascript" src="{{ '/assets/js/search.min.js' | relative_url }}"></script>
+<script type="text/javascript">
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('results-container'),
+    json: '{{ '/assets/search.data.json' | relative_url }}',
+    searchResultTemplate: '<li><a href="{url}" title="{description}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome'],
+  });
+</script>

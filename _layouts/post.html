@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<section class="post">
+  <span>&#8636; <a href="{{  '/' | relative_url }}">Back to Home</a> </span>
+  <h1>{{ page.title }}</h1>
+  {{ content }}
+  <span class="meta">
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time> &middot;
+    {% for tag in page.tags %}
+      <a href="/tag/{{ tag }}">{{ tag }}</a>
+      {%- unless forloop.last %}, {% endunless -%}
+    {%- endfor -%}
+  </span>
+  <span>&#8639; <a href="#" onclick="window.scrollTo(0, 0); return false;"> Back to Top </a> </span>
+  <div>
+    {% include comments.html %}
+  </div>
+</section>
+
+<script type="text/javascript" src="{{ '/assets/js/anchor.min.js' | relative_url }}"></script>
+<script type="text/javascript">
+  anchors.add();
+</script>
