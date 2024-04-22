@@ -20,7 +20,7 @@ google_analytics: G-31WRW155T4
 
 # Comments Settings
 comments:
-  provider: giscus # (e.g., "disqus"), The provider setting below:
+  provider: disqus # (e.g., "disqus"), The provider setting below:
   disqus: # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: andreattamimi
   giscus: # https://giscus.app/
