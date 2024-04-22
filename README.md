@@ -1,5 +1,7 @@
 # Blog
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ee441eb4-7b26-4b78-a0f1-c3f90837d480/deploy-status)](https://app.netlify.com/sites/ornate-lolly-787692/deploys)
+
 Jekyll blogging theme.
 
 ## Features
