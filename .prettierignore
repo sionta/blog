@@ -1,0 +1,4 @@
+*.min.*
+*.md
+*.html
+*.liquid

@@ -1,22 +1,31 @@
+# Site Settings
 title: andreattamimi
 description: Personal site and blog.
-
 url: https://andreattamimi.com # (e.g. https://example.com)
 baseurl: "" # (e.g. /blog)
-
 author:
   name: Andre Attamimi
   twitter: R007MMXV
   avatar: ""
   email: ""
   url: ""
-
 twitter:
   username: R007MMXV
   card: summary
   creator: ""
 
 google_analytics: G-31WRW155T4
+
+# Navigation Settings
+header_pages:
+  - title: Writing
+    url: /
+  - title: About
+    url: /about
+  - title: Search
+    url: /search
+  - title: RSS
+    url: /feed.xml
 
 # Comments Settings
 comments:

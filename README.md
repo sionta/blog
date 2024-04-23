@@ -1,14 +1,12 @@
 <!-- markdownlint-disable-next-line -->
 <div align="center">
-
   <!-- markdownlint-disable-next-line -->
   # Blog
 
   Jekyll blogging theme.
 
   ![Netlify Status](https://api.netlify.com/api/v1/badges/ee441eb4-7b26-4b78-a0f1-c3f90837d480/deploy-status)&nbsp;
-  [![GitHub Pages](https://github.com/sionta/blog/actions/workflows/jekyll.yml/badge.svg?branch=main)][gh-pages]&nbsp;
-  [![GitHub license](https://img.shields.io/github/license/cotes2020/jekyll-theme-chirpy.svg)][license]
+  ![GitHub Pages](https://github.com/sionta/blog/actions/workflows/jekyll.yml/badge.svg?branch=main)&nbsp;
 
   [**Live Demo** →][demo]
 
@@ -45,8 +43,6 @@
 
 ## License
 
-This project is published under [MIT License][license].
+This project is published under [MIT License](LICENSE).
 
 [demo]: https://sionta-blog.netlify.app/
-[gh-pages]: https://github.com/sionta/blog/actions/workflows/jekyll.yml
-[license]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE
