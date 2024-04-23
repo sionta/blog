@@ -4,25 +4,32 @@
     - Inline JS can become broken where // comments used. Please remove the comments or change to /**/ style.
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
-<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
 
-{% if page.mathjax %}
-  <script
-    type="text/javascript"
-    id="MathJax-script"
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-    async
-  ></script>
-{% endif %}
-{% if page.mermaid %}
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+{% assign js_path = '/assets/js' | relative_url %}
+{% if page.path == '_posts' or page.layout == 'post' %}
+  {{ page.path }}
+  <script type="text/javascript" src="{{ js_path }}/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ js_path }}/anchor.min.js"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: 'default',
-      });
-      window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
-    });
+    anchors.add();
   </script>
+  {% if page.mathjax %}
+    <script
+      type="text/javascript"
+      id="MathJax-script"
+      src="{{ js_path }}/mathjax/tex-mml-chtml.js"
+    ></script>
+  {% endif %}
+  {% if page.mermaid %}
+    <script type="text/javascript" src="{{ js_path }}/mermaid.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+        });
+        window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
+      });
+    </script>
+  {% endif %}
 {% endif %}

@@ -13,12 +13,5 @@ layout: default
     {%- endfor -%}
   </span>
   <span>&#8639; <a href="#" onclick="window.scrollTo(0, 0); return false;"> Back to Top </a> </span>
-  <div>
-    {% include comments.html %}
-  </div>
+  {% include comments.html %}
 </section>
-
-<script type="text/javascript" src="{{ '/assets/js/anchor.min.js' | relative_url }}"></script>
-<script type="text/javascript">
-  anchors.add();
-</script>

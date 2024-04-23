@@ -1,27 +1,27 @@
 /* Character encoding */
 @charset "utf-8";
+@import "reset";
 
 /* Font Family Settings */
-$font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$font-family-sans-serif: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, $font-family-emoji;
-$font-family-monospace: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace, $font-family-emoji;
+$font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  "Noto Color Emoji";
+$font-family-sans-serif: system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu,
+  Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, $font-family-emoji;
+$font-family-monospace: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+  "Liberation Mono", monospace, $font-family-emoji;
 
 /* Global Reset */
 * {
-  box-sizing: border-box;
   background-color: inherit;
   color: inherit;
-  margin: 0;
   padding: 0;
 }
 
 /* Body Styling */
 body {
   font-family: $font-family-sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  line-height: 1.5;
   font-size: 1rem;
+  text-rendering: optimizeLegibility;
   color: rgb(22, 23, 26);
 }
 
@@ -149,14 +149,19 @@ section {
 }
 
 /* Heading Styling */
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   line-height: 1;
   margin: 1rem 0;
   font-weight: 600;
 }
 
 /* Strong and Bold Styling */
-strong, b {
+strong,
+b {
   font-weight: bold;
 }
 
@@ -176,7 +181,8 @@ tr {
   border-bottom: 1px solid #dee2e6;
 }
 
-td, th {
+td,
+th {
   padding: 0.75rem;
   border: 1px solid #dee2e6;
   text-align: left;
@@ -232,7 +238,10 @@ blockquote[class^="prompt-"] {
     margin: 0.5rem 0;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     margin: 1rem 0;
   }
 
@@ -256,7 +265,8 @@ blockquote[class^="prompt-"] {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 
-  a, div {
+  a,
+  div {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -293,16 +303,16 @@ blockquote[class^="prompt-"] {
 }
 
 /* Project Styling */
-.project h2:first-child {
-  margin-top: 0;
-}
-
-.project picture {
-  margin-bottom: 0.5rem;
-}
-
-.project ul {
-  list-style-position: inside;
+.project {
+  h2:first-child {
+    margin-top: 0;
+  }
+  picture {
+    margin-bottom: 0.5rem;
+  }
+  ul {
+    list-style-position: inside;
+  }
 }
 
 /* Projects Styling */
@@ -313,7 +323,6 @@ blockquote[class^="prompt-"] {
     text-overflow: ellipsis;
     text-decoration: none;
   }
-
   time {
     padding-left: 1rem;
     white-space: nowrap;
@@ -323,27 +332,25 @@ blockquote[class^="prompt-"] {
 
 /* Mobile Device Styling */
 @media screen and (max-width: 45rem) {
-  header ul {
-    text-align: center;
-    border-bottom: 1px solid #edf2f7;
-    padding-bottom: 2rem;
-  }
-
-  header li {
-    display: inline;
-    margin-right: 1rem;
-  }
-
   .logo {
     padding-bottom: 1rem;
   }
-
-  nav ul {
-    border-right: 0px;
-  }
-
   .photos ul {
     margin-top: 0.5rem;
+  }
+  header {
+    ul {
+      text-align: center;
+      border-bottom: 1px solid #edf2f7;
+      padding-bottom: 2rem;
+    }
+    li {
+      display: inline;
+      margin-right: 1rem;
+    }
+  }
+  nav ul {
+    border-right: 0px;
   }
 }
 
@@ -351,6 +358,13 @@ blockquote[class^="prompt-"] {
 @media print {
   .no-print {
     display: none !important;
+  }
+}
+
+#task-list,
+.task-list {
+  li input[type="checkbox"] {
+    margin-right: 12px;
   }
 }
 

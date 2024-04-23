@@ -55,8 +55,8 @@ compress_html:
   #   envs: ["development"]
 
 sass:
-  # style: expanded # Only in development
-  style: compressed
+  style: expanded # Only in development
+  # style: compressed
   sourcemap: development
 
 kramdown:

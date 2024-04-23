@@ -12,18 +12,26 @@ mermaid: true
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
 ### Table of Contents
+
 {:.no_toc}
 
 * A markdown unordered list which will be replaced with the ToC, excluding the "Table of Contents" from above
 {:toc}
 
+---
+
 ## Headings
 
 # Heading 1
+
 {:.no_toc}
+
 ## Heading 2
+
 {:.no_toc}
+
 ### Heading 3
+
 {:.no_toc}
 
 ## Paragraph
@@ -42,16 +50,16 @@ Proident sint tempor adipisicing anim cupidatat consectetur dolor. Velit dolor e
 
 ### Unordered list
 
-- Chapter
-  - Section
-    - Paragraph
+* Chapter
+  * Section
+    * Paragraph
 
-### ToDo list
+### Task list
 
-- [ ] Jobs
-  - [x] Step 1
-  - [x] Step 2
-  - [ ] Step 3
+* [ ] Jobs
+  * [x] Step 1
+  * [x] Step 2
+  * [ ] Step 3
 
 ### Description list
 
@@ -69,13 +77,10 @@ Moon
 
 > An example showing the `tip` type prompt.
 {: .prompt-tip }
-
 > An example showing the `info` type prompt.
 {: .prompt-info }
-
 > An example showing the `warning` type prompt.
 {: .prompt-warning }
-
 > An example showing the `danger` type prompt.
 {: .prompt-danger }
 
