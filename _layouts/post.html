@@ -2,16 +2,35 @@
 layout: default
 ---
 <section class="post">
-  <span>&#8636; <a href="{{  '/' | relative_url }}">Back to Home</a> </span>
-  <h1>{{ page.title }}</h1>
-  {{ content }}
-  <span class="meta">
-    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time> &middot;
-    {% for tag in page.tags %}
-      <a href="/tag/{{ tag }}">{{ tag }}</a>
-      {%- unless forloop.last %}, {% endunless -%}
-    {%- endfor -%}
-  </span>
-  <span>&#8639; <a href="#" onclick="window.scrollTo(0, 0); return false;"> Back to Top </a> </span>
-  {% include comments.html %}
+  {% assign date_format = site.date_format | default: '%b %-d, %Y' %}
+  <article class="article" itemscope itemtype="https://schema.org/BlogPosting">
+    <h1 itemprop="name">{{ page.title }}</h1>
+    <div>
+      <p>
+        By
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">
+            <a itemprop="url" href="">{{ site.author.name }}</a>
+          </span> </span
+        >, Posted
+        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: date_format }} </time
+        >, Updated
+        <time itemprop="dateModified" datetime="{{ page.last_modified_at | date_to_xmlschema }}">
+          {{ page.last_modified_at | date: '%b %-d, %Y' }}
+        </time>
+      </p>
+    </div>
+    {{ content }}
+    <span class="meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time> &middot;
+      {% for tag in page.tags %}
+        <a href="/tag/{{tag}}">{{ tag }}</a>
+        {%- unless forloop.last %}, {% endunless -%}
+      {%- endfor -%}
+    </span>
+    <section>
+      {% include comments.html %}
+    </section>
+  </article>
 </section>

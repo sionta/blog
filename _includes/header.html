@@ -4,14 +4,7 @@
     <ul>
       {% for item in site.header_pages %}
         <li>
-          <a
-            href="{{ item.url }}"
-            {% if item.url == page.url %}
-              class="active"
-            {% endif %}
-          >
-            {{- item.title -}}
-          </a>
+          <a href="{{ item.url }}">{{- item.title -}}</a>
         </li>
       {% endfor %}
     </ul>

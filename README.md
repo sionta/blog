@@ -15,11 +15,9 @@
 
 ## TODO
 
-- [x] Embed YouTube, Facebook, *etc.*
 - [ ] Rebase `SASS`
-- [ ] Dark theme
-- [ ] Theme toggle
-- [ ] Localize site
+- [ ] Dark theme with toggle
+- [ ] Localized (default: "en")
 - [ ] Page categories
 - [ ] Post table of contents
 - [ ] *and others*
