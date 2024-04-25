@@ -1,7 +1,7 @@
 # Site Settings
 title: sionta
 description: Personal site and blog.
-url: https://andreattamimi.com # (e.g. "https://example.com")
+url: # (e.g. "https://example.com")
 
 navigation:
   - title: "Blogging"
