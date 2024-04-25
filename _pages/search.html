@@ -1,11 +1,7 @@
 ---
 layout: page
-title: Search
 ---
 <style type="text/css">
-  #search-container {
-    max-width: 100%;
-  }
   input[type='text'] {
     font-size: normal;
     outline: none;
@@ -17,14 +13,31 @@ title: Search
     font-size: 100%;
     border: none;
   }
+  #search-container {
+    max-width: 100%;
+  }
   #results-container {
     margin: 0.5rem 0;
   }
 </style>
+
 <div id="search-container">
   <input type="text" id="search-input" placeholder="Search...">
   <ol id="results-container"></ol>
 </div>
+
+<H2>Tags</H2>
+{% assign tags = site.tags | sort %}
+<ul>
+  {% for tag in tags %}
+    <li>
+      <a href="/tag/{{ tag | first | slugify }}/">
+        {{- tag[0] | replace: '-', ' ' }} ({{ tag | last | size }}){% unless forloop.last %}, {% endunless -%}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
 <script type="text/javascript" src="{{ '/assets/js/search.min.js' | relative_url }}"></script>
 <script type="text/javascript">
   SimpleJekyllSearch({
