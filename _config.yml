@@ -61,9 +61,9 @@ compress_html:
     envs: ["development"]
 
 sass:
-  style: compressed
-  # style: expanded # Only in development
-  # sourcemap: development
+  # style: compressed
+  style: expanded
+  sourcemap: development
 
 permalink: pretty
 # baseurl: /blog # (e.g. "/blog")
@@ -71,10 +71,10 @@ permalink: pretty
 collections:
   pages:
     output: true
-    permalink: /:name
+    permalink: /:name/
   posts:
     output: true
-    permalink: /:year/:month/:day/:slug
+    permalink: /:year/:month/:day/:slug/
 
 defaults:
   - scope:
@@ -104,9 +104,8 @@ defaults:
 exclude:
   - "*.gem"
   - "*.gemspec"
-  - tests
+  - "**/test*"
   - node_modules
-  - netlify.toml
   - README.md
   - yarn.lock
   - package*.json
