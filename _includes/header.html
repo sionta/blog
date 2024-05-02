@@ -1,12 +1,11 @@
-<header aria-hidden="true" class="no-print">
-  <!-- <h1 class="logo">{{ site.title }}</h1> -->
-  <nav role="navigation" aria-hidden="true">
+<header>
+  <nav>
     <ul>
-      {% for item in site.header_pages %}
+      {%- for item in site.navigation -%}
         <li>
-          <a href="{{ item.url }}">{{- item.title -}}</a>
+          <a href="{{- item.url -}}">{{- item.title -}}</a>
         </li>
-      {% endfor %}
+      {%- endfor -%}
     </ul>
   </nav>
 </header>

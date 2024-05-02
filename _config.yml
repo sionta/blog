@@ -1,10 +1,11 @@
 # Site Settings
 title: sionta
 description: Personal site and blog.
-url: # (e.g. "https://example.com")
+url: "" # (e.g. "https://example.com")
+# baseurl: "" /blog # (e.g. "/blog")
 
 navigation:
-  - title: "Blogging"
+  - title: "Blog"
     url: "/"
   # - title: "About"
   #   url: "/about"
@@ -15,7 +16,7 @@ navigation:
 
 author:
   name: Andre Attamimi
-  email: ""
+  avatar: https://github.com/sionta.png?size=100
   url: https://github.com/sionta
 
 twitter:
@@ -44,7 +45,6 @@ comments:
 
 kramdown:
   parse_block_html: true
-  auto_ids: false
   hard_wrap: false
   # Rouge Options › https://github.com/jneen/rouge#full-options
   syntax_highlighter: rouge
@@ -57,24 +57,19 @@ compress_html:
   endings: all
   startings: [html, head, body]
   comments: ["<!-- ", " -->"]
-  ignore:
-    envs: ["development"]
 
 sass:
-  # style: compressed
-  style: expanded
-  sourcemap: development
-
-permalink: pretty
-# baseurl: /blog # (e.g. "/blog")
+  style: compressed
+  # style: expanded
+  sourcemap: never
 
 collections:
   pages:
     output: true
-    permalink: /:name/
+    permalink: /:name
   posts:
     output: true
-    permalink: /:year/:month/:day/:slug/
+    permalink: /blog/:title/
 
 defaults:
   - scope:

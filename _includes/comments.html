@@ -1,20 +1,22 @@
 {%- if page.comments != false -%}
   {%- if site.comments.provider == 'disqus' -%}
-    <!-- Disqus Comments -->
-    <div id="disqus_thread"></div>
-    <script>
-      var disqus_config = function () {
-        this.page.url = '{{ page.url | absolute_url }}';
-        this.page.identifier = '{{ page.url | slugify }}';
-      };
-      (function () {
-        var d = document,
-          s = d.createElement('script');
-        s.src = 'https://{{ site.comments.disqus.shortname }}.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
-    </script>
+    {% if jekyll.environment == 'production' %}
+      <!-- Disqus Comments -->
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = '{{ page.url | absolute_url }}';
+          this.page.identifier = '{{ page.url | slugify }}';
+        };
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = 'https://{{ site.comments.disqus.shortname }}.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    {% endif %}
   {%- elsif site.comments.provider == 'giscus' -%}
     <!-- Giscus Comments -->
     <script

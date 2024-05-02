@@ -4,6 +4,9 @@
     - Inline JS can become broken where // comments used. Please remove the comments or change to /**/ style.
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
+<script type="text/javascript" src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+<script type="text/javascript" src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
 {% if page.path contains '_posts' or page.layout == 'post' %}
   {% if page.anchor %}
     <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
