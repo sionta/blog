@@ -1,0 +1,48 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Metadata -->
+  <title>{{- site.title -}}</title>
+  <meta name="description" content="{{- site.description -}}">
+  <meta name="author" content="{{- site.author.name -}}">
+  <!-- SEO -->
+  <meta name="keywords" content="your, keywords, here">
+  <!-- Open Graph for Social Media -->
+  <meta property="og:title" content="{{- site.title -}}">
+  <meta property="og:description" content="{{- site.description -}}">
+  {%- assign img_url = page.image | default: site.image -%}
+  <meta property="og:image" content="{{- img_url -}}">
+  <meta property="og:url" content="{{- site.url | absolute_url -}}">
+  <meta property="og:type" content="website">
+  <!-- Prevent potential clickjacking attacks -->
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <!-- Prevent potential XSS attacks -->
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:"
+  >
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{- '/assets/css/style.css' | relative_url -}}">
+  <script src="{{- '/assets/js/main.js' | relative_url -}}" defer></script>
+  <!-- Preload important resources -->
+  <link rel="preload" href="{{- '/assets/css/style.css' | relative_url -}}" as="style">
+  <link rel="preload" href="{{- '/assets/js/main.js' | relative_url -}}" as="script">
+  <!-- Favicons and Apple Touch Icons -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <!-- Web Manifest for PWA -->
+  {% comment %} <link rel="manifest" href="manifest.json"> {% endcomment %}
+  <!-- Google Analytics -->
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{- site.google_analytics -}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '{{- site.google_analytics -}}');
+    </script>
+  {%- endif -%}
+</head>

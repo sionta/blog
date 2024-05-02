@@ -1,0 +1,11 @@
+- name: "Home"
+  link: "/"
+
+- name: "About"
+  link: "/about"
+
+- name: "Subcribe"
+  link: "/feed.xml"
+#
+# - name: "GitHub"
+#   link: "https://github.com/sionta"

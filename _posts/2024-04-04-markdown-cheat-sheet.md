@@ -2,35 +2,32 @@
 layout: post
 title: Markdown Cheat Sheet
 description: A quick overview of all the Markdown syntax elements
-categories: [tutorial]
 tags: [typography]
 author: Andre Attamimi
-math: true
-diagram: true
-toc: true
-anchor: true
 comments: false
+diagram: true
+anchor: true
+toc: true
 ---
 
 <!-- https://www.markdownguide.org/hacks/ -->
 
+{:.notice}
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
 ## Front Matter
 
 ```markdown
 ---
-layout: post
 title: Markdown Cheat Sheet
 description: This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements.
-categories: [tutorial]
 tags: [typography]
 author: Andre Attamimi
-comments: false
-mathjax: true
-mermaid: true
-anchor: true
-toc: true
+# Special configuration on this site:
+toc: true       # Enable table of content
+anchor: true    # Enable anchor heading
+diagram: true   # Enable diagramming
+comments: false # Disable comments
 ---
 ```
 
@@ -113,12 +110,11 @@ This is an inline: `code`
 <!-- markdownlint-disable -->
 This is a Code Block:
 
-    #include <stdio.h>
-
-    int main() {
-      printf("Hello World!");
-      return 0;
-    }
+    def print_hi(name)
+      puts "Hi, #{name}"
+    end
+    print_hi('Tom')
+    # => prints 'Hi, Tom' to STDOUT.
 
 To add syntax highlighting, specify a language next to the backticks before the fenced code block.
 
@@ -130,13 +126,14 @@ print_hi('Tom')
 # => prints 'Hi, Tom' to STDOUT.
 ```
 
-{% highlight ruby %}
+<!-- {% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
 end
 print_hi('Tom')
 # => prints 'Hi, Tom' to STDOUT
-{% endhighlight %}
+{% endhighlight %} -->
+
 <!-- markdownlint-restore -->
 
 ## Links
@@ -196,18 +193,22 @@ You can align text in the columns to the left, right, or center by adding a colo
 
 ## Alerts
 
-> Indicates a **neutral informative change** or **action**.
-{:.alert.info}
-> Indicates a **successful** or **positive action**.
-{:.alert.success}
-> Indicates a **warning** that might need attention.
-{:.alert.warning}
-> Indicates a **dangerous** or **potentially** negative action.
-{:.alert.danger}
+<!-- markdownlint-disable -->
+> This is a normal alert.
+{:.alerts}
+> This is an info alert
+{:.alerts.info}
+> This is a warning alert.
+{:.alerts.warning}
+> This is a danger alert.
+{:.alerts.danger}
+> This is a success alert.
+{:.alerts.success}
+<!-- markdownlint-disable -->
 
 ## Mathematics
 
-Diagramming and charting Powered by [KaTeX:](https://katex.org/)
+The Mathematics Powered by [KaTeX:](https://katex.org/)
 
 This is an inline formula: $$a^2 + b^2 = c^2$$.
 
@@ -219,7 +220,7 @@ $$
 
 ## Diagramming
 
-Diagramming and charting Powered by [Mermaid:](https://mermaid.js.org/)
+The Diagramming and charting Powered by [Mermaid:](https://mermaid.js.org/)
 
 This basic flowchart:
 

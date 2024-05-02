@@ -1,13 +1,11 @@
 ---
-layout: default
+layout: home
+permalink: /
 ---
-<section class="posts">
-  <ul>
-    {% for post in site.posts %}
-      <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m-%d-%Y' }}</time>
-      </li>
-    {% endfor %}
-  </ul>
-</section>
+{% comment %}
+  {% for post in site.posts %}
+    <p>
+      <a href="{{- post.url -}}">{{- post.title -}}</a>
+    </p>
+  {% endfor %}
+{% endcomment %}

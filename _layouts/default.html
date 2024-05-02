@@ -1,17 +1,22 @@
----
-layout: compress
----
 <!doctype html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  {% include head.html %}
+<html lang="{{- page.lang | default: site.lang | default: 'en' -}}" data-theme="dark">
+  <head>
+    {% include head.html %}
+  </head>
   <body>
-    <div id="layout">
-      {% include header.html %}
-      <main aria-label="Content">
-        {{ content }}
-      </main>
+    <header>
+      {% include navigation.html %}
+      {% comment %} <h1>{{ site.title }}</h1> {% endcomment %}
+      {% comment %} <p>{{ site.tagline | default: site.description }}</p> {% endcomment %}
+      {% comment %} <h1>{{ page.title | default: site.title }}</h1> {% endcomment %}
+      {% comment %} <p>{{ page.description | default: site.description }}</p> {% endcomment %}
+    </header>
+    <main>
+      {{ content }}
+    </main>
+    <footer>
       {% include footer.html %}
-      {% include script.html %}
-    </div>
+    </footer>
+    {% include script.html %}
   </body>
 </html>

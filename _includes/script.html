@@ -1,36 +1,8 @@
-{% comment %}
-  NOTE:
-    - Whitespaces inside of the textarea element are squeezed. Please don’t use the layout on pages with non-empty textarea.
-    - Inline JS can become broken where // comments used. Please remove the comments or change to /**/ style.
-    - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
-{% endcomment %}
-<script type="text/javascript" src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-<script type="text/javascript" src="{{ '/assets/js/main.js' | relative_url }}"></script>
-
 {% if page.path contains '_posts' or page.layout == 'post' %}
   {% if page.anchor %}
     <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
     <script type="text/javascript">
       anchors.add();
-    </script>
-  {% endif %}
-  {% if page.mathjax %}
-    <script
-      type="text/javascript"
-      id="MathJax-script"
-      src="{{ '/assets/js/mathjax/tex-mml-chtml.js' | relative_url}}"
-    ></script>
-  {% endif %}
-  {% if page.mermaid %}
-    <script type="text/javascript" src="{{  '/assets/js/mermaid.min.js' | relative_url }}"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        mermaid.initialize({
-          startOnLoad: true,
-          theme: 'default',
-        });
-        window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
-      });
     </script>
   {% endif %}
 {% endif %}

@@ -1,106 +1,36 @@
-# Site Settings
-title: sionta
-description: Personal site and blog.
-url: "" # (e.g. "https://example.com")
-# baseurl: "" /blog # (e.g. "/blog")
+# Site settings
+title: "sionta"
+author: "Andre Attamimi"
+description: "A brief description of your website"
+# avatar: "https://github.com/sionta.png?size=100"
+avatar: "/assets/images/favicon.png"
+url: ""
+baseurl: ""
+email: ""
+lang: "en"
 
-navigation:
-  - title: "Blog"
-    url: "/"
-  # - title: "About"
-  #   url: "/about"
-  - title: "Search"
-    url: "/search"
-  - title: "RSS"
-    url: "/feed.xml"
-
-author:
-  name: Andre Attamimi
-  avatar: https://github.com/sionta.png?size=100
-  url: https://github.com/sionta
-
-twitter:
-  username: R007MMXV
-
-google_analytics: G-31WRW155T4
-
-# Comments Settings
-comments:
-  provider: disqus # (e.g., "disqus")
-  # The provider setting below:
-  # Disqus > https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-  disqus:
-    shortname: andreattamimi
-  # giscus > https://giscus.app/
-  giscus:
-    repo: "" # (e.g., "owner/repo")
-    repo_id: ""
-    category: ""
-    category_id: ""
-  # utterances > https://utteranc.es/
-  utterances:
-    repo: "" # (e.g., "owner/repo")
-
-# Build settings =========================================
-
-kramdown:
-  parse_block_html: true
-  hard_wrap: false
-  # Rouge Options › https://github.com/jneen/rouge#full-options
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: highlight
-
-compress_html:
-  profile: false
-  clippings: all
-  endings: all
-  startings: [html, head, body]
-  comments: ["<!-- ", " -->"]
-
+# Development settings =======================================
 sass:
   style: compressed
   # style: expanded
   sourcemap: never
 
-collections:
-  pages:
-    output: true
-    permalink: /:name
-  posts:
-    output: true
-    permalink: /blog/:title/
+kramdown:
+  syntax_highlighter: "rouge"
+  syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
+    css_class: "highlight"
+  math_engine: katex
+  math_engine_opts: {}
 
 defaults:
   - scope:
       path: ""
+      type: "pages"
     values:
-      layout: default
+      layout: "default"
   - scope:
       path: ""
-      type: pages
+      type: "posts"
     values:
-      layout: page
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-
-# jekyll-archives:
-#   enabled: [categories, tags]
-#   layouts:
-#     category: category
-#     tag: tag
-#   permalinks:
-#     tag: /tags/:name/
-#     category: /categories/:name/
-
-exclude:
-  - "*.gem"
-  - "*.gemspec"
-  - "**/test*"
-  - node_modules
-  - README.md
-  - yarn.lock
-  - package*.json
+      layout: "post"
+      permalink: "/posts/:title"
