@@ -3,4 +3,4 @@ layout: none
 ---
 User-agent: *
 Disallow:
-Sitemap: {{ "sitemap.xml" | absolute_url }}
+Sitemap: {{ 'sitemap.xml' | absolute_url }}

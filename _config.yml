@@ -16,11 +16,22 @@ sass:
   sourcemap: never
 
 kramdown:
+  hard_wrap: false
+  parse_block_html: true
   syntax_highlighter: "rouge"
   syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: "highlight"
   math_engine: katex
   math_engine_opts: {}
+
+compress_html:
+  profile: false
+  clippings: all
+  endings: all
+  startings: [html, head, body]
+  comments: ["<!-- ", " -->"]
+  # ignore:
+  #   envs: ["development"]
 
 defaults:
   - scope:
@@ -33,4 +44,4 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      permalink: "/posts/:title"
+      permalink: "/posts/:title/"

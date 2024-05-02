@@ -1,8 +1,35 @@
+{% comment %}
+  RESTRICTIONS for "compress.html"
+    - Whitespaces inside of the textarea element are squeezed. Please don’t use the layout on pages with non-empty textarea.
+    - Inline JS can become broken where // comments used. Please remove the comments or change to /**/ style.
+    - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
+{% endcomment %}
+
 {% if page.path contains '_posts' or page.layout == 'post' %}
   {% if page.anchor %}
     <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
     <script type="text/javascript">
-      anchors.add();
+      const anchors = new AnchorJS();
+      const options = {
+        level: [2, 3],
+        placement: 'right',
+        visible: 'hover',
+      };
+      anchors.add('h2, h3', options);
+    </script>
+  {% endif %}
+  {% if page.diagram %}
+    <script type="text/javascript" src="{{ '/assets/js/mermaid.min.js' | relative_url }}"></script>
+    <script type="text/javascript">
+      const mermaidConfig = {
+        startOnLoad: true,
+        theme: 'neutral',
+      };
+      mermaid.initialize(mermaidConfig);
+      const mermaidElements = document.querySelectorAll('.language-mermaid');
+      mermaidElements.forEach((element) => {
+        mermaid.init(undefined, element);
+      });
     </script>
   {% endif %}
 {% endif %}

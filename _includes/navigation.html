@@ -4,7 +4,9 @@
     {% if external == 'http:' or external == 'https:' %}
       <a href="{{- item.link -}}" target="_blank" rel="noopener noreferrer">{{- item.name -}}</a>
     {% else %}
-      <a href="{{- item.link -}}" class="{%- if page.url == item.link %}current{% endif -%}">{{- item.name -}}</a>
+      <a href="{{- item.link | relative_url -}}" class="{%- if page.url == item.link %}current{% endif -%}">
+        {{- item.name -}}
+      </a>
     {% endif %}
   {% endfor %}
 </nav>
