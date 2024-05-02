@@ -1,5 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const themeSwitch = document.getElementById("theme-switch");
+(function () {
+  /* Active navigation */
+  const navLinks = document.querySelectorAll("header > nav a");
+  const currentUrl = window.location.pathname;
+  navLinks.forEach((link) => {
+    link.classList.remove("current");
+    if (link.getAttribute("href") === currentUrl) {
+      link.classList.add("current");
+    }
+  });
+  /* Theme toogle */
+  const themeSwitch = document.getElementById("theme-toggle");
   const htmlElement = document.querySelector("html");
   function toggleTheme() {
     if (themeSwitch.checked) {
@@ -19,4 +29,4 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   themeSwitch.addEventListener("change", toggleTheme);
   loadTheme();
-});
+})();

@@ -267,9 +267,9 @@ header > nav a[aria-current="page"] {
 }
 
 /* Consolidate box styling */
+pre,
 aside,
 details,
-pre,
 progress {
   background-color: var(--code-bg-color);
   border: 1px solid var(--border-color);
@@ -312,8 +312,8 @@ section h2:first-child {
 }
 
 section {
-  // border-top: 1px solid var(--border-color);
-  // border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding: 2rem 1rem;
   margin: 3rem 0;
 }
@@ -556,13 +556,13 @@ blockquote {
   background-color: var(--code-bg-color);
   border-inline-start: 0.35rem solid var(--accent-color);
   color: var(--text-light);
-  font-style: normal;
+  font-style: italic;
 }
 
 cite {
   font-size: 1rem;
   color: var(--text-light);
-  font-style: italic;
+  font-style: normal;
 }
 
 dt {
@@ -580,10 +580,10 @@ samp {
 }
 
 code {
-  padding: 1px 4px;
+  padding: 4px 4px;
   border-radius: var(--border-radius);
-  background-color: var(--accent-color);
-  color: var(--accent-text);
+  background-color: var(--code-bg-color);
+  color: var(--accent-color);
 }
 
 kbd {
@@ -616,31 +616,31 @@ pre code {
 /* cannot combine vendor-specific selectors */
 progress {
   width: 100%;
-}
 
-progress:indeterminate {
-  background-color: var(--code-bg-color);
-}
+  &:indeterminate {
+    background-color: var(--code-bg-color);
+  }
 
-progress::-webkit-progress-bar {
-  border-radius: var(--border-radius);
-  background-color: var(--code-bg-color);
-}
+  &::-webkit-progress-bar {
+    border-radius: var(--border-radius);
+    background-color: var(--code-bg-color);
+  }
 
-progress::-webkit-progress-value {
-  border-radius: var(--border-radius);
-  background-color: var(--accent-color);
-}
+  &::-webkit-progress-value {
+    border-radius: var(--border-radius);
+    background-color: var(--accent-color);
+  }
 
-progress::-moz-progress-bar {
-  border-radius: var(--border-radius);
-  background-color: var(--accent-color);
-  transition-property: width;
-  transition-duration: 0.3s;
-}
+  &::-moz-progress-bar {
+    border-radius: var(--border-radius);
+    background-color: var(--accent-color);
+    transition-property: width;
+    transition-duration: 0.3s;
+  }
 
-progress:indeterminate::-moz-progress-bar {
-  background-color: var(--code-bg-color);
+  &:indeterminate::-moz-progress-bar {
+    background-color: var(--code-bg-color);
+  }
 }
 
 dialog {

@@ -2,12 +2,20 @@
 title: "sionta"
 author: "Andre Attamimi"
 description: "A brief description of your website"
-# avatar: "https://github.com/sionta.png?size=100"
-avatar: "/assets/images/favicon.png"
 url: ""
-baseurl: ""
+# baseurl: "/blog"
 email: ""
 lang: "en"
+
+# Post settings
+# avatar: "https://github.com/sionta.png?size=100"
+avatar: "/assets/images/favicon.png"
+
+# Set to `true` to show excerpts on the homepage.
+show_excerpts: false
+
+# Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
+date_format: "%b-%d-%Y"
 
 # Development settings =======================================
 sass:
@@ -19,7 +27,7 @@ kramdown:
   hard_wrap: false
   parse_block_html: true
   syntax_highlighter: "rouge"
-  syntax_highlighter_opts: # Rouge Options › https://github.com/jneen/rouge#full-options
+  syntax_highlighter_opts:
     css_class: "highlight"
   math_engine: katex
   math_engine_opts: {}

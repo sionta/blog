@@ -2,8 +2,9 @@
 layout: default
 ---
 <div>
-  <h1>Tag #{{ page.tag }}</h1>
+  <h1>Tags</h1>
   <ul>
+    <h3>#{{ page.tag }}</h3>
     {% for post in site.posts %}
       {% if post.tags contains page.tag %}
         <li>

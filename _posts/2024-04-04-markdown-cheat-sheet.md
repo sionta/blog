@@ -2,7 +2,7 @@
 layout: post
 title: Markdown Cheat Sheet
 description: A quick overview of all the Markdown syntax elements
-tags: [typography]
+tags: [tutorial, typography]
 author: Andre Attamimi
 comments: false
 diagram: true
