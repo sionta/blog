@@ -25,6 +25,8 @@ html {
 
 /* Make the body a nice central block */
 body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--base-bg-color);
   color: var(--text-color);
   line-height: 1.5;
@@ -547,22 +549,39 @@ figcaption {
   margin-block: 1rem;
 }
 
-blockquote {
+/* blockquote {
   // margin-inline-start: 2rem;
   // margin-inline-end: 0;
   // margin-block: 2rem;
   margin-inline-start: 0;
   padding: 0.1rem 0.8rem;
   background-color: var(--code-bg-color);
-  border-inline-start: 0.35rem solid var(--accent-color);
+  border-inline-start: 0.35rem solid var(--disabled-color);
   color: var(--text-light);
-  font-style: italic;
+  font-style: normal;
 }
-
 cite {
   font-size: 1rem;
   color: var(--text-light);
-  font-style: normal;
+  font-style: italic;
+} */
+
+blockquote {
+  margin: 20px 0;
+  padding: 15px 20px;
+  border-left: 5px solid var(--disabled-color);
+  background-color: var(--code-bg-color);
+  color: var(--text-light);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  border-radius: var(--border-radius);
+  cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: bold;
+  }
 }
 
 dt {

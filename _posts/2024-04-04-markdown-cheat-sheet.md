@@ -9,10 +9,9 @@ diagram: true
 anchor: true
 toc: true
 ---
-
 <!-- https://www.markdownguide.org/hacks/ -->
 
-{:.notice}
+<!-- {:.notice} -->
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
 ## Front Matter
@@ -194,16 +193,21 @@ You can align text in the columns to the left, right, or center by adding a colo
 ## Alerts
 
 <!-- markdownlint-disable -->
-> This is a normal alert.
-{:.alerts}
-> This is an info alert
-{:.alerts.info}
-> This is a warning alert.
-{:.alerts.warning}
-> This is a danger alert.
-{:.alerts.danger}
-> This is a success alert.
-{:.alerts.success}
+> This is a normal alert use `{:.alert}`.
+{:.alert}
+
+> This is an info alert use `{:.alert.info}`.
+{:.alert.info}
+
+> This is a warning alert `{:.alert.warning}`.
+{:.alert.warning}
+
+> This is a danger alert `{:.alert.danger}`.
+{:.alert.danger}
+
+> This is a success alert `{:.alert.success}`.
+{:.alert.success}
+
 <!-- markdownlint-disable -->
 
 ## Mathematics

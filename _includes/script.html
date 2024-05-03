@@ -5,9 +5,10 @@
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
 
+{% assign js_vendor = '/assets/js/vendor' | relative_url %}
 {% if page.path contains '_posts' or page.layout == 'post' %}
   {% if page.anchor %}
-    <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+    <script type="text/javascript" src="{{- js_vendor -}}/anchor.min.js"></script>
     <script type="text/javascript">
       const anchors = new AnchorJS();
       const options = {
@@ -19,7 +20,7 @@
     </script>
   {% endif %}
   {% if page.diagram %}
-    <script type="text/javascript" src="{{ '/assets/js/mermaid.min.js' | relative_url }}"></script>
+    <script type="text/javascript" src="{{- js_vendor -}}/mermaid.min.js"></script>
     <script type="text/javascript">
       const mermaidConfig = {
         startOnLoad: true,

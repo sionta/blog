@@ -9,8 +9,8 @@
     }
   });
   /* Theme toogle */
-  const themeSwitch = document.getElementById("theme-toggle");
   const htmlElement = document.querySelector("html");
+  const themeSwitch = document.getElementById("theme-toggle");
   function toggleTheme() {
     if (themeSwitch.checked) {
       htmlElement.setAttribute("data-theme", "dark");

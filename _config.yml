@@ -1,27 +1,44 @@
 # Site settings
 title: "sionta"
-author: "Andre Attamimi"
 description: "A brief description of your website"
-url: ""
-# baseurl: "/blog"
-email: ""
+url: "https://andreattamimi.com" # (e.g. "https://example.com")
+baseurl: "" # (e.g. /blog)
 lang: "en"
+google_analytics: "G-31WRW155T4"
 
-# Post settings
-# avatar: "https://github.com/sionta.png?size=100"
-avatar: "/assets/images/favicon.png"
-
-# Set to `true` to show excerpts on the homepage.
-show_excerpts: false
+# Post settings ==============================================
+author: "Andre Attamimi"
+email: "info@andreattamimi.com"
+avatar: "/assets/images/favicon.png" # "https://github.com/sionta.png?size=100"
 
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
-date_format: "%b-%d-%Y"
+date_format: "%B %d, %Y"
+
+# Set to `true` to show excerpts on the homepage.
+show_excerpts: true
+
+twitter:
+  username: "R007MMXV"
+
+# Comments Settings
+comments:
+  provider: "disqus" # (e.g., "disqus")
+  # The provider setting below:
+  disqus: # Disqus > https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: "andreattamimi"
+  giscus: # giscus > https://giscus.app/
+    repo: "" # (e.g., "owner/repo")
+    repo_id: ""
+    category: ""
+    category_id: ""
+  utterances: # utterances > https://utteranc.es/
+    repo: "" # (e.g., "owner/repo")
 
 # Development settings =======================================
 sass:
-  style: compressed
-  # style: expanded
-  sourcemap: never
+  style: "compressed"
+  # style: "expanded"
+  sourcemap: "never"
 
 kramdown:
   hard_wrap: false
@@ -29,27 +46,41 @@ kramdown:
   syntax_highlighter: "rouge"
   syntax_highlighter_opts:
     css_class: "highlight"
-  math_engine: katex
+  math_engine: "katex"
   math_engine_opts: {}
 
 compress_html:
+  clippings: "all"
+  comments: "all"
+  endings: "all"
   profile: false
-  clippings: all
-  endings: all
-  startings: [html, head, body]
-  comments: ["<!-- ", " -->"]
+  blanklines: false
   # ignore:
   #   envs: ["development"]
 
 defaults:
   - scope:
       path: ""
-      type: "pages"
-    values:
-      layout: "default"
-  - scope:
-      path: ""
       type: "posts"
     values:
       layout: "post"
       permalink: "/posts/:title/"
+
+jekyll-archives:
+  enabled: ["categories", "tags"]
+  layouts:
+    category: "category"
+    tag: "tag"
+  permalinks:
+    tag: "/tags/:name/"
+    category: "/categories/:name/"
+
+exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - "test*"
+  - "node_modules"
+  - "netlify.toml"
+  - "README.md"
+  - "yarn.lock"
+  - "package*.json"

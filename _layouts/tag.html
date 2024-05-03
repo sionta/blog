@@ -1,17 +1,42 @@
 ---
 layout: default
+title: Archives
 ---
-<div>
-  <h1>Tags</h1>
+{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
+<div class="archive">
   <ul>
-    <h3>#{{ page.tag }}</h3>
-    {% for post in site.posts %}
-      {% if post.tags contains page.tag %}
-        <li>
-          <a class="post" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%m-%d-%Y' }}</time>
-        </li>
-      {% endif %}
+    <h3>Archive of posts with {{ page.type }}s '#{{ page.title }}'</h3>
+    {% for post in page.posts %}
+      <li>
+        <span class="post-date">{{ post.date | date: date_format }}</span>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
     {% endfor %}
+    <p>&#8636; <a href="{{ '/' | relative_url }}">Back to Home</a></p>
   </ul>
 </div>
+
+{% comment %}
+  ---
+  layout: default
+  title: Archives
+  ---
+
+  <div class="archive">
+    <h2>Post Archives</h2>
+    <ul>
+      {% assign posts = site.posts %}
+      {% for post in posts %}
+      <li>
+        <a href="{{ post.url }}">
+          {{ post.title }}
+        </a>
+        <br>
+        <span class="date">
+          {{ post.date | date: "%B %d, %Y" }}
+        </span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endcomment %}

@@ -1,18 +1,75 @@
 ---
 layout: default
 ---
-{% assign author_data = page.auhtor | default: site.author %}
-{% assign date_format = page.date | date: '%B %d, %Y' %}
-
-<article>
-  {% if page.title %}
-    <h1>{{ page.title }}</h1>
+{%- assign auhtor_name = site.author | default: site.author.name | default: page.auhtor -%}
+{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
+<article
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  itemid="https://www.dataliberate.com/2019/05/14/library-metadata-evolution-final-mile/"
+>
+  <span>&#8636; <a href="{{ '/' | relative_url }}">Back to Home</a> </span>
+  {% comment %} <meta itemprop="wordCount" content="481"> {% endcomment %}
+  <header>
+    <h1 itemprop="name">{{ page.title }}</h1>
+    <div>
+      <p>
+        Posted by
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">
+            <a itemprop="url" href="{{- site.url -}}">{{- auhtor_name -}}</a>
+          </span>
+        </span>
+        on
+        <time itemprop="datePublished" datetime="{{- page.date | date_to_xmlschema -}}">
+          {{- page.date | date: date_format -}}
+        </time>
+        and updated on
+        <time itemprop="dateModified" datetime="{{- page.last_modified_at | date_to_xmlschema -}}">
+          {{- page.last_modified_at | date: date_format -}}</time
+        >.
+      </p>
+    </div>
+  </header>
+  <div itemprop="articleBody">
+    {% if page.toc %}
+      <details>
+        <summary>Table of Contents</summary>
+        {% include toc.html html=content sanitize=true id="toc" h_min=2 h_max=3 %}
+      </details>
+    {% endif %}
+    {{ content }}
+  </div>
+  {% if page.comments %}
+    <div itemscope itemtype="https://schema.org/Comment">
+      {% include comments.html %}
+    </div>
   {% endif %}
-  {% if page.toc %}
-    <details>
-      <summary>Table of content</summary>
-      {% include toc.html html=content sanitize=true class="inline_toc" id="toc" h_min=2 h_max=3 %}
-    </details>
-  {% endif %}
-  {{ content }}
+  <footer>
+    <p>
+      <strong>Tagged with:</strong>
+      <span itemprop="keywords">
+        {%- for tag in page.tags -%}
+          {{- tag | capitalize -}}
+          {%- unless forloop.last %}, {% endunless -%}
+        {%- endfor -%}
+      </span>
+    </p>
+  </footer>
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+
+{% comment %}
+  <article>
+    {% if page.title %}
+      <h1>{{ page.title }}</h1>
+    {% endif %}
+    {% if page.toc %}
+      <details>
+        <summary>Table of Contents</summary>
+        {% include toc.html html=content sanitize=true class="inline_toc" id="toc" h_min=2 h_max=3 %}
+      </details>
+    {% endif %}
+    {{ content }}
+  </article>
+{% endcomment %}

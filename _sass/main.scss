@@ -1,18 +1,15 @@
 @charset "UTF-8";
 @import "../fonts/open-sans/open_sans.css", "../fonts/fira-code/fira_code.css",
   "../fonts/poppins/poppins.css";
-$base-font-family: "Poppins", "Open Sans", system-ui, -apple-system, sans-serif !default;
+
+$base-font-family: "Open Sans", "Poppins", system-ui, -apple-system, sans-serif !default;
 $code-font-family: "Fira Code", "Consolas", monospace !default;
 
 /* Global variables. */
-:root,
-[data-theme="light"] {
-  /* Set sans-serif & mono fonts */
+:root {
   --base-font-family: #{$base-font-family};
   --code-font-family: #{$code-font-family};
   --border-radius: 5px;
-
-  /* Default (light) theme */
   --base-bg-color: #ffffff;
   --code-bg-color: #f5f5f5;
   --text-color: #212121;
@@ -27,14 +24,14 @@ $code-font-family: "Fira Code", "Consolas", monospace !default;
   --disabled-color: #e0e0e0;
 
   /* Alerts color */
-  --alert-info-bg: #cce5ff;
-  --alert-info-color: #004085;
-  --alert-warning-bg: #ffe79c;
-  --alert-warning-color: #856404;
-  --alert-danger-bg: #fbd5d8;
-  --alert-danger-color: #721c24;
-  --alert-success-bg: #c3e6cb;
-  --alert-success-color: #155724;
+  --alert-info-bg: rgb(204, 229, 255);
+  --alert-info-color: rgb(0, 64, 133);
+  --alert-warning-bg: rgb(255, 231, 156);
+  --alert-warning-color: rgb(133, 100, 4);
+  --alert-danger-bg: rgb(251, 213, 216);
+  --alert-danger-color: rgb(114, 28, 36);
+  --alert-success-bg: rgb(195, 230, 203);
+  --alert-success-color: rgb(21, 87, 36);
 }
 
 /* Dark theme */
@@ -52,14 +49,14 @@ $code-font-family: "Fira Code", "Consolas", monospace !default;
   --preformatted: #b0bec5;
   --disabled-color: #616161;
 
-  --alert-info-bg: #00325b;
-  --alert-info-color: #cce5ff;
-  --alert-warning-bg: #5b3d01;
-  --alert-warning-color: #ffe79c;
-  --alert-danger-bg: #571719;
-  --alert-danger-color: #fbd5d8;
-  --alert-success-bg: #1b3621;
-  --alert-success-color: #c3e6cb;
+  --alert-info-bg: rgb(0, 64, 133);
+  --alert-info-color: rgb(204, 229, 255);
+  --alert-warning-bg: rgb(133, 100, 4);
+  --alert-warning-color: rgb(255, 231, 156);
+  --alert-danger-bg: rgb(114, 28, 36);
+  --alert-danger-color: rgb(251, 213, 216);
+  --alert-success-bg: rgb(21, 87, 36);
+  --alert-success-color: rgb(195, 230, 203);
   /* Add a bit of transparency so light media isn't so glaring in dark mode */
   img,
   video {
@@ -76,12 +73,12 @@ $code-font-family: "Fira Code", "Consolas", monospace !default;
   margin: 2rem 0;
 }
 
-.alerts {
-  border-inline-start: none;
-  // padding: 1rem;
+.alert {
+  padding: 1rem;
   margin-bottom: 1rem;
   border-radius: var(--border-radius);
-  font-weight: bold;
+  font-style: normal;
+  border-left: none;
   &.info {
     background-color: var(--alert-info-bg);
     color: var(--alert-info-color);
@@ -100,4 +97,4 @@ $code-font-family: "Fira Code", "Consolas", monospace !default;
   }
 }
 
-@import "custom", "base", "post", "syntax";
+@import "custom", "base", "post", "archive", "syntax";

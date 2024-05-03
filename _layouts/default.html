@@ -8,9 +8,9 @@ layout: compress
   </head>
   <body>
     <header>
+      <h1>{{ site.name | default: site.title }}</h1>
+      <p>{{ site.tagline | default: site.description }}</p>
       {% include navigation.html %}
-      {% comment %} <h1>{{ site.title }}</h1> {% endcomment %}
-      {% comment %} <p>{{ site.tagline | default: site.description }}</p> {% endcomment %}
       {% comment %} <h1>{{ page.title | default: site.title }}</h1> {% endcomment %}
       {% comment %} <p>{{ page.description | default: site.description }}</p> {% endcomment %}
     </header>

@@ -1,57 +1,18 @@
-/* .post-link {
-  font-size: 1.6rem;
-  font-weight: bold;
-}
-.meta {
-  color: var(--text-light);
-  font-size: 1rem;
-}
-.blog-item {
-  margin-bottom: 4rem;
-}
-nav a.current {
-  color: var(--accent-color) !important;
-  border-color: var(--accent-color) !important;
-}
-.medium {
-  font-size: 1.4rem;
-}
-.small {
-  font-size: 1rem;
-}
-.icon {
-  vertical-align: sub;
-  padding-right: 0.25rem;
-  display: inline-block;
-  width: 1em;
-  height: 1.3em;
-  margin-right: 0.2rem;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-} */
-
-/* Alfie Jones https://github.com/AlfieJones/theme-toggles */
+/* Theme Toggles by Alfie Jones <https://github.com/AlfieJones/theme-toggles> */
 .theme-toggle {
   --theme-toggle-duration: 600ms;
-  border: none;
   background: none;
+  border: none;
+  bottom: 32px;
+  color: var(--text-color);
+  position: fixed;
+  right: 42px;
+  z-index: 1000;
   cursor: pointer;
   input[type="checkbox"] {
     display: none;
   }
-  position: fixed;
-  bottom: 32px;
-  right: 42px;
-  z-index: 1000;
-  color: var(--accent-color);
 }
-[data-theme="light"] {
-  .theme-toggle {
-    color: var(--accent-color);
-  }
-}
-
 .theme-toggle_expand g circle,
 .theme-toggle_expand g path {
   transform-origin: center;
@@ -104,3 +65,36 @@ nav a.current {
     transition: none !important;
   }
 }
+
+/* .post-link {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.meta {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+.blog-item {
+  margin-bottom: 4rem;
+}
+nav a.current {
+  color: var(--accent-color) !important;
+  border-color: var(--accent-color) !important;
+}
+.medium {
+  font-size: 1.4rem;
+}
+.small {
+  font-size: 1rem;
+}
+.icon {
+  vertical-align: sub;
+  padding-right: 0.25rem;
+  display: inline-block;
+  width: 1em;
+  height: 1.3em;
+  margin-right: 0.2rem;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+} */
