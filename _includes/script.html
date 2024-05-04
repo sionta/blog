@@ -7,29 +7,81 @@
 
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
 {% if page.path contains '_posts' or page.layout == 'post' %}
+  {% if page.toc %}
+    <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        tocbot.init({
+          tocSelector: '#toc',
+          contentSelector: '[itemprop="articleBody"]',
+          ignoreSelector: '.no_toc, .no-toc',
+          headingSelector: 'h2, h3, h4',
+          orderedList: false,
+          scrollSmooth: false,
+        });
+        tocbot.refresh();
+      });
+    </script>
+  {% endif %}
   {% if page.anchor %}
+    <style>
+      .anchorjs-link {
+        color: #aaaaaa;
+      }
+      .anchorjs-link:hover {
+        color: #ff5231;
+      }
+    </style>
     <script type="text/javascript" src="{{- js_vendor -}}/anchor.min.js"></script>
     <script type="text/javascript">
-      const anchors = new AnchorJS();
-      const options = {
-        level: [2, 3],
-        placement: 'right',
-        visible: 'hover',
-      };
-      anchors.add('h2, h3', options);
+      document.addEventListener('DOMContentLoaded', function () {
+        anchors.options = {
+          placement: 'right',
+          visible: 'always',
+          icon: '#',
+        };
+        anchors.add('h2, h3, h4');
+        var noAnchorClasses = ['.no-anchor', '.no_anchor'];
+        var noAnchorSelectors = noAnchorClasses
+          .map(function (className) {
+            return (
+              'h1' +
+              className +
+              ', h2' +
+              className +
+              ', h3' +
+              className +
+              ', h4' +
+              className +
+              ', h5' +
+              className +
+              ', h6' +
+              className
+            );
+          })
+          .join(',');
+        document.querySelectorAll(noAnchorSelectors).forEach(function (heading) {
+          var anchorLink = heading.querySelector('.anchorjs-link');
+          if (anchorLink) {
+            heading.removeChild(anchorLink);
+          }
+        });
+      });
     </script>
   {% endif %}
   {% if page.diagram %}
     <script type="text/javascript" src="{{- js_vendor -}}/mermaid.min.js"></script>
     <script type="text/javascript">
-      const mermaidConfig = {
-        startOnLoad: true,
-        theme: 'neutral',
-      };
-      mermaid.initialize(mermaidConfig);
-      const mermaidElements = document.querySelectorAll('.language-mermaid');
-      mermaidElements.forEach((element) => {
-        mermaid.init(undefined, element);
+      document.addEventListener('DOMContentLoaded', function () {
+        const mermaidConfig = {
+          startOnLoad: true,
+          theme: 'neutral',
+        };
+        mermaid.initialize(mermaidConfig);
+        const mermaidElements = document.querySelectorAll('.language-mermaid');
+        mermaidElements.forEach((element) => {
+          mermaid.init(undefined, element);
+        });
       });
     </script>
   {% endif %}

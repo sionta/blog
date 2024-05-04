@@ -1,25 +1,16 @@
 ---
-layout: compress
+# layout: compress
+layout: none
 ---
 <!doctype html>
-<html lang="{{- page.lang | default: site.lang | default: 'en' -}}" data-theme="light">
-  <head>
-    {% include head.html %}
-  </head>
+<html lang="{{- page.lang | default: site.lang | default: 'en' -}}">
+  {% include head.html %}
   <body>
-    <header>
-      <h1>{{ site.name | default: site.title }}</h1>
-      <p>{{ site.tagline | default: site.description }}</p>
-      {% include navigation.html %}
-      {% comment %} <h1>{{ page.title | default: site.title }}</h1> {% endcomment %}
-      {% comment %} <p>{{ page.description | default: site.description }}</p> {% endcomment %}
-    </header>
+    {% include header.html %}
     <main>
       {{ content }}
     </main>
-    <footer>
-      {% include footer.html %}
-    </footer>
+    {% include footer.html %}
     {% include script.html %}
   </body>
 </html>

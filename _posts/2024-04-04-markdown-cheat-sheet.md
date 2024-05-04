@@ -34,11 +34,11 @@ comments: false # Disable comments
 
 <!-- markdownlint-disable -->
 # H1
-{:.no_toc}
+{:.no_toc .no_anchor}
 ## H2
-{:.no_toc}
+{:.no_toc .no_anchor}
 ### H3
-{:.no_toc}
+{:.no_toc .no_anchor}
 <!-- markdownlint-restore -->
 
 ## Paragraphs
@@ -137,13 +137,11 @@ print_hi('Tom')
 
 ## Links
 
-My favorite search engine is [Duck Duck Go](https://duckduckgo.com "The best search engine for privacy").
-
 <https://github.com/sionta>
 
 I love supporting the **[EFF](https://eff.org)**.
 This is the *[Markdown Guide](https://www.markdownguide.org)*.
-See the section on [`code`](#code).
+See the section on [`code`](#codes).
 
 ## Footnotes
 

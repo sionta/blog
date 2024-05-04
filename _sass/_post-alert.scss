@@ -1,0 +1,55 @@
+$alert-info-bg: rgb(204, 229, 255);
+$alert-info-color: rgb(0, 64, 133);
+$alert-warning-bg: rgb(255, 231, 156);
+$alert-warning-color: rgb(133, 100, 4);
+$alert-danger-bg: rgb(251, 213, 216);
+$alert-danger-color: rgb(114, 28, 36);
+$alert-success-bg: rgb(195, 230, 203);
+$alert-success-color: rgb(21, 87, 36);
+
+@if $dark-theme {
+  $alert-info-bg: rgb(0, 64, 133);
+  $alert-info-color: rgb(204, 229, 255);
+  $alert-warning-bg: rgb(133, 100, 4);
+  $alert-warning-color: rgb(255, 231, 156);
+  $alert-danger-bg: rgb(114, 28, 36);
+  $alert-danger-color: rgb(251, 213, 216);
+  $alert-success-bg: rgb(21, 87, 36);
+  $alert-success-color: rgb(195, 230, 203);
+}
+
+:root {
+  --alert-info-bg: #{$alert-info-bg};
+  --alert-info-color: #{$alert-info-color};
+  --alert-warning-bg: #{$alert-warning-bg};
+  --alert-warning-color: #{$alert-warning-color};
+  --alert-danger-bg: #{$alert-danger-bg};
+  --alert-danger-color: #{$alert-danger-color};
+  --alert-success-bg: #{$alert-success-bg};
+  --alert-success-color: #{$alert-success-color};
+}
+
+.alert {
+  padding: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 3px;
+  font-size: inherit;
+  font-style: normal;
+  border-left: none;
+  &.info {
+    background-color: var(--alert-info-bg);
+    color: var(--alert-info-color);
+  }
+  &.warning {
+    background-color: var(--alert-warning-bg);
+    color: var(--alert-warning-color);
+  }
+  &.danger {
+    background-color: var(--alert-danger-bg);
+    color: var(--alert-danger-color);
+  }
+  &.success {
+    background-color: var(--alert-success-bg);
+    color: var(--alert-success-color);
+  }
+}

@@ -1,0 +1,84 @@
+/* Global variables. */
+:root {
+  --base-font-family: #{$base-font-family};
+  --code-font-family: #{$code-font-family};
+  --border-radius: 5px;
+  --base-bg-color: #ffffff;
+  --code-bg-color: #f5f5f5;
+  --text-color: #212121;
+  --text-light: #585858;
+  --border-color: #d1d5db;
+  --accent-color: #007bff;
+  --accent-hover: #0056b3;
+  --accent-text: var(--base-bg-color);
+  --code-color: #dc3545;
+  --preformatted: #333333;
+  --marked-color: #ffcf81;
+  --disabled-color: #e0e0e0;
+}
+
+/* Dark theme */
+// @media (prefers-color-scheme: dark) {}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --base-bg-color: #121212;
+  --code-bg-color: #1e1e1e;
+  --text-color: #e0e0e0;
+  --text-light: #b3b3b3;
+  --border-color: #333333;
+  --accent-color: #bb86fc;
+  --accent-hover: #a459d1;
+  --code-color: #f06292;
+  --preformatted: #b0bec5;
+  --disabled-color: #616161;
+
+  /* Add a bit of transparency so light media isn't so glaring in dark mode */
+  img,
+  video {
+    opacity: 0.8;
+  }
+}
+
+/* Classes for notices */
+.notice {
+  background: var(--code-bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* .post-link {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  .meta {
+    color: var(--text-light);
+    font-size: 1rem;
+  }
+  .blog-item {
+    margin-bottom: 4rem;
+  }
+  nav a.current {
+    color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+  }
+  .medium {
+    font-size: 1.4rem;
+  }
+  .small {
+    font-size: 1rem;
+  }
+  .icon {
+    vertical-align: sub;
+    padding-right: 0.25rem;
+    display: inline-block;
+    width: 1em;
+    height: 1.3em;
+    margin-right: 0.2rem;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  } */
+
+@import "base";

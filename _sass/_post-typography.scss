@@ -1,0 +1,41 @@
+%typography-authors {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#typography {
+  .my-authors {
+    --avatar-size: 65px;
+    @extend %typography-authors;
+    gap: 2em;
+  }
+  .my-author {
+    @extend %typography-authors;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 1em;
+    line-height: calc(var(--avatar-size) / 2);
+    img {
+      border-radius: 50%;
+      height: var(--avatar-size, 65px);
+      width: var(--avatar-size, 65px);
+    }
+    &__links a {
+      -webkit-margin-end: 6px;
+      -moz-margin-end: 6px;
+      margin-inline-end: 6px;
+      &:hover {
+        border-bottom: 1px solid currentColor;
+      }
+      &:last-of-type {
+        -webkit-margin-end: 0;
+        -moz-margin-end: 0;
+        margin-inline-end: 0;
+      }
+    }
+  }
+}

@@ -6,10 +6,19 @@ baseurl: "" # (e.g. /blog)
 lang: "en"
 google_analytics: "G-31WRW155T4"
 
+mode_theme: light # "auto", "dark" and "light"
+
 # Post settings ==============================================
-author: "Andre Attamimi"
-email: "info@andreattamimi.com"
-avatar: "/assets/images/favicon.png" # "https://github.com/sionta.png?size=100"
+author:
+  name: "Andre Attamimi" # default `site.title`
+  url: https://github.com/sionta # default `site.url`
+  email: "info@andreattamimi.com"
+  avatar: "/assets/images/favicon.png" # "https://github.com/sionta.png?size=100"
+  socials:
+    github: "sionta"
+    twitter: "R007MMXV"
+    mastodon: "sionta"
+    linkedin: "andreattamimi"
 
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%B %d, %Y"
@@ -17,8 +26,10 @@ date_format: "%B %d, %Y"
 # Set to `true` to show excerpts on the homepage.
 show_excerpts: true
 
-twitter:
-  username: "R007MMXV"
+# If you want to link only specific pages in your header, use this and add the path to the pages
+# in order as they should show up.
+header_pages:
+  - about.md
 
 # Comments Settings
 comments:
@@ -49,22 +60,35 @@ kramdown:
   math_engine: "katex"
   math_engine_opts: {}
 
-compress_html:
-  clippings: "all"
-  comments: "all"
-  endings: "all"
-  profile: false
-  blanklines: false
-  # ignore:
-  #   envs: ["development"]
-
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-      permalink: "/posts/:title/"
+      # Special configuration on this site:
+      # toc: true # Enable table of contents
+      # anchor: true # Enable anchor headings
+      # diagram: true # Enable diagrammings
+      # comments: false # Disable comments
+      permalink: "/blog/:title/"
+
+# compress_html:
+#   clippings: "all"
+#   comments: "all"
+#   endings: "all"
+#   profile: false
+#   blanklines: false
+#   ignore:
+#     envs: ["development"]
+
+feed:
+  posts_limit: 3
+  # excerpt_only: true
+  # tags: true
+  # categories:
+  #   - tutorial
+  #   - updates
 
 jekyll-archives:
   enabled: ["categories", "tags"]
