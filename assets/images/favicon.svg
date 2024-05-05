@@ -2,11 +2,10 @@
   <defs>
     <style>
       .cls-bg {
-        fill: #243665;
+        fill: #DDDDDD;
       }
-
       .cls-fg {
-        fill: #8bd8bd;
+        fill: #999999;
       }
     </style>
   </defs>
