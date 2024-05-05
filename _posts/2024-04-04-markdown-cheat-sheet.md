@@ -9,7 +9,7 @@ author: Andre Attamimi
 toc: true       # Enable table of contents
 anchor: true    # Enable anchor headings
 diagram: true   # Enable diagrammings
-comments: false # Disable comments
+comments: true  # Disable comments
 ---
 <!-- https://www.markdownguide.org/hacks/ -->
 
