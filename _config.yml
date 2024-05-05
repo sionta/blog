@@ -13,7 +13,7 @@ author:
   name: "Andre Attamimi" # `site.title`
   url: https://github.com/sionta # `site.url`
   email: "info@andreattamimi.com"
-  avatar: "/assets/images/favicon.png" # "https://github.com/sionta.png?size=100"
+  avatar: "/assets/images/favicon.svg" # "https://github.com/sionta.png?size=100"
   github: "sionta"
   twitter: "R007MMXV"
   mastodon: "sionta"
