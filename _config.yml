@@ -10,15 +10,14 @@ mode_theme: light # "auto", "dark" and "light"
 
 # Post settings ==============================================
 author:
-  name: "Andre Attamimi" # default `site.title`
-  url: https://github.com/sionta # default `site.url`
+  name: "Andre Attamimi" # `site.title`
+  url: https://github.com/sionta # `site.url`
   email: "info@andreattamimi.com"
   avatar: "/assets/images/favicon.png" # "https://github.com/sionta.png?size=100"
-  socials:
-    github: "sionta"
-    twitter: "R007MMXV"
-    mastodon: "sionta"
-    linkedin: "andreattamimi"
+  github: "sionta"
+  twitter: "R007MMXV"
+  mastodon: "sionta"
+  linkedin: "andreattamimi"
 
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%B %d, %Y"

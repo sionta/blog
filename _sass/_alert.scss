@@ -1,0 +1,72 @@
+:root {
+  --alert-info-bg: #e7f5ff;
+  --alert-info-color: #0c5460;
+
+  --alert-warning-bg: #fff4e5;
+  --alert-warning-color: #856404;
+
+  --alert-danger-bg: #fdecea;
+  --alert-danger-color: #721c24;
+
+  --alert-success-bg: #e6ffed;
+  --alert-success-color: #155724;
+}
+
+[data-theme="dark"] {
+  --alert-info-bg: #002f44;
+  --alert-info-color: #a3d9ff;
+
+  --alert-warning-bg: #4a3f20;
+  --alert-warning-color: #ffecb3;
+
+  --alert-danger-bg: #3b1f23;
+  --alert-danger-color: #f5b7c0;
+
+  --alert-success-bg: #1e392a;
+  --alert-success-color: #a7dfb0;
+}
+
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border-left: 7px solid;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &::before {
+    font-size: 1.2rem;
+  }
+  &.info {
+    background-color: var(--alert-info-bg);
+    color: var(--alert-info-color);
+    border-color: var(--alert-info-color);
+    &::before {
+      content: "ℹ️";
+    }
+  }
+  &.warning {
+    background-color: var(--alert-warning-bg);
+    color: var(--alert-warning-color);
+    border-color: var(--alert-warning-color);
+    &::before {
+      content: "⚠️";
+    }
+  }
+  &.danger {
+    background-color: var(--alert-danger-bg);
+    color: var(--alert-danger-color);
+    border-color: var(--alert-danger-color);
+    &::before {
+      content: "❌";
+    }
+  }
+  &.success {
+    background-color: var(--alert-success-bg);
+    color: var(--alert-success-color);
+    border-color: var(--alert-success-color);
+    &::before {
+      content: "✅";
+    }
+  }
+}

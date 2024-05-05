@@ -2,33 +2,19 @@
 layout: post
 title: Markdown Cheat Sheet
 description: A quick overview of all the Markdown syntax elements
-tags: [tutorial, typography]
+categories: tutorial
+tags: [jekyll]
 author: Andre Attamimi
-comments: false
-diagram: true
-anchor: true
-toc: true
+# Special configuration on this site:
+toc: true       # Enable table of contents
+anchor: true    # Enable anchor headings
+diagram: true   # Enable diagrammings
+comments: false # Disable comments
 ---
 <!-- https://www.markdownguide.org/hacks/ -->
 
 <!-- {:.notice} -->
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
-
-## Front Matter
-
-```markdown
----
-title: Markdown Cheat Sheet
-description: This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements.
-tags: [typography]
-author: Andre Attamimi
-# Special configuration on this site:
-toc: true       # Enable table of content
-anchor: true    # Enable anchor heading
-diagram: true   # Enable diagramming
-comments: false # Disable comments
----
-```
 
 ## Headings
 
@@ -96,9 +82,14 @@ Moon
 
 ## Blockquotes
 
+The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
+
+<!-- markdownlint-disable -->
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
-> <cite>-- Nikola Tesla</cite>
+> <cite>&mdash; Nikola Tesla</cite>
+
+<!-- markdownlint-restore -->
 
 ## Codes
 
@@ -147,8 +138,6 @@ See the section on [`code`](#codes).
 
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
-[^1]: This is the first footnote.
-
 [^bignote]: Here's one with multiple paragraphs and code.
 
     Indent paragraphs to include them in the footnote.
@@ -191,21 +180,20 @@ You can align text in the columns to the left, right, or center by adding a colo
 ## Alerts
 
 <!-- markdownlint-disable -->
-> This is a normal alert use `{:.alert}`.
+> This is use `{:.alert}`.
 {:.alert}
 
-> This is an info alert use `{:.alert.info}`.
+> This is use `{:.alert.info}`.
 {:.alert.info}
 
-> This is a warning alert `{:.alert.warning}`.
+> This is use `{:.alert.warning}`.
 {:.alert.warning}
 
-> This is a danger alert `{:.alert.danger}`.
+> This is use `{:.alert.danger}`.
 {:.alert.danger}
 
-> This is a success alert `{:.alert.success}`.
+> This is use `{:.alert.success}`.
 {:.alert.success}
-
 <!-- markdownlint-disable -->
 
 ## Mathematics

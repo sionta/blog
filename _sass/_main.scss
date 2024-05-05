@@ -1,10 +1,80 @@
 @charset "UTF-8";
-@import "../fonts/open-sans/open_sans.css", "../fonts/fira-code/fira_code.css",
-  "../fonts/poppins/poppins.css";
+@use "base";
 
-$dark-theme: false;
+@import "../fonts/open-sans/open_sans.css";
+// @import "../fonts/fira-code/fira_code.css";
+// @import "../fonts/poppins/poppins.css";
+
+$dark-theme: false !default;
 $base-font-family: "Open Sans", "Poppins", system-ui, -apple-system, sans-serif !default;
 $code-font-family: "Fira Code", "Consolas", monospace !default;
 
-@import "custom", "post-alert", "post-list", "post-archive", "post-syntax",
-  "post-typography", "theme-toggle", "vendor/sakura/init";
+* {
+  transition: color 0.4s, background-color 0.48s;
+}
+
+:root {
+  color-scheme: light;
+  --sans-serif: #{$base-font-family};
+  --mono-space: #{$code-font-family};
+  --border-radius: 5px;
+  --background: #ffffff;
+  --background-alt: #f5f5f5;
+  --text: #202124;
+  --text-alt: #5f6368;
+  --border-color: #dadce0;
+  --accent-text: #ffffff;
+  --accent-visit: #1967d2;
+  --accent-hover: #174ea6;
+  --color-code: #e53935;
+  --color-preformatted: #70757a;
+  --color-marked: #fbbc04;
+  --color-disabled: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #202124;
+  --background-alt: #3c4043;
+  --text: #e8eaed;
+  --text-alt: #cbd1d6;
+  --border-color: #5f6368;
+  --accent-text: #202124;
+  --accent-visit: #8ab4f8;
+  --accent-hover: #4a90e2;
+  --color-code: #e57373;
+  --color-preformatted: #b0bec5;
+  --color-marked: #ffeb3b;
+  --color-disabled: #5f6368;
+}
+
+code:not(.highlight pre.highlight code) {
+  font-size: medium;
+  color: var(--text);
+  background-color: var(--background-alt);
+  padding: 3px;
+  border-radius: 4px;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding: 10px 15px;
+  border-left: 5px solid var(--color-disabled);
+  background-color: var(--background-alt);
+  color: var(--text-alt);
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.5;
+  /* border-radius: var(--border-radius); */
+  cite {
+    margin: 0 20px;
+    display: block;
+    font-style: normal;
+    font-weight: bold;
+  }
+  &:not(:has(cite)) {
+    font-style: normal;
+  }
+}
+
+@import "theme-toggle", "syntax", "alert";

@@ -1,17 +1,17 @@
 # Blog
 
 ![GitHub Pages](<https://github.com/sionta/blog/actions/workflows/jekyll.yml/badge.svg?branch=main>)
-![Netlify Status](<https://api.netlify.com/api/v1/badges/ee441eb4-7b26-4b78-a0f1-c3f90837d480/deploy-status>)&nbsp;
+<!-- ![Netlify Status](<https://api.netlify.com/api/v1/badges/ee441eb4-7b26-4b78-a0f1-c3f90837d480/deploy-status>)&nbsp; -->
 
-[![Screenshot](/screenshot.png)][demo]
+<!-- [![Screenshot](/screenshot.png)][demo] -->
 
 ## TODO
 
-- [ ] Rebase `SASS`
-- [ ] Dark theme with toggle
+- [x] Rebase `SASS`
+- [x] Dark theme with toggle
 - [ ] Localized (default: "en")
-- [ ] Page categories
-- [ ] Post table of contents
+- [x] Page categories
+- [x] Post table of contents
 - [ ] *and others*
 
 ## Features
@@ -34,5 +34,3 @@
 ## License
 
 This project is published under [MIT License](LICENSE).
-
-[demo]: https://andreattamimi.com/

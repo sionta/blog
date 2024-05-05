@@ -6,7 +6,7 @@
 {% endcomment %}
 
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
-{% if page.path contains '_posts' or page.layout == 'post' %}
+{% if page.collection == 'posts' or page.layout == 'post' %}
   {% if page.toc %}
     <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
     <script type="text/javascript">
@@ -41,7 +41,7 @@
           icon: '#',
         };
         anchors.add('h2, h3, h4');
-        var noAnchorClasses = ['.no-anchor', '.no_anchor'];
+        var noAnchorClasses = ['.no_anchor', '.no-anchor'];
         var noAnchorSelectors = noAnchorClasses
           .map(function (className) {
             return (
