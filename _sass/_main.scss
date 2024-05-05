@@ -9,9 +9,9 @@ $dark-theme: false !default;
 $base-font-family: "Open Sans", "Poppins", system-ui, -apple-system, sans-serif !default;
 $code-font-family: "Fira Code", "Consolas", monospace !default;
 
-* {
-  transition: color 0.4s, background-color 0.48s;
-}
+// * {
+//   transition: color 0.4s, background-color 0.48s;
+// }
 
 :root {
   color-scheme: light;

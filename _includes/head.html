@@ -10,15 +10,17 @@
   </title>
   {% seo title=false %}
   {% feed_meta %}
-  {% if site.url != 'http://localhost:4000' %}
-    <!-- Prevent potential clickjacking attacks -->
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
-    <!-- Prevent potential XSS attacks -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:"
-    >
-  {% endif %}
+  {% comment %}
+    {% if site.url != 'http://localhost:4000' %}
+      <!-- Prevent potential clickjacking attacks -->
+      <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+      <!-- Prevent potential XSS attacks -->
+      <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:"
+      >
+    {% endif %}
+  {% endcomment %}
   <link rel="icon" type="image/svg+xml" href="{{- '/assets/images/favicon.svg' | relative_url -}}">
   <link rel="icon" type="image/png" href="{{- '/assets/images/favicon.png' | relative_url -}}">
   <!-- Preload important resources -->

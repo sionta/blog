@@ -48,11 +48,13 @@ layout: default
     {% endif %}
     {{ content }}
   </section>
-  <section>
-    <div itemscope itemtype="https://schema.org/Comment">
-      {% include comments.html %}
-    </div>
-  </section>
+  {% if page.comments %}
+    <section>
+      <div itemscope itemtype="https://schema.org/Comment">
+        {% include comments.html %}
+      </div>
+    </section>
+  {% endif %}
   <footer>
     {% if page.tags[0] %}
       <p>
