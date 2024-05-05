@@ -32,15 +32,15 @@ header_pages:
 
 # Comments Settings
 comments:
-  provider: "disqus" # (e.g., "disqus")
+  provider: "giscus" # (e.g., "disqus")
   # The provider setting below:
   disqus: # Disqus > https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: "andreattamimi"
   giscus: # giscus > https://giscus.app/
-    repo: "" # (e.g., "owner/repo")
-    repo_id: ""
-    category: ""
-    category_id: ""
+    repo: "sionta/blog" # (e.g., "owner/repo")
+    repo_id: "R_kgDOLxRA-w"
+    category: "Q&A"
+    category_id: "DIC_kwDOLxRA-84CfGPN"
   utterances: # utterances > https://utteranc.es/
     repo: "" # (e.g., "owner/repo")
 

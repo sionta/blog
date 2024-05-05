@@ -49,9 +49,15 @@ layout: default
     {{ content }}
   </section>
   {% if page.comments %}
-      <div itemscope itemtype="https://schema.org/Comment">
-        {% include comments.html %}
-      </div>
+    <div
+      {% if site.comments.provider == disqus %}
+        id="disqus_thread"
+      {% endif %}
+      itemscope
+      itemtype="https://schema.org/Comment"
+    >
+      {% include comments.html %}
+    </div>
   {% endif %}
   <footer>
     {% if page.tags[0] %}

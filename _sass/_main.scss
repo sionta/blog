@@ -18,12 +18,13 @@ $code-font-family: "Fira Code", "Consolas", monospace !default;
   --sans-serif: #{$base-font-family};
   --mono-space: #{$code-font-family};
   --border-radius: 5px;
+
   --background: #ffffff;
   --background-alt: #f5f5f5;
   --text: #202124;
   --text-alt: #5f6368;
   --border-color: #dadce0;
-  --accent-text: #ffffff;
+  --accent-text: var(--background);
   --accent-visit: #1967d2;
   --accent-hover: #174ea6;
   --color-code: #e53935;
@@ -34,17 +35,15 @@ $code-font-family: "Fira Code", "Consolas", monospace !default;
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --background: #202124;
-  --background-alt: #3c4043;
+  --background: #121212;
+  --background-alt: #1e1e1e;
   --text: #e8eaed;
   --text-alt: #cbd1d6;
   --border-color: #5f6368;
-  --accent-text: #202124;
   --accent-visit: #8ab4f8;
   --accent-hover: #4a90e2;
   --color-code: #e57373;
   --color-preformatted: #b0bec5;
-  --color-marked: #ffeb3b;
   --color-disabled: #5f6368;
 }
 
