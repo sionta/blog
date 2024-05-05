@@ -49,11 +49,9 @@ layout: default
     {{ content }}
   </section>
   {% if page.comments %}
-    <section>
       <div itemscope itemtype="https://schema.org/Comment">
         {% include comments.html %}
       </div>
-    </section>
   {% endif %}
   <footer>
     {% if page.tags[0] %}
