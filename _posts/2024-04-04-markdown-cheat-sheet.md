@@ -11,6 +11,7 @@ anchor: true    # Enable anchor headings
 diagram: true   # Enable diagrammings
 comments: true  # Disable comments
 ---
+<!-- markdownlint-disable -->
 <!-- https://www.markdownguide.org/hacks/ -->
 
 <!-- {:.notice} -->
@@ -18,14 +19,14 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 
 ## Headings
 
-<!-- markdownlint-disable -->
 # H1
 {:.no_toc .no_anchor}
+
 ## H2
 {:.no_toc .no_anchor}
+
 ### H3
 {:.no_toc .no_anchor}
-<!-- markdownlint-restore -->
 
 ## Paragraphs
 
@@ -35,7 +36,6 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
 
 ## Emphasis
 
-<!-- markdownlint-disable -->
 **bold text**
 
 *italicized text*
@@ -43,7 +43,6 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
 **Bold** and *Italic*
 
 ~~strikethrough~~
-<!-- markdownlint-restore -->
 
 ## Lists
 
@@ -84,47 +83,63 @@ Moon
 
 The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
 
-<!-- markdownlint-disable -->
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
 > <cite>&mdash; Nikola Tesla</cite>
-
-<!-- markdownlint-restore -->
 
 ## Codes
 
 This is an inline: `code`
 
-### Fenced Code Block
+## Fenced Code Block
 
-<!-- markdownlint-disable -->
-This is a Code Block:
+This is a code block without syntax highlighting:
 
-    def print_hi(name)
-      puts "Hi, #{name}"
-    end
-    print_hi('Tom')
-    # => prints 'Hi, Tom' to STDOUT.
+```plain
+{
+  syntax, error,
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+### Syntax Highlighting
 
 To add syntax highlighting, specify a language next to the backticks before the fenced code block.
 
-```ruby
+```json
+{
+  syntax, error,
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+{% raw %}
+You can also add syntax highlighting by starting with `{% highlight LanguageCode %}` and ending with `{% endhighlight %}`. Replace 'LanguageCode' with the appropriate code language.
+
+Example:
+```plain
+{% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
 end
 print_hi('Tom')
 # => prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
 ```
+{% endraw %}
 
-<!-- {% highlight ruby %}
+Output:
+{% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
 end
 print_hi('Tom')
-# => prints 'Hi, Tom' to STDOUT
-{% endhighlight %} -->
-
-<!-- markdownlint-restore -->
+# => prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
 
 ## Links
 
@@ -182,9 +197,8 @@ You can align text in the columns to the left, right, or center by adding a colo
 
 ## Alerts
 
-<!-- markdownlint-disable -->
 > This is use `{:.alert}`.
-{:.alert}
+{:.alert.alert-info}
 
 > This is use `{:.alert.info}`.
 {:.alert.info}
@@ -197,7 +211,6 @@ You can align text in the columns to the left, right, or center by adding a colo
 
 > This is use `{:.alert.success}`.
 {:.alert.success}
-<!-- markdownlint-disable -->
 
 ## Mathematics
 

@@ -1,71 +1,26 @@
-{% comment %}
-  <style>
-    :root:has(input[name='color-scheme'][value='light dark']:checked) {
-      color-scheme: light dark;
-    }
-    :root:has(input[name='color-scheme'][value='light']:checked) {
-      color-scheme: light;
-    }
-    :root:has(input[name='color-scheme'][value='dark']:checked) {
-      color-scheme: dark;
-    }
-    .dark-mode-nav {
-      /* padding: 10px; */
-      /* border-bottom: 1px solid var(--border-color); */
-      /* margin-bottom: 20px; */
-      /* background-color: var(--background-alt); */
-      color: var(--text);
-    }
-    .dark-mode-nav label {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: var(--border-radius);
-      margin-right: 10px;
-      cursor: pointer;
-      background-color: var(--background);
-      color: var(--text-alt);
-      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-    .dark-mode-nav input[type='radio'] {
-      display: none;
-    }
-    .dark-mode-nav input[type='radio']:checked + label {
-      background-color: var(--accent-visit);
-      color: var(--accent-text);
-      font-weight: bold;
-    }
-    .dark-mode-nav label:hover {
-      background-color: var(--accent-hover);
-      color: var(--accent-text);
-    }
-  </style>
-{% endcomment %}
 <header>
   <div>
     <h1>{{ site.name | default: site.title }}</h1>
     <p>{{ site.tagline | default: site.description }}</p>
   </div>
   <nav>
-    {% assign navigations = site.navigations | default: site.data.navigation %}
-    {% for item in navigations %}
-      {% assign title = item.name | default: item.title %}
-      {% assign links = item.link | default: item.url %}
-      {% assign is_http = links | split: '/' | first %}
-      {% assign is_feed = links | split: '/' | last %}
-      {% if is_http == 'http:' or is_http == 'https:' or is_feed == 'feed.xml' %}
-        <a href="{{- links -}}" target="_blank" rel="noopener noreferrer">{{- title -}}</a>
-      {% else %}
-        <a href="{{- links | relative_url -}}">
-          {{- title -}}
-        </a>
-      {% endif %}
-    {% endfor %}
+    <ul>
+      {% assign navigations = site.navigations | default: site.data.navigation %}
+      {% for item in navigations %}
+        {% assign title = item.name | default: item.title %}
+        {% assign links = item.link | default: item.url %}
+        {% assign is_http = links | split: '/' | first %}
+        {% assign is_feed = links | split: '/' | last %}
+        <li>
+          {% if is_http == 'http:' or is_http == 'https:' or is_feed == 'feed.xml' %}
+            <a href="{{- links -}}" target="_blank" rel="noopener noreferrer">{{- title -}}</a>
+          {% else %}
+            <a href="{{- links | relative_url -}}">
+              {{- title -}}
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   </nav>
-  {% comment %}
-    <nav class="dark-mode-nav">
-      <label><input name="color-scheme" type="radio" value="light dark" checked> System</label>
-      <label><input name="color-scheme" type="radio" value="light"> Light</label>
-      <label><input name="color-scheme" type="radio" value="dark"> Dark</label>
-    </nav>
-  {% endcomment %}
 </header>

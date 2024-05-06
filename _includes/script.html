@@ -5,12 +5,45 @@
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
 
+<script>
+  const doc = document;
+  doc.addEventListener('DOMContentLoaded', function () {
+    /* Active navigation */
+    const navLinks = doc.querySelectorAll('header > nav a');
+    navLinks.forEach((link) => {
+      link.classList.remove('current');
+      if (link.getAttribute('href') === window.location.pathname) {
+        link.classList.add('current');
+      }
+    });
+    /* Theme toggle */
+    const savedTheme = localStorage.getItem('theme');
+    const themeToggle = doc.getElementById('theme-toggle');
+    function setTheme() {
+      const htmlElement = doc.querySelector('html');
+      if (themeToggle.checked) {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        htmlElement.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      }
+    }
+    themeToggle.addEventListener('change', setTheme);
+    if (savedTheme) {
+      themeToggle.checked = savedTheme === 'dark';
+      setTheme();
+    }
+  });
+</script>
+
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
+
 {% if page.collection == 'posts' or page.layout == 'post' %}
   {% if page.toc %}
     <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
+      doc.addEventListener('DOMContentLoaded', function () {
         tocbot.init({
           tocSelector: '#toc',
           contentSelector: '[itemprop="articleBody"]',
@@ -34,15 +67,14 @@
     </style>
     <script type="text/javascript" src="{{- js_vendor -}}/anchor.min.js"></script>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
+      doc.addEventListener('DOMContentLoaded', function () {
         anchors.options = {
           placement: 'right',
           visible: 'always',
           icon: '#',
         };
         anchors.add('h2, h3, h4');
-        var noAnchorClasses = ['.no_anchor', '.no-anchor'];
-        var noAnchorSelectors = noAnchorClasses
+        var anchorsIgnore = ['.no_anchor', '.no-anchor']
           .map(function (className) {
             return (
               'h1' +
@@ -60,7 +92,7 @@
             );
           })
           .join(',');
-        document.querySelectorAll(noAnchorSelectors).forEach(function (heading) {
+        doc.querySelectorAll(anchorsIgnore).forEach(function (heading) {
           var anchorLink = heading.querySelector('.anchorjs-link');
           if (anchorLink) {
             heading.removeChild(anchorLink);
@@ -72,14 +104,22 @@
   {% if page.diagram %}
     <script type="text/javascript" src="{{- js_vendor -}}/mermaid.min.js"></script>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
-        const mermaidConfig = {
-          startOnLoad: true,
-          theme: 'neutral',
-        };
-        mermaid.initialize(mermaidConfig);
-        const mermaidElements = document.querySelectorAll('.language-mermaid');
-        mermaidElements.forEach((element) => {
+      doc.addEventListener('DOMContentLoaded', function () {
+        var mermaidClass = doc.querySelectorAll('.language-mermaid');
+        mermaid.initialize({
+          startOnLoad: true, // Start Mermaid on page load
+          theme: 'forest', // Set the theme (default, forest, dark, etc.)
+          securityLevel: 'loose', // Security level (strict, loose)
+          flowchart: {
+            useMaxWidth: true, // Adjusts width automatically
+            htmlLabels: true, // Use HTML labels
+          },
+          sequence: {
+            diagramMarginX: 10,
+            diagramMarginY: 10,
+          },
+        });
+        mermaidClass.forEach((element) => {
           mermaid.init(undefined, element);
         });
       });

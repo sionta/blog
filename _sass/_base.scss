@@ -2,55 +2,6 @@
  * Project: https://github.com/kevquirk/simple.css/
  */
 
-$base-font-family: system-ui, -apple-system, sans-serif !default;
-$code-font-family: monospace, monospace !default;
-
-/* Global variables. */
-// :root,
-// ::backdrop {
-//   /* Set sans-serif & mono fonts */
-//   --sans-serif: #{$base-font-family};
-//   --mono-space: #{$code-font-family};
-//   --border-radius: 5px;
-
-//   /* Default (light) theme */
-//   --background: #fff;
-//   --background-alt: #f5f7ff;
-//   --text: #212121;
-//   --text-alt: #585858;
-//   --border-color: #898ea4;
-//   --accent-text: var(--background);
-//   --accent-visit: #0d47a1;
-//   --accent-hover: #1266e2;
-//   --color-code: #d81b60;
-//   --color-preformatted: #444;
-//   --color-marked: #ffdd33;
-//   --color-disabled: #efefef;
-// }
-
-// /* Dark theme */
-// @media (prefers-color-scheme: dark) {
-//   :root,
-//   ::backdrop {
-//     color-scheme: dark;
-//     --background: #212121;
-//     --background-alt: #2b2b2b;
-//     --text: #dcdcdc;
-//     --text-alt: #ababab;
-//     --accent-text: var(--background);
-//     --accent-visit: #ffb300;
-//     --accent-hover: #ffe099;
-//     --color-code: #f06292;
-//     --color-preformatted: #ccc;
-//     --color-disabled: #111;
-//   }
-//   /* Add a bit of transparency so light media isn't so glaring in dark mode */
-//   img,
-//   video {
-//     opacity: 0.8;
-//   }
-// }
-
 /* Reset box-sizing */
 *,
 *::before,
@@ -70,45 +21,56 @@ progress {
 
 html {
   /* Set the font globally */
-  font-family: var(--sans-serif);
+  font-family: var(--base-fonts);
   scroll-behavior: smooth;
 }
 
 /* Make the body a nice central block */
 body {
-  color: var(--text);
+  color: var(--text-color);
   background-color: var(--background);
   font-size: 1.15rem;
   line-height: 1.5;
   display: grid;
   grid-template-columns: 1fr min(45rem, 90%) 1fr;
   margin: 0;
-}
-body > * {
-  grid-column: 2;
-}
 
-/* Make the header bg full width, but the content inline with body */
-body > header {
-  background-color: var(--background-alt);
-  border-bottom: 1px solid var(--border-color);
-  text-align: center;
-  padding: 0 0.5rem 2rem 0.5rem;
-  grid-column: 1 / -1;
-}
+  > * {
+    grid-column: 2;
+  }
 
-body > header > *:only-child {
-  margin-block-start: 2rem;
-}
+  /* Nested styles for the header */
+  > header {
+    background-color: var(--background-alt);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+    padding: 0 0.5rem 2rem 0.5rem;
+    grid-column: 1 / -1;
 
-body > header h1 {
-  max-width: 1200px;
-  margin: 1rem auto;
-}
+    /* Nested styles for child elements */
+    > *:only-child {
+      margin-block-start: 2rem;
+    }
 
-body > header p {
-  max-width: 40rem;
-  margin: 1rem auto;
+    h1 {
+      max-width: 1200px;
+      margin: 1rem auto;
+    }
+
+    p {
+      max-width: 40rem;
+      margin: 1rem auto;
+    }
+  }
+
+  > footer {
+    margin-top: 4rem;
+    padding: 2rem 1rem 1.5rem 1rem;
+    color: var(--second-color);
+    font-size: 1rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+  }
 }
 
 /* Add a little padding to ensure spacing is correct between content and header > nav */
@@ -116,42 +78,27 @@ main {
   padding-top: 1.5rem;
 }
 
-body > footer {
-  margin-top: 4rem;
-  padding: 2rem 1rem 1.5rem 1rem;
-  color: var(--text-alt);
-  font-size: 0.9rem;
-  text-align: center;
-  border-top: 1px solid var(--border-color);
-}
-
 /* Format headers */
 h1 {
   font-size: 3rem;
 }
-
 h2 {
   font-size: 2.6rem;
   margin-top: 3rem;
 }
-
 h3 {
   font-size: 2rem;
   margin-top: 3rem;
 }
-
 h4 {
   font-size: 1.44rem;
 }
-
 h5 {
   font-size: 1.15rem;
 }
-
 h6 {
   font-size: 0.96rem;
 }
-
 p {
   margin: 1.5rem 0;
 }
@@ -179,29 +126,33 @@ h3 {
   h1 {
     font-size: 2.5rem;
   }
-
   h2 {
     font-size: 2.1rem;
   }
-
   h3 {
     font-size: 1.75rem;
   }
-
   h4 {
     font-size: 1.25rem;
   }
 }
 
 /* Format links & buttons */
-a,
-a:visited {
-  color: var(--accent-visit);
+a {
+  color: var(--link-color);
+  &:hover {
+    text-decoration: none;
+  }
+
+  // &:visited {
+  //   color: var(--link-color);
+  // }
 }
 
-a:hover {
-  text-decoration: none;
-}
+// a,
+// a:visited {
+//   color: var(--link-color);
+// }
 
 button,
 .button,
@@ -210,8 +161,8 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 label[type="button"] {
-  border: 1px solid var(--accent-visit);
-  background-color: var(--accent-visit);
+  border: 1px solid var(--link-color);
+  background-color: var(--link-color);
   color: var(--accent-text);
   padding: 0.5rem 0.9rem;
   text-decoration: none;
@@ -224,9 +175,9 @@ textarea:disabled,
 select:disabled,
 button[disabled] {
   cursor: not-allowed;
-  background-color: var(--color-disabled);
-  border-color: var(--color-disabled);
-  color: var(--text-alt);
+  background-color: var(--disabled-color);
+  border-color: var(--disabled-color);
+  color: var(--second-color);
 }
 
 input[type="range"] {
@@ -246,11 +197,10 @@ input[type="submit"]:enabled:hover,
 input[type="reset"]:enabled:hover,
 input[type="button"]:enabled:hover,
 label[type="button"]:hover {
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background-color: var(--hover-color);
+  border-color: var(--hover-color);
   cursor: pointer;
 }
-
 .button:focus-visible,
 button:focus-visible:where(:enabled),
 input:enabled:focus-visible:where(
@@ -258,7 +208,7 @@ input:enabled:focus-visible:where(
     [type="reset"],
     [type="button"]
   ) {
-  outline: 2px solid var(--accent-visit);
+  outline: 2px solid var(--link-color);
   outline-offset: 1px;
 }
 
@@ -267,45 +217,43 @@ header > nav {
   font-size: 1rem;
   line-height: 2;
   padding: 1rem 0 0 0;
-}
 
-/* Use flexbox to allow items to wrap, as needed */
-header > nav ul,
-header > nav ol {
-  align-content: space-around;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+  /* Use flexbox to allow items to wrap, as needed */
+  ul,
+  ol {
+    align-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 
-/* List items are inline elements, make them behave more like blocks */
-header > nav ul li,
-header > nav ol li {
-  display: inline-block;
-}
+    /* List items are inline elements, make them behave more like blocks */
+    li {
+      display: inline-block;
+    }
+  }
 
-header > nav a,
-header > nav a:visited {
-  margin: 0 0.5rem 1rem 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  color: var(--text);
-  display: inline-block;
-  padding: 0.1rem 1rem;
-  text-decoration: none;
-}
-
-header > nav a:hover,
-header > nav a.current,
-header > nav a[aria-current="page"] {
-  border-color: var(--accent-visit);
-  color: var(--accent-visit);
-  cursor: pointer;
+  a,
+  a:visited {
+    margin: 0 0.5rem 1rem 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    display: inline-block;
+    padding: 0.1rem 1rem;
+    text-decoration: none;
+  }
+  a:hover,
+  a.current,
+  a[aria-current="page"] {
+    border-color: var(--link-color);
+    color: var(--link-color);
+    cursor: pointer;
+  }
 }
 
 /* Reduce nav side on mobile */
@@ -327,25 +275,24 @@ progress {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
-}
 
-aside {
-  font-size: 1rem;
-  width: 30%;
-  padding: 0 15px;
-  margin-inline-start: 15px;
-  float: right;
-}
-*[dir="rtl"] aside {
-  float: left;
-}
-
-/* Make aside full-width on mobile */
-@media only screen and (max-width: 720px) {
   aside {
-    width: 100%;
-    float: none;
-    margin-inline-start: 0;
+    font-size: 1rem;
+    width: 30%;
+    padding: 0 15px;
+    margin-inline-start: 15px;
+    float: right;
+
+    *[dir="rtl"] & {
+      float: left;
+    }
+
+    /* Make aside full-width on mobile */
+    @media only screen and (max-width: 720px) {
+      width: 100%;
+      float: none;
+      margin-inline-start: 0;
+    }
   }
 }
 
@@ -358,32 +305,27 @@ dialog {
   margin-bottom: 1rem;
 }
 
-// article h2:first-child,
-section h2:first-child {
-  margin-top: 1rem;
-}
-
 section {
   // border-top: 1px solid var(--border-color);
   // border-bottom: 1px solid var(--border-color);
   // padding: 2rem 1rem;
   margin: 3rem 0;
-}
 
-/* Don't double separators when chaining sections */
-section + section,
-section:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
+  h2:first-child {
+    margin-top: 1rem;
+  }
 
-section:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
+  /* Don't double separators when chaining sections */
+  & + section,
+  &:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
 
-details {
-  padding: 0.7rem 1rem;
+  &:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 summary {
@@ -394,16 +336,20 @@ summary {
   word-break: break-all;
 }
 
-details[open] > summary + * {
-  margin-top: 0;
-}
+details {
+  padding: 0.7rem 1rem;
 
-details[open] > summary {
-  margin-bottom: 0.5rem;
-}
+  &[open] > summary + * {
+    margin-top: 0;
+  }
 
-details[open] > :last-child {
-  margin-bottom: 0;
+  &[open] > summary {
+    margin-bottom: 0.5rem;
+  }
+
+  &[open] > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 /* Format tables */
@@ -412,8 +358,9 @@ table {
   margin: 1.5rem 0;
 }
 
-figure > table {
-  width: max-content;
+caption {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
 }
 
 td,
@@ -422,20 +369,13 @@ th {
   text-align: start;
   padding: 0.5rem;
 }
-
 th {
   background-color: var(--background-alt);
   font-weight: bold;
 }
-
 tr:nth-child(even) {
   /* Set every other cell slightly darker. Improves readability. */
   background-color: var(--background-alt);
-}
-
-table caption {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 
 /* Format forms */
@@ -456,7 +396,7 @@ button,
 textarea,
 select,
 input {
-  color: var(--text);
+  color: var(--text-color);
   background-color: var(--background);
   border: 1px solid var(--border-color);
 }
@@ -469,13 +409,18 @@ textarea:not([cols]) {
 
 /* Add arrow to drop-down */
 select:not([multiple]) {
-  background-image: linear-gradient(45deg, transparent 49%, var(--text) 51%),
-    linear-gradient(135deg, var(--text) 51%, transparent 49%);
+  background-image: linear-gradient(
+      45deg,
+      transparent 49%,
+      var(--text-color) 51%
+    ),
+    linear-gradient(135deg, var(--text-color) 51%, transparent 49%);
   background-position: calc(100% - 15px), calc(100% - 10px);
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
   padding-inline-end: 25px;
 }
+
 *[dir="rtl"] select:not([multiple]) {
   background-position: 10px, 15px;
 }
@@ -487,21 +432,17 @@ input[type="radio"] {
   position: relative;
   width: min-content;
 }
-
 input[type="checkbox"] + label,
 input[type="radio"] + label {
   display: inline-block;
 }
-
 input[type="radio"] {
   border-radius: 100%;
 }
-
 input[type="checkbox"]:checked,
 input[type="radio"]:checked {
-  background-color: var(--accent-visit);
+  background-color: var(--link-color);
 }
-
 input[type="checkbox"]:checked::after {
   /* Creates a rectangle with colored right and bottom borders which is rotated to look like a check mark */
   content: " ";
@@ -530,6 +471,15 @@ input[type="radio"]:checked::after {
   font-size: 32px;
 }
 
+/* Set a height for color input */
+input[type="color"] {
+  height: 2.5rem;
+  padding: 0.2rem;
+}
+/* do not show border around file selector button */
+input[type="file"] {
+  border: 0;
+}
 /* Makes input fields wider on smaller screens */
 @media only screen and (max-width: 720px) {
   textarea,
@@ -537,17 +487,6 @@ input[type="radio"]:checked::after {
   input {
     width: 100%;
   }
-}
-
-/* Set a height for color input */
-input[type="color"] {
-  height: 2.5rem;
-  padding: 0.2rem;
-}
-
-/* do not show border around file selector button */
-input[type="file"] {
-  border: 0;
 }
 
 /* Misc body elements */
@@ -561,7 +500,7 @@ hr {
 mark {
   padding: 2px 5px;
   border-radius: var(--border-radius);
-  background-color: var(--color-marked);
+  background-color: var(--marked-color);
   color: black;
 }
 
@@ -580,18 +519,19 @@ figure {
   margin: 0;
   display: block;
   overflow-x: auto;
+  > img,
+  > picture > img {
+    display: block;
+    margin-inline: auto;
+  }
+  > table {
+    width: max-content;
+  }
 }
-
-figure > img,
-figure > picture > img {
-  display: block;
-  margin-inline: auto;
-}
-
 figcaption {
   text-align: center;
   font-size: 0.9rem;
-  color: var(--text-alt);
+  color: var(--second-color);
   margin-block: 1rem;
 }
 
@@ -600,35 +540,35 @@ figcaption {
 //   margin-inline-end: 0;
 //   margin-block: 2rem;
 //   padding: 0.4rem 0.8rem;
-//   border-inline-start: 0.35rem solid var(--accent-visit);
-//   color: var(--text-alt);
+//   border-inline-start: 0.35rem solid var(--link-color);
+//   color: var(--second-color);
 //   font-style: italic;
 // }
 
 // cite {
 //   font-size: 0.9rem;
-//   color: var(--text-alt);
+//   color: var(--second-color);
 //   font-style: normal;
 // }
 
 dt {
-  color: var(--text-alt);
+  color: var(--second-color);
 }
 
 /* Use mono font for code elements */
-code,
-pre,
-pre span,
-kbd,
-samp {
-  font-family: var(--mono-space);
-  color: var(--color-code);
-}
+// code,
+// pre,
+// pre span,
+// kbd,
+// samp {
+//   font-family: var(--mono-fonts);
+//   color: var(--syntax-color);
+// }
 
 kbd {
-  color: var(--color-preformatted);
-  border: 1px solid var(--color-preformatted);
-  border-bottom: 3px solid var(--color-preformatted);
+  color: var(--preformatted-color);
+  border: 1px solid var(--preformatted-color);
+  border-bottom: 3px solid var(--preformatted-color);
   border-radius: var(--border-radius);
   padding: 0.1rem 0.4rem;
 }
@@ -637,15 +577,15 @@ pre {
   padding: 1rem 1.4rem;
   max-width: 100%;
   overflow: auto;
-  color: var(--color-preformatted);
-}
+  color: var(--preformatted-color);
 
-/* Fix embedded code within pre */
-pre code {
-  color: var(--color-preformatted);
-  background: none;
-  margin: 0;
-  padding: 0;
+  /* Fix embedded code within pre */
+  code {
+    color: var(--preformatted-color);
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 /* Progress bars */
@@ -653,45 +593,43 @@ pre code {
 /* cannot combine vendor-specific selectors */
 progress {
   width: 100%;
-}
 
-progress:indeterminate {
-  background-color: var(--background-alt);
-}
+  &:indeterminate {
+    background-color: var(--background-alt);
+  }
 
-progress::-webkit-progress-bar {
-  border-radius: var(--border-radius);
-  background-color: var(--background-alt);
-}
+  &::-webkit-progress-bar {
+    border-radius: var(--border-radius);
+    background-color: var(--background-alt);
+  }
 
-progress::-webkit-progress-value {
-  border-radius: var(--border-radius);
-  background-color: var(--accent-visit);
-}
+  &::-webkit-progress-value {
+    border-radius: var(--border-radius);
+    background-color: var(--link-color);
+  }
 
-progress::-moz-progress-bar {
-  border-radius: var(--border-radius);
-  background-color: var(--accent-visit);
-  transition-property: width;
-  transition-duration: 0.3s;
-}
+  &::-moz-progress-bar {
+    border-radius: var(--border-radius);
+    background-color: var(--link-color);
+    transition-property: width;
+    transition-duration: 0.3s;
+  }
 
-progress:indeterminate::-moz-progress-bar {
-  background-color: var(--background-alt);
+  &:indeterminate::progress-bar {
+    background-color: var(--background-alt);
+  }
 }
 
 dialog {
   max-width: 40rem;
   margin: auto;
-}
 
-dialog::backdrop {
-  background-color: var(--background);
-  opacity: 0.8;
-}
+  &::backdrop {
+    background-color: var(--background);
+    opacity: 0.8;
+  }
 
-@media only screen and (max-width: 720px) {
-  dialog {
+  @media only screen and (max-width: 720px) {
     max-width: 100%;
     margin: auto 1em;
   }
@@ -704,11 +642,9 @@ sub {
   vertical-align: baseline;
   position: relative;
 }
-
 sup {
   top: -0.4em;
 }
-
 sub {
   top: 0.3em;
 }

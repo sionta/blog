@@ -3,6 +3,6 @@ _site
 .sass-cache
 *.min.*
 **/vendor
-*syntax.scss
+*syntax*.*
 *test.*
 Gemfile.lock

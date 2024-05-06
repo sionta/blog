@@ -7,7 +7,7 @@ layout: default
 {% assign date_format = site.date_format | default: '%B %d, %Y' %}
 {% assign modified_date = page.modified_date | default: page.last_modified_at %}
 
-<article id="typography" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
   <header>
     <h1 itemprop="name headline">{{- page.title | escape -}}</h1>
     <div>
@@ -48,44 +48,43 @@ layout: default
     {% endif %}
     {{ content }}
   </section>
-  {% if page.comments %}
-    <div
-      {% if site.comments.provider == disqus %}
-        id="disqus_thread"
-      {% endif %}
-      itemscope
-      itemtype="https://schema.org/Comment"
-    >
-      {% include comments.html %}
-    </div>
-  {% endif %}
   <footer>
-    {% if page.tags[0] %}
-      <p>
+    {% if page.tags != empty %}
+      <span>
         Tags:
-        {% capture tags_name %}
+        <span itemprop="keywords">
           {% for tag in page.tags %}
-            <a itemprop="url" href="/tags/{{ tag }}/">{{ tag }}</a>
-          {%- unless forloop.last %}&comma; {% endunless -%}
-          {% endfor %}
-        {% endcapture %}
-        <span itemprop="keywords">{{- tags_name -}}</span>
-      </p>
+            <a itemprop="url" href="/tags/{{- tag -}}/">{{- tag -}}</a>
+            {%- unless forloop.last %}&comma; {% endunless -%}
+          {% endfor -%}
+        </span>
+      </span>
     {% endif %}
-    {% if page.categories[0] %}
-      <p>
+    {% if page.categories != empty %}
+      &VerticalLine;
+      <span>
         Categories:
         <span itemprop="articleSection">
-          {{ page.categories[0] }}
-          {% comment %}
-            {% for category in page.categories %}
-              {{ category }}
-              {%- unless forloop.last %}&comma; {% endunless -%}
-            {% endfor %}
-          {% endcomment %}
+          {% for category in page.categories %}
+            <a itemprop="url" href="/categories/{{- category -}}/">{{- category -}}</a>
+            {%- unless forloop.last %}&comma; {% endunless -%}
+          {% endfor %}
         </span>
-      </p>
+      </span>
     {% endif %}
   </footer>
+  {% comment %}
+    {% if page.comments %}
+      <section
+        itemscope
+        itemtype="https://schema.org/Comment"
+        {% if site.comments.provider == 'disqus' %}
+          id="disqus_thread"
+        {% endif %}
+      >
+        {% include comments.html %}
+      </section>
+    {% endif %}
+  {% endcomment %}
   <a href="{{ page.url | absolute_url }}" hidden></a>
 </article>
