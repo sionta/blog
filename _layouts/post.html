@@ -7,7 +7,7 @@ layout: default
 {% assign date_format = site.date_format | default: '%B %d, %Y' %}
 {% assign modified_date = page.modified_date | default: page.last_modified_at %}
 
-<article class="post" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
+<article itemscope itemtype="https://schema.org/BlogPosting" itemid="{{- page.url | absolute_url -}}">
   <header>
     <h1 itemprop="name headline">{{- page.title | escape -}}</h1>
     <div>
