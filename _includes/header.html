@@ -15,7 +15,7 @@
           {% if is_http == 'http:' or is_http == 'https:' or is_feed == 'feed.xml' %}
             <a href="{{- links -}}" target="_blank" rel="noopener noreferrer">{{- title -}}</a>
           {% else %}
-            <a href="{%- if site.baseurl %}{{ site.baseurl }}{% endif -%}{{- links | relative_url -}}">
+            <a href="{{ site.url }}{{ site.baseurl }}{{- links | relative_url -}}">
               {{- title -}}
             </a>
           {% endif %}
