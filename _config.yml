@@ -60,7 +60,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      permalink: "/blog/:title/"
+      permalink: "/posts/:title/"
 
 # compress_html:
 #   clippings: "all"
