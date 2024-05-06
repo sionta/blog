@@ -40,6 +40,11 @@
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
 
 {% if page.collection == 'posts' or page.layout == 'post' %}
+  {% comment %}
+    {% if page.comments != false and site.comments.provider == 'disqus' %}
+      <script id="dsq-count-scr" src="//{{- site.comments.disqus.shortname -}}.disqus.com/count.js" async></script>
+    {% endif %}
+  {% endcomment %}
   {% if page.toc %}
     <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
     <script type="text/javascript">

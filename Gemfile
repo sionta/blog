@@ -17,7 +17,7 @@ group :jekyll_plugins do
   # gem "jekyll-gist", "~> 1.5.0" # Enable embed GitHub gists
 end
 
-group :development do
+group :test do
   gem "html-proofer", "~> 5.0.8"
 end
 

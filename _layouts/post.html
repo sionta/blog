@@ -73,18 +73,16 @@ layout: default
       </span>
     {% endif %}
   </footer>
-  {% comment %}
-    {% if page.comments %}
-      <section
-        itemscope
-        itemtype="https://schema.org/Comment"
-        {% if site.comments.provider == 'disqus' %}
-          id="disqus_thread"
-        {% endif %}
-      >
-        {% include comments.html %}
-      </section>
-    {% endif %}
-  {% endcomment %}
+  {% if page.comments %}
+    <section
+      {% if site.comments.provider == 'disqus' %}
+        id="disqus_thread"
+      {% endif %}
+      itemscope
+      itemtype="https://schema.org/Comment"
+    >
+      {% include comments.html %}
+    </section>
+  {% endif %}
   <a href="{{ page.url | absolute_url }}" hidden></a>
 </article>

@@ -46,9 +46,11 @@ layout: default
     <div class="post-item">
       <a href="{{ post.url | relative_url }}" class="post-link">
         <h2 class="post-title">{{ post.title }}</h2>
-        {% assign post_excerpt = post.content | strip_html | truncatewords: 30 %}
-        {% if post_excerpt.size > 3 %}
-          <p class="post-summary">{{ post_excerpt }}</p>
+        {% if site.show_excerpts %}
+          {% assign post_excerpt = post.content | strip_html | truncatewords: 30 %}
+          {% if post_excerpt.size > 3 %}
+            <p class="post-summary">{{ post_excerpt }}</p>
+          {% endif %}
         {% endif %}
       </a>
       <div class="post-meta">
@@ -58,7 +60,7 @@ layout: default
             <span itemprop="articleSection">
               &comma;
               {% for tag in post.tags %}
-                <a itemprop="url" href="/tag/{{- tag -}}/">{{- tag -}}</a>
+                <a itemprop="url" href="/tags/{{- tag -}}/">{{- tag -}}</a>
                 {%- unless forloop.last %}&comma; {% endunless -%}
               {% endfor %}
             </span>

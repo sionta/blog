@@ -7,7 +7,7 @@
     <ul>
       {% assign navigations = site.navigations | default: site.data.navigation %}
       {% for item in navigations %}
-        {% assign title = item.name | default: item.title %}
+        {% assign title = item.name | default: item.title | escape %}
         {% assign links = item.link | default: item.url %}
         {% assign is_http = links | split: '/' | first %}
         {% assign is_feed = links | split: '/' | last %}
@@ -15,7 +15,7 @@
           {% if is_http == 'http:' or is_http == 'https:' or is_feed == 'feed.xml' %}
             <a href="{{- links -}}" target="_blank" rel="noopener noreferrer">{{- title -}}</a>
           {% else %}
-            <a href="{{- links | relative_url -}}">
+            <a href="{%- if site.baseurl %}{{ site.baseurl }}{% endif -%}{{- links | relative_url -}}">
               {{- title -}}
             </a>
           {% endif %}
