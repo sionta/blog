@@ -2,7 +2,7 @@
 title: "sionta"
 description: "A brief description of your website"
 url: "https://andreattamimi.com" # (e.g. "https://example.com")
-baseurl: "" # (e.g. /blog) if deploy in GitHub Pages
+baseurl: "/blog" # (e.g. /blog) if deploy in GitHub Pages
 lang: "en"
 google_analytics: "G-31WRW155T4"
 
