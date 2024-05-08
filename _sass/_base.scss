@@ -1,5 +1,10 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
-  /* Reset margins and padding */
   margin: 0;
   padding: 0;
 }
@@ -16,9 +21,9 @@ dl,
 fieldset,
 figure,
 form,
-input,
 iframe,
 img,
+input,
 meter,
 nav,
 ol,
@@ -34,7 +39,6 @@ table,
 textarea,
 ul,
 video {
-  /* Margins for most elements */
   margin-bottom: 1rem;
 }
 
@@ -42,32 +46,23 @@ html,
 input,
 select,
 button {
-  /* Set body font family and some finicky elements */
   font-family: var(--base-fonts);
 }
 
 body {
-  /* Center body in page */
-  margin: 0 auto;
+  background: var(--background);
+  color: var(--text-color);
+  font-size: 1.03rem;
   max-width: 750px;
-  padding: 2rem;
   border-radius: 6px;
+  line-height: 1.5;
+  padding: 2rem;
+  margin: 0 auto;
   overflow-x: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
-  background: var(--background);
-
-  /* Main body text */
-  color: var(--text-color);
-  font-size: 1.03rem;
-  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
-
-// ::selection {
-//   /* Set background color for selected text */
-//   background: var(--marked-color);
-//   color: var(--background-alt);
-// }
 
 h1,
 h2,
@@ -82,69 +77,33 @@ h6 {
 
 h1,
 h2,
-h3 {
-  color: var(--text-color);
+h3,
+h4 {
   padding-bottom: 2px;
   margin-bottom: 8px;
   // border-bottom: 1px solid var(--background-alt);
 }
-
-h4,
 h5,
 h6 {
   margin-bottom: 0.3rem;
 }
-
 h1 {
   font-size: 2.25rem;
 }
-
 h2 {
   font-size: 1.85rem;
 }
-
 h3 {
   font-size: 1.55rem;
 }
-
 h4 {
   font-size: 1.25rem;
 }
-
 h5 {
   font-size: 1rem;
 }
-
 h6 {
   font-size: 0.875rem;
-}
-
-a {
-  color: var(--link-color);
-}
-
-a:hover {
-  color: var(--hover-color);
-}
-
-abbr:hover {
-  /* Set the '?' cursor while hovering an abbreviation */
-  cursor: help;
-}
-
-blockquote {
-  padding: 1.5rem;
-  background: var(--background-alt);
-  border-left: 5px solid var(--border-color);
-}
-
-abbr {
-  cursor: help;
-}
-
-blockquote *:last-child {
-  padding-bottom: 0;
-  margin-bottom: 0;
 }
 
 main > header,
@@ -152,18 +111,15 @@ body > header {
   background: var(--background-alt);
   border-bottom: 1px solid var(--border-color);
   padding: 2rem 1.5rem;
-
-  /* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
-
   margin: -2rem calc(0px - (50vw - 50%)) 2rem;
 
   /* Shorthand for:
-
 	margin-top: -2rem;
 	margin-bottom: 2rem;
 
 	margin-left: calc(0px - (50vw - 50%));
-	margin-right: calc(0px - (50vw - 50%)); */
+	margin-right: calc(0px - (50vw - 50%));
+  */
 
   padding-left: calc(50vw - 50%);
   padding-right: calc(50vw - 50%);
@@ -182,73 +138,85 @@ body > header {
   }
 }
 
+a {
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--hover-color);
+  }
+}
+
+blockquote {
+  padding: 1.5rem;
+  background: var(--background-alt);
+  border-left: 5px solid var(--border-color);
+
+  *:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}
+
+abbr,
+abbr:hover {
+  cursor: help;
+}
+
 a button,
 button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  font-size: 1rem;
-  display: inline-block;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
+  cursor: pointer;
   background: var(--link-color);
   color: var(--text-color);
+  box-sizing: border-box;
+  display: inline-block;
+  white-space: nowrap;
   border: 0;
   border-radius: 4px;
-  box-sizing: border-box;
-  cursor: pointer;
-  color: var(--text-color);
+  padding: 6px 12px;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
 }
 
 a button[disabled],
 button[disabled],
-input[type="submit"][disabled],
 input[type="reset"][disabled],
+input[type="submit"][disabled],
 input[type="button"][disabled] {
   cursor: default;
-  opacity: 0.5;
-
-  /* Set the [X] cursor while hovering a disabled link */
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .button:focus,
 .button:hover,
 button:focus,
 button:hover,
-input[type="submit"]:focus,
-input[type="submit"]:hover,
 input[type="reset"]:focus,
 input[type="reset"]:hover,
+input[type="submit"]:focus,
+input[type="submit"]:hover,
 input[type="button"]:focus,
 input[type="button"]:hover {
   background: var(--hover-color);
 }
 
-code,
+kbd,
 pre,
-kbd,
-samp {
-  /* Set the font family for monospaced elements */
-  font-family: var(--mono-fonts);
-}
-
 code,
-samp,
-kbd,
-pre {
-  /* The main preformatted style. This is changed slightly across different cases. */
+samp {
+  font-family: var(--mono-fonts);
   background: var(--background-alt);
   border: 1px solid var(--border-color);
   border-radius: 4px;
-  padding: 3px 6px;
   font-size: 0.9rem;
+  padding: 3px 6px;
 }
 
 kbd {
-  /* Makes the kbd element look like a keyboard key */
   border-bottom: 3px solid var(--border-color);
 }
 
@@ -258,70 +226,36 @@ pre {
   overflow: auto;
 }
 
+code pre,
 pre code {
-  /* When <code> is in a <pre>, reset it's formatting to blend in */
   background: inherit;
   font-size: inherit;
   color: inherit;
   border: 0;
-  padding: 0;
-  margin: 0;
-}
-
-code pre {
-  /* When <pre> is in a <code>, reset it's formatting to blend in */
-  display: inline;
-  background: inherit;
-  font-size: inherit;
-  color: inherit;
-  border: 0;
-  padding: 0;
-  margin: 0;
 }
 
 details {
-  /* Make the <details> look more "clickable" */
   padding: 0.6rem 1rem;
   background: var(--background-alt);
   border: 1px solid var(--border-color);
   border-radius: 4px;
+
+  &[open] {
+    padding-bottom: 0.75rem;
+  }
+
+  &[open] summary {
+    margin-bottom: 6px;
+  }
+
+  &[open] > *:last-child {
+    margin-bottom: 0;
+  }
 }
 
 summary {
-  /* Makes the <summary> look more like a "clickable" link with the pointer cursor */
   cursor: pointer;
   font-weight: bold;
-}
-
-details[open] {
-  /* Adjust the <details> padding while open */
-  padding-bottom: 0.75rem;
-}
-
-details[open] summary {
-  /* Adjust the <details> padding while open */
-  margin-bottom: 6px;
-}
-
-details[open] > *:last-child {
-  /* Resets the bottom margin of the last element in the <details> while <details> is opened. This prevents double margins/paddings. */
-  margin-bottom: 0;
-}
-
-dt {
-  font-weight: bold;
-}
-
-dd::before {
-  /* Add an arrow to data table definitions */
-  content: "→ ";
-}
-
-hr {
-  /* Reset the border of the <hr> separator, then set a better line */
-  border: 0;
-  border-bottom: 1px solid var(--border-color);
-  margin: 1rem auto;
 }
 
 fieldset {
@@ -337,9 +271,27 @@ legend {
 }
 
 table {
-  /* border-collapse sets the table's elements to share borders, rather than floating as separate "boxes". */
   border-collapse: collapse;
   width: 100%;
+
+  caption {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  margin: 1rem auto;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd::before {
+  content: "→ ";
 }
 
 td,
@@ -354,41 +306,21 @@ th {
 }
 
 tr:nth-child(even) {
-  /* Set every other cell slightly darker. Improves readability. */
   background: var(--background-alt);
-}
-
-table caption {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-textarea {
-  /* Don't let the <textarea> extend off the screen naturally or when dragged by the user */
-  max-width: 100%;
 }
 
 ol,
 ul {
-  /* Replace the browser default padding */
   padding-left: 2rem;
 }
-
-li {
-  margin-top: 0.4rem;
-}
-
-ul ul,
-ol ul,
 ul ol,
+ol ul,
+ul ul,
 ol ol {
   margin-bottom: 0;
 }
-
-mark {
-  padding: 1px 3px;
-  background: var(--marked-color);
-  // color: var(--preformatted-color);
+li {
+  margin-top: 0.4rem;
 }
 
 textarea,
@@ -404,6 +336,73 @@ input {
   box-sizing: border-box;
 }
 
-img {
+textarea {
   max-width: 100%;
+}
+
+img,
+svg,
+canvas,
+picture,
+video {
+  max-width: 100%;
+}
+
+mark {
+  background-color: var(--marked-color);
+  padding: 1px 3px;
+}
+
+/* ENDED */
+
+// ::selection {
+//   background-clip: revert !important;
+//   background-color: var(--marked-color);
+//   background-image: none !important;
+//   color: var(--background-alt);
+//   text-shadow: none !important;
+// }
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+a.current {
+  font-weight: bold;
+  color: var(--link-color);
+}
+
+li input[type="checkbox"] {
+  margin-inline-end: 0.5rem;
+}
+
+blockquote {
+  font-style: italic;
+  cite {
+    display: block;
+    font-style: normal;
+    font-weight: bold;
+  }
+  &:not(:has(cite)) {
+    font-style: normal;
+  }
+}
+
+// code,
+.highlight,
+code[class^="language-"] {
+  font-size: 1rem;
+  font-family: var(--mono-fonts);
+}
+
+code.highlighter-rouge {
+  color: var(--text-color);
+  // font-weight: bold;
+  background-color: var(--background-alt);
+  padding: 2px 4px;
+  border-radius: 4px;
 }

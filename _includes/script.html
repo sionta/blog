@@ -5,99 +5,43 @@
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
 
-<script>
-  const doc = document;
-  doc.addEventListener('DOMContentLoaded', function () {
-    /* Active navigation */
-    const navLinks = doc.querySelectorAll('header > nav a');
-    navLinks.forEach((link) => {
-      link.classList.remove('current');
-      if (link.getAttribute('href') === window.location.pathname) {
-        link.classList.add('current');
-      }
-    });
-    /* Theme toggle */
-    const savedTheme = localStorage.getItem('theme');
-    const themeToggle = doc.getElementById('theme-toggle');
-    function setTheme() {
-      const htmlElement = doc.querySelector('html');
-      if (themeToggle.checked) {
-        htmlElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        htmlElement.removeAttribute('data-theme');
-        localStorage.removeItem('theme');
-      }
-    }
-    themeToggle.addEventListener('change', setTheme);
-    if (savedTheme) {
-      themeToggle.checked = savedTheme === 'dark';
-      setTheme();
-    }
-  });
-</script>
-
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
 
 {% if page.collection == 'posts' or page.layout == 'post' %}
-  {% comment %}
-    {% if page.comments != false and site.comments.provider == 'disqus' %}
-      <script id="dsq-count-scr" src="//{{- site.comments.disqus.shortname -}}.disqus.com/count.js" async></script>
-    {% endif %}
-  {% endcomment %}
   {% if page.toc %}
     <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
     <script type="text/javascript">
-      doc.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function () {
         tocbot.init({
           tocSelector: '#toc',
           contentSelector: '[itemprop="articleBody"]',
           ignoreSelector: '.no_toc, .no-toc',
           headingSelector: 'h2, h3, h4',
           orderedList: false,
-          scrollSmooth: false,
+          scrollSmooth: true,
+          scrollSmoothOffset: -70,
         });
         tocbot.refresh();
       });
     </script>
   {% endif %}
   {% if page.anchor %}
-    <style>
-      .anchorjs-link {
-        color: #aaaaaa;
-      }
-      .anchorjs-link:hover {
-        color: #ff5231;
-      }
-    </style>
     <script type="text/javascript" src="{{- js_vendor -}}/anchor.min.js"></script>
     <script type="text/javascript">
-      doc.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function () {
         anchors.options = {
           placement: 'right',
           visible: 'always',
           icon: '#',
         };
-        anchors.add('h2, h3, h4');
-        var anchorsIgnore = ['.no_anchor', '.no-anchor']
-          .map(function (className) {
-            return (
-              'h1' +
-              className +
-              ', h2' +
-              className +
-              ', h3' +
-              className +
-              ', h4' +
-              className +
-              ', h5' +
-              className +
-              ', h6' +
-              className
-            );
-          })
-          .join(',');
-        doc.querySelectorAll(anchorsIgnore).forEach(function (heading) {
+        var anchorHeadings = 'h2, h3, h4';
+        var ignoreClasses = ['.no_anchor', '.no-anchor'];
+        anchors.add(anchorHeadings);
+        var headingTypes = anchorHeadings.split(',').map((selector) => selector.trim());
+        var ignoredSelectors = ignoreClasses
+          .map((className) => headingTypes.map((headingType) => headingType + className).join(', '))
+          .join(', ');
+        document.querySelectorAll(ignoredSelectors).forEach((heading) => {
           var anchorLink = heading.querySelector('.anchorjs-link');
           if (anchorLink) {
             heading.removeChild(anchorLink);
@@ -109,15 +53,15 @@
   {% if page.diagram %}
     <script type="text/javascript" src="{{- js_vendor -}}/mermaid.min.js"></script>
     <script type="text/javascript">
-      doc.addEventListener('DOMContentLoaded', function () {
-        var mermaidClass = doc.querySelectorAll('.language-mermaid');
+      document.addEventListener('DOMContentLoaded', function () {
+        var mermaidClass = document.querySelectorAll('.language-mermaid');
         mermaid.initialize({
-          startOnLoad: true, // Start Mermaid on page load
-          theme: 'forest', // Set the theme (default, forest, dark, etc.)
-          securityLevel: 'loose', // Security level (strict, loose)
+          startOnLoad: true,
+          theme: 'forest',
+          securityLevel: 'loose',
           flowchart: {
-            useMaxWidth: true, // Adjusts width automatically
-            htmlLabels: true, // Use HTML labels
+            useMaxWidth: true,
+            htmlLabels: true,
           },
           sequence: {
             diagramMarginX: 10,

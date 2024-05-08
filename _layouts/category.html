@@ -1,13 +1,4 @@
 ---
-layout: page
+layout: tags
 ---
-{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
-<ul class="posts">
-  <p>Archive of posts with {{ page.type }}s '{{ page.title }}'</p>
-  {% for post in page.posts %}
-    <li>
-      <span class="post-date">{{ post.date | date: date_format }}</span>
-      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+{{ content }}

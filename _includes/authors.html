@@ -1,111 +1,60 @@
-<style>
-  #author .my-authors {
-    --avatar-size: 65px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    gap: 2em;
-  }
-  #author .my-author {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    gap: 1em;
-    line-height: calc(var(--avatar-size) / 2);
-  }
-  #author .my-author img {
-    border-radius: 50%;
-    height: var(--avatar-size, 65px);
-    width: var(--avatar-size, 65px);
-  }
-  #author .my-author__links svg {
-    width: 22px;
-    height: 22px;
-  }
-  #author .my-author__links a {
-    text-decoration: none;
-    -moz-margin-end: 6px;
-    -webkit-margin-end: 6px;
-    margin-inline-end: 6px;
-    padding-bottom: 6px;
-  }
-  #author .my-author__links a:hover {
-    border-bottom: 1px solid currentColor;
-  }
-  #author .my-author__links a:last-of-type {
-    -moz-margin-end: 0;
-    -webkit-margin-end: 0;
-    margin-inline-end: 0;
-  }
-</style>
-
 {% assign author_metadata = site.author %}
 {% assign author_name = author_metadata.name | default: site.title | escape %}
 
-<div id="author" class="my-authors" translate="no">
+<div id="my-authors" translate="no">
   <div class="my-author">
     {% if author_metadata.avatar %}
-      <img
-        alt="{{- author_name -}}"
-        src="{{ author_metadata.avatar }}"
-        decoding="async"
-        loading="lazy"
-        height="64"
-        width="64"
-      >
+    <img
+      alt="{{- author_name -}}"
+      src="{{ author_metadata.avatar }}"
+      decoding="async"
+      loading="lazy"
+      height="64"
+      width="64"
+    />
     {% endif %}
     <div>
       <span>{{- author_name -}}</span>
       <div class="my-author__links">
         {% if author_metadata.twitter %}
-          <a
-            rel="me"
-            href="https://twitter.com/{{- author_metadata.twitter -}}"
-            aria-label="{{- author_name }} on X"
-          >
-            {%- include social-icons/twitter.svg -%}
-          </a>
-        {% endif %}
-        {% if author_metadata.github %}
-          <a
-            rel="me"
-            href="https://github.com/{{- author_metadata.github -}}"
-            aria-label="{{- author_name }} on GitHub"
-          >
-            {%- include social-icons/github.svg -%}
-          </a>
-        {% endif %}
-        {% if author_metadata.linkedin %}
-          <a
-            rel="me"
-            href="https://www.linkedin.com/in/{{- author_metadata.linkedin -}}"
-            aria-label="{{- author_name }} on LinkedIn"
-          >
-            {%- include social-icons/linkedin.svg -%}
-          </a>
-        {% endif %}
-        {% if author_metadata.mastodon %}
-          <a
-            rel="me"
-            href="https://mastodon.social/@{{- author_metadata.mastodon -}}"
-            aria-label="{{- author_name }} on Mastodon"
-          >
-            {%- include social-icons/mastodon.svg -%}
-          </a>
+        <a
+          rel="me"
+          href="https://twitter.com/{{- author_metadata.twitter -}}"
+          aria-label="{{- author_name }} on X"
+        >
+          {%- include social-author-icons/twitter.svg -%}
+        </a>
+        {% endif %} {% if author_metadata.github %}
+        <a
+          rel="me"
+          href="https://github.com/{{- author_metadata.github -}}"
+          aria-label="{{- author_name }} on GitHub"
+        >
+          {%- include social-author-icons/github.svg -%}
+        </a>
+        {% endif %} {% if author_metadata.linkedin %}
+        <a
+          rel="me"
+          href="https://www.linkedin.com/in/{{- author_metadata.linkedin -}}"
+          aria-label="{{- author_name }} on LinkedIn"
+        >
+          {%- include social-author-icons/linkedin.svg -%}
+        </a>
+        {% endif %} {% if author_metadata.mastodon %}
+        <a
+          rel="me"
+          href="https://mastodon.social/@{{- author_metadata.mastodon -}}"
+          aria-label="{{- author_name }} on Mastodon"
+        >
+          {%- include social-author-icons/mastodon.svg -%}
+        </a>
         {% endif %}
         <a
           rel="me"
           href="{{- author_metadata.url | default: site.url -}}"
           aria-label="{{- author_name -}}'s homepage"
         >
-          {%- include social-icons/website.svg -%}
+          {%- include social-author-icons/website.svg -%}
         </a>
       </div>
     </div>

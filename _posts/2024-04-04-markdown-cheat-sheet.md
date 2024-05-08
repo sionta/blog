@@ -199,20 +199,20 @@ You can align text in the columns to the left, right, or center by adding a colo
 
 ## Alerts
 
-> This is use `{:.alert}`.
-{:.alert}
+> **TIP:** This is a useful tip.
+{: .tip}
 
-> This is use `{:.alert.info}`.
-{:.alert.info}
+> **NOTE:** This is an important note.
+{: .note}
 
-> This is use `{:.alert.warning}`.
-{:.alert.warning}
+> **ERROR:** This is a serious error warning.
+{: .error}
 
-> This is use `{:.alert.danger}`.
-{:.alert.danger}
+> **WARNING:** This is an important warning.
+{: .warning}
 
-> This is use `{:.alert.success}`.
-{:.alert.success}
+> **QUESTION:** This is a question that must be answered.
+{: .question}
 
 ## Mathematics
 

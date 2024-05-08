@@ -1,9 +1,7 @@
 # If you want to link only specific pages in your header, use this and add the path to the pages
 # in order as they should show up.
 
-- title: About
-  url: /about/
-- title: RSS
-  url: /feed.xml
-- title: GitHub
-  url: https://github.com/sionta
+- name: About
+  link: /about/
+- name: GitHub
+  link: https://github.com/sionta
