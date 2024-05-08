@@ -1,659 +1,409 @@
-/* Simple.css v2.3.0
- * Project: https://github.com/kevquirk/simple.css/
- */
-
-/* Reset box-sizing */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Reset default appearance */
-textarea,
-select,
-input,
-progress {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-html {
-  /* Set the font globally */
-  font-family: var(--base-fonts);
-  scroll-behavior: smooth;
-}
-
-/* Make the body a nice central block */
-body {
-  color: var(--text-color);
-  background-color: var(--background);
-  font-size: 1.15rem;
-  line-height: 1.5;
-  display: grid;
-  grid-template-columns: 1fr min(45rem, 90%) 1fr;
+* {
+  /* Reset margins and padding */
   margin: 0;
-
-  > * {
-    grid-column: 2;
-  }
-
-  /* Nested styles for the header */
-  > header {
-    background-color: var(--background-alt);
-    border-bottom: 1px solid var(--border-color);
-    text-align: center;
-    padding: 0 0.5rem 2rem 0.5rem;
-    grid-column: 1 / -1;
-
-    /* Nested styles for child elements */
-    > *:only-child {
-      margin-block-start: 2rem;
-    }
-
-    h1 {
-      max-width: 1200px;
-      margin: 1rem auto;
-    }
-
-    p {
-      max-width: 40rem;
-      margin: 1rem auto;
-    }
-  }
-
-  > footer {
-    margin-top: 4rem;
-    padding: 2rem 1rem 1.5rem 1rem;
-    color: var(--second-color);
-    font-size: 1rem;
-    text-align: center;
-    border-top: 1px solid var(--border-color);
-  }
+  padding: 0;
 }
 
-/* Add a little padding to ensure spacing is correct between content and header > nav */
-main {
-  padding-top: 1.5rem;
-}
-
-/* Format headers */
-h1 {
-  font-size: 3rem;
-}
-h2 {
-  font-size: 2.6rem;
-  margin-top: 3rem;
-}
-h3 {
-  font-size: 2rem;
-  margin-top: 3rem;
-}
-h4 {
-  font-size: 1.44rem;
-}
-h5 {
-  font-size: 1.15rem;
-}
-h6 {
-  font-size: 0.96rem;
-}
-p {
-  margin: 1.5rem 0;
-}
-
-/* Prevent long strings from overflowing container */
+address,
+area,
+article,
+aside,
+audio,
+blockquote,
+datalist,
+details,
+dl,
+fieldset,
+figure,
+form,
+input,
+iframe,
+img,
+meter,
+nav,
+ol,
+optgroup,
+option,
+output,
 p,
+pre,
+progress,
+ruby,
+section,
+table,
+textarea,
+ul,
+video {
+  /* Margins for most elements */
+  margin-bottom: 1rem;
+}
+
+html,
+input,
+select,
+button {
+  /* Set body font family and some finicky elements */
+  font-family: var(--base-fonts);
+}
+
+body {
+  /* Center body in page */
+  margin: 0 auto;
+  max-width: 750px;
+  padding: 2rem;
+  border-radius: 6px;
+  overflow-x: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  background: var(--background);
+
+  /* Main body text */
+  color: var(--text-color);
+  font-size: 1.03rem;
+  line-height: 1.5;
+}
+
+// ::selection {
+//   /* Set background color for selected text */
+//   background: var(--marked-color);
+//   color: var(--background-alt);
+// }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  overflow-wrap: break-word;
+  line-height: 1;
+  color: var(--text-color);
+  padding-top: 0.875rem;
 }
 
-/* Fix line height when title wraps */
 h1,
 h2,
 h3 {
-  line-height: 1.1;
+  color: var(--text-color);
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+  // border-bottom: 1px solid var(--background-alt);
 }
 
-/* Reduce header size on mobile */
-@media only screen and (max-width: 720px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-  h2 {
-    font-size: 2.1rem;
-  }
-  h3 {
-    font-size: 1.75rem;
-  }
-  h4 {
-    font-size: 1.25rem;
-  }
+h4,
+h5,
+h6 {
+  margin-bottom: 0.3rem;
 }
 
-/* Format links & buttons */
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.85rem;
+}
+
+h3 {
+  font-size: 1.55rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
 a {
   color: var(--link-color);
-  &:hover {
-    text-decoration: none;
-  }
-
-  // &:visited {
-  //   color: var(--link-color);
-  // }
 }
 
-// a,
-// a:visited {
-//   color: var(--link-color);
-// }
-
-button,
-.button,
-a.button, /* extra specificity to override a */
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-label[type="button"] {
-  border: 1px solid var(--link-color);
-  background-color: var(--link-color);
-  color: var(--accent-text);
-  padding: 0.5rem 0.9rem;
-  text-decoration: none;
-  line-height: normal;
+a:hover {
+  color: var(--hover-color);
 }
 
-.button[aria-disabled="true"],
-input:disabled,
-textarea:disabled,
-select:disabled,
-button[disabled] {
-  cursor: not-allowed;
-  background-color: var(--disabled-color);
-  border-color: var(--disabled-color);
-  color: var(--second-color);
-}
-
-input[type="range"] {
-  padding: 0;
-}
-
-/* Set the cursor to '?' on an abbreviation and style the abbreviation to show that there is more information underneath */
-abbr[title] {
+abbr:hover {
+  /* Set the '?' cursor while hovering an abbreviation */
   cursor: help;
-  text-decoration-line: underline;
-  text-decoration-style: dotted;
 }
 
-button:enabled:hover,
-.button:not([aria-disabled="true"]):hover,
-input[type="submit"]:enabled:hover,
-input[type="reset"]:enabled:hover,
-input[type="button"]:enabled:hover,
-label[type="button"]:hover {
-  background-color: var(--hover-color);
-  border-color: var(--hover-color);
-  cursor: pointer;
-}
-.button:focus-visible,
-button:focus-visible:where(:enabled),
-input:enabled:focus-visible:where(
-    [type="submit"],
-    [type="reset"],
-    [type="button"]
-  ) {
-  outline: 2px solid var(--link-color);
-  outline-offset: 1px;
+blockquote {
+  padding: 1.5rem;
+  background: var(--background-alt);
+  border-left: 5px solid var(--border-color);
 }
 
-/* Format navigation */
-header > nav {
-  font-size: 1rem;
-  line-height: 2;
-  padding: 1rem 0 0 0;
+abbr {
+  cursor: help;
+}
 
-  /* Use flexbox to allow items to wrap, as needed */
-  ul,
-  ol {
-    align-content: space-around;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+blockquote *:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
 
-    /* List items are inline elements, make them behave more like blocks */
-    li {
-      display: inline-block;
-    }
+main > header,
+body > header {
+  background: var(--background-alt);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2rem 1.5rem;
+
+  /* This sets the right and left margins to cancel out the body's margins. It's width is still the same, but the background stretches across the page's width. */
+
+  margin: -2rem calc(0px - (50vw - 50%)) 2rem;
+
+  /* Shorthand for:
+
+	margin-top: -2rem;
+	margin-bottom: 2rem;
+
+	margin-left: calc(0px - (50vw - 50%));
+	margin-right: calc(0px - (50vw - 50%)); */
+
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+  h1,
+  h2,
+  h3 {
+    padding-bottom: 0;
+    border-bottom: 0;
   }
-
-  a,
-  a:visited {
-    margin: 0 0.5rem 1rem 0.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--text-color);
-    display: inline-block;
-    padding: 0.1rem 1rem;
-    text-decoration: none;
-  }
-  a:hover,
-  a.current,
-  a[aria-current="page"] {
-    border-color: var(--link-color);
-    color: var(--link-color);
-    cursor: pointer;
-  }
-}
-
-/* Reduce nav side on mobile */
-@media only screen and (max-width: 720px) {
-  header > nav a {
-    border: none;
-    padding: 0;
-    text-decoration: underline;
-    line-height: 1;
-  }
-}
-
-/* Consolidate box styling */
-aside,
-details,
-pre,
-progress {
-  background-color: var(--background-alt);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  margin-bottom: 1rem;
-
-  aside {
-    font-size: 1rem;
-    width: 30%;
-    padding: 0 15px;
-    margin-inline-start: 15px;
-    float: right;
-
-    *[dir="rtl"] & {
-      float: left;
-    }
-
-    /* Make aside full-width on mobile */
-    @media only screen and (max-width: 720px) {
-      width: 100%;
-      float: none;
-      margin-inline-start: 0;
-    }
-  }
-}
-
-// article,
-fieldset,
-dialog {
-  border: 1px solid var(--border-color);
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 1rem;
-}
-
-section {
-  // border-top: 1px solid var(--border-color);
-  // border-bottom: 1px solid var(--border-color);
-  // padding: 2rem 1rem;
-  margin: 3rem 0;
-
-  h2:first-child {
-    margin-top: 1rem;
-  }
-
-  /* Don't double separators when chaining sections */
-  & + section,
-  &:first-child {
-    border-top: 0;
+  > *:first-child {
+    margin-top: 0;
     padding-top: 0;
   }
-
-  &:last-child {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
-}
-
-summary {
-  cursor: pointer;
-  font-weight: bold;
-  padding: 0.7rem 1rem;
-  margin: -0.7rem -1rem;
-  word-break: break-all;
-}
-
-details {
-  padding: 0.7rem 1rem;
-
-  &[open] > summary + * {
-    margin-top: 0;
-  }
-
-  &[open] > summary {
-    margin-bottom: 0.5rem;
-  }
-
-  &[open] > :last-child {
+  > *:last-child {
     margin-bottom: 0;
   }
 }
 
-/* Format tables */
-table {
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-}
-
-caption {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-td,
-th {
-  border: 1px solid var(--border-color);
-  text-align: start;
-  padding: 0.5rem;
-}
-th {
-  background-color: var(--background-alt);
-  font-weight: bold;
-}
-tr:nth-child(even) {
-  /* Set every other cell slightly darker. Improves readability. */
-  background-color: var(--background-alt);
-}
-
-/* Format forms */
-textarea,
-select,
-input,
+a button,
 button,
-.button {
-  font-size: inherit;
-  font-family: inherit;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: var(--border-radius);
-  box-shadow: none;
-  max-width: 100%;
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-size: 1rem;
   display: inline-block;
-}
-textarea,
-select,
-input {
-  color: var(--text-color);
-  background-color: var(--background);
-  border: 1px solid var(--border-color);
-}
-label {
-  display: block;
-}
-textarea:not([cols]) {
-  width: 100%;
-}
-
-/* Add arrow to drop-down */
-select:not([multiple]) {
-  background-image: linear-gradient(
-      45deg,
-      transparent 49%,
-      var(--text-color) 51%
-    ),
-    linear-gradient(135deg, var(--text-color) 51%, transparent 49%);
-  background-position: calc(100% - 15px), calc(100% - 10px);
-  background-size: 5px 5px, 5px 5px;
-  background-repeat: no-repeat;
-  padding-inline-end: 25px;
-}
-
-*[dir="rtl"] select:not([multiple]) {
-  background-position: 10px, 15px;
-}
-
-/* checkbox and radio button style */
-input[type="checkbox"],
-input[type="radio"] {
-  vertical-align: middle;
-  position: relative;
-  width: min-content;
-}
-input[type="checkbox"] + label,
-input[type="radio"] + label {
-  display: inline-block;
-}
-input[type="radio"] {
-  border-radius: 100%;
-}
-input[type="checkbox"]:checked,
-input[type="radio"]:checked {
-  background-color: var(--link-color);
-}
-input[type="checkbox"]:checked::after {
-  /* Creates a rectangle with colored right and bottom borders which is rotated to look like a check mark */
-  content: " ";
-  width: 0.18em;
-  height: 0.32em;
-  border-radius: 0;
-  position: absolute;
-  top: 0.05em;
-  left: 0.17em;
-  background-color: transparent;
-  border-right: solid var(--background) 0.08em;
-  border-bottom: solid var(--background) 0.08em;
-  font-size: 1.8em;
-  transform: rotate(45deg);
-}
-input[type="radio"]:checked::after {
-  /* creates a colored circle for the checked radio button  */
-  content: " ";
-  width: 0.25em;
-  height: 0.25em;
-  border-radius: 100%;
-  position: absolute;
-  top: 0.125em;
-  background-color: var(--background);
-  left: 0.125em;
-  font-size: 32px;
-}
-
-/* Set a height for color input */
-input[type="color"] {
-  height: 2.5rem;
-  padding: 0.2rem;
-}
-/* do not show border around file selector button */
-input[type="file"] {
-  border: 0;
-}
-/* Makes input fields wider on smaller screens */
-@media only screen and (max-width: 720px) {
-  textarea,
-  select,
-  input {
-    width: 100%;
-  }
-}
-
-/* Misc body elements */
-hr {
-  border: none;
-  height: 1px;
-  background: var(--border-color);
-  margin: 1rem auto;
-}
-
-mark {
-  padding: 2px 5px;
-  border-radius: var(--border-radius);
-  background-color: var(--marked-color);
-  color: black;
-}
-
-mark a {
-  color: #0d47a1;
-}
-
-img,
-video {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--border-radius);
-}
-
-figure {
-  margin: 0;
-  display: block;
-  overflow-x: auto;
-  > img,
-  > picture > img {
-    display: block;
-    margin-inline: auto;
-  }
-  > table {
-    width: max-content;
-  }
-}
-figcaption {
+  padding: 6px 12px;
   text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background: var(--link-color);
+  color: var(--text-color);
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+a button[disabled],
+button[disabled],
+input[type="submit"][disabled],
+input[type="reset"][disabled],
+input[type="button"][disabled] {
+  cursor: default;
+  opacity: 0.5;
+
+  /* Set the [X] cursor while hovering a disabled link */
+  cursor: not-allowed;
+}
+
+.button:focus,
+.button:hover,
+button:focus,
+button:hover,
+input[type="submit"]:focus,
+input[type="submit"]:hover,
+input[type="reset"]:focus,
+input[type="reset"]:hover,
+input[type="button"]:focus,
+input[type="button"]:hover {
+  background: var(--hover-color);
+}
+
+code,
+pre,
+kbd,
+samp {
+  /* Set the font family for monospaced elements */
+  font-family: var(--mono-fonts);
+}
+
+code,
+samp,
+kbd,
+pre {
+  /* The main preformatted style. This is changed slightly across different cases. */
+  background: var(--background-alt);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 3px 6px;
   font-size: 0.9rem;
-  color: var(--second-color);
-  margin-block: 1rem;
 }
-
-// blockquote {
-//   margin-inline-start: 2rem;
-//   margin-inline-end: 0;
-//   margin-block: 2rem;
-//   padding: 0.4rem 0.8rem;
-//   border-inline-start: 0.35rem solid var(--link-color);
-//   color: var(--second-color);
-//   font-style: italic;
-// }
-
-// cite {
-//   font-size: 0.9rem;
-//   color: var(--second-color);
-//   font-style: normal;
-// }
-
-dt {
-  color: var(--second-color);
-}
-
-/* Use mono font for code elements */
-// code,
-// pre,
-// pre span,
-// kbd,
-// samp {
-//   font-family: var(--mono-fonts);
-//   color: var(--syntax-color);
-// }
 
 kbd {
-  color: var(--preformatted-color);
-  border: 1px solid var(--preformatted-color);
-  border-bottom: 3px solid var(--preformatted-color);
-  border-radius: var(--border-radius);
-  padding: 0.1rem 0.4rem;
+  /* Makes the kbd element look like a keyboard key */
+  border-bottom: 3px solid var(--border-color);
 }
 
 pre {
   padding: 1rem 1.4rem;
   max-width: 100%;
   overflow: auto;
-  color: var(--preformatted-color);
-
-  /* Fix embedded code within pre */
-  code {
-    color: var(--preformatted-color);
-    background: none;
-    margin: 0;
-    padding: 0;
-  }
 }
 
-/* Progress bars */
-/* Declarations are repeated because you */
-/* cannot combine vendor-specific selectors */
-progress {
-  width: 100%;
-
-  &:indeterminate {
-    background-color: var(--background-alt);
-  }
-
-  &::-webkit-progress-bar {
-    border-radius: var(--border-radius);
-    background-color: var(--background-alt);
-  }
-
-  &::-webkit-progress-value {
-    border-radius: var(--border-radius);
-    background-color: var(--link-color);
-  }
-
-  &::-moz-progress-bar {
-    border-radius: var(--border-radius);
-    background-color: var(--link-color);
-    transition-property: width;
-    transition-duration: 0.3s;
-  }
-
-  &:indeterminate::progress-bar {
-    background-color: var(--background-alt);
-  }
+pre code {
+  /* When <code> is in a <pre>, reset it's formatting to blend in */
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
-dialog {
-  max-width: 40rem;
-  margin: auto;
-
-  &::backdrop {
-    background-color: var(--background);
-    opacity: 0.8;
-  }
-
-  @media only screen and (max-width: 720px) {
-    max-width: 100%;
-    margin: auto 1em;
-  }
+code pre {
+  /* When <pre> is in a <code>, reset it's formatting to blend in */
+  display: inline;
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
-/* Superscript & Subscript */
-/* Prevent scripts from affecting line-height. */
-sup,
-sub {
-  vertical-align: baseline;
-  position: relative;
-}
-sup {
-  top: -0.4em;
-}
-sub {
-  top: 0.3em;
-}
-
-/* Classes for notices */
-.notice {
+details {
+  /* Make the <details> look more "clickable" */
+  padding: 0.6rem 1rem;
   background: var(--background-alt);
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+summary {
+  /* Makes the <summary> look more like a "clickable" link with the pointer cursor */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+details[open] {
+  /* Adjust the <details> padding while open */
+  padding-bottom: 0.75rem;
+}
+
+details[open] summary {
+  /* Adjust the <details> padding while open */
+  margin-bottom: 6px;
+}
+
+details[open] > *:last-child {
+  /* Resets the bottom margin of the last element in the <details> while <details> is opened. This prevents double margins/paddings. */
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd::before {
+  /* Add an arrow to data table definitions */
+  content: "→ ";
+}
+
+hr {
+  /* Reset the border of the <hr> separator, then set a better line */
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  margin: 1rem auto;
+}
+
+fieldset {
+  margin-top: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+legend {
+  // padding: auto 0.5rem;
+  padding: 0 0.5rem;
+}
+
+table {
+  /* border-collapse sets the table's elements to share borders, rather than floating as separate "boxes". */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid var(--border-color);
+  text-align: left;
+  padding: 0.5rem;
+}
+
+th {
+  background: var(--background-alt);
+}
+
+tr:nth-child(even) {
+  /* Set every other cell slightly darker. Improves readability. */
+  background: var(--background-alt);
+}
+
+table caption {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  /* Don't let the <textarea> extend off the screen naturally or when dragged by the user */
+  max-width: 100%;
+}
+
+ol,
+ul {
+  /* Replace the browser default padding */
+  padding-left: 2rem;
+}
+
+li {
+  margin-top: 0.4rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-bottom: 0;
+}
+
+mark {
+  padding: 1px 3px;
+  background: var(--marked-color);
+  // color: var(--preformatted-color);
+}
+
+textarea,
+select,
+input {
+  padding: 6px 12px;
+  margin-bottom: 0.5rem;
+  background: var(--background-alt);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
 }

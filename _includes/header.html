@@ -1,26 +1,20 @@
 <header>
-  <div>
-    <h1>{{ site.name | default: site.title }}</h1>
+  <div class="site-title">
+    <h1>
+      <a href="{{- '/' | relative_url -}}">{{ site.name | default: site.title }}</a>
+    </h1>
     <p>{{ site.tagline | default: site.description }}</p>
   </div>
   <nav>
-    <ul>
-      {% assign navigations = site.navigations | default: site.data.navigation %}
-      {% for item in navigations %}
-        {% assign title = item.name | default: item.title | escape %}
-        {% assign links = item.link | default: item.url %}
-        {% assign is_http = links | split: '/' | first %}
-        {% assign is_feed = links | split: '/' | last %}
-        <li>
-          {% if is_http == 'http:' or is_http == 'https:' or is_feed == 'feed.xml' %}
-            <a href="{{- links -}}" target="_blank" rel="noopener noreferrer">{{- title -}}</a>
-          {% else %}
-            <a href="{{- links | relative_url -}}">
-              {{- title -}}
-            </a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
+    <a href="{{- '/' | relative_url -}}">Home</a> &#47;
+    {% assign nav_items = site.data.navigation %}
+    {% for item in nav_items %}
+      {%- if item.url contains 'http://' or item.url contains 'https://' -%}
+        <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+      {%- else -%}
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {%- endif -%}
+      {% unless forloop.last %} &#47; {% endunless %}
+    {% endfor %}
   </nav>
 </header>

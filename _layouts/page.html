@@ -3,5 +3,10 @@ layout: default
 ---
 {%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
 <article>
-  {{ content }}
+  <header>
+    <h1>{{ page.title | escape }}</h1>
+  </header>
+  <div>
+    {{ content }}
+  </div>
 </article>

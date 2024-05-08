@@ -4,6 +4,7 @@
       .cls-bg {
         fill: #DDDDDD;
       }
+
       .cls-fg {
         fill: #999999;
       }

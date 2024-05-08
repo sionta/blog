@@ -153,6 +153,8 @@ See the section on [`code`](#codes).
 
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
+[^1]: This is the first footnote.
+
 [^bignote]: Here's one with multiple paragraphs and code.
 
     Indent paragraphs to include them in the footnote.
@@ -164,15 +166,15 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 ## Images
 
 <!-- ![alt text](https://placehold.co/100x100/png) -->
-![alt text](/assets/images/placeholder-100x100.svg)
+![alt text](/assets/images/placeholder/placeholder-100x100.svg)
 {:.image.left}
 
 <!-- ![alt text](https://placehold.co/128x256/png) -->
-![alt text](/assets/images/placeholder-128x256.svg)
+![alt text](/assets/images/placeholder/placeholder-128x256.svg)
 {:.image.right}
 
 <!-- ![alt text](https://placehold.co/512x256/png) -->
-![alt text](/assets/images/placeholder-512x256.svg)
+![alt text](/assets/images/placeholder/placeholder-512x256.svg)
 {:.image.center}
 
 ## Tables
@@ -198,7 +200,7 @@ You can align text in the columns to the left, right, or center by adding a colo
 ## Alerts
 
 > This is use `{:.alert}`.
-{:.alert.alert-info}
+{:.alert}
 
 > This is use `{:.alert.info}`.
 {:.alert.info}

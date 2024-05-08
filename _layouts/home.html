@@ -1,46 +1,6 @@
 ---
 layout: default
 ---
-<style>
-  .post-list {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .post-item {
-    background-color: var(--background-alt);
-    border: 1px solid var(--border-color);
-    transition: background-color 0.2s;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 15px;
-  }
-  .post-item:hover {
-    background-color: var(--background);
-  }
-  .post-link {
-    text-decoration: none;
-    color: inherit;
-  }
-  .post-title {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--link-color);
-  }
-  .post-summary {
-    font-size: 0.9rem;
-    margin: 10px 0;
-    color: var(--text-color);
-  }
-  .post-meta {
-    display: flex;
-    justify-content: space-between;
-    /* color: var(--second-color); */
-    font-size: 0.9rem;
-  }
-</style>
 <div class="post-list">
   {% for post in site.posts %}
     <div class="post-item">

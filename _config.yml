@@ -11,7 +11,7 @@ author:
   name: "Andre Attamimi" # `site.title`
   url: https://github.com/sionta # `site.url`
   email: "info@andreattamimi.com"
-  avatar: "/assets/images/favicon.svg" # "https://github.com/sionta.png?size=100"
+  avatar: "/assets/images/favicon/favicon.png" # "https://github.com/sionta.png?size=100"
   github: "sionta"
   twitter: "R007MMXV"
   mastodon: "sionta"
@@ -54,13 +54,23 @@ kramdown:
   math_engine: "katex"
   math_engine_opts: {}
 
+collections:
+  mores:
+    output: true
+    permalink: /:name/
+
 defaults:
+  - scope:
+      path: ""
+      type: "mores"
+    values:
+      layout: "page"
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-      permalink: "/posts/:title/"
+      permalink: /blog/:title/
 
 # compress_html:
 #   clippings: "all"
@@ -74,7 +84,7 @@ defaults:
 feed:
   posts_limit: 3
   excerpt_only: true
-  tags: true
+  # tags: true
   # categories:
   #   - tutorial
   #   - updates
@@ -91,10 +101,8 @@ jekyll-archives:
 exclude:
   - "*.gem"
   - "*.gemspec"
-  - "test*"
+  - "*.lock"
   - "screenshot*"
   - "node_modules"
-  - "netlify.toml"
   - "README.md"
-  - "yarn.lock"
   - "package*.json"

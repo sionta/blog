@@ -8,7 +8,7 @@ layout: default
 {% assign modified_date = page.modified_date | default: page.last_modified_at %}
 
 <article itemscope itemtype="https://schema.org/BlogPosting" itemid="{{- page.url | absolute_url -}}">
-  <header>
+  <div>
     <h1 itemprop="name headline">{{- page.title | escape -}}</h1>
     <div>
       <p>
@@ -38,8 +38,8 @@ layout: default
       </p>
     </div>
     {% include authors.html %}
-  </header>
-  <section itemprop="articleBody">
+  </div>
+  <div itemprop="articleBody">
     {% if page.toc %}
       <details>
         <summary>Table of Contents</summary>
@@ -47,34 +47,37 @@ layout: default
       </details>
     {% endif %}
     {{ content }}
-  </section>
-  <footer>
+  </div>
+  <div>
     {% if page.tags != empty %}
-      <span>
-        Tags:
-        <span itemprop="keywords">
-          {% for tag in page.tags %}
-            <a itemprop="url" href="/tags/{{- tag -}}/">{{- tag -}}</a>
-            {%- unless forloop.last %}&comma; {% endunless -%}
-          {% endfor -%}
+      <p>
+        <span>
+          Tags:
+          <span itemprop="keywords">
+            {% for tag in page.tags %}
+              <a itemprop="url" href="/tags/{{- tag -}}/">{{- tag -}}</a>
+              {%- unless forloop.last %}&comma; {% endunless -%}
+            {% endfor -%}
+          </span>
         </span>
-      </span>
+      </p>
     {% endif %}
     {% if page.categories != empty %}
-      &VerticalLine;
-      <span>
-        Categories:
-        <span itemprop="articleSection">
-          {% for category in page.categories %}
-            <a itemprop="url" href="/categories/{{- category -}}/">{{- category -}}</a>
-            {%- unless forloop.last %}&comma; {% endunless -%}
-          {% endfor %}
+      <p>
+        <span>
+          Categories:
+          <span itemprop="articleSection">
+            {% for category in page.categories %}
+              <a itemprop="url" href="/categories/{{- category -}}/">{{- category -}}</a>
+              {%- unless forloop.last %}&comma; {% endunless -%}
+            {% endfor %}
+          </span>
         </span>
-      </span>
+      </p>
     {% endif %}
-  </footer>
+  </div>
   {% if page.comments %}
-    <section
+    <div
       {% if site.comments.provider == 'disqus' %}
         id="disqus_thread"
       {% endif %}
@@ -82,7 +85,7 @@ layout: default
       itemtype="https://schema.org/Comment"
     >
       {% include comments.html %}
-    </section>
+    </div>
   {% endif %}
   <a href="{{ page.url | absolute_url }}" hidden></a>
 </article>
