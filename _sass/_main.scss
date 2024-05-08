@@ -9,7 +9,7 @@ $code-font-family: monospace !default;
   --mono-fonts: #{$code-font-family};
   --border-radius: 5px;
 
-  @include scheme.ayu($dark: false);
+  @include scheme.base16($dark: false);
   --background: var(--base00);
   --background-alt: var(--base01);
   --text-color: var(--base05);
@@ -21,11 +21,13 @@ $code-font-family: monospace !default;
   --preformatted-color: var(--base04);
   --marked-color: var(--base0A);
   --disabled-color: var(--base02);
+  @include scheme.rouge($dark: false);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  @include scheme.ayu($dark: true);
+  @include scheme.base16($dark: true);
+  @include scheme.rouge($dark: true);
 }
 
 @import "custom", "base", "layout";
