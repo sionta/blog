@@ -6,7 +6,4 @@ _site
 Gemfile.lock
 
 *test.*
-# **/_sass
-**/test*
-**/color*
-**/sytanx.*
+**/*test*

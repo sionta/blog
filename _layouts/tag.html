@@ -1,13 +1,14 @@
 ---
 layout: default
-# title: Archives
 ---
 {%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
-{% comment %} <p>&#8636; <a href="{{ '/' | relative_url }}">Back to Home</a></p> {% endcomment %}
-<div id="post-archive">
-  <h3>Archive of posts with {{ page.type }}s '#{{ page.title }}'</h3>
-  {% for post in page.posts %}
-  <span>{{ post.date | date: date_format }}</span>
-  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-  {% endfor %}
-</div>
+<section>
+  {% comment %} <span>&#8636; <a href="{{ '/' | relative_url }}">Back to Home</a></span> {% endcomment %}
+  <div>
+    <h1>Archive of posts with {{ page.type }}s '#{{ page.title }}'</h1>
+    {% for post in page.posts %}
+      <span>{{ post.date | date: date_format }}</span>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% endfor %}
+  </div>
+</section>

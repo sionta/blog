@@ -1,15 +1,33 @@
 @charset "UTF-8";
+@use "colors" as scheme;
+
 $base-font-family: system-ui, -apple-system, sans-serif !default;
 $code-font-family: monospace !default;
-@use "colors" as scheme;
+
+@mixin dark-theme() {
+  [data-theme="dark"] {
+    @content;
+  }
+}
 
 :root {
   color-scheme: light;
   --base-fonts: #{$base-font-family};
   --mono-fonts: #{$code-font-family};
-  --border-radius: 5px;
 
-  @include scheme.base16($dark: false);
+  /* Layouts */
+  --font-size-small: 12px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+
+  /* Colors */
+  @include scheme.base16(light);
   --background: var(--base00);
   --background-alt: var(--base01);
   --text-color: var(--base05);
@@ -17,17 +35,15 @@ $code-font-family: monospace !default;
   --border-color: var(--base02);
   --link-color: var(--base0D);
   --hover-color: var(--base0C);
-  --syntax-color: var(--base08);
+  --code-color: var(--base08);
   --preformatted-color: var(--base04);
   --marked-color: var(--base0A);
   --disabled-color: var(--base02);
-  @include scheme.rouge($dark: false);
 }
 
-[data-theme="dark"] {
+@include dark-theme() {
   color-scheme: dark;
-  @include scheme.base16($dark: true);
-  @include scheme.rouge($dark: true);
+  @include scheme.base16(dark);
 }
 
 @import "custom", "base", "layout";

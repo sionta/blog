@@ -2,14 +2,17 @@
   <p itemprop="copyrightNotice">
     &copy; {{ 'now' | date: '%Y' }}
     <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-      <span itemprop="name"><a href="{{- site.url | absolute_url -}}">{{- site.title -}}</a></span>.
+      <span itemprop="name"
+        ><a href="{{- site.url | absolute_url -}}">{{- site.title -}}</a></span
+      >.
     </span>
   </p>
-  {% comment %} <p>
+  <p>
     <a href="{{ site.feed.path | default: 'feed.xml' | absolute_url }}">
       <svg class="svg-icon">
         <use xlink:href="{{ 'assets/social-icons.svg#rss' | relative_url }}"></use>
-      </svg><span>Subscribe</span>
+      </svg>
+      <span>Subscribe</span>
     </a>
-  </p> {% endcomment %}
+  </p>
 </footer>

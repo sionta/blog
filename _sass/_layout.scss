@@ -8,24 +8,20 @@
     }
   }
 }
-
 .site-footer {
   display: inline-flex;
-  .svg-icon {
-    width: 1.25em;
-    height: 1.25em;
-    fill: currentColor;
-    vertical-align: text-bottom;
-    margin-inline-start: 0.3rem;
-    margin-right: 0.3rem;
-  }
 }
-
+.svg-icon {
+  width: 1.25em;
+  height: 1.25em;
+  fill: currentColor;
+  vertical-align: text-bottom;
+  margin-inline-start: 0.3rem;
+  margin-right: 0.3rem;
+}
 .post-list {
   display: flex;
   flex-direction: column;
-  // padding: 20px;
-  // max-width: 800px;
   // margin: 0 auto;
   .post-item {
     background-color: var(--background-alt);
@@ -60,42 +56,6 @@
   }
 }
 
-#post-archive {
-  /* padding: 20px;
-  margin: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background-color: var(--background-alt); */
-  h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--text-color);
-  }
-  /* p a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    &:hover {
-      text-decoration: underline;
-    }
-  } */
-  span {
-    font-size: 0.9rem;
-    color: var(--second-color);
-    margin-right: 10px;
-  }
-  a {
-    font-size: 1rem;
-    color: var(--link-color);
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: block;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
 .tip,
 .note,
 .error,
@@ -105,6 +65,7 @@
   margin: 10px 0;
   border-radius: 4px;
 }
+
 @mixin recolor($color) {
   background-color: rgba($color, 0.2);
   border-left: 5px solid $color;
@@ -125,7 +86,8 @@
 .question {
   @include recolor(#007acc);
 }
-[data-theme="dark"] {
+
+@include dark-theme() {
   .tip {
     @include recolor(#c3e88d);
   }
@@ -145,6 +107,7 @@
 
 // Syntax highlighting styles should be adjusted appropriately for every color scheme
 // List of tokens: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+
 .highlight {
   font-family: var(--mono-fonts);
   table {
@@ -179,12 +142,12 @@
   .ow {
     font-weight: bold;
   }
-  @include scheme.rouge($dark: false);
+  @include scheme.rouge(light);
 }
 
-[data-theme="dark"] {
+@include dark-theme() {
   .highlight {
-    @include scheme.rouge($dark: true);
+    @include scheme.rouge(dark);
   }
 }
 
@@ -294,7 +257,7 @@
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .theme-toggle:not(.theme-toggle--force-motion) * {
+    &:not(&--force-motion) * {
       transition: none !important;
     }
   }
