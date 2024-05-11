@@ -56,38 +56,38 @@
 @mixin base16($mode: light) {
   @if $mode == dark {
     /* Base16 Dark */
-    --base00: #2d2d2d; /* Background */
+    --base00: #2d2d2d;
     --base01: #393939;
-    --base02: #515151; /* Borders */
-    --base03: #999999; /* Secondary Text */
+    --base02: #515151;
+    --base03: #999999;
     --base04: #b4b7b4;
-    --base05: #cccccc; /* Text */
+    --base05: #cccccc;
     --base06: #e0e0e0;
     --base07: #ffffff;
-    --base08: #f2777a; /* Errors / Syntax */
-    --base09: #f99157; /* Warnings */
-    --base0A: #ffcc66; /* Highlighted Text */
-    --base0B: #99cc99; /* Success */
+    --base08: #f2777a;
+    --base09: #f99157;
+    --base0A: #ffcc66;
+    --base0B: #99cc99;
     --base0C: #66cccc;
-    --base0D: #6699cc; /* Links */
+    --base0D: #6699cc;
     --base0E: #cc99cc;
     --base0F: #a3685a;
   } @else {
     /* Base16 Light */
-    --base00: #f5f5f5; /* Background */
+    --base00: #f5f5f5;
     --base01: #e0e0e0;
-    --base02: #d0d0d0; /* Borders */
-    --base03: #b0b0b0; /* Secondary Text */
+    --base02: #d0d0d0;
+    --base03: #b0b0b0;
     --base04: #505050;
-    --base05: #4d4d4d; /* Text */
+    --base05: #4d4d4d;
     --base06: #333333;
     --base07: #282828;
-    --base08: #d7005f; /* Errors / Syntax */
-    --base09: #af8700; /* Warnings */
-    --base0A: #d75f00; /* Highlighted Text */
-    --base0B: #5f8700; /* Success */
+    --base08: #d7005f;
+    --base09: #af8700;
+    --base0A: #d75f00;
+    --base0B: #5f8700;
     --base0C: #005f87;
-    --base0D: #0087ff; /* Links */
+    --base0D: #0087ff;
     --base0E: #af5fff;
     --base0F: #875f00;
   }

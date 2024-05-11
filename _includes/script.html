@@ -5,6 +5,7 @@
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
 
+<script src="{{- '/assets/js/main.js' | relative_url -}}" defer></script>
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
 
 {% if page.collection == 'posts' or page.layout == 'post' %}

@@ -142,12 +142,12 @@
   .ow {
     font-weight: bold;
   }
-  @include scheme.rouge(light);
+  @include theme.rouge(light);
 }
 
 @include dark-theme() {
   .highlight {
-    @include scheme.rouge(dark);
+    @include theme.rouge(dark);
   }
 }
 

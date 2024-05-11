@@ -1,17 +1,15 @@
-const activeNavbar = document.querySelectorAll("header > nav a");
-const themeToggle = document.getElementById("theme-toggle");
-const savedTheme = localStorage.getItem("theme");
+var activeNavbar = document.querySelectorAll("header > nav a");
+var themeToggle = document.getElementById("theme-toggle");
+var savedTheme = localStorage.getItem("theme");
 
 function setTheme() {
-  const htmlElement = document.documentElement;
+  var htmlElement = document.documentElement;
   if (themeToggle.checked) {
     htmlElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme", "dark");
   } else {
-    htmlElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light");
-    /* htmlElement.removeAttribute("data-theme");
-    localStorage.setItem("theme", "light"); */
+    htmlElement.removeAttribute("data-theme");
+    localStorage.setItem("theme");
   }
 }
 
@@ -24,10 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   themeToggle.addEventListener("change", setTheme);
   if (savedTheme === "dark") {
-    themeToggle.checked = true;
-    setTheme();
+    themeToggle.checked = true;  setTheme();
   } else {
-    themeToggle.checked = false;
-    setTheme();
+    themeToggle.checked = false; setTheme();
   }
 });
