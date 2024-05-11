@@ -16,3 +16,16 @@
     </a>
   </p>
 </footer>
+{% comment %} <div style="display: inline-flex;">
+  <ul>
+    {%- for entry in site.social_links -%}
+    <li>
+      <a {% unless entry.platform == 'rss' %}rel="me" {% endunless %}href="{{ entry.user_url }}" target="_blank" title="{{ entry.title | default: entry.platform }}">
+        <svg class="svg-icon">
+          <use xlink:href="{{ '/assets/social-icons.svg#' | append: entry.platform | relative_url }}"></use>
+        </svg>
+      </a>
+    </li>
+    {%- endfor -%}
+    </ul>
+</div> {% endcomment %}
