@@ -1,4 +1,4 @@
-{% if site.comments.provider != empty and page.comments != false %}
+{% if site.comments.provider and page.comments != false %}
   {% if site.comments.provider == 'disqus' %}
     {% if jekyll.environment == 'production' %}
       <script type="text/javascript">

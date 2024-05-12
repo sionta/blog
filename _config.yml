@@ -1,21 +1,24 @@
 # Site settings
-title: "sionta"
-description: "A brief description of your website"
-url: "https://andreattamimi.com" # (e.g. "https://example.com")
-baseurl: "" # (e.g. /blog) if deploy in GitHub Pages
-lang: "en"
-google_analytics: "G-31WRW155T4"
+title: sionta
+description: >-
+  A brief description of your website
 
-# Post settings ==============================================
+url: "https://andreattamimi.com"
+baseurl: ""
+logo: "/assets/img/avatar.png" # https://github.com/sionta.png?size=100
+
+timezone: Asia/Tokyo
+lang: en
+
+google_analytics: G-31WRW155T4
+
 author:
-  name: "Andre Attamimi" # `site.title`
-  url: https://github.com/sionta # `site.url`
-  email: "info@andreattamimi.com"
-  avatar: "/assets/images/favicon.svg" # "https://github.com/sionta.png?size=100"
-  github: "sionta"
-  twitter: "R007MMXV"
-  mastodon: "sionta"
-  linkedin: "andreattamimi"
+  name: Andre Attamimi
+  email: info@andreattamimi.com
+  url: https://github.com/sionta
+
+twitter:
+  username: R007MMXV
 
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%B %d, %Y"
@@ -25,7 +28,7 @@ show_excerpts: true
 
 # Comments Settings
 comments:
-  provider: "utterances" # (e.g., "disqus")
+  provider: "" # (e.g., "disqus")
   # The provider setting below:
   disqus: # Disqus > https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: "andreattamimi"
@@ -37,75 +40,38 @@ comments:
   utterances: # utterances > https://utteranc.es/
     repo: "sionta/blog" # (e.g., "owner/repo")
     issue_term: "pathname"
-    # theme: "preferred-color-scheme"
 
 social_links:
-  - { platform: devto, user_url: "https://dev.to/jekyll" }
-  # - { platform: dribbble, user_url: "https://dribbble.com/jekyll" }
-  # - { platform: facebook, user_url: "https://www.facebook.com/jekyll" }
-  # - { platform: flickr, user_url: "https://www.flickr.com/photos/jekyll" }
-  - { platform: github, user_url: "https://github.com/jekyll/minima" }
-  # - { platform: google_scholar, user_url: "https://scholar.google.com/citations?user=qc6CJjYAAAAJ" }
-  # - { platform: instagram, user_url: "https://www.instagram.com/jekyll" }
-  # - { platform: keybase, user_url: "https://keybase.io/jekyll" }
-  # - { platform: linkedin, user_url: "https://www.linkedin.com/in/jekyll" }
-  # - { platform: microdotblog, user_url: "https://micro.blog/jekyll" }
-  # - { platform: pinterest, user_url: "https://www.pinterest.com/jekyll" }
-  # - { platform: stackoverflow, user_url: "https://stackoverflow.com/users/1234567/jekyll", }
-  # - { platform: telegram, user_url: "https://t.me/jekyll" }
-  - { platform: twitter, user_url: "https://twitter.com/jekyllrb" }
-  - { platform: x, user_url: "https://x.com/jekyllrb" }
-  # - { platform: youtube, user_url: "https://www.youtube.com/jekyll" }
+  - { platform: github, user_url: "https://github.com/sionta" }
+  - { platform: mastodon, user_url: "https://mastodon.social/@sionta" }
+  - { platform: twitter, user_url: "https://twitter.com/r007mmxv" }
+  # - { platform: x, user_url: "https://x.com/r007mmxv" }
+  - {
+      platform: linkedin,
+      user_url: "https://www.linkedin.com/in/andreattamimi",
+    }
 
 # Development settings =======================================
-sass:
-  # style: "compressed"
-  style: "expanded"
-  sourcemap: "never"
+feed:
+  posts_limit: 5
+  excerpt_only: false
 
 kramdown:
   hard_wrap: false
   parse_block_html: true
-  syntax_highlighter: "rouge"
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
-    css_class: "highlight"
-  math_engine: "katex"
+    css_class: highlight
+  math_engine: katex
   math_engine_opts: {}
-
-collections:
-  mores:
-    output: true
-    permalink: /:name/
 
 defaults:
   - scope:
-      path: ""
-      type: "mores"
+      path: _posts
+      type: posts
     values:
-      layout: "page"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      permalink: /blog/:title/
-
-# compress_html:
-#   clippings: "all"
-#   comments: "all"
-#   endings: "all"
-#   profile: false
-#   blanklines: false
-#   ignore:
-#     envs: ["development"]
-
-feed:
-  posts_limit: 3
-  excerpt_only: true
-  # tags: true
-  # categories:
-  #   - tutorial
-  #   - updates
+      layout: post
+      permalink: "/blog/:title/"
 
 jekyll-archives:
   enabled: ["categories", "tags"]
@@ -116,11 +82,23 @@ jekyll-archives:
     tag: "/tags/:name/"
     category: "/categories/:name/"
 
+sass:
+  # style: "compressed"
+  sourcemap: never
+
+compress_html:
+  clippings: "all"
+  comments: "all"
+  endings: "all"
+  profile: false
+  blanklines: false
+  ignore:
+    envs: # ["development"]
+
 exclude:
   - "*.gem"
   - "*.gemspec"
   - "*.lock"
-  - "screenshot*"
-  - "node_modules"
-  - "README.md"
   - "package*.json"
+  - "screenshot*"
+  - "README*"

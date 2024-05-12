@@ -1,31 +1,36 @@
 <footer class="site-footer">
-  <p itemprop="copyrightNotice">
+  <span itemprop="copyrightNotice">
     &copy; {{ 'now' | date: '%Y' }}
     <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-      <span itemprop="name"
-        ><a href="{{- site.url | absolute_url -}}">{{- site.title -}}</a></span
-      >.
+      <span itemprop="name">
+        <a itemprop="url" href="{{ site.url | absolute_url }}">
+          {{ site.title }}
+        </a>
+        .</span
+      >
     </span>
-  </p>
-  <p>
+  </span>
+  <span>
     <a href="{{ site.feed.path | default: 'feed.xml' | absolute_url }}">
       <svg class="svg-icon">
         <use xlink:href="{{ 'assets/social-icons.svg#rss' | relative_url }}"></use>
       </svg>
       <span>Subscribe</span>
     </a>
-  </p>
+  </span>
 </footer>
-{% comment %} <div style="display: inline-flex;">
-  <ul>
-    {%- for entry in site.social_links -%}
-    <li>
-      <a {% unless entry.platform == 'rss' %}rel="me" {% endunless %}href="{{ entry.user_url }}" target="_blank" title="{{ entry.title | default: entry.platform }}">
-        <svg class="svg-icon">
-          <use xlink:href="{{ '/assets/social-icons.svg#' | append: entry.platform | relative_url }}"></use>
-        </svg>
-      </a>
-    </li>
-    {%- endfor -%}
-    </ul>
-</div> {% endcomment %}
+{% comment %}
+  <div style="display: inline-flex;">
+    <ul>
+      {%- for entry in site.social_links -%}
+      <li>
+        <a {% unless entry.platform == 'rss' %}rel="me" {% endunless %}href="{{ entry.user_url }}" target="_blank" title="{{ entry.title | default: entry.platform }}">
+          <svg class="svg-icon">
+            <use xlink:href="{{ '/assets/social-icons.svg#' | append: entry.platform | relative_url }}"></use>
+          </svg>
+        </a>
+      </li>
+      {%- endfor -%}
+      </ul>
+  </div>
+{% endcomment %}

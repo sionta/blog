@@ -1,49 +1,26 @@
 @charset "UTF-8";
-@use "color" as theme;
 
-$base-font-family: system-ui, -apple-system, sans-serif !default;
-$code-font-family: monospace !default;
+$base-font-family: "Open Sans", Arial, system-ui, -apple-system, sans-serif !default;
+$code-font-family: "Fira Code", monospace !default;
+$font-size: 1rem;
+$line-height: 1.5;
+$font-weight: 400;
+$font-small: $font-size * 0.875 !default;
+$spacing-unit: 30px;
+$border-radius: 5px;
 
-@mixin dark-theme($prefix: "") {
-  #{$prefix}[data-theme="dark"] {
+$content-width: 800px;
+$on-medium: 600px;
+$on-large: 800px;
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
     @content;
   }
 }
 
-:root {
-  color-scheme: light;
-  --base-fonts: #{$base-font-family};
-  --mono-fonts: #{$code-font-family};
-
-  /* Layouts */
-  --font-size-small: 12px;
-  --font-size-medium: 16px;
-  --font-size-large: 20px;
-  --spacing-small: 8px;
-  --spacing-medium: 16px;
-  --spacing-large: 24px;
-  --border-radius-small: 4px;
-  --border-radius-medium: 8px;
-  --border-radius-large: 12px;
-
-  /* Colors */
-  @include theme.base16(light);
-  --background: var(--base00);
-  --background-alt: var(--base01);
-  --text-color: var(--base05);
-  --second-color: var(--base04);
-  --border-color: var(--base02);
-  --link-color: var(--base0D);
-  --hover-color: var(--base0C);
-  --code-color: var(--base08);
-  --preformatted-color: var(--base04);
-  --marked-color: var(--base0A);
-  --disabled-color: var(--base02);
+@mixin relative-font-size($ratio) {
+  font-size: #{$ratio}rem;
 }
 
-@include dark-theme("\:root") {
-  color-scheme: dark;
-  @include theme.base16(dark);
-}
-
-@import "custom", "base", "layout";
+@import "custom", "color", "base", "layout";

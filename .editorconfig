@@ -14,5 +14,5 @@ insert_final_newline = true
 [*.md]
 trim_trailing_whitespace = false
 
-[*.svg]
-insert_final_newline = false
+[*.sh]
+end_of_line = lf

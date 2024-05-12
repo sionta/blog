@@ -81,8 +81,6 @@ Moon
 
 ## Blockquotes
 
-The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
-
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
 > <cite>&mdash; Nikola Tesla</cite>
@@ -166,32 +164,32 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 ## Images
 
 <!-- ![alt text](https://placehold.co/100x100/png) -->
-![alt text](/assets/images/placeholder/placeholder-100x100.svg)
+![alt text](/assets/img/placeholder/placeholder-100x100.svg)
 {:.image.left}
 
 <!-- ![alt text](https://placehold.co/128x256/png) -->
-![alt text](/assets/images/placeholder/placeholder-128x256.svg)
+![alt text](/assets/img/placeholder/placeholder-128x256.svg)
 {:.image.right}
 
 <!-- ![alt text](https://placehold.co/512x256/png) -->
-![alt text](/assets/images/placeholder/placeholder-512x256.svg)
+![alt text](/assets/img/placeholder/placeholder-512x256.svg)
 {:.image.center}
 
 ## Tables
 
 To add a table, use three or more hyphens \(\-\-\-\) to create each column’s header, and use pipes \(\|\) to separate each column. For compatibility, you should also add a pipe on either end of the row.
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
+| Syntax    | Description |
+| --------- | ----------- |
+| Header    | Title       |
+| Paragraph | Text        |
 
 You can align text in the columns to the left, right, or center by adding a colon (:) to the left, right, or on both side of the hyphens within the header row.
 
-| Left      | Center | Right       |
-| :---      | :----: | ---:        |
+| Left      | Center |       Right |
+| :-------- | :----: | ----------: |
 | Header    | Title  | Here's this |
-| Paragraph | Text   | And more    |
+| Paragraph |  Text  |    And more |
 
 ## Horizontal Rule
 
@@ -199,20 +197,23 @@ You can align text in the columns to the left, right, or center by adding a colo
 
 ## Alerts
 
-> **TIP:** This is a useful tip.
-{: .tip}
+> **Normal:** Default or alternative blockqoute.
+{:.alert}
 
-> **NOTE:** This is an important note.
-{: .note}
+> **Note:** Highlights information that users should take into account, even when skimming.
+{:.alert-note}
 
-> **ERROR:** This is a serious error warning.
-{: .error}
+> **Tip:** Optional information to help a user be more successful.
+{:.alert-tip}
 
-> **WARNING:** This is an important warning.
-{: .warning}
+> **Important:** Crucial information necessary for users to succeed.
+{:.alert-important}
 
-> **QUESTION:** This is a question that must be answered.
-{: .question}
+> **Warning:** Critical content demanding immediate user attention due to potential risks.
+{:.alert-warning}
+
+> **Caution:** Negative potential consequences of an action.
+{:.alert-caution}
 
 ## Mathematics
 
@@ -266,6 +267,7 @@ bundle install
 budle exec jekyll serve --livereload
 ```
 
-> In most cases, you can simply copy an emoji from a source like [📙 Emojipedia](https://emojipedia.org/) and paste it into your document.
+> **TIP:** In most cases, you can simply copy an emoji from a source like [📙 Emojipedia](https://emojipedia.org/) and paste it into your document.
+{:.alert-note}
 
 ## Result Footnotes
