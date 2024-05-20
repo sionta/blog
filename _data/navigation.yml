@@ -1,8 +1,15 @@
-- name: Home
-  link: /
+# - name: Home
+#   link: /
+#   icon: home
+
 # - name: Blog
 #   link: /blog/
+#   icon: book-2
+
 - name: About
   link: /about/
-- name: GitHub
+  # icon: info-circle
+
+- # name: GitHub
   link: https://github.com/sionta
+  icon: brand-github

@@ -1,0 +1,27 @@
+---
+permalink: /:basename:output_ext
+---
+{
+  "name": "{{ site.title }}",
+  "short_name": "{{ site.title }}",
+  "description": "{{ site.description }}",
+  "id": "/?main",
+  "start_url": "/?main",
+  "display": "standalone",
+  "display_override": ["fullscreen", "minimal-ui"],
+  "theme_color": "#ffffff",
+  "background_color": "#000000",
+  "icons": [
+    {
+      "src": "{{ '/assets/img/avatar.svg' | relative_url }}",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "{{ '/assets/img/avatar.svg' | relative_url }}",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable"
+    }
+  ]
+}

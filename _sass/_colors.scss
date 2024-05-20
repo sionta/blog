@@ -1,0 +1,130 @@
+/* prettier-ignore */
+@mixin rebase(
+  $base00, $base01, $base02, $base03,
+  $base04, $base05, $base06, $base07
+) {
+  --bg-1: #{$base00};
+  --bg-2: #{$base01};
+  --bg-3: #{$base02};
+
+  --tx-1: #{$base05};
+  --tx-2: #{$base06};
+  --tx-3: #{$base07};
+
+  --bd-1: #{$base02};
+  --bd-2: #{$base03};
+  --bd-3: #{$base04};
+
+  --ac-1: var(--green);
+  --ac-2: var(--orange);
+  --ac-3: var(--green);
+
+  --lk-1: var(--ac-1);
+  --lk-2: var(--ac-2);
+  --lk-3: var(--ac-3);
+
+  --red: #ac4142;
+  --green: #90a959;
+  --blue: #6a9fb5;
+  --cyan: #75b5aa;
+  --yellow: #f4bf75;
+  --orange: #d28445;
+  --magenta: #d85c98;
+  --violet: #aa759f;
+
+  // for sytanx
+  --brown: #8f5536;
+  --black: #0e141b;
+  --bracket: #959795;
+  --dark-gray: #303030;
+  --comment: #959795;
+
+  @content;
+}
+
+:root {
+  color-scheme: light;
+  @include rebase(
+    $base00: #f5f5f5,
+    $base01: #e0e0e0,
+    $base02: #c5c9c6,
+    $base03: #b4b7b4,
+    $base04: #959795,
+    $base05: #383c42,
+    $base06: #282a2e,
+    $base07: #0e141b
+  );
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  @include rebase(
+    $base00: #0e141b,
+    $base01: #282a2e,
+    $base02: #383c42,
+    $base03: #959795,
+    $base04: #b4b7b4,
+    $base05: #c5c9c6,
+    $base06: #e0e0e0,
+    $base07: #f5f5f5
+  );
+}
+
+// Syntax highlighting styles
+// --------------------------
+/* prettier-ignore */
+.highlight {
+	table {
+		td {
+			padding: 5px;
+		}
+		pre {
+			margin: 0;
+		}
+	}
+  .c, .c1, .cm, .cs, .ge, .err {
+    font-style: italic;
+  }
+  .cp, .cs, .gs, .k, .kc, .kd, .kp, .kr, .kt, .nc, .ne, .nf, .o, .ow {
+    font-weight: bold;
+  }
+	.w   {
+    color: var(--dark-gray);
+  }
+	.err {
+    color: var(--black);
+    background-color: var(--red);
+  }
+	.gd  {
+    color: var(--red);
+  }
+	.c, .ch, .cd, .cm, .cpf, .c1, .cs {
+    color: var(--comment);
+  }
+	.o, .ow, .p, .pi {
+    color: var(--bracket);
+  }
+	.na, .gh {
+    color: var(--blue);
+  }
+	.gh {
+    background-color: var(--black);
+  }
+	.k, .kn, .kp, .kr, .kv, .sa {
+    color: var(--violet);
+  }
+	.kc, .kt, .kd {
+    color: var(--orange);
+  }
+	.sr  {
+    color: var(--cyan);
+  }
+	.si, .se {
+    color: var(--brown);
+  }
+	.cp, .nt, .nn, .nc, .no {
+    color: var(--yellow);
+  }
+	.dl, .gi, .il, .m , .mb, .mf, .mh, .mi, .mo, .mx, .s, .s1, .s2, .sb, .sc, .sd, .sh, .ss, .sx, {
+    color: var(--green);
+  }
+}

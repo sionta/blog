@@ -28,15 +28,16 @@ figure {
 /**
  * Basic styling
  */
+/* prettier-ignore */
 body {
-  font: $font-weight #{$font-size}/#{$line-height} $base-font-family;
+  font: $font-weight #{$font-size}/#{$line-height} $sans-fonts;
   color: var(--tx-1);
   background-color: var(--bg-1);
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings: "kern" 1;
-  -o-font-feature-settings: "kern" 1;
-  font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
   font-kerning: normal;
   display: flex;
   min-height: 100vh;
@@ -126,17 +127,17 @@ h6 {
  * Links
  */
 a {
-  color: var(--link);
+  color: var(--lk-1);
   text-decoration: none;
 
-  // &:visited {
-  //   color: var(--link);
-  // }
-
   &:hover {
-    color: var(--hover);
+    color: var(--lk-2);
     text-decoration: underline;
   }
+
+  // &:visited {
+  //   color: var(--lk-3);
+  // }
 
   .social-media-list &:hover {
     text-decoration: none;
@@ -151,10 +152,10 @@ a {
  * Blockquotes
  */
 blockquote {
-  color: var(--tx-2);
+  color: var(--tx-1);
   border-left: 4px solid var(--bd-1);
   padding-left: $spacing-unit * 0.5;
-  @include relative-font-size(1.125);
+  font-size: 1.125rem;
   font-style: italic;
 
   > :last-child {
@@ -172,15 +173,20 @@ blockquote {
  */
 pre,
 code {
-  font-family: $code-font-family;
+  font-family: $mono-fonts;
   font-size: 0.9375em;
   border: 1px solid var(--bd-1);
   border-radius: 3px;
   background-color: var(--bg-2);
 }
 
+mark,
 code {
   padding: 1px 5px;
+}
+
+mark {
+  background-color: var(--yellow);
 }
 
 pre {
@@ -215,7 +221,7 @@ pre {
   padding-left: $spacing-unit * 0.5;
   @extend %clearfix;
 
-  @media screen and (min-width: $on-large) {
+  @media screen and (min-width: $on-desktop) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
     padding-right: $spacing-unit;
     padding-left: $spacing-unit;
@@ -240,7 +246,7 @@ table {
   text-align: left;
   color: var(--tx-1);
   border-collapse: collapse;
-  border: 1px solid var(--bd-2);
+  // border: 1px solid var(--bd-1);
   tr {
     &:nth-child(even) {
       background-color: var(--bg-3);
@@ -252,36 +258,16 @@ table {
   }
   th {
     background-color: var(--bg-2);
-    border: 1px solid var(--bd-2);
+    border: 1px solid var(--bd-1);
   }
   td {
-    border: 1px solid var(--bd-2);
+    border: 1px solid var(--bd-1);
   }
 
-  @include media-query($on-large) {
+  @include media-query($on-desktop) {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
-}
-
-/**
- * Icons
- */
-
-.orange {
-  color: #f66a0a;
-}
-
-.grey {
-  color: #828282;
-}
-
-.svg-icon {
-  width: 1.25em;
-  height: 1.25em;
-  display: inline-block;
-  fill: currentColor;
-  vertical-align: text-bottom;
 }

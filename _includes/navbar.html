@@ -1,0 +1,36 @@
+{%- assign nav_items = site.navigation | default: site.data.navigation -%}
+<nav class="navbar">
+  {%- if nav_items.size > 0 %}
+    <ul>
+      {%- for item in nav_items %}
+        {% assign item_name = item.name | default: item.title -%}
+        {%- assign item_link = item.link | default: item.url -%}
+        {%- capture item_page -%}
+          {% if item.icon %}
+            <svg class="icon" viewBox="0 0 24 24">
+              <use xlink:href="/assets/tabler-icons.svg#{{- item.icon -}}" />
+            </svg> {{ item_name }}
+          {% else -%}
+            {{- item_name -}}
+          {%- endif -%}
+        {%- endcapture -%}
+        <li class="{% if item_link == page.url %}current{% endif %}">
+          {%- if item_link contains 'http://' or item_link contains 'https://' %}
+            <a href="{{ item_link }}" target="_blank" rel="noopener noreferrer">
+              {{- item_page -}}
+              {% if item_name and item.icon %}
+                <svg class="icon external" viewBox="0 0 24 24">
+                  <use xlink:href="/assets/tabler-icons.svg#external-link" />
+                </svg>
+              {% endif %}
+            </a>
+          {%- else %}
+            <a href="{{ item_link | relative_url }}">
+              {{- item_page -}}
+            </a>
+          {%- endif %}
+        </li>
+      {%- endfor %}
+    </ul>
+  {%- endif %}
+</nav>

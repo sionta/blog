@@ -164,15 +164,15 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 ## Images
 
 <!-- ![alt text](https://placehold.co/100x100/png) -->
-![alt text](/assets/img/placeholder/placeholder-100x100.svg)
+![alt text](/assets/img/placeholder.svg)
 {:.image.left}
 
 <!-- ![alt text](https://placehold.co/128x256/png) -->
-![alt text](/assets/img/placeholder/placeholder-128x256.svg)
+![alt text](/assets/img/placeholder.svg)
 {:.image.right}
 
 <!-- ![alt text](https://placehold.co/512x256/png) -->
-![alt text](/assets/img/placeholder/placeholder-512x256.svg)
+![alt text](/assets/img/placeholder.svg)
 {:.image.center}
 
 ## Tables

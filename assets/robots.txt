@@ -1,7 +1,9 @@
 ---
-layout: none
-permalink: robots.txt
+permalink: /robots.txt
 ---
+# www.robotstxt.org/
+
+# Allow crawling of all content
 User-agent: *
 Disallow:
 Sitemap: {{ 'sitemap.xml' | absolute_url }}
