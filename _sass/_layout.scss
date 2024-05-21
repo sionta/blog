@@ -133,7 +133,13 @@ label {
   cursor: pointer;
   margin-left: calc(#{$spacing-unit} * $line-height / 3);
   &[for="search-box"] {
-    input[type="text"] {
+    svg .cancel {
+      display: none;
+    }
+    svg .search {
+      display: block;
+    }
+    input[id="search-box"] {
       width: 0;
       padding: 0;
       border: none;
@@ -150,21 +156,24 @@ label {
         padding: 2px 10px;
         border: 1px solid var(--bd-1);
         background: var(--bg-2);
-        + svg {
+        + svg .search {
           display: none;
+        }
+        + svg .cancel {
+          display: block;
         }
       }
     }
   }
   &[for="theme-toggle"] {
-    input[type="checkbox"] {
+    svg .sun {
+      display: block;
+    }
+    svg .moon {
       display: none;
-      .sun {
-        display: block;
-      }
-      .moon {
-        display: none;
-      }
+    }
+    input[id="theme-toggle"] {
+      display: none;
       &:checked + svg {
         .sun {
           display: none;

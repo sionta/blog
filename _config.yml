@@ -3,7 +3,7 @@ description: >-
   A brief description of my website
 
 url: ""
-baseurl: ""
+baseurl: "" # DON'T include a trailing slash!
 
 google_analytics: G-31WRW155T4
 timezone: Asia/Tokyo
@@ -46,7 +46,6 @@ feed:
 # Development settings =======================================
 sass:
   style: compressed
-  sourcemap: never
 
 defaults:
   - scope:
@@ -56,6 +55,7 @@ defaults:
       layout: post
       permalink: "/blog/:title/"
 
+markdown: kramdown
 kramdown:
   hard_wrap: false
   parse_block_html: true

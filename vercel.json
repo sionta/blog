@@ -1,0 +1,231 @@
+{
+  "version": 2,
+  "engines": { "node": "18.x" },
+  "framework": { "name": "jekyll" },
+  "env": { "JEKYLL_ENV": "production" },
+  "buildCommand": "bundle exec jekyll build",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.ico",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/x-icon"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.svg",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/svg+xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=2628000, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.ttf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "font/ttf"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=2628000, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.otf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "font/otf"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=2628000, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.eot",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.ms-fontobject"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=2628000, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.woff",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "font/woff"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=2628000, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.woff2",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "font/woff"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=2628000, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=3600, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.mp4",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "video/mp4"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.webm",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "video/webm"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.docx",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.pdf",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.css",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.jpg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.gif",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=604800, public"
+        }
+      ]
+    }
+  ]
+}

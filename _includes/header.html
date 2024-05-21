@@ -4,13 +4,14 @@
     {% include navbar.html %}
     <label for="search-box" name="Search post">
       <input id="search-box" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Search...">
-      <svg class="icon" viewBox="0 0 24 24">
-        <use xlink:href="/assets/tabler-icons.svg#search" />
+      <svg viewBox="0 0 24 24">
+        <use class="search" xlink:href="/assets/tabler-icons.svg#search" />
+        {% comment %} <use class="cancel" xlink:href="/assets/tabler-icons.svg#x" /> {% endcomment %}
       </svg>
     </label>
     <label for="theme-toggle">
       <input id="theme-toggle" type="checkbox">
-      <svg class="icon" viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24">
         <use class="sun" xlink:href="/assets/tabler-icons.svg#sun" />
         <use class="moon" xlink:href="/assets/tabler-icons.svg#moon" />
       </svg>
