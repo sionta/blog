@@ -14,14 +14,12 @@
   --bd-1: #{$base02};
   --bd-2: #{$base03};
   --bd-3: #{$base04};
+  --mx-1: #{mix($base02, $base04)};
+  --mx-2: #{mix($base02, $base03)};
 
-  --ac-1: var(--green);
-  --ac-2: var(--orange);
-  --ac-3: var(--green);
-
-  --lk-1: var(--ac-1);
-  --lk-2: var(--ac-2);
-  --lk-3: var(--ac-3);
+  --lk-1: var(--green);
+  --lk-2: var(--orange);
+  --lk-3: var(--cyan);
 
   --red: #ac4142;
   --green: #90a959;
@@ -32,12 +30,14 @@
   --magenta: #d85c98;
   --violet: #aa759f;
 
-  // for sytanx
-  --brown: #8f5536;
+  --white: #f5f5f5;
   --black: #0e141b;
-  --bracket: #959795;
-  --dark-gray: #303030;
+  --brown: #8f5536;
+
+  // SYNTAX
+  --bracket: #aa759f;
   --comment: #959795;
+  --whitespace: #303030;
 
   @content;
 }
@@ -45,27 +45,27 @@
 :root {
   color-scheme: light;
   @include rebase(
-    $base00: #f5f5f5,
+    $base00: #ffffff,
     $base01: #e0e0e0,
-    $base02: #c5c9c6,
+    $base02: #c5c8c6,
     $base03: #b4b7b4,
-    $base04: #959795,
-    $base05: #383c42,
+    $base04: #969896,
+    $base05: #373b41,
     $base06: #282a2e,
-    $base07: #0e141b
+    $base07: #1d1f21
   );
 }
 [data-theme="dark"] {
   color-scheme: dark;
   @include rebase(
-    $base00: #0e141b,
+    $base00: #1d1f21,
     $base01: #282a2e,
-    $base02: #383c42,
-    $base03: #959795,
+    $base02: #373b41,
+    $base03: #969896,
     $base04: #b4b7b4,
-    $base05: #c5c9c6,
+    $base05: #c5c8c6,
     $base06: #e0e0e0,
-    $base07: #f5f5f5
+    $base07: #ffffff
   );
 }
 
@@ -88,11 +88,16 @@
     font-weight: bold;
   }
 	.w   {
-    color: var(--dark-gray);
+    color: var(--whitespace);
   }
+
 	.err {
-    color: var(--black);
+    &::before {
+      content: "! ";
+    }
+    color: var(--white);
     background-color: var(--red);
+    padding: 1px 3px;
   }
 	.gd  {
     color: var(--red);
@@ -122,9 +127,36 @@
     color: var(--brown);
   }
 	.cp, .nt, .nn, .nc, .no {
-    color: var(--yellow);
+    color: var(--orange);
   }
 	.dl, .gi, .il, .m , .mb, .mf, .mh, .mi, .mo, .mx, .s, .s1, .s2, .sb, .sc, .sd, .sh, .ss, .sx, {
     color: var(--green);
+  }
+}
+
+// Admonitions
+.alert {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: none;
+  @mixin color-alert($color) {
+    background-color: rgba($color, 0.2);
+    border-left: 5px solid $color;
+    color: $color;
+  }
+  &-note {
+    @include color-alert(#6a9fb5);
+  }
+  &-tip {
+    @include color-alert(#90a959);
+  }
+  &-important {
+    @include color-alert(#aa759f);
+  }
+  &-warning {
+    @include color-alert(#d28445);
+  }
+  &-caution {
+    @include color-alert(#ac4142);
   }
 }

@@ -2,16 +2,18 @@
   <a class="logo" href="{{ '/' | relative_url }}">{{ site.title }}</a>
   <div class="header-right">
     {% include navbar.html %}
-    <label for="search-box" name="Search post">
-      <input id="search-box" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Search...">
-      <svg viewBox="0 0 24 24">
-        <use class="search" xlink:href="/assets/tabler-icons.svg#search" />
-        {% comment %} <use class="cancel" xlink:href="/assets/tabler-icons.svg#x" /> {% endcomment %}
-      </svg>
-    </label>
-    <label for="theme-toggle">
+    {% comment %}
+      <label for="search-box" name="Search post or tags">
+        <input id="search-box" type="text" autocomplete="off" spellcheck="false" value="" placeholder="Search...">
+        <svg class="svg-icon" viewBox="0 0 24 24">
+          <use class="search" xlink:href="/assets/tabler-icons.svg#search" />
+          <use class="cancel" xlink:href="/assets/tabler-icons.svg#x" />
+        </svg>
+      </label>
+    {% endcomment %}
+    <label for="theme-toggle" name="Switch light and dark theme">
       <input id="theme-toggle" type="checkbox">
-      <svg viewBox="0 0 24 24">
+      <svg class="svg-icon" viewBox="0 0 24 24">
         <use class="sun" xlink:href="/assets/tabler-icons.svg#sun" />
         <use class="moon" xlink:href="/assets/tabler-icons.svg#moon" />
       </svg>

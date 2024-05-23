@@ -1,0 +1,75 @@
+// This fixed `- [x] Task list` from rendering markdown.
+.task-list {
+  padding: 0;
+  list-style: none;
+  &-item {
+    margin-left: calc($spacing-unit / 2);
+    &-checkbox {
+      margin-right: calc($spacing-unit / 2);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.img-figure,
+.figure {
+  em {
+    font-size: $font-small;
+    font-style: normal;
+  }
+
+  img,
+  em {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  &.right {
+    img {
+      float: right;
+      margin-left: 10px;
+    }
+
+    em {
+      float: right;
+      clear: both;
+    }
+  }
+
+  &.center {
+    text-align: center;
+
+    em,
+    img {
+      display: inline-block;
+      float: none;
+    }
+
+    em {
+      margin-top: 5px;
+    }
+  }
+}
+
+// Gists
+.gist {
+  td {
+    border: inherit; // fix Skeleton override
+  }
+}
+
+ol {
+  &[type="A"] {
+    list-style-type: upper-alpha;
+  }
+  &[type="a"] {
+    list-style-type: lower-alpha;
+  }
+  &[type="I"] {
+    list-style-type: upper-roman;
+  }
+  &[type="i"] {
+    list-style-type: lower-roman;
+  }
+}

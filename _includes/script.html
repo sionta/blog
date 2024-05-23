@@ -1,1 +1,70 @@
-<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+{% comment %}
+  RESTRICTIONS for "compress.html"
+    - Whitespaces inside of the textarea element are squeezed. Please don’t use the layout on pages with non-empty textarea.
+    - Inline JS can become broken where // comments used. Please remove the comments or change to /**/ style.
+    - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
+{% endcomment %}
+
+<script src="{{- '/assets/js/main.js' | relative_url -}}"></script>
+{% assign js_vendor = '/assets/js/vendor' | relative_url %}
+{% if page.collection == 'posts' or page.layout == 'post' or page.path contains '_posts' %}
+  {% include comments.html %}
+  {% if page.toc %}
+    <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        tocbot.init({
+          tocSelector: '#toc',
+          contentSelector: '[itemprop="articleBody"]',
+          ignoreSelector: '.no_toc, .no-toc',
+          headingSelector: 'h2, h3, h4',
+          orderedList: false,
+          scrollSmooth: true,
+          scrollSmoothOffset: -70,
+        });
+        tocbot.refresh();
+      });
+    </script>
+  {% endif %}
+  {% if page.anchor %}
+    <script type="text/javascript" src="{{- js_vendor -}}/anchor.min.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        anchors.options = {
+          placement: 'right',
+          visible: 'always',
+          icon: '#',
+        };
+        var anchorHeadings = 'h2, h3, h4';
+        var ignoreClasses = ['.no_anchor', '.no-anchor'];
+        anchors.add(anchorHeadings);
+        var headingTypes = anchorHeadings.split(',').map((selector) => selector.trim());
+        var ignoredSelectors = ignoreClasses
+          .map((className) => headingTypes.map((headingType) => headingType + className).join(', '))
+          .join(', ');
+        document.querySelectorAll(ignoredSelectors).forEach((heading) => {
+          var anchorLink = heading.querySelector('.anchorjs-link');
+          if (anchorLink) {
+            heading.removeChild(anchorLink);
+          }
+        });
+      });
+    </script>
+  {% endif %}
+  {% if page.diagram %}
+    <script type="text/javascript" src="{{- js_vendor -}}/mermaid.min.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function () {
+        var mermaidClass = document.querySelectorAll('.language-mermaid');
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          securityLevel: 'loose',
+        });
+        mermaidClass.forEach((element) => {
+          mermaid.init(undefined, element);
+        });
+      });
+    </script>
+  {% endif %}
+{% endif %}

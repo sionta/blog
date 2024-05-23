@@ -1,0 +1,62 @@
+{% if site.comments.provider and page.comments != false %}
+  {% if site.comments.provider == 'disqus' %}
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = '{{- page.url | absolute_url -}}';
+        this.page.identifier = '{{- page.url | absolute_url -}}';
+      };
+      (function () {
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://{{- site.comments.disqus.shortname -}}.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript
+      >Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript
+    >
+  {% elsif site.comments.provider == 'giscus' %}
+    <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', function () {
+        const giscusTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+        const scriptTag = document.createElement('script');
+        scriptTag.src = 'https://giscus.app/client.js';
+        scriptTag.setAttribute('data-repo', '{{- site.comments.giscus.repo -}}');
+        scriptTag.setAttribute('data-repo-id', '{{- site.comments.giscus.repo_id -}}');
+        scriptTag.setAttribute('data-category', '{{- site.comments.giscus.category -}}');
+        scriptTag.setAttribute('data-category-id', '{{- site.comments.giscus.category_id -}}');
+        scriptTag.setAttribute('data-mapping', "{{- site.comments.giscus.mapping | default: 'pathname' -}}");
+        scriptTag.setAttribute('data-strict', "{{- site.comments.giscus.strict | default: '0' -}}");
+        scriptTag.setAttribute(
+          'data-reactions-enabled',
+          "{{- site.comments.giscus.reactions_enabled | default: '1' -}}"
+        );
+        scriptTag.setAttribute('data-emit-metadata', "{{- site.comments.giscus.metadata | default: '0' -}}");
+        scriptTag.setAttribute('data-theme', giscusTheme);
+        scriptTag.setAttribute('data-lang', "{{- site.comments.giscus.lang | default: site.lang | default: 'en' -}}");
+        scriptTag.setAttribute('data-loading', 'lazy');
+        scriptTag.setAttribute('crossorigin', 'anonymous');
+        scriptTag.async = true;
+        document.body.appendChild(scriptTag);
+      });
+    </script>
+  {% elsif site.comments.provider == 'utterances' %}
+    <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', function () {
+        const utterancesTheme = localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light';
+        const scriptTag = document.createElement('script');
+        scriptTag.src = 'https://utteranc.es/client.js';
+        scriptTag.setAttribute('repo', '{{- site.comments.utterances.repo -}}');
+        scriptTag.setAttribute('issue-term', "{{- site.comments.utterances.issue_term | default: 'pathname' -}}");
+        scriptTag.setAttribute('theme', utterancesTheme);
+        scriptTag.setAttribute('crossorigin', 'anonymous');
+        scriptTag.async = true;
+        document.body.appendChild(scriptTag);
+      });
+    </script>
+  {% endif %}
+{% endif %}
+
+<!-- data-theme="https://giscus.app/themes/custom_example.css" -->

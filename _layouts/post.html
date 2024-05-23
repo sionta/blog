@@ -1,4 +1,91 @@
 ---
-layout: base
+layout: default
 ---
-{{ content }}
+<article
+  class="standalone"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  itemid="{{ page.url | absolute_url }}"
+>
+  <meta itemprop="wordCount" content="{{ page.content | strip_html | size }}">
+  <header>
+    <h1 itemprop="name headline">{{ page.title | escape }}</h1>
+    <div>
+      <p>
+        {% comment %}
+          Posted by
+          <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">
+              {%- assign author_meta = site.author | default: page.author -%}
+              {%- assign author_name = author_meta.name | default: author_meta -%}
+              {%- assign author_email = author_meta.email -%}
+              {%- assign author_url = author_meta.url -%}
+              {% if author_email %}
+                <a itemprop="email" href="{{ author_email | prepend: 'mailto:' }}">{{ author_name }}</a>
+              {% elsif author_url %}
+                <a itemprop="url" href="{{ author_url | absolute_url }}">{{ author_name }}</a>
+              {% else %}
+                {{ author_name }}
+              {% endif %}
+            </span>
+          </span>
+        {% endcomment %}
+        {%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
+        <strong>Published:</strong>
+        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+          {{- page.date | date: date_format -}}
+        </time>
+        {%- assign modified_date = page.modified_date | default: page.last_modified_at -%}
+        {% if modified_date %}
+          &blacksquare; <strong>Modified:</strong>
+          <time itemprop="dateModified" datetime="{{ modified_date | date_to_xmlschema }}">
+            {{- modified_date | date: date_format -}}</time
+          >.
+        {% endif %}
+      </p>
+    </div>
+  </header>
+  <section itemprop="articleBody">
+    {{ content }}
+  </section>
+  <footer>
+    <div>
+      {% if page.tags %}
+        <p>
+          Tags:
+          <span itemprop="keywords">
+            {% for tag in page.tags %}
+              <a href="/tags/{{- tag -}}/">{{- tag -}}</a>
+              {%- unless forloop.last %}&comma; {% endunless -%}
+            {% endfor -%}
+          </span>
+        </p>
+      {% endif %}
+      {% if page.categories %}
+        <p>
+          <span>
+            Categories:
+            <span itemprop="articleSection">
+              {% for category in page.categories %}
+                <a href="/categories/{{- category -}}/">{{- category -}}</a>
+                {%- unless forloop.last %}&comma; {% endunless -%}
+              {% endfor %}
+            </span>
+          </span>
+        </p>
+      {% endif %}
+    </div>
+    {% if page.comments != false %}
+      <div
+        itemscope
+        itemtype="https://schema.org/Comment"
+        {% if site.comments.provider == 'disqus' %}
+          id="disqus_thread"
+        {% else %}
+          id="{{ site.comments.provider }}"
+        {% endif %}
+        class="{{ site.comments.provider }}"
+      ></div>
+    {% endif %}
+  </footer>
+</article>

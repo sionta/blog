@@ -1,93 +1,106 @@
-html {
-  font-size: $font-size;
-}
-
-/**
- * Reset some basic elements
- */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
+/* Elements with default margins */
+address,
+area,
+article,
+aside,
+audio,
 blockquote,
-pre,
-hr,
+datalist,
+details,
 dl,
-dd,
-ol,
-ul,
-figure {
-  margin: 0;
-  padding: 0;
-}
-
-/**
- * Basic styling
- */
-/* prettier-ignore */
-body {
-  font: $font-weight #{$font-size}/#{$line-height} $sans-fonts;
-  color: var(--tx-1);
-  background-color: var(--bg-1);
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern" 1;
-     -moz-font-feature-settings: "kern" 1;
-       -o-font-feature-settings: "kern" 1;
-          font-feature-settings: "kern" 1;
-  font-kerning: normal;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  overflow-wrap: break-word;
-}
-
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-ul,
-ol,
-dl,
+fieldset,
 figure,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+iframe,
+img,
+input,
+meter,
+nav,
+ol,
+ol,
+optgroup,
+option,
+output,
+p,
+pre,
+pre,
+progress,
+ruby,
+section,
+table,
+textarea,
+ul,
+video,
 %vertical-rhythm {
   margin-bottom: $spacing-unit * 0.5;
 }
 
-hr {
-  margin-top: $spacing-unit;
-  margin-bottom: $spacing-unit;
+html {
+  font-size: $font-size;
 }
 
-/**
- * `main` element
- */
+html,
+input,
+select,
+button {
+  font-family: $font-sans;
+}
+
+body {
+  overflow-x: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: $line-height;
+  background: var(--bg-1);
+  color: var(--tx-1);
+  font: $font-weight #{$font-size}/#{$line-height} $font-sans;
+  font-kerning: normal;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+}
+
 main {
-  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+  display: block;
 }
 
-/**
- * Images
- */
-img {
-  max-width: 100%;
-  vertical-align: middle;
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.2rem;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.8rem;
 }
 
-/**
- * Figures
- */
+a {
+  color: var(--lk-1);
+  text-decoration: none;
+  &:hover {
+    color: var(--lk-2);
+    text-decoration: underline;
+  }
+}
+
 figure > img {
   display: block;
 }
@@ -96,103 +109,84 @@ figcaption {
   font-size: $font-small;
 }
 
-/**
- * Lists
- */
-ul,
-ol {
-  margin-left: $spacing-unit;
-}
-
-li {
-  > ul,
-  > ol {
-    margin-bottom: 0;
-  }
-}
-
-/**
- * Headings
- */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: $font-weight;
-}
-
-/**
- * Links
- */
-a {
-  color: var(--lk-1);
-  text-decoration: none;
-
-  &:hover {
-    color: var(--lk-2);
-    text-decoration: underline;
-  }
-
-  // &:visited {
-  //   color: var(--lk-3);
-  // }
-
-  .social-media-list &:hover {
-    text-decoration: none;
-
-    .username {
-      text-decoration: underline;
-    }
-  }
-}
-
-/**
- * Blockquotes
- */
-blockquote {
+textarea,
+select,
+button,
+input {
+  cursor: pointer;
+  background: var(--bg-2);
   color: var(--tx-1);
-  border-left: 4px solid var(--bd-1);
-  padding-left: $spacing-unit * 0.5;
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+  box-shadow: none;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  margin-bottom: 0.5rem;
+}
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  &:focus,
+  &:enabled:hover {
+    background: var(--lk-1);
+  }
+}
+
+blockquote {
+  background-color: var(--bg-2);
+  background: var(--bg-2);
+  color: var(--tx-1);
   font-size: 1.125rem;
   font-style: italic;
-
+  border-left: $border-radius solid var(--bd-1);
+  padding-left: $spacing-unit * 0.5;
+  padding: 1.5rem;
   > :last-child {
     margin-bottom: 0;
   }
-
+  &:not(.alert) {
+    font-style: normal;
+  }
   i,
   em {
     font-style: normal;
   }
 }
 
-/**
- * Code formatting
- */
-pre,
-code {
-  font-family: $mono-fonts;
-  font-size: 0.9375em;
-  border: 1px solid var(--bd-1);
-  border-radius: 3px;
-  background-color: var(--bg-2);
+abbr {
+  cursor: help;
 }
 
-mark,
+code,
+pre,
+kbd {
+  font-family: $font-mono;
+  background-color: var(--bg-2);
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+  padding: 3px 6px;
+  font-size: $font-small;
+}
+samp {
+  color: var(--lk-1);
+}
+kbd {
+  // margin-right: 5px;
+  border-bottom: 3px solid var(--bd-1);
+}
 code {
   padding: 1px 5px;
 }
-
-mark {
-  background-color: var(--yellow);
-}
-
 pre {
   padding: 8px 12px;
   overflow-x: auto;
-
   > code {
     border: 0;
     padding-right: 0;
@@ -200,74 +194,98 @@ pre {
   }
 }
 
-.highlight {
-  border-radius: 3px;
+details {
+  padding: 0.6rem 1rem;
   background: var(--bg-2);
-  @extend %vertical-rhythm;
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
 
-  .highlighter-rouge & {
+  &[open] {
+    padding-bottom: 0.75rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  caption {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  th {
+    border: 1px solid var(--bd-1);
     background: var(--bg-2);
   }
-}
-
-/**
- * Wrapper
- */
-.wrapper {
-  max-width: calc(#{$content-width} - (#{$spacing-unit}));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: $spacing-unit * 0.5;
-  padding-left: $spacing-unit * 0.5;
-  @extend %clearfix;
-
-  @media screen and (min-width: $on-desktop) {
-    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
+  // td {
+  //   border: 1px solid var(--mx-1);
+  // }
+  tr:nth-child(even) {
+    background: var(--bg-3);
   }
 }
 
-/**
- * Clearfix
- */
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--bd-1);
+  margin: 1rem auto;
 }
 
-/**
- * Tables
- */
-table {
-  margin-bottom: $spacing-unit;
-  width: 100%;
+td,
+th {
+  border: 1px solid var(--bd-1);
   text-align: left;
-  color: var(--tx-1);
-  border-collapse: collapse;
-  // border: 1px solid var(--bd-1);
-  tr {
-    &:nth-child(even) {
-      background-color: var(--bg-3);
-    }
-  }
-  th,
-  td {
-    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
-  }
-  th {
-    background-color: var(--bg-2);
-    border: 1px solid var(--bd-1);
-  }
-  td {
-    border: 1px solid var(--bd-1);
-  }
+  padding: 0.5rem;
+}
 
-  @include media-query($on-desktop) {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
+dt {
+  font-weight: bold;
+}
+dd::before {
+  margin-right: 5px;
+  content: "\2192 \00a0";
+}
+cite::before {
+  content: "\2014 \0020";
+}
+
+fieldset {
+  margin-top: calc($spacing-unit / 2);
+  padding: $spacing-unit;
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+}
+
+textarea {
+  max-width: 100%;
+}
+
+li {
+  margin-top: 0.4rem;
+}
+
+ol,
+ul {
+  padding-left: 2rem;
+  ul,
+  ol {
+    margin-bottom: 0;
   }
+}
+
+mark,
+::selection {
+  padding: 1px 0;
+  color: var(--bg-1);
+  background: var(--lk-1);
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
 }

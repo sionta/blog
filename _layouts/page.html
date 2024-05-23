@@ -1,7 +1,9 @@
 ---
-layout: base
+layout: default
 ---
-{% if page.title %}
-  <h1>{{ page.title }}</h1>
-{% endif %}
-{{ content }}
+<section class="standalone">
+  {% if page.title %}
+    <h1>{{ page.title }}</h1>
+  {% endif %}
+  {{ content }}
+</section>

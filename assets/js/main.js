@@ -1,14 +1,3 @@
-function searchInput() {
-  document.addEventListener("DOMContentLoaded", function () {
-    document
-      .querySelector('label[for="search-box"] svg.icon')
-      .addEventListener("click", function () {
-        document
-          .querySelector('label[for="search-box"]')
-          .classList.toggle("active");
-      });
-  });
-}
 function toggleTheme() {
   const themeToggle = document.querySelector("#theme-toggle");
   if (localStorage.getItem("theme") === "dark") {
@@ -27,4 +16,5 @@ function toggleTheme() {
     }
   });
 }
+
 toggleTheme();

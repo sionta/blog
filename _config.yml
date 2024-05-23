@@ -28,10 +28,20 @@ show_excerpts: true
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%b %d, %Y"
 
-# If you want to link only specific pages in your header, use this and add the path to the pages
-# in order as they should show up.
-# header_pages:
-#   - pages/about.md
+# Comments Settings
+comments:
+  provider: "giscus" # (e.g., "disqus")
+  # The provider setting below:
+  disqus: # Disqus > https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: "andreattamimi"
+  giscus: # giscus > https://giscus.app/
+    repo: "sionta/blog" # (e.g., "owner/repo")
+    repo_id: "R_kgDOLxRA-w"
+    category: "Q&A"
+    category_id: "DIC_kwDOLxRA-84CfGPN"
+  utterances: # utterances > https://utteranc.es/
+    repo: "sionta/blog" # (e.g., "owner/repo")
+    issue_term: "pathname"
 
 # Generate social links, for the platform icons available at `_includes/social-icons`.
 social_links:
@@ -43,9 +53,41 @@ feed:
   posts_limit: 5
   excerpt_only: false
 
+# paginate: 5
+# paginate_path: "/page:num/"
+
 # Development settings =======================================
 sass:
   style: compressed
+
+compress_html:
+  clippings: all
+  comments: [""]
+  endings:
+    [
+      html,
+      head,
+      body,
+      li,
+      dt,
+      dd,
+      rt,
+      rp,
+      optgroup,
+      option,
+      colgroup,
+      caption,
+      thead,
+      tbody,
+      tfoot,
+      tr,
+      td,
+      th,
+    ]
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
 
 defaults:
   - scope:
@@ -57,7 +99,9 @@ defaults:
 
 markdown: kramdown
 kramdown:
+  input: GFM
   hard_wrap: false
+  auto_ids: true
   parse_block_html: true
   syntax_highlighter: rouge
   syntax_highlighter_opts:
