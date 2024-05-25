@@ -229,7 +229,7 @@ If you see **:raised_hand:** as an emoji like this ✋ it means Emoji Shortcode 
 
 ```bash
 # Add plugin to Gemfile
-echo 'gem "jemoji", group: :jekyll_plugins' >> Gemfile
+echo 'gem "jemoji", group:jekyll_plugins' >> Gemfile
 
 # Install plugin
 bundle install
@@ -238,7 +238,7 @@ bundle install
 bundle exec jekyll serve --livereload # or --watch
 ```
 
-> **TIP:** In most cases, you can simply copy an emoji from a source like [📙 Emojipedia](https://emojipedia.org/) or [EmojiCopy](https://emojicopy.com/) then paste it into your document.
+> **TIP:** In most cases, you can simply copy an emoji from a source like [Emojipedia](https://emojipedia.org/) or [EmojiCopy](https://emojicopy.com/) then paste it into your document.
 {:.alert .alert-note}
 
 ## Other elements
