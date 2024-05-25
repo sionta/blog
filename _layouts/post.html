@@ -1,6 +1,11 @@
 ---
 layout: default
 ---
+{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
+{%- assign modified_date = page.modified_date | default: page.last_modified_at -%}
+{%- assign dtPublished = page.date | date: date_format -%}
+{%- assign dtModified = modified_date | date: date_format -%}
+
 <article
   class="standalone"
   itemscope
@@ -30,13 +35,11 @@ layout: default
             </span>
           </span>
         {% endcomment %}
-        {%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
         <strong>Published:</strong>
         <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
           {{- page.date | date: date_format -}}
         </time>
-        {%- assign modified_date = page.modified_date | default: page.last_modified_at -%}
-        {% if modified_date %}
+        {% if dtModified != dtPublished %}
           &blacksquare; <strong>Modified:</strong>
           <time itemprop="dateModified" datetime="{{ modified_date | date_to_xmlschema }}">
             {{- modified_date | date: date_format -}}</time
@@ -46,36 +49,44 @@ layout: default
     </div>
   </header>
   <section itemprop="articleBody">
+    {% if page.toc %}
+      <div class="no-table-of-content">
+        <h3 class="no_toc no_anchor">Table of content</h3>
+        <div id="toc" class="toc"></div>
+      </div>
+    {% endif %}
+
     {{ content }}
   </section>
   <footer>
-    <div>
-      {% if page.tags %}
-        <p>
-          Tags:
-          <span itemprop="keywords">
-            {% for tag in page.tags %}
-              <a href="/tags/{{- tag -}}/">{{- tag -}}</a>
-              {%- unless forloop.last %}&comma; {% endunless -%}
-            {% endfor -%}
-          </span>
-        </p>
-      {% endif %}
-      {% if page.categories %}
-        <p>
-          <span>
-            Categories:
+    {% if page.tags or page.categories %}
+      <div class="post-archive-list">
+        {% if page.tags %}
+          <p>
+            <strong>Tags:</strong>
+            <span itemprop="keywords">
+              {%- for tag in page.tags %}
+                <a href="/tags/{{- tag -}}/">{{- tag -}}</a>
+                {%- unless forloop.last %}&comma; {% endunless -%}
+              {% endfor -%}
+            </span>
+          </p>
+        {% endif %}
+        {% if page.categories != empty %}
+          <p>
+            <strong>Categories:</strong>
             <span itemprop="articleSection">
               {% for category in page.categories %}
                 <a href="/categories/{{- category -}}/">{{- category -}}</a>
                 {%- unless forloop.last %}&comma; {% endunless -%}
               {% endfor %}
             </span>
-          </span>
-        </p>
-      {% endif %}
-    </div>
-    {% if page.comments != false %}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if page.comments %}
       <div
         itemscope
         itemtype="https://schema.org/Comment"

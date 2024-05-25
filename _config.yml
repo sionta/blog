@@ -9,7 +9,9 @@ google_analytics: G-31WRW155T4
 timezone: Asia/Tokyo
 lang: en
 
+# Site logo for SEO
 logo: "/assets/img/avatar.png" # https://github.com/sionta.png?size=100
+enable_logo: false # enable logo in site header
 
 author:
   name: Andre Attamimi
@@ -43,6 +45,18 @@ comments:
     repo: "sionta/blog" # (e.g., "owner/repo")
     issue_term: "pathname"
 
+# navigation:
+#   - name: Home
+#     link: /
+#   - name: About
+#     link: /about/
+#   - name: RSS
+#     link: /feed.xml
+#     icon: rss
+#   - name: GitHub
+#     link: https://github.com/sionta
+#     external_icon: true
+
 # Generate social links, for the platform icons available at `_includes/social-icons`.
 social_links:
   - { platform: github, user_url: "https://github.com/sionta" }
@@ -56,40 +70,39 @@ feed:
 # paginate: 5
 # paginate_path: "/page:num/"
 
+jekyll-archives:
+  enabled: [categories, tags]
+  layout: archive
+  permalinks:
+    tag: "/tags/:name/"
+    category: "/categories/:name/"
+
 # Development settings =======================================
 sass:
   style: compressed
 
+# prettier-ignore
 compress_html:
   clippings: all
-  comments: [""]
-  endings:
-    [
-      html,
-      head,
-      body,
-      li,
-      dt,
-      dd,
-      rt,
-      rp,
-      optgroup,
-      option,
-      colgroup,
-      caption,
-      thead,
-      tbody,
-      tfoot,
-      tr,
-      td,
-      th,
-    ]
+  comments: all
+  endings: all
   profile: false
   blanklines: false
   ignore:
     envs: []
 
+collections:
+  pages:
+    output: true
+    sort_by: order
+
 defaults:
+  - scope:
+      path: _pages
+      type: pages
+    values:
+      layout: page
+      permalink: "/:title/"
   - scope:
       path: _posts
       type: posts
@@ -113,7 +126,8 @@ exclude:
   - "*.gem"
   - "*.gemspec"
   - "*.lock"
-  - "tools"
+  - "test*"
+  - "tool*"
   - "package*.json"
   - "screenshot*"
   - "README*"

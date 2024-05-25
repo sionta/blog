@@ -17,13 +17,13 @@ layout: default
   {% assign max_posts = site.max_posts | default: posts.size %}
   {% if max_posts > 0 %}
     {% for post in posts limit: max_posts %}
-      {% assign post_excerpt = post.content | strip_html | truncatewords: 20, '...' %}
+      {% assign post_excerpt = post.content | strip_html | truncatewords: 27, '...' %}
       {% assign date_format = site.date_format | default: '%b %d, %Y' %}
       <ul class="post-list">
         <li>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <time class="post-time">{{ post.date | date: date_format }}</time>
-          <p class="post-summary">{{ post_excerpt }}</p>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+          <p>{{ post_excerpt }}</p>
         </li>
       </ul>
     {% endfor %}

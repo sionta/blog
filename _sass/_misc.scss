@@ -1,53 +1,41 @@
 // This fixed `- [x] Task list` from rendering markdown.
 .task-list {
-  padding: 0;
+  margin-left: 0;
   list-style: none;
   &-item {
-    margin-left: calc($spacing-unit / 2);
     &-checkbox {
-      margin-right: calc($spacing-unit / 2);
       cursor: not-allowed;
+      margin-right: 5px;
     }
   }
 }
 
-.img-figure,
-.figure {
-  em {
-    font-size: $font-small;
-    font-style: normal;
+// anchor.js
+.anchorjs-link,
+.anchor_link {
+  font-style: normal;
+  font-weight: bold;
+  color: var(--bd-1);
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: var(--lk-1);
   }
+}
 
-  img,
-  em {
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-
-  &.right {
-    img {
-      float: right;
-      margin-left: 10px;
+// tocbot.js
+.no-table-of-content {
+  background: var(--bg-2);
+  border: 2px solid var(--bd-1);
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  .toc {
+    li {
+      margin-top: 0.4rem;
     }
-
-    em {
-      float: right;
-      clear: both;
-    }
-  }
-
-  &.center {
-    text-align: center;
-
-    em,
-    img {
-      display: inline-block;
-      float: none;
-    }
-
-    em {
-      margin-top: 5px;
+    a {
+      text-decoration: none;
     }
   }
 }
@@ -59,17 +47,74 @@
   }
 }
 
-ol {
-  &[type="A"] {
-    list-style-type: upper-alpha;
+// Alerts or Admonitions
+.alert {
+  font-size: medium;
+  font-style: normal;
+  padding: 10px auto;
+  margin: 20px 0;
+  border-radius: 5px;
+  @mixin color-alert($color) {
+    background-color: rgba($color, 0.2);
+    // border-left: 5px solid $color;
+    border-left: 0;
+    color: $color;
+    code {
+      color: $color;
+      border: 1px solid rgba($color, 0.35);
+      background-color: rgba($color, 0.25);
+    }
   }
-  &[type="a"] {
-    list-style-type: lower-alpha;
+  &-note {
+    @include color-alert(#6a9fb5);
   }
-  &[type="I"] {
-    list-style-type: upper-roman;
+  &-tip {
+    @include color-alert(#90a959);
   }
-  &[type="i"] {
-    list-style-type: lower-roman;
+  &-important {
+    @include color-alert(#aa759f);
   }
+  &-warning {
+    @include color-alert(#d28445);
+  }
+  &-caution {
+    @include color-alert(#ac4142);
+  }
+}
+
+dt {
+  font-weight: bold;
+}
+dd::before {
+  margin-right: 5px;
+  content: "\2192 \00a0";
+}
+blockquote:has(cite) {
+  cite::before {
+    content: "\2014 \0020";
+  }
+}
+
+hr {
+  border: 0;
+  margin: $spacing-unit auto;
+  border-bottom: 1px solid var(--bd-1);
+}
+kbd {
+  padding: 2px 3px;
+  border-bottom: 3px solid var(--bd-1);
+}
+samp {
+  color: var(--lk-1);
+}
+abbr {
+  cursor: help;
+}
+mark {
+  padding: 3.5px 0;
+}
+mark,
+::selection {
+  color: var(--bg-1);
+  background: var(--lk-1);
 }

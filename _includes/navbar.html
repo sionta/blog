@@ -1,36 +1,31 @@
-{%- assign nav_items = site.navigation | default: site.data.navigation -%}
-<nav class="navbar">
-  {%- if nav_items.size > 0 %}
-    <ul>
-      {%- for item in nav_items %}
-        {% assign item_name = item.name | default: item.title -%}
-        {%- assign item_link = item.link | default: item.url -%}
-        {%- capture item_page -%}
-          {% if item.icon %}
-            <svg class="icon" viewBox="0 0 24 24">
-              <use xlink:href="/assets/tabler-icons.svg#{{- item.icon -}}" />
-            </svg> {{ item_name }}
+{%- if site.pages.size > 0 %}
+  <ul>
+    {%- for nav in site.pages %}
+      {% if nav.disable != true %}
+        {%- capture item_name -%}
+          {% if nav.icon %}
+            <svg class="icon {{ nav.icon }}" viewBox="0 0 24 24">
+              <use xlink:href="/assets/tabler-icons.svg#{{- nav.icon -}}" />
+            </svg> {{ nav.title }}
           {% else -%}
-            {{- item_name -}}
+            {{- nav.title -}}
           {%- endif -%}
         {%- endcapture -%}
-        <li class="{% if item_link == page.url %}current{% endif %}">
-          {%- if item_link contains 'http://' or item_link contains 'https://' %}
-            <a href="{{ item_link }}" target="_blank" rel="noopener noreferrer">
-              {{- item_page -}}
-              {% if item_name and item.icon %}
-                <svg class="icon external" viewBox="0 0 24 24">
-                  <use xlink:href="/assets/tabler-icons.svg#external-link" />
-                </svg>
-              {% endif %}
+        <li class="{% if nav.url == page.url %}current{% endif %}">
+          {%- if nav.redirect_to contains 'http://' or nav.redirect_to contains 'https://' %}
+            <a href="{{ nav.url }}" target="_blank" rel="noopener noreferrer">
+              {{- item_name -}}
+              <svg class="icon external-link" viewBox="0 0 24 24">
+                <use xlink:href="/assets/tabler-icons.svg#external-link" />
+              </svg>
             </a>
           {%- else %}
-            <a href="{{ item_link | relative_url }}">
-              {{- item_page -}}
+            <a href="{{ nav.url | relative_url }}">
+              {{- item_name -}}
             </a>
           {%- endif %}
         </li>
-      {%- endfor %}
-    </ul>
-  {%- endif %}
-</nav>
+      {% endif %}
+    {%- endfor %}
+  </ul>
+{%- endif %}

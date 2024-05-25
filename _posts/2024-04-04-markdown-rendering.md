@@ -12,9 +12,7 @@ diagram: true   # Enable diagrammings
 comments: true  # Disable comments
 ---
 <!-- markdownlint-disable -->
-<!-- https://www.markdownguide.org/hacks/ -->
 
-<!-- {:.notice} -->
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
 ## Headings
@@ -31,8 +29,7 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 ## Paragraphs
 
 Elit ex ex eiusmod duis cupidatat duis esse laboris et sit reprehenderit eu. Elit sint nostrud ex reprehenderit fugiat do elit anim veniam nulla veniam amet. Nisi velit deserunt sunt excepteur irure ut ipsum excepteur minim.
-![alt text](https://placehold.co/300x200?text=Hello+World) _Image by placehold.co_
-{: .figure.right}
+
 Et laborum minim elit laboris dolor in. Nisi sunt labore pariatur magna fugiat cupidatat qui quis consequat aliqua commodo. Dolor nisi veniam elit proident. Irure laboris tempor consectetur ad enim ea officia ullamco.
 
 Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea nulla labore laboris irure consectetur. Ut nostrud sunt ipsum amet cupidatat ex quis cupidatat qui in anim culpa. Est velit voluptate reprehenderit eu ad commodo. Tempor laborum dolore velit est laboris.
@@ -84,6 +81,12 @@ Moon
 - [ ] Update the website
 - [ ] Contact the media
 
+## Links
+
+<https://jekyllrb.com>
+
+Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
+
 ## Blockquotes
 
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
@@ -91,89 +94,12 @@ Moon
 > <cite>Nikola Tesla</cite>
 <!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
-## Codes
+## Admonitions
 
-**Keyboard input:** <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>
+Admonitions or Alerts are frequently used in documentation to call attention to warnings, notes, tips and etc.
 
-**Inline code:** `<div>code</div>`
-
-**Sample output:** <samp>This is sample output from a computer program.</samp>
-
-## Fenced Code Block
-
-This is a code block on plain text:
-
-```plain
-{
-  syntax, error,
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-This is a code block with syntax highlighting:
-
-```json
-{
-  syntax, error,
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-## Links
-
-<https://jekyllrb.com>
-
-Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
-
-## Footnotes
-
-Here's a simple footnote,[^1] and here's a longer one.[^bignote]
-
-[^1]: This is the first footnote.
-
-[^bignote]: Here's one with multiple paragraphs and code.
-
-    Indent paragraphs to include them in the footnote.
-
-    `{ my code }`
-
-    Add as many paragraphs as you like.
-
-## Images
-
-![alt text](https://placehold.co/100x100?text=Lorem+Ipsum)
-
-![alt text](https://placehold.co/128x256?text=Lorem+Ipsum)
-
-![alt text](https://placehold.co/512x256?text=Lorem+Ipsum)
-
-## Tables
-
-To add a table, use three or more hyphens `---` to create each column’s header, and use pipes `|` to separate each column. For compatibility, you should also add a pipe on either end of the row. You can align text in the columns to the left, right, or center by adding a colon `:` to the left, right, or on both side of the hyphens within the header row.
-
-| Header 0 | Left 0 | Center 0 | Right  0|
-|----------|:-------|:--------:|--------:|
-| Cell 1   | Left 1 | Center 1 | Right 1 |
-| Cell 2   | Left 2 | Center 2 | Right 2 |
-| Cell 3   | Left 3 | Center 3 | Right 3 |
-| Cell 4   | Left 4 | Center 4 | Right 4 |
-|----------|--------|----------|---------|
-| Footer 5 | Left 5 | Center 5 | Right 5 |
-
-## Horizontal Rule
-
----
-
-## Alerts
-
-Alerts are frequently used in documentation to call attention to warnings, notes, tips and etc.
-
-> **Normal:** Default or alternative blockqoute.
-{:.alert}
+<!-- > **Normal:** Default or alternative blockqoute.
+{:.alert} -->
 
 > **Note:** Highlights information that users should take into account, even when skimming.
 {:.alert .alert-note}
@@ -189,6 +115,81 @@ Alerts are frequently used in documentation to call attention to warnings, notes
 
 > **Caution:** Negative potential consequences of an action.
 {:.alert .alert-caution}
+
+## Codes
+
+**Keyboard input:** <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>
+
+**Inline code:** `<div>code</div>`
+
+**Sample output:** <samp>This is sample output from a computer program.</samp>
+
+## Fenced Code Block
+
+This is a code block on plain text:
+
+```plain
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+This is a code block with syntax highlighting:
+
+```json
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+For more syntax highlighting see: [Code Preview]({% post_url 2024-05-25-code-preview %})
+
+## Images
+
+![alt text](https://placehold.co/100x100?text=Lorem+Ipsum)
+
+![alt text](https://placehold.co/128x256?text=Lorem+Ipsum)
+
+![alt text](https://placehold.co/512x256?text=Lorem+Ipsum)
+
+## Tables
+
+To add a table, use three or more hyphens `---` to create each column’s header, and use pipes `|` to separate each column. For compatibility, you should also add a pipe on either end of the row. You can align text in the columns to the left, right, or center by adding a colon `:` to the left, right, or on both side of the hyphens within the header row.
+
+{:.tada }
+| Column 1 | Column 2 | Column 3 | Column 4 |
+|----------|:---------|:--------:|---------:|
+| Cell 1   | Cell 1   | Cell 1   | Cell 1   |
+| Cell 2   | Cell 2   | Cell 2   | Cell 2   |
+| Cell 3   | Cell 3   | Cell 3   | Cell 3   |
+| Cell 4   | Cell 4   | Cell 4   | Cell 4   |
+| Cell 5   | Cell 5   | Cell 5   | Cell 5   |
+|----------|
+| Footer   |
+
+## Footnotes
+
+Here's a simple footnote,[^1] and here's a longer one.[^bignote]
+
+[^1]: This is the first footnote.
+
+[^bignote]: Here's one with multiple paragraphs and code.
+
+    Indent paragraphs to include them in the footnote.
+
+    `{ my code }`
+
+    Add as many paragraphs as you like.
+
+## Horizontal Rule
+
+---
 
 ## Mathematics
 
@@ -237,7 +238,7 @@ bundle install
 bundle exec jekyll serve --livereload # or --watch
 ```
 
-> **TIP:** In most cases, you can simply copy an emoji from a source like [📙 Emojipedia](https://emojipedia.org/) and paste it into your document.
+> **TIP:** In most cases, you can simply copy an emoji from a source like [📙 Emojipedia](https://emojipedia.org/) or [EmojiCopy](https://emojicopy.com/) then paste it into your document.
 {:.alert .alert-note}
 
 ## Other elements

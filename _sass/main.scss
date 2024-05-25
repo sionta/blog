@@ -2,28 +2,23 @@
 @import "custom"; // Hook to override everything else.
 
 // Fonts
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Fira+Code:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("../fonts/cormorant-garamond/cormorant_garamond.min.css");
+@import url("../fonts/fira-code/fira_code.min.css");
+@import url("../fonts/lato/lato.min.css");
 
 $font-sans: "Lato", system-ui, -apple-system !default;
 $font-serif: "Cormorant Garamond", serif !default;
 $font-mono: "Fira Code", monospace !default;
-
 $font-size: 16px !default;
 $font-small: $font-size * 0.875 !default;
 $font-weight: 400 !default;
 $line-height: 1.5 !default;
 
 // Layouts
-$border-radius: 5px;
-$spacing-unit: 20px !default;
-$width-mobile: 500px !default;
-$width-desktop: 800px !default;
-$width-content: $width-desktop !default;
-
-@mixin media-query($device, $on: max) {
-  @media screen and (#{$on}-width: $device) {
-    @content;
-  }
-}
+$border-radius: 3px !default;
+$spacing-unit: 30px !default;
+$media-mobile: 479px !default;
+$media-desktop: 833px !default;
+$content-width: $media-desktop !default;
 
 @import "reset", "colors", "base", "layout", "misc";

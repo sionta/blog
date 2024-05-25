@@ -7,7 +7,7 @@
 
 <script src="{{- '/assets/js/main.js' | relative_url -}}"></script>
 {% assign js_vendor = '/assets/js/vendor' | relative_url %}
-{% if page.collection == 'posts' or page.layout == 'post' or page.path contains '_posts' %}
+{% if page.collection == 'posts' or page.layout == 'post' or page.path contains '_posts/' %}
   {% include comments.html %}
   {% if page.toc %}
     <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
