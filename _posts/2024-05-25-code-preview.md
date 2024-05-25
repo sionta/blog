@@ -19,30 +19,20 @@ author: Andre Attamimi
 ```scss
 // Example SCSS
 $primary-color: #6c757d;
-$secondary-color: #007bff;
-
+%clear-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 nav {
   ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
+    @extend %clear-list;
     li {
       display: inline-block;
       &.current {
         font-weight: bold;
         a {
-            color: red;
-        }
-      }
-      a {
-        text-decoration: none;
-        padding: 0.5rem 1rem;
-        color: $primary-color;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: $secondary-color;
+            color: $primary-color;
         }
       }
     }
