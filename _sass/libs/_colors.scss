@@ -1,0 +1,66 @@
+/* prettier-ignore */
+@mixin rebase(
+  $base00, $base01, $base02, $base03,
+  $base04, $base05, $base06, $base07
+) {
+  --bg-1: #{$base00};
+  --bg-2: #{$base01};
+  --bg-3: #{$base02};
+
+  --tx-1: #{$base05};
+  --tx-2: #{$base06};
+  --tx-3: #{$base07};
+
+  --bd-1: #{$base02};
+  --bd-2: #{$base03};
+  --bd-3: #{$base04};
+  --mx-1: #{mix($base02, $base04)};
+  --mx-2: #{mix($base02, $base03)};
+
+  --lk-1: var(--green);
+  --lk-2: var(--orange);
+  --lk-3: var(--cyan);
+
+  --white: #f2f2f2;
+  --black: #0e141b;
+  --blue: #6a9fb5;
+  --cyan: #75b5aa;
+  --green: #90a959;
+  --red: #ac4142;
+  --magenta: #d85c98;
+  --violet: #aa759f;
+  --brown: #8f5536;
+  --orange: #d28445;
+  --yellow: #f4bf75;
+
+  @content;
+}
+
+/* prettier-ignore */
+:root {
+  color-scheme: light;
+  @include rebase(
+    $base00: #f2f2f2,  // Background light
+    $base01: #e0e0e0,  // Lighter gray
+    $base02: #c5c8c6,  // Light gray
+    $base03: #b4b7b4,  // Gray
+    $base04: #969896,  // Darker gray
+    $base05: #373b41,  // Text dark
+    $base06: #282a2e,  // Text darker
+    $base07: #1d1f21   // Text darkest
+  );
+}
+/* prettier-ignore */
+[data-theme="dark"] {
+  color-scheme: dark;
+  @include rebase(
+    $base00: #1d1f21,  // Background dark
+    $base01: #282a2e,  // Darker gray
+    $base02: #373b41,  // Dark gray
+    $base03: #969896,  // Gray
+    $base04: #b4b7b4,  // Lighter gray
+    $base05: #c5c8c6,  // Text light
+    $base06: #e0e0e0,  // Text lighter
+    $base07: #f2f2f2   // Text lightest
+  );
+}

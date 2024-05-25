@@ -5,14 +5,25 @@
   &-item {
     &-checkbox {
       cursor: not-allowed;
-      margin-right: 5px;
+      margin-right: 10px;
     }
   }
 }
 
-// anchor.js
-.anchorjs-link,
-.anchor_link {
+.toc-list {
+  li {
+    margin-top: 0.5rem;
+  }
+  a {
+    color: var(--tx-1);
+    text-decoration: none;
+    &:hover {
+      color: var(--lk-1);
+    }
+  }
+}
+.anchor-link {
+  margin-left: calc(#{$spacing-unit} / 2);
   font-style: normal;
   font-weight: bold;
   color: var(--bd-1);
@@ -23,23 +34,6 @@
   }
 }
 
-// tocbot.js
-.no-table-of-content {
-  background: var(--bg-2);
-  border: 2px solid var(--bd-1);
-  border-radius: $border-radius;
-  padding: #{$line-height}rem auto;
-  // margin: 2rem 0;
-  .toc {
-    li {
-      margin-top: 0.4rem;
-    }
-    a {
-      text-decoration: none;
-    }
-  }
-}
-
 // Gists
 .gist {
   td {
@@ -47,13 +41,23 @@
   }
 }
 
-// Alerts or Admonitions
+.mermaid {
+  > svg {
+    // display: block;
+    margin: 0 auto;
+    align-items: center;
+    // background-color: red;
+  }
+}
+
+// Alerts
 .alert {
   font-size: medium;
   font-style: normal;
   padding: 10px auto;
   margin: 20px 0;
   border-radius: 5px;
+
   @mixin color-alert($color) {
     background-color: rgba($color, 0.2);
     // border-left: 5px solid $color;
@@ -65,56 +69,24 @@
       background-color: rgba($color, 0.25);
     }
   }
+
   &-note {
     @include color-alert(#6a9fb5);
   }
+
   &-tip {
     @include color-alert(#90a959);
   }
+
   &-important {
     @include color-alert(#aa759f);
   }
+
   &-warning {
     @include color-alert(#d28445);
   }
+
   &-caution {
     @include color-alert(#ac4142);
   }
-}
-
-dt {
-  font-weight: bold;
-}
-dd::before {
-  margin-right: 5px;
-  content: "\2192 \00a0";
-}
-blockquote:has(cite) {
-  cite::before {
-    content: "\2014 \0020";
-  }
-}
-
-hr {
-  border: 0;
-  margin: $spacing-unit auto;
-  border-bottom: 1px solid var(--bd-1);
-}
-kbd {
-  padding: 2px 3px;
-  border-bottom: 3px solid var(--bd-1);
-}
-samp {
-  color: var(--lk-1);
-}
-abbr {
-  cursor: help;
-}
-mark {
-  padding: 3.5px 0;
-}
-mark,
-::selection {
-  color: var(--bg-1);
-  background: var(--lk-1);
 }

@@ -147,6 +147,47 @@ a {
 }
 
 /**
+ * Clearfix
+ */
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+ * Tables
+ */
+table {
+  border-collapse: collapse;
+  border: 1px solid var(--bd-2);
+  color: var(--tx-1);
+  margin-bottom: $spacing-unit;
+  text-align: left;
+  width: 100%;
+  th,
+  td {
+    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+  }
+  th {
+    background-color: var(--bg-2);
+    border: 1px solid var(--bd-1);
+  }
+  td {
+    border: 1px solid var(--bd-1);
+  }
+  tr:nth-child(even) {
+    background-color: var(--bg-2);
+  }
+  @media screen and (max-width: $media-desktop) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+}
+
+/**
  * Blockquotes
  */
 blockquote {
@@ -195,12 +236,9 @@ code {
   background-color: var(--bg-2);
 }
 pre {
-  letter-spacing: 0.5px;
-  line-height: 1.6;
-  font-variant-ligatures: common-ligatures;
-
-  padding: 8px 12px;
+  letter-spacing: 0.3px;
   overflow-x: auto;
+  padding: calc($spacing-unit / $line-height);
 
   > code {
     border: 0;
@@ -209,59 +247,80 @@ pre {
   }
 }
 
-/**
- * Clearfix
- */
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+// Definition lists
+dl {
+  dt {
+    font-weight: bold;
+  }
+  dd::before {
+    margin-right: 5px;
+    content: "\2192 \00a0";
+  }
 }
 
-/**
- * Tables
- */
-table {
-  border-collapse: collapse;
-  border: 1px solid var(--bd-2);
-  color: var(--tx-1);
-  margin-bottom: $spacing-unit;
-  text-align: left;
-  width: 100%;
-  th,
-  td {
-    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+// Blockquote with <cite>
+blockquote:has(cite) {
+  cite::before {
+    content: "\2014 \0020";
   }
-  th {
-    background-color: var(--bg-2);
-    border: 1px solid var(--bd-1);
-  }
-  td {
-    border: 1px solid var(--bd-1);
-  }
-  tr:nth-child(even) {
-    background-color: var(--bg-2);
-  }
-  @media screen and ($media-desktop) {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
+}
+
+// Horizontal rules
+hr {
+  border: 0;
+  margin: $spacing-unit auto;
+  border-bottom: 1px solid var(--bd-1);
+}
+
+// Keyboards
+kbd {
+  padding: 2px 3px;
+  border-bottom: 3px solid var(--bd-1);
+}
+
+samp {
+  color: var(--lk-1);
+}
+
+abbr {
+  cursor: help;
+}
+
+mark {
+  padding: 3.5px 0;
+}
+mark,
+::selection {
+  color: var(--bg-1);
+  background: var(--lk-1);
 }
 
 /**
  * Container
  */
 .container {
-  max-width: $content-width;
+  max-width: calc(#{$content-width} - (#{$spacing-unit}));
   margin: 0 auto;
-  padding: $spacing-unit * 0.5 0;
+  padding: 0 $spacing-unit * 0.5;
   @extend %clearfix;
+
+  @media screen and (min-width: $media-desktop) {
+    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+    padding: 0 $spacing-unit;
+  }
 }
 
-.container-fluid {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 $spacing-unit;
+/**
+ * Icons
+ */
+.icon-svg {
+  width: 1.25em;
+  height: 1.25em;
+  display: inline-block;
+  vertical-align: text-bottom;
+  &.external-link {
+    width: 1em;
+    height: 1em;
+    vertical-align: top;
+  }
 }

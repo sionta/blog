@@ -5,11 +5,11 @@ source "https://rubygems.org"
 gem "jekyll", "~> 4.3.3"
 
 group :jekyll_plugins do
+  gem "jekyll-toc", "0.19.0"
   gem "jekyll-feed", "~> 0.17.0"
   gem "jekyll-seo-tag", "~> 2.8.0"
   gem "jekyll-sitemap", "~> 1.4.0"
   gem "jekyll-archives", "~> 2.2.1"
-  gem "jekyll-paginate", "~> 1.1.0"
   gem "jekyll-include-cache", "~> 0.2.1"
   gem "jekyll-last-modified-at", "~> 1.3.0"
   gem "jekyll-redirect-from", "~> 0.16.0"

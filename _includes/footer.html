@@ -8,4 +8,21 @@
     </span>
     {{ site.description }}.
   </span>
+  <div class="social-links">
+    {% for social in site.social_links %}
+      <span>
+        <a
+          href="{{- social.url -}}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg class="icon-svg" viewBox="0 0 24 24">
+            <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#brand-{{- social.platform -}}" />
+            <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#brand-{{- social.platform -}}" />
+          </svg>
+          {{ social.platform | escape | capitalize -}}
+        </a>
+      </span>
+    {% endfor %}
+  </div>
 </footer>

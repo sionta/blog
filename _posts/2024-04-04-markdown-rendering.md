@@ -118,7 +118,7 @@ Admonitions or Alerts are frequently used in documentation to call attention to 
 
 ## Codes
 
-**Keyboard input:** <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd>
+**Keyboard input:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd>
 
 **Inline code:** `<div>code</div>`
 
@@ -160,9 +160,6 @@ For more syntax highlighting see: [Code Preview]({% post_url 2024-05-25-code-pre
 
 ## Tables
 
-To add a table, use three or more hyphens `---` to create each column’s header, and use pipes `|` to separate each column. For compatibility, you should also add a pipe on either end of the row. You can align text in the columns to the left, right, or center by adding a colon `:` to the left, right, or on both side of the hyphens within the header row.
-
-{:.tada }
 | Column 1 | Column 2 | Column 3 | Column 4 |
 |----------|:---------|:--------:|---------:|
 | Cell 1   | Cell 1   | Cell 1   | Cell 1   |
@@ -209,18 +206,18 @@ The Diagramming and charting Powered by [Mermaid:](https://mermaid.js.org/)
 
 ```mermaid
 gitGraph:
-    commit "Ashish"
-    branch newbranch
-    checkout newbranch
-    commit id:"1111"
-    commit tag:"test"
-    checkout main
-    commit type: HIGHLIGHT
-    commit
-    merge newbranch
-    commit
-    branch b2
-    commit
+  commit "Ashish"
+  branch newbranch
+  checkout newbranch
+  commit id:"1111"
+  commit tag:"test"
+  checkout main
+  commit type: HIGHLIGHT
+  commit
+  merge newbranch
+  commit
+  branch b2
+  commit
 ```
 
 ## Emoji Shortcodes

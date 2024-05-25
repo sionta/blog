@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import "custom"; // Hook to override everything else.
+@import "variables"; // Hook to override predefined variables.
 
 // Fonts
 @import url("../fonts/cormorant-garamond/cormorant_garamond.min.css");
@@ -21,4 +21,5 @@ $media-mobile: 479px !default;
 $media-desktop: 833px !default;
 $content-width: $media-desktop !default;
 
-@import "reset", "colors", "base", "layout", "misc";
+@import "libs/colors", "libs/reset", "libs/base";
+@import "libs/layout", "libs/misc", "libs/syntax", "styles";

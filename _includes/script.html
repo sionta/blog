@@ -5,64 +5,46 @@
     - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
 {% endcomment %}
 
+{% comment %} Main Script {% endcomment %}
 <script src="{{- '/assets/js/main.js' | relative_url -}}"></script>
-{% assign js_vendor = '/assets/js/vendor' | relative_url %}
+
+{% comment %}  {% endcomment %}
+{%- assign js_vendor = '/assets/js/vendor' | relative_url -%}
+
 {% if page.collection == 'posts' or page.layout == 'post' or page.path contains '_posts/' %}
   {% include comments.html %}
-  {% if page.toc %}
-    <script type="text/javascript" src="{{- js_vendor -}}/tocbot.min.js"></script>
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
-        tocbot.init({
-          tocSelector: '#toc',
-          contentSelector: '[itemprop="articleBody"]',
-          ignoreSelector: '.no_toc, .no-toc',
-          headingSelector: 'h2, h3, h4',
-          orderedList: false,
-          scrollSmooth: true,
-          scrollSmoothOffset: -70,
-        });
-        tocbot.refresh();
-      });
-    </script>
-  {% endif %}
+
   {% if page.anchor %}
-    <script type="text/javascript" src="{{- js_vendor -}}/anchor.min.js"></script>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function () {
-        anchors.options = {
-          placement: 'right',
-          visible: 'always',
-          icon: '#',
-        };
-        var anchorHeadings = 'h2, h3, h4';
-        var ignoreClasses = ['.no_anchor', '.no-anchor'];
-        anchors.add(anchorHeadings);
-        var headingTypes = anchorHeadings.split(',').map((selector) => selector.trim());
-        var ignoredSelectors = ignoreClasses
-          .map((className) => headingTypes.map((headingType) => headingType + className).join(', '))
-          .join(', ');
-        document.querySelectorAll(ignoredSelectors).forEach((heading) => {
-          var anchorLink = heading.querySelector('.anchorjs-link');
-          if (anchorLink) {
-            heading.removeChild(anchorLink);
+        let headings = document.querySelectorAll('h2, h3, h4');
+        let ignores = ['no_toc', 'no_anchor'];
+        headings.forEach(function (heading) {
+          if (!ignores.some((className) => heading.classList.contains(className))) {
+            let anchor = document.createElement('a');
+            anchor.setAttribute('href', '#' + heading.id);
+            anchor.setAttribute('class', 'anchor-link');
+            anchor.innerHTML = '#';
+            heading.appendChild(anchor);
           }
         });
       });
     </script>
   {% endif %}
+
   {% if page.diagram %}
     <script type="text/javascript" src="{{- js_vendor -}}/mermaid.min.js"></script>
     <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
-        var mermaidClass = document.querySelectorAll('.language-mermaid');
+      document.addEventListener('DOMContentLoaded', () => {
+        let mermaidClass = document.getElementsByClassName('language-mermaid');
+        Array.from(mermaidClass).forEach((element) => {
+          element.classList.add('mermaid');
+          mermaid.init(undefined, element);
+        });
         mermaid.initialize({
           startOnLoad: true,
           theme: 'default',
           securityLevel: 'loose',
-        });
-        mermaidClass.forEach((element) => {
-          mermaid.init(undefined, element);
         });
       });
     </script>

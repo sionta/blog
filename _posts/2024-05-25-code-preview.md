@@ -12,6 +12,7 @@ author: Andre Attamimi
   width: 80%;
   margin: 0 auto;
 }
+
 ```
 
 ## SCSS
@@ -19,6 +20,7 @@ author: Andre Attamimi
 ```scss
 // Example SCSS
 $primary-color: #6c757d;
+
 %clear-list {
   list-style: none;
   padding: 0;
@@ -32,7 +34,7 @@ nav {
       &.current {
         font-weight: bold;
         a {
-            color: $primary-color;
+          color: $primary-color;
         }
       }
     }

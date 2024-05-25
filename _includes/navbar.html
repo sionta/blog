@@ -1,11 +1,11 @@
-{%- if site.pages.size > 0 %}
+{%- if site.partials.size > 0 %}
   <ul>
-    {%- for nav in site.pages %}
+    {%- for nav in site.partials %}
       {% if nav.disable != true %}
         {%- capture item_name -%}
           {% if nav.icon %}
-            <svg class="icon {{ nav.icon }}" viewBox="0 0 24 24">
-              <use xlink:href="/assets/tabler-icons.svg#{{- nav.icon -}}" />
+            <svg class="icon-svg {{ nav.icon }}" viewBox="0 0 24 24">
+              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#{{- nav.icon -}}" />
             </svg> {{ nav.title }}
           {% else -%}
             {{- nav.title -}}
@@ -15,8 +15,8 @@
           {%- if nav.redirect_to contains 'http://' or nav.redirect_to contains 'https://' %}
             <a href="{{ nav.url }}" target="_blank" rel="noopener noreferrer">
               {{- item_name -}}
-              <svg class="icon external-link" viewBox="0 0 24 24">
-                <use xlink:href="/assets/tabler-icons.svg#external-link" />
+              <svg class="icon-svg external-link" viewBox="0 0 24 24">
+                <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
               </svg>
             </a>
           {%- else %}

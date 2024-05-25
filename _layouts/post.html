@@ -50,13 +50,14 @@ layout: default
   </header>
   <section itemprop="articleBody">
     {% if page.toc %}
-      <div class="no-table-of-content">
-        <h3 class="no_toc no_anchor">Table of content</h3>
-        <div id="toc" class="toc"></div>
-      </div>
+      <details open>
+        <summary>Table of content</summary>
+        {{ content | toc_only }}
+      </details>
     {% endif %}
-
-    {{ content }}
+    <div>
+      {{ content | inject_anchors }}
+    </div>
   </section>
   <footer>
     {% if page.tags or page.categories %}
