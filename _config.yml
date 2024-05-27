@@ -1,52 +1,21 @@
+#
+# Site settings ******************************************
+#
+
 title: sionta.
-description: >-
+description: >- # this means to ignore newlines until "baseurl:"
   A brief description of my website
 
-url: ""
-baseurl: "" # DON'T include a trailing slash!
-
+baseurl: "" # the subpath of your site, e.g. "/blog" (DON'T include a trailing slash)
+url: "" # the base hostname & protocol for your site, e.g. "http://example.com"
 google_analytics: G-31WRW155T4
 
 timezone: Asia/Tokyo
 lang: en
 
 image: "/assets/img/avatar.svg" # https://github.com/sionta.png?size=100
-# Set to `true` to enable site logo in header.
+# Set to `true` to enable site logo in header and "image:" is required.
 enable_logo: false
-twitter:
-  username: R007MMXV
-
-author:
-  picture: "/assets/img/avatar.svg"
-  twitter: R007MMXV
-  name: Andre Attamimi
-  email: info@andreattamimi.com
-  url: https://github.com/sionta
-
-# Set to `true` to enable progressive web apps.
-enable_pwa: false
-
-# Set to `true` to show excerpts the post list.
-show_excerpts: true
-
-# The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
-# Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
-date_format: "%b %d, %Y"
-
-# Comments Settings
-comments:
-  provider: "giscus" # (e.g., "disqus")
-  # The provider setting below:
-  disqus: # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-    shortname: "andreattamimi"
-  giscus: # https://giscus.app/
-    repo: "sionta/blog" # (e.g., "owner/repo")
-    repo_id: "R_kgDOLxRA-w"
-    category: "Q&A"
-    category_id: "DIC_kwDOLxRA-84CfGPN"
-  utterances: # https://utteranc.es/
-    repo: "sionta/blog" # (e.g., "owner/repo")
-    issue_term: "pathname"
 
 # Generate social links
 social_links:
@@ -54,7 +23,39 @@ social_links:
   - { platform: mastodon, url: "https://mastodon.social/@sionta" }
   - { platform: twitter, url: "https://twitter.com/r007mmxv" }
 
-# Development settings =======================================
+#
+# Post settings ******************************************
+#
+
+author:
+  picture: "/assets/img/avatar.svg"
+  name: Andre Attamimi
+  twitter: R007MMXV
+  url: https://github.com/sionta
+
+# The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
+# Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
+date_format: "%b %d, %Y"
+
+comments:
+  provider: "giscus" # e.g. "disqus" and the provider settings below:
+  disqus:
+    # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: "andreattamimi"
+  giscus:
+    # For more setting refer to https://giscus.app/
+    repo: "sionta/blog" # e.g. "owner/repo"
+    repo_id: "R_kgDOLxRA-w"
+    category: "Q&A"
+    category_id: "DIC_kwDOLxRA-84CfGPN"
+  utterances:
+    # https://utteranc.es/
+    repo: "sionta/blog" # e.g. "owner/repo"
+    issue_term: "pathname"
+
+#
+# Build settings *****************************************
+#
 
 # https://github.com/jekyll/jekyll-feed
 feed:
@@ -64,7 +65,7 @@ feed:
 # https://github.com/toshimaru/jekyll-toc
 toc:
   min_level: 2
-  max_level: 5
+  max_level: 4
   ordered_list: false
   list_id: toc
   list_class: toc-list
@@ -106,19 +107,19 @@ jekyll-archives:
     category: "/categories/:name/"
 
 collections:
-  partials:
+  redirects:
     output: true
     sort_by: order
 
 defaults:
   - scope:
-      path: _partials
-      type: partials
+      path: ""
+      type: redirects
     values:
       layout: page
       permalink: "/:title/"
   - scope:
-      path: _posts
+      path: ""
       type: posts
     values:
       layout: post

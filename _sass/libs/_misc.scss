@@ -1,4 +1,4 @@
-// This fixed `- [x] Task list` from rendering markdown.
+// Fixed `- [x] Task list` from rendering markdown.
 .task-list {
   margin-left: 0;
   list-style: none;
@@ -15,13 +15,14 @@
     margin-top: 0.5rem;
   }
   a {
-    color: var(--tx-1);
+    color: var(--lk-1);
     text-decoration: none;
     &:hover {
-      color: var(--lk-1);
+      color: var(--lk-2);
     }
   }
 }
+
 .anchor-link {
   margin-left: calc(#{$spacing-unit} / 2);
   font-style: normal;
@@ -34,15 +35,20 @@
   }
 }
 
-// Gists
+// Fixed Gists skeleton override
 .gist {
   td {
-    border: inherit; // fix Skeleton override
+    border: inherit;
   }
 }
 
+// Fixed multiple KaTeX output from rendering markdown.
+.katex-html {
+  display: none;
+}
+
 .mermaid {
-  > svg {
+  svg {
     // display: block;
     margin: 0 auto;
     align-items: center;

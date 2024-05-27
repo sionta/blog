@@ -1,2 +1,5 @@
 *.min.*
-*.svg
+*.html
+**/_posts/*.*
+**/*color*
+**/*syntax*

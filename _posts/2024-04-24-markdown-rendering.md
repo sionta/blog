@@ -2,8 +2,8 @@
 layout: post
 title: Markdown Test page
 description: A quick overview of all the Markdown syntax elements
-categories: tutorial
-tags: [jekyll]
+categories: test
+tags: [markdown]
 author: Andre Attamimi
 # Special configuration on this site:
 toc: true       # Enable table of contents
@@ -11,7 +11,7 @@ anchor: true    # Enable anchor headings
 diagram: true   # Enable diagrammings
 comments: true  # Disable comments
 ---
-<!-- markdownlint-disable -->
+<!-- markdownlint-disable MD022 MD025 MD033 MD036 MD056 -->
 
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
@@ -19,10 +19,8 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 
 # H1
 {:.no_toc .no_anchor}
-
 ## H2
 {:.no_toc .no_anchor}
-
 ### H3
 {:.no_toc .no_anchor}
 
@@ -102,18 +100,23 @@ Admonitions or Alerts are frequently used in documentation to call attention to 
 {:.alert} -->
 
 > **Note:** Highlights information that users should take into account, even when skimming.
+>
 {:.alert .alert-note}
 
 > **Tip:** Optional information to help a user be more successful.
+>
 {:.alert .alert-tip}
 
 > **Important:** Crucial information necessary for users to succeed.
+>
 {:.alert .alert-important}
 
 > **Warning:** Critical content demanding immediate user attention due to potential risks.
+>
 {:.alert .alert-warning}
 
 > **Caution:** Negative potential consequences of an action.
+>
 {:.alert .alert-caution}
 
 ## Codes
@@ -148,7 +151,7 @@ This is a code block with syntax highlighting:
 }
 ```
 
-For more syntax highlighting see: [Code Preview]({% post_url 2024-05-25-code-preview %})
+For more syntax highlighting see: [Code Preview]({% post_url 2023-03-23-markdown-highlighting %})
 
 ## Images
 
@@ -160,15 +163,40 @@ For more syntax highlighting see: [Code Preview]({% post_url 2024-05-25-code-pre
 
 ## Tables
 
-| Column 1 | Column 2 | Column 3 | Column 4 |
-|----------|:---------|:--------:|---------:|
-| Cell 1   | Cell 1   | Cell 1   | Cell 1   |
-| Cell 2   | Cell 2   | Cell 2   | Cell 2   |
-| Cell 3   | Cell 3   | Cell 3   | Cell 3   |
-| Cell 4   | Cell 4   | Cell 4   | Cell 4   |
-| Cell 5   | Cell 5   | Cell 5   | Cell 5   |
-|----------|
-| Footer   |
+| Column 1 | Column 2 | Column 3 |
+| -------- | :------: | -------: |
+| Cell 1   |  Cell 1  |   Cell 1 |
+| Cell 2   |  Cell 2  |   Cell 2 |
+| Cell 3   |  Cell 3  |   Cell 3 |
+| Cell 4   |  Cell 4  |   Cell 4 |
+
+<table>
+  <caption>
+    Council budget (in £) 2018
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Items</th>
+      <th scope="col">Expenditure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Donuts</th>
+      <td>3,000</td>
+    </tr>
+    <tr>
+      <th scope="row">Stationery</th>
+      <td>18,000</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row">Totals</th>
+      <td>21,000</td>
+    </tr>
+  </tfoot>
+</table>
 
 ## Footnotes
 
@@ -183,6 +211,8 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
     `{ my code }`
 
     Add as many paragraphs as you like.
+
+The [Result Footnotes](#result-footnotes)
 
 ## Horizontal Rule
 
@@ -247,3 +277,5 @@ bundle exec jekyll serve --livereload # or --watch
 **Superscript:** One of the most common equations in all of physics is <var>E</var>=<var>m</var><var>c</var><sup>2</sup>.
 
 ## Result Footnotes
+
+Go back to [Footnotes](#footnotes)

@@ -4,11 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- feed_meta -%}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  {% if site.enable_pwa %}
-    <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
-  {% endif %}
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
   <link rel="icon" type="image/png" href="{{ '/assets/img/avatar.png' | relative_url }}">
   {%- seo -%}
+  {%- include head_custom.html -%}
 </head>

@@ -1,6 +1,7 @@
-{%- if site.partials.size > 0 %}
+{% assign nav_items = site.partials | default: site.redirects %}
+{%- if nav_items.size > 0 %}
   <ul>
-    {%- for nav in site.partials %}
+    {%- for nav in nav_items %}
       {% if nav.disable != true %}
         {%- capture item_name -%}
           {% if nav.icon %}
