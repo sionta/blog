@@ -1,0 +1,56 @@
+---
+layout: default
+---
+<div id="home">
+  {% if page.title %}
+    <h1>{{ page.title }}</h1>
+  {% endif %}
+
+  {{ content }}
+
+  {% if site.paginate %}
+    {% assign posts = paginator.posts %}
+  {% else %}
+    {% assign posts = site.posts %}
+  {% endif %}
+
+  {% assign max_posts = site.max_posts | default: posts.size %}
+  {% if max_posts > 0 %}
+    {% for post in posts limit: max_posts %}
+      {% assign post_excerpt = post.content | strip_html | truncatewords: 27, '...' %}
+      {% assign date_format = site.date_format | default: '%b %d, %Y' %}
+      <ul class="post-list">
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+          <p>{{ post_excerpt }}</p>
+        </li>
+      </ul>
+    {% endfor %}
+    {% if site.paginate %}
+      <div class="pager">
+        <ul class="pagination">
+          {% if paginator.previous_page %}
+            <li>
+              <a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">
+                {{- paginator.previous_page -}}
+              </a>
+            </li>
+          {% else %}
+            <li><div class="pager-edge">•</div></li>
+          {% endif %}
+          <li>
+            <div class="current-page">{{ paginator.page }}</div>
+          </li>
+          {% if paginator.next_page %}
+            <li>
+              <a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a>
+            </li>
+          {% else %}
+            <li><div class="pager-edge">•</div></li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>

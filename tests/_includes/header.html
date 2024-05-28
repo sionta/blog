@@ -1,0 +1,22 @@
+<header id="header" class="sticky">
+  <div class="site-logo">
+    <a href="{{ '/' | relative_url }}">
+      {% if site.image and site.enable_logo %}
+        <img src="{{ site.logo }}" alt="{{ site.title }}' Logo">
+      {% endif %}
+      {{ site.title }}
+    </a>
+  </div>
+  <nav class="nav-links">
+    {% include navbar.html %}
+  </nav>
+  <div class="nav-actions">
+    <input id="theme-toggle" type="checkbox">
+    <label for="theme-toggle" name="Switch light and dark theme">
+      <svg class="icon-svg" viewBox="0 0 24 24">
+        <use class="icon-sun" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#sun" />
+        <use class="icon-moon" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#moon" />
+      </svg>
+    </label>
+  </div>
+</header>

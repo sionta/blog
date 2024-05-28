@@ -1,0 +1,154 @@
+%flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+%fixlist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    display: inline-block;
+    &:last-child a {
+      margin-right: 0;
+    }
+  }
+}
+
+%fixtext {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+#header,
+#footer,
+#content {
+  padding: calc(#{$spacing-unit} - #{$line-height});
+}
+
+#header {
+  @extend %flexbox;
+  justify-content: space-between;
+  margin-bottom: calc($spacing-unit * $line-height);
+}
+
+#header,
+#footer,
+.logo {
+  text-align: center;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+
+  background-color: inherit;
+  border-bottom: 1px solid var(--bd-1);
+}
+
+.site-logo {
+  @extend %flexbox;
+  img {
+    width: 32px;
+    height: 32px;
+    margin-right: calc($spacing-unit / $line-height);
+  }
+  a {
+    @extend %fixtext;
+    font-family: $font-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--tx-1);
+  }
+}
+
+.nav-links {
+  // @media screen and (max-width: $on-laptop) {
+  //   display: none;
+  // }
+  ul {
+    @extend %fixlist;
+    li {
+      &.current {
+        font-weight: bold;
+      }
+      a {
+        @extend %fixtext;
+        margin-right: calc($spacing-unit / $line-height);
+      }
+    }
+  }
+}
+
+.nav-actions {
+  input[type="checkbox"] {
+    display: none;
+  }
+  svg {
+    cursor: pointer;
+    width: #{$line-height}em;
+    height: #{$line-height}em;
+    .icon-moon {
+      display: none;
+    }
+  }
+  #theme-toggle:checked {
+    ~ svg .icon-sun {
+      display: block;
+    }
+    ~ svg .icon-moon {
+      display: none;
+    }
+  }
+}
+
+#home {
+  ul {
+    @extend %fixlist;
+    margin-bottom: calc($spacing-unit / $line-height);
+  }
+  a {
+    @extend %fixtext;
+    font-size: #{$line-height}rem;
+  }
+  time {
+    float: inline-end;
+  }
+  p {
+    color: var(--tx-1);
+    margin-top: calc($spacing-unit / $line-height);
+  }
+}
+
+#footer {
+  @extend %flexbox;
+  ul {
+    @extend %fixlist;
+  }
+  display: inline-block;
+  .social-links {
+    margin: $spacing-unit;
+    span {
+      margin-right: 10px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    a {
+      color: var(--bd-3);
+      @extend %fixtext;
+      svg {
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+@import "misc";

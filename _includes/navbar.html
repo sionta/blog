@@ -1,4 +1,4 @@
-{% assign nav_items = site.partials | default: site.redirects %}
+{%- assign nav_items = site.partials | default: site.redirects -%}
 {%- if nav_items.size > 0 %}
   <ul>
     {%- for nav in nav_items %}
@@ -12,17 +12,19 @@
             {{- nav.title -}}
           {%- endif -%}
         {%- endcapture -%}
-        <li class="{% if nav.url == page.url %}current{% endif %}">
+        <li class="menu-item">
           {%- if nav.redirect_to contains 'http://' or nav.redirect_to contains 'https://' %}
             <a href="{{ nav.url }}" target="_blank" rel="noopener noreferrer">
-              {{- item_name -}}
-              <svg class="icon-svg external-link" viewBox="0 0 24 24">
-                <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
-              </svg>
+              {{ item_name }}
+              {% if nav.external_icon == true %}
+                <svg class="icon-svg external-link" viewBox="0 0 24 24">
+                  <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
+                </svg>
+              {% endif %}
             </a>
           {%- else %}
             <a href="{{ nav.url | relative_url }}">
-              {{- item_name -}}
+              {{ item_name }}
             </a>
           {%- endif %}
         </li>

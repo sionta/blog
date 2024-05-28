@@ -1,0 +1,76 @@
+// Syntax highlighting styles should be adjusted appropriately for every theme
+// List of tokens: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+
+/* prettier-ignore */
+.highlight {
+  .bp    { color: $c-blue; } // Name.Builtin.Pseudo
+  .c     { color: $base03; font-style: italic; } // Comment
+  .c1    { color: $base03; font-style: italic; } // Comment.Single
+  .cm    { color: $base03; font-style: italic; } // Comment.Multiline
+  .cp    { color: $base03; font-style: italic; } // Comment.Preproc
+  .cs    { color: $base03; font-style: italic; } // Comment.Special
+  .err   { color: $base00; background-color: $c-red; } // Error
+  .gd    { color: $base00; background-color: $c-red; } // Generic.Deleted
+  .gi    { color: $base00; background-color: $c-green; } // Generic.Inserted
+  .g     { color: $base05; } // Generic
+  .ge    { font-style: italic; text-decoration: underline } // Generic.Emph
+  .gh    { color: $base05; } // Generic.Heading
+  .gl    { color: $c-violet; } // Generic.Lineno
+  .go    { color: $base03; } // Generic.Output
+  .gp    { color: $c-brown; } // Generic.Prompt
+  .gr    { color: $c-red; } // Generic.Error
+  .gs    { font-weight: bold; } // Generic.Strong
+  .gt    { color: $c-red; } // Generic.Traceback
+  .gu    { color: $base05; } // Generic.Subheading
+  .il    { color: $c-orange; } // Literal.Number.Integer.Long
+  .k     { color: $c-violet; font-weight: bold; } // Keyword
+  .kc    { color: $c-violet; font-weight: bold; } // Keyword.Constant
+  .kd    { color: $c-violet; font-weight: bold; } // Keyword.Declaration
+  .kn    { color: $c-violet; font-weight: bold; } // Keyword.Namespace
+  .kp    { color: $c-violet; font-weight: bold; } // Keyword.Pseudo
+  .kr    { color: $c-violet; font-weight: bold; } // Keyword.Reserved
+  .kt    { color: $c-violet; font-weight: bold; } // Keyword.Type
+  .l     { color: $c-green; } // Literal
+  .ld    { color: $c-green; } // Literal.Date
+  .m     { color: $c-orange; } // Literal.Number
+  .mb    { color: $c-orange; } // Literal.Number.Bin
+  .mf    { color: $c-orange; } // Literal.Number.Float
+  .mh    { color: $c-orange; } // Literal.Number.Hex
+  .mi    { color: $c-orange; } // Literal.Number.Integer
+  .mo    { color: $c-orange; } // Literal.Number.Oct
+  .n     { color: $c-red; } // Name
+  .na    { color: $c-yellow; } // Name.Attribute
+  .nb    { color: $c-blue; } // Name.Builtin
+  .nc    { color: $c-yellow; font-weight: bold; } // Name.Class
+  .nd    { color: $c-yellow; } // Name.Decorator
+  .ne    { color: $c-red; font-weight: bold; } // Name.Exception
+  .nf    { color: $c-blue; } // Name.Function
+  .ni    { color: $c-red; } // Name.Entity
+  .nl    { color: $c-red; } // Name.Label
+  .nn    { color: $c-red; } // Name.Namespace
+  .no    { color: $c-orange; } // Name.Constant
+  .nt    { color: $c-violet; } // Name.Tag
+  .nv    { color: $c-orange; } // Name.Variable
+  .nx    { color: $c-red; } // Name.Other
+  .o     { color: $base05; font-weight: bold; } // Operator
+  .ow    { color: $base05; font-weight: bold; } // Operator.Word
+  .p     { color: $base05; } // Punctuation
+  .py    { color: $c-red; } // Name.Property
+  .s     { color: $c-green; } // Literal.String
+  .s1    { color: $c-green; } // Literal.String.Single
+  .s2    { color: $c-green; } // Literal.String.Double
+  .sb    { color: $c-green; } // Literal.String.Backtick
+  .sc    { color: $c-green; } // Literal.String.Char
+  .sd    { color: $c-green; } // Literal.String.Doc
+  .se    { color: $c-cyan; } // Literal.String.Escape
+  .sh    { color: $c-green; } // Literal.String.Heredoc
+  .si    { color: $c-green; } // Literal.String.Interpol
+  .sr    { color: $c-cyan; } // Literal.String.Regex
+  .ss    { color: $c-green; } // Literal.String.Symbol
+  .sx    { color: $c-green; } // Literal.String.Other
+  .vc    { color: $c-orange; } // Name.Variable.Class
+  .vg    { color: $c-orange; } // Name.Variable.Global
+  .vi    { color: $c-orange; } // Name.Variable.Instance
+  .w     { color: $base05; } // Text.Whitespace
+  .x     { color: $c-brown; } // Other
+}

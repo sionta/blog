@@ -4,8 +4,11 @@ title: Markdown Test page
 description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown]
-author: Andre Attamimi
-# Special configuration on this site:
+author:
+  - name: Andre Attamimi
+  - url: https://github.com/sionta
+
+# Special configuration for layout "post":
 toc: true       # Enable table of contents
 anchor: true    # Enable anchor headings
 diagram: true   # Enable diagrammings

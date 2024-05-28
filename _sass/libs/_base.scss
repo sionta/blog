@@ -42,8 +42,8 @@ body {
        -o-font-feature-settings: "kern" 1;
           font-feature-settings: "kern" 1;
   font-kerning: normal;
-  display: flex;
   min-height: 100vh;
+  display: flex;
   flex-direction: column;
   overflow-wrap: break-word;
 }
@@ -161,8 +161,11 @@ a {
  * Tables
  */
 table {
+  caption {
+    padding: 5px;
+    border: 1px solid var(--bd-1);
+  }
   border-collapse: collapse;
-  border: 1px solid var(--bd-2);
   color: var(--tx-1);
   margin-bottom: $spacing-unit;
   text-align: left;
@@ -179,10 +182,9 @@ table {
     border: 1px solid var(--bd-1);
   }
   tr:nth-child(even) {
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
   }
-  @media screen and (max-width: $media-desktop) {
-    display: block;
+  @media screen and (max-width: $on-laptop) {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -296,16 +298,17 @@ mark {
 }
 
 /**
- * Container
+ * Wrapper
  */
-.container {
-  max-width: calc(#{$content-width} - (#{$spacing-unit}));
+.container,
+.wrapper {
+  max-width: calc(#{$on-laptop} - (#{$spacing-unit}));
   margin: 0 auto;
   padding: 0 $spacing-unit * 0.5;
   @extend %clearfix;
 
-  @media screen and (min-width: $media-desktop) {
-    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+  @media screen and (min-width: $on-laptop) {
+    max-width: calc(#{$on-laptop} - (#{$spacing-unit} * 2));
     padding: 0 $spacing-unit;
   }
 }
@@ -313,14 +316,21 @@ mark {
 /**
  * Icons
  */
-.icon-svg {
-  width: 1.25em;
-  height: 1.25em;
+img a,
+a img {
+  width: 32px;
+  height: 32px;
+}
+.icon-svg,
+.icon {
+  width: 22px;
+  height: 22px;
   display: inline-block;
-  vertical-align: text-bottom;
-  &.external-link {
-    width: 1em;
-    height: 1em;
-    vertical-align: top;
-  }
+  vertical-align: middle;
+}
+.external-link,
+.external-link svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: top;
 }

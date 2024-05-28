@@ -1,21 +1,57 @@
-<header id="header" class="sticky">
-  <div class="site-logo">
-    <a href="{{ '/' | relative_url }}">
-      {% if site.image and site.enable_logo %}
-        <img src="{{ site.logo }}" alt="{{ site.title }}' Logo">
-      {% endif %}
-      {{ site.title }}
-    </a>
+<header class="header sticky">
+  <div class="brand">
+    {% if site.image and site.enable_logo %}
+      <img src="{{ site.image }}" alt="{{ site.title }}'s Logo">
+    {% endif %}
+    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
   </div>
-  <nav class="nav-links">
-    {% include navbar.html %}
+  <nav class="navbar" role="navigation">
+    <ul class="navbar-item">
+      {%- assign nav_items = site.partials | default: site.redirects -%}
+      {%- if nav_items.size > 0 %}
+        {%- for item in nav_items %}
+          {% if item.disable != true %}
+            <li class="navbar-link">
+              {% if item.icon %}
+                <svg class="icon-svg {{ item.icon }}" viewBox="0 0 24 24">
+                  <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#{{- item.icon -}}" />
+                </svg>
+              {%- endif -%}
+              {%- if item.redirect_to contains 'http://' or item.redirect_to contains 'https://' %}
+                <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+                  {{ item.title }}
+                  {% if item.external_icon == true %}
+                    <span class="external-link">
+                      <svg class="icon-svg" viewBox="0 0 24 24">
+                        <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
+                      </svg>
+                    </span>
+                  {% endif %}
+                </a>
+              {%- else %}
+                <a class="{% if page.url == item.url %}current{% endif %}" href="{{ item.url | relative_url }}">
+                  {{ item.title }}
+                </a>
+              {%- endif %}
+            </li>
+          {% endif %}
+        {%- endfor %}
+      {%- endif %}
+    </ul>
   </nav>
-  <div class="nav-actions">
-    <input id="theme-toggle" type="checkbox">
-    <label for="theme-toggle" name="Switch light and dark theme">
-      <svg class="icon-svg" viewBox="0 0 24 24">
+  <div class="action">
+    <label for="theme-toggle" class="theme-toggle" name="Switch light and dark theme">
+      <input id="theme-toggle" type="checkbox">
+      <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <use class="icon-sun" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#sun" />
         <use class="icon-moon" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#moon" />
+      </svg>
+    </label>
+    <label for="menu-toggle" class="menu-toggle" name="Navigation on mobile">
+      <input id="menu-toggle" type="checkbox">
+      <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <use class="icon-menu" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#menu-2" />
+        <use class="icon-cancel" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#x" />
       </svg>
     </label>
   </div>

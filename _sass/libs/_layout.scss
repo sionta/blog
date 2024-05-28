@@ -1,44 +1,13 @@
-%flexbox {
+@mixin flexbox {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-%fixlist {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  li {
-    display: inline-block;
-    &:last-child a {
-      margin-right: 0;
-    }
-  }
-}
-
-%fixtext {
-  text-decoration: none;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-#header,
-#footer,
-#content {
-  padding: calc(#{$spacing-unit} - #{$line-height});
-}
-
-#header {
-  @extend %flexbox;
-  justify-content: space-between;
-  margin-bottom: calc($spacing-unit * $line-height);
-}
-
-#header,
-#footer,
-.logo {
-  text-align: center;
+@mixin unflexbox {
+  display: block;
+  flex-wrap: unset;
+  align-items: unset;
 }
 
 .sticky {
@@ -46,108 +15,169 @@
   top: 0;
   width: 100%;
   z-index: 999;
-
-  background-color: inherit;
-  border-bottom: 1px solid var(--bd-1);
 }
 
-.site-logo {
-  @extend %flexbox;
+.header,
+.footer,
+.content {
+  padding: $spacing-unit;
+}
+
+.header,
+.footer {
+  @include flexbox();
+  background-color: inherit;
+}
+
+.footer {
+  justify-content: center;
+  margin-top: calc($spacing-unit * $line-height);
+}
+
+.header {
+  justify-content: space-between;
+  margin-bottom: calc($spacing-unit * $line-height);
+  border-bottom: 1px solid var(--bd-1);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.brand {
+  @include flexbox();
+  margin-right: calc($spacing-unit * $line-height);
   img {
     width: 32px;
     height: 32px;
     margin-right: calc($spacing-unit / $line-height);
   }
+
   a {
-    @extend %fixtext;
+    font-size: 36px;
     font-family: $font-serif;
-    font-size: 2rem;
     font-weight: 400;
-    color: var(--tx-1);
+    line-height: 1;
   }
 }
 
-.nav-links {
-  // @media screen and (max-width: $media-mobile) {
-  //   display: none;
-  // }
+.navbar {
+  @include flexbox();
+
   ul {
-    @extend %fixlist;
+    margin: 0 auto;
+    padding: 10px 0;
+    list-style: none;
+    overflow: hidden;
+
     li {
-      &.current {
-        font-weight: bold;
+      display: inline-block;
+
+      &:last-child a {
+        margin-right: 0;
       }
+
       a {
-        @extend %fixtext;
-        margin-right: calc($spacing-unit / $line-height);
+        margin-right: $spacing-unit;
+
+        &.current {
+          color: var(--lk-1);
+          text-decoration: underline;
+          text-decoration-thickness: 3px;
+        }
+
+        &:hover {
+          color: var(--lk-1);
+        }
       }
     }
   }
 }
 
-.nav-actions {
+.action {
+  @include flexbox();
+
+  .menu-toggle,
   input[type="checkbox"] {
     display: none;
   }
+
+  label {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    margin-left: calc($spacing-unit / $line-height);
+  }
+
   svg {
     cursor: pointer;
-    width: #{$line-height}em;
-    height: #{$line-height}em;
+    width: 25px;
+    height: 25px;
+
+    .icon-cancel,
     .icon-moon {
       display: none;
     }
   }
-  #theme-toggle:checked {
-    ~ svg .icon-sun {
-      display: block;
-    }
-    ~ svg .icon-moon {
+
+  #theme-toggle:checked + svg {
+    .icon-sun {
       display: none;
+    }
+
+    .icon-moon {
+      display: block;
     }
   }
 }
 
-#home {
+@media screen and (max-width: $on-mobile) {
+  .navbar:not(:first-child) {
+    display: none;
+  }
+
+  .action .menu-toggle {
+    display: block;
+
+    #menu-toggle:checked {
+      + svg {
+        .icon-cancel {
+          display: block;
+        }
+
+        .icon-menu {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.home {
   ul {
-    @extend %fixlist;
+    margin: 0;
+    list-style: none;
     margin-bottom: calc($spacing-unit / $line-height);
   }
+
   a {
-    @extend %fixtext;
+    text-decoration: none;
     font-size: #{$line-height}rem;
   }
+
   time {
     float: inline-end;
   }
+
   p {
     color: var(--tx-1);
     margin-top: calc($spacing-unit / $line-height);
-  }
-}
-
-#footer {
-  @extend %flexbox;
-  ul {
-    @extend %fixlist;
-  }
-  display: inline-block;
-  .social-links {
-    margin: $spacing-unit;
-    span {
-      margin-right: 10px;
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-    a {
-      color: var(--bd-3);
-      @extend %fixtext;
-      svg {
-        width: 1.5em;
-        height: 1.5em;
-        vertical-align: middle;
-      }
-    }
   }
 }
 

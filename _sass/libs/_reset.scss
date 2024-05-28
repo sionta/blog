@@ -3,10 +3,14 @@
 /*
   1. Use a more-intuitive box-sizing model.
 */
-*,
-*::before,
-*::after {
+html {
   box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 /*
@@ -68,4 +72,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+.legacy {
+  box-sizing: content-box;
 }

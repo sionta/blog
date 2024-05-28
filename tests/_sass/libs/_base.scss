@@ -1,0 +1,326 @@
+@import "reset";
+
+html {
+  font-size: $font-size;
+}
+
+/**
+ * Reset some basic elements
+ */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Basic styling
+ */
+/* prettier-ignore */
+body {
+  font: $font-weight #{$font-size}/#{$line-height} $font-sans;
+  color: var(--tx-1);
+  background-color: var(--bg-1);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
+%vertical-rhythm {
+  margin-bottom: $spacing-unit * 0.5;
+}
+
+/**
+ * `main` element
+ */
+main {
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: $font-small;
+}
+
+/**
+ * Lists
+ */
+ul,
+ol {
+  margin-left: $spacing-unit;
+}
+
+li {
+  > ul,
+  > ol {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Headings
+ */
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.2rem;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.8rem;
+}
+
+/**
+ * Links
+ */
+a {
+  color: var(--lk-1);
+  // text-decoration: none;
+
+  &:hover {
+    color: var(--lk-2);
+    text-decoration: underline;
+  }
+
+  // &:visited {
+  //   color: var(--lk-3);
+  // }
+}
+
+/**
+ * Clearfix
+ */
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+ * Tables
+ */
+table {
+  border-collapse: collapse;
+  border: 1px solid var(--bd-2);
+  color: var(--tx-1);
+  margin-bottom: $spacing-unit;
+  text-align: left;
+  width: 100%;
+  th,
+  td {
+    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+  }
+  th {
+    background-color: var(--bg-2);
+    border: 1px solid var(--bd-1);
+  }
+  td {
+    border: 1px solid var(--bd-1);
+  }
+  tr:nth-child(even) {
+    background-color: var(--bg-2);
+  }
+  @media screen and (max-width: $on-laptop) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: var(--tx-1);
+  font-style: italic;
+  font-size: 1.125rem;
+  border-left: 5px solid var(--bd-1);
+  padding: calc($spacing-unit / 2);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+details {
+  padding: 0.6rem 1rem;
+  background-color: var(--bg-2);
+  border: 1px solid var(--bd-1);
+  margin-bottom: $spacing-unit;
+  border-radius: $border-radius;
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  &[open] {
+    padding-bottom: 0.75rem;
+  }
+}
+
+/**
+ * Code formatting
+ */
+kbd,
+pre,
+code {
+  padding: 1px 5px;
+  font-family: $font-mono;
+  font-size: $font-small;
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+  background-color: var(--bg-2);
+}
+pre {
+  letter-spacing: 0.3px;
+  overflow-x: auto;
+  padding: calc($spacing-unit / $line-height);
+
+  > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Definition lists
+dl {
+  dt {
+    font-weight: bold;
+  }
+  dd::before {
+    margin-right: 5px;
+    content: "\2192 \00a0";
+  }
+}
+
+// Blockquote with <cite>
+blockquote:has(cite) {
+  cite::before {
+    content: "\2014 \0020";
+  }
+}
+
+// Horizontal rules
+hr {
+  border: 0;
+  margin: $spacing-unit auto;
+  border-bottom: 1px solid var(--bd-1);
+}
+
+// Keyboards
+kbd {
+  padding: 2px 3px;
+  border-bottom: 3px solid var(--bd-1);
+}
+
+samp {
+  color: var(--lk-1);
+}
+
+abbr {
+  cursor: help;
+}
+
+::selection,
+mark {
+  padding: 2px;
+  color: $base00;
+  background-color: $c-yellow;
+}
+
+/**
+ * Container
+ */
+.container {
+  max-width: calc(#{$on-laptop} - (#{$spacing-unit}));
+  margin: 0 auto;
+  padding: 0 $spacing-unit * 0.5;
+  @extend %clearfix;
+
+  @media screen and (min-width: $on-laptop) {
+    max-width: calc(#{$on-laptop} - (#{$spacing-unit} * 2));
+    padding: 0 $spacing-unit;
+  }
+}
+
+/**
+ * Icons
+ */
+.icon-svg {
+  width: 1.25em;
+  height: 1.25em;
+  display: inline-block;
+  vertical-align: text-bottom;
+  &.external-link {
+    width: 1em;
+    height: 1em;
+    vertical-align: top;
+  }
+}
