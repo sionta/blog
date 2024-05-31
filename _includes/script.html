@@ -14,7 +14,7 @@
 {% if page.collection == 'posts' or page.layout == 'post' %}
   {% include comments.html %}
 
-  {% if page.anchor %}
+  {% if page.anchor == true or page.anchor_headings == true %}
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function () {
         let headings = document.querySelectorAll('h2, h3, h4');
@@ -32,7 +32,7 @@
     </script>
   {% endif %}
 
-  {% if page.diagram %}
+  {% if page.mermaid == true or page.diagram == true %}
     <script type="text/javascript" src="{{- vendor_js -}}/mermaid.min.js"></script>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', () => {

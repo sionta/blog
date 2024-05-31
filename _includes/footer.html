@@ -1,30 +1,32 @@
 <footer class="footer">
-  <span itemprop="copyrightNotice">
-    &copy; {{ 'now' | date: '%Y' }}
-    <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-      <span itemprop="name">
-        <a itemprop="url" href="{{ site.url | absolute_url }}">{{ site.title }}</a> &bullet;
-      </span>
-    </span>
-    {{ site.description }}.
-  </span>
-  {% comment %}
-    <div class="social-links">
-      {% for social in site.social_links %}
-        <span>
-          <a
-            href="{{- social.url -}}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg class="icon-svg" viewBox="0 0 24 24">
-              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#brand-{{- social.platform -}}" />
-              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#brand-{{- social.platform -}}" />
-            </svg>
-            {{ social.platform | escape | capitalize -}}
-          </a>
+  <div class="wrapper">
+    <span itemprop="copyrightNotice">
+      &copy; {{ 'now' | date: '%Y' }}
+      <span itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <span itemprop="name">
+          <a itemprop="url" href="{{ site.url | absolute_url }}">{{ site.title }}</a> &bullet;
         </span>
-      {% endfor %}
-    </div>
-  {% endcomment %}
+      </span>
+      {{ site.description }}.
+    </span>
+    {% comment %}
+      <div class="social-links">
+        {% for social in site.social_links %}
+          <span>
+            <a
+              href="{{- social.url -}}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="icon-svg" viewBox="0 0 24 24">
+                <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#brand-{{- social.platform -}}" />
+                <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#brand-{{- social.platform -}}" />
+              </svg>
+              {{ social.platform | escape | capitalize -}}
+            </a>
+          </span>
+        {% endfor %}
+      </div>
+    {% endcomment %}
+  </div>
 </footer>

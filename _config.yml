@@ -2,9 +2,9 @@
 # Site settings ******************************************
 #
 
-title: sionta.
+title: sionta
 description: >- # this means to ignore newlines until "baseurl:"
-  A brief description of my website
+  run, study, modify, and share
 
 baseurl: "" # the subpath of your site, e.g. "/blog" (DON'T include a trailing slash)
 url: "" # the base hostname & protocol for your site, e.g. "http://example.com"
@@ -38,9 +38,9 @@ author:
 date_format: "%b %d, %Y"
 
 comments:
-  provider: "giscus" # e.g. "disqus" and the provider settings below:
+  provider: "giscus" # e.g. "disqus". The provider settings below:
   disqus:
-    # https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    # What is `shortname` refer to https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: "andreattamimi"
   giscus:
     # For more setting refer to https://giscus.app/
@@ -49,7 +49,7 @@ comments:
     category: "Q&A"
     category_id: "DIC_kwDOLxRA-84CfGPN"
   utterances:
-    # https://utteranc.es/
+    # For more setting refer to https://utteranc.es/
     repo: "sionta/blog" # e.g. "owner/repo"
     issue_term: "pathname"
 
@@ -85,18 +85,24 @@ compress_html:
 
 # https://sass-lang.com/documentation/cli/ruby-sass/
 sass:
-  style: compressed
-  # style: expanded # better for test in local
+  # style: compressed
+  style: expanded # better test in local
 
 markdown: kramdown
 kramdown:
-  input: GFM
+  # input: GFM
   hard_wrap: false
   auto_ids: true
-  parse_block_html: true
+  # parse_block_html: true
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
+    # default_lang: html
+    # span:
+    #   line_numbers: false
+    # block:
+    #   line_numbers: true
+    #   start_line: 1
   math_engine: katex
   math_engine_opts: {}
 

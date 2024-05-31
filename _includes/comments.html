@@ -1,4 +1,4 @@
-{% if page.comments == true %}
+{% if page.comments == true and site.comments.provider %}
   {% case site.comments.provider %}
     {% when 'disqus' %}
       <script type="text/javascript">

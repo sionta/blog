@@ -11,8 +11,8 @@ author:
 # Special configuration for layout "post":
 toc: true       # Enable table of contents
 anchor: true    # Enable anchor headings
-diagram: true   # Enable diagrammings
-comments: true  # Disable comments
+mermaid: true   # Enable mermaid diagrammings
+comments: true  # Enable comments
 ---
 <!-- markdownlint-disable MD022 MD025 MD033 MD036 MD056 -->
 

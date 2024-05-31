@@ -91,7 +91,7 @@ figure > img {
 }
 
 figcaption {
-  font-size: $font-small;
+  font-size: $font-size * 0.875;
 }
 
 /**
@@ -181,7 +181,7 @@ table {
   tr:nth-child(even) {
     background-color: var(--bg-2);
   }
-  @media screen and (max-width: $on-laptop) {
+  @media screen and (max-width: map-get($breakpoints, lg)) {
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -232,7 +232,7 @@ pre,
 code {
   padding: 1px 5px;
   font-family: $font-mono;
-  font-size: $font-small;
+  font-size: $font-size * 0.875;
   border: 1px solid var(--bd-1);
   border-radius: $border-radius;
   background-color: var(--bg-2);
@@ -299,13 +299,13 @@ mark {
  * Container
  */
 .container {
-  max-width: calc(#{$on-laptop} - (#{$spacing-unit}));
+  max-width: calc(#{map-get($breakpoints, lg)} - (#{$spacing-unit}));
   margin: 0 auto;
   padding: 0 $spacing-unit * 0.5;
   @extend %clearfix;
 
-  @media screen and (min-width: $on-laptop) {
-    max-width: calc(#{$on-laptop} - (#{$spacing-unit} * 2));
+  @media screen and (min-width: map-get($breakpoints, lg)) {
+    max-width: calc(#{map-get($breakpoints, lg)} - (#{$spacing-unit} * 2));
     padding: 0 $spacing-unit;
   }
 }

@@ -5,33 +5,47 @@
 @import url("../fonts/cormorant-garamond/cormorant_garamond.min.css");
 @import url("../fonts/jetbrains-mono/jetbrains-mono.min.css");
 @import url("../fonts/fira-code/fira_code.min.css");
+
 $font-sans: Lato, Arial, system-ui, -apple-system !default;
 $font-serif: "Cormorant Garamond", serif !default;
 $font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace !default;
 
 $font-size: 16px !default;
-$font-small: $font-size * 0.875 !default;
 $font-weight: 400 !default;
 
-// Layouts
-$line-height: 1.5 !default;
-$border-radius: 5px !default;
-$spacing-unit: 20px;
-$on-mobile: 480px;
-$on-laptop: 768px;
+$heading-sizes: (
+  h1: 2.5rem,
+  h2: 2rem,
+  h3: 1.75rem,
+  h4: 1.5rem,
+  h5: 1.25rem,
+  h6: 1rem,
+);
 
-@mixin breakpoint($size: 768px, $for: max) {
-  @media screen and (#{$for}-width: $size) {
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+$line-height: 1.5 !default;
+$spacing-unit: 20px !default;
+$border-radius: 5px !default;
+$content-width: map-get($breakpoints, md);
+
+@mixin breakpoint($size, $for: max) {
+  @media screen and (#{$for}-width: #{map-get($breakpoints, $size)}) {
     @content;
   }
 }
 
 // Import pre-styling-overrides hook and style-partials.
-/* prettier-ignore */
-@import
-  "libs/colors", // Defines color scheme and css variables.
-  "variables",   // Hook to override predefined variables.
-  "libs/base",   // Defines element resets.
-  "libs/layout", // Defines structure and style based on CSS selectors.
-  "styles"       // Hook to override existing styles.
-;
+@import "variables";
+@import "libs/reset";
+@import "libs/colors";
+@import "libs/base";
+@import "libs/layout";
+@import "libs/utilities";
+@import "libs/syntax";
+@import "styles";

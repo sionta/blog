@@ -3,6 +3,17 @@
 
 /* prettier-ignore */
 .highlight {
+  table {
+    pre { margin: 0; }
+    td {
+      padding: 5px;
+      &.gutter {
+        width: 10px;
+        padding-right: 1em;
+        color: #bdc1c4;
+      }
+    }
+  }
   .bp    { color: $c-blue; } // Name.Builtin.Pseudo
   .c     { color: $base03; font-style: italic; } // Comment
   .c1    { color: $base03; font-style: italic; } // Comment.Single

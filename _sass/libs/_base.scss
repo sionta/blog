@@ -1,5 +1,3 @@
-@import "reset";
-
 html {
   font-size: $font-size;
 }
@@ -91,7 +89,7 @@ figure > img {
 }
 
 figcaption {
-  font-size: $font-small;
+  font-size: $font-size * 0.875;
 }
 
 /**
@@ -112,23 +110,10 @@ li {
 /**
  * Headings
  */
-h1 {
-  font-size: 2.5rem;
-}
-h2 {
-  font-size: 2rem;
-}
-h3 {
-  font-size: 1.5rem;
-}
-h4 {
-  font-size: 1.2rem;
-}
-h5 {
-  font-size: 1rem;
-}
-h6 {
-  font-size: 0.8rem;
+@each $h, $s in $heading-sizes {
+  #{$h} {
+    font-size: $s;
+  }
 }
 
 /**
@@ -143,18 +128,9 @@ a {
     text-decoration: underline;
   }
 
-  // &:visited {
-  //   color: var(--lk-3);
-  // }
-}
-
-/**
- * Clearfix
- */
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+  &:visited {
+    color: var(--lk-3);
+  }
 }
 
 /**
@@ -184,7 +160,7 @@ table {
   tr:nth-child(even) {
     background-color: var(--bg-3);
   }
-  @media screen and (max-width: $on-laptop) {
+  @include breakpoint(lg) {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -234,7 +210,7 @@ pre,
 code {
   padding: 1px 5px;
   font-family: $font-mono;
-  font-size: $font-small;
+  font-size: $font-size * 0.875;
   border: 1px solid var(--bd-1);
   border-radius: $border-radius;
   background-color: var(--bg-2);
@@ -302,25 +278,30 @@ mark {
  */
 .container,
 .wrapper {
-  max-width: calc(#{$on-laptop} - (#{$spacing-unit}));
+  max-width: calc(#{$content-width} - (#{$spacing-unit}));
   margin: 0 auto;
   padding: 0 $spacing-unit * 0.5;
   @extend %clearfix;
 
-  @media screen and (min-width: $on-laptop) {
-    max-width: calc(#{$on-laptop} - (#{$spacing-unit} * 2));
+  @include breakpoint(lg, min) {
+    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
     padding: 0 $spacing-unit;
   }
 }
 
 /**
+ * Clearfix
+ */
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
  * Icons
  */
-img a,
-a img {
-  width: 32px;
-  height: 32px;
-}
+
 .icon-svg,
 .icon {
   width: 22px;
@@ -328,6 +309,7 @@ a img {
   display: inline-block;
   vertical-align: middle;
 }
+
 .external-link,
 .external-link svg {
   width: 16px;

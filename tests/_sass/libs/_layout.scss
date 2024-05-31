@@ -68,7 +68,7 @@
 }
 
 .nav-links {
-  // @media screen and (max-width: $on-laptop) {
+  // @media screen and (max-width: map-get($breakpoints, lg)) {
   //   display: none;
   // }
   ul {

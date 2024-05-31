@@ -3,7 +3,7 @@
 title: About
 layout: page
 order: 1
-icon: info-circle
+# icon: info-circle
 ---
 
 `{{ page.path | split: '/' | first }}` is a ✨ _special_ ✨ directory because it appears in the header navigation. For example, Front Matter header pages can be seen below:
