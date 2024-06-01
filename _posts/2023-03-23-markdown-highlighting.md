@@ -1,7 +1,18 @@
 ---
-title: Advanced Code Samples
+layout: post
+title: Example Code Highlighting
 categories: test
 ---
+<!-- markdownlint-disable -->
+
+### Diff
+
+```diff
+function addTwoNumbers (num1, num2) {
+-  return 1 + 2
++  return num1 + num2
+}
+```
 
 ### HTML
 
@@ -26,6 +37,20 @@ categories: test
 ```
 
 ### CSS
+
+{% highlight css linenos %}
+/* This is a single-line comment */
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+h1 {
+    color: blue;
+    text-decoration: underline;
+}
+{% endhighlight %}
 
 ```css
 /* This is a single-line comment */

@@ -8,18 +8,15 @@
 
 $font-sans: Lato, Arial, system-ui, -apple-system !default;
 $font-serif: "Cormorant Garamond", serif !default;
-$font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace !default;
-
-$font-size: 16px !default;
-$font-weight: 400 !default;
+$font-mono: "Fira Code", "JetBrains Mono", Consolas, monospace !default;
 
 $heading-sizes: (
-  h1: 2.5rem,
-  h2: 2rem,
-  h3: 1.75rem,
-  h4: 1.5rem,
-  h5: 1.25rem,
-  h6: 1rem,
+  h1: 2rem,
+  h2: 1.75rem,
+  h3: 1.5rem,
+  h4: 1.25rem,
+  h5: 1rem,
+  h6: 0.875rem,
 );
 
 $breakpoints: (
@@ -29,10 +26,15 @@ $breakpoints: (
   xl: 1200px,
 );
 
+$content-width: map-get($breakpoints, md);
+
+$font-size: 16px !default;
+$font-small: $font-size * 0.875 !default;
+$font-weight: 400 !default;
+
 $line-height: 1.5 !default;
 $spacing-unit: 20px !default;
 $border-radius: 5px !default;
-$content-width: map-get($breakpoints, md);
 
 @mixin breakpoint($size, $for: max) {
   @media screen and (#{$for}-width: #{map-get($breakpoints, $size)}) {

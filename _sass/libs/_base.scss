@@ -1,3 +1,5 @@
+/* Base on Minima v3 https://github.com/jekyll/minima */
+
 html {
   font-size: $font-size;
 }
@@ -28,20 +30,18 @@ figure {
 /**
  * Basic styling
  */
-/* prettier-ignore */
 body {
   font: $font-weight #{$font-size}/#{$line-height} $font-sans;
   color: var(--tx-1);
   background-color: var(--bg-1);
   -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
   -webkit-font-feature-settings: "kern" 1;
-     -moz-font-feature-settings: "kern" 1;
-       -o-font-feature-settings: "kern" 1;
-          font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
   font-kerning: normal;
-  min-height: 100vh;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   overflow-wrap: break-word;
 }
@@ -64,6 +64,11 @@ dl,
 figure,
 %vertical-rhythm {
   margin-bottom: $spacing-unit * 0.5;
+}
+
+hr {
+  margin-top: $spacing-unit;
+  margin-bottom: $spacing-unit;
 }
 
 /**
@@ -89,7 +94,7 @@ figure > img {
 }
 
 figcaption {
-  font-size: $font-size * 0.875;
+  font-size: $font-small;
 }
 
 /**
@@ -110,9 +115,24 @@ li {
 /**
  * Headings
  */
-@each $h, $s in $heading-sizes {
-  #{$h} {
-    font-size: $s;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight;
+}
+
+@each $heading, $size in $heading-sizes {
+  #{$heading} {
+    font-size: $size;
+    @if $heading == "h1" {
+      font-weight: bold;
+      &:not(:first-child) {
+        font-weight: $font-weight;
+      }
+    }
   }
 }
 
@@ -121,104 +141,44 @@ li {
  */
 a {
   color: var(--lk-1);
-  // text-decoration: none;
+  text-decoration: none;
 
   &:hover {
     color: var(--lk-2);
     text-decoration: underline;
   }
 
-  &:visited {
-    color: var(--lk-3);
-  }
-}
+  // &:visited {
+  //   color: var(--lk-3);
+  // }
+  .social-media-list &:hover {
+    text-decoration: none;
 
-/**
- * Tables
- */
-table {
-  caption {
-    padding: 5px;
-    border: 1px solid var(--bd-1);
-  }
-  border-collapse: collapse;
-  color: var(--tx-1);
-  margin-bottom: $spacing-unit;
-  text-align: left;
-  width: 100%;
-  th,
-  td {
-    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
-  }
-  th {
-    background-color: var(--bg-2);
-    border: 1px solid var(--bd-1);
-  }
-  td {
-    border: 1px solid var(--bd-1);
-  }
-  tr:nth-child(even) {
-    background-color: var(--bg-3);
-  }
-  @include breakpoint(lg) {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
-}
-
-/**
- * Blockquotes
- */
-blockquote {
-  color: var(--tx-1);
-  font-style: italic;
-  font-size: 1.125rem;
-  border-left: 5px solid var(--bd-1);
-  padding: calc($spacing-unit / 2);
-
-  > :last-child {
-    margin-bottom: 0;
-  }
-
-  i,
-  em {
-    font-style: normal;
-  }
-}
-
-details {
-  padding: 0.6rem 1rem;
-  background-color: var(--bg-2);
-  border: 1px solid var(--bd-1);
-  margin-bottom: $spacing-unit;
-  border-radius: $border-radius;
-  summary {
-    cursor: pointer;
-    font-weight: bold;
-  }
-  &[open] {
-    padding-bottom: 0.75rem;
+    .username {
+      text-decoration: underline;
+    }
   }
 }
 
 /**
  * Code formatting
  */
-kbd,
 pre,
 code {
-  padding: 1px 5px;
   font-family: $font-mono;
-  font-size: $font-size * 0.875;
+  font-size: 0.875rem;
   border: 1px solid var(--bd-1);
-  border-radius: $border-radius;
+  border-radius: 3px;
   background-color: var(--bg-2);
 }
+
+code {
+  padding: 1px 5px;
+}
+
 pre {
-  letter-spacing: 0.3px;
+  padding: 8px 12px;
   overflow-x: auto;
-  padding: calc($spacing-unit / $line-height);
 
   > code {
     border: 0;
@@ -227,65 +187,21 @@ pre {
   }
 }
 
-// Definition lists
-dl {
-  dt {
-    font-weight: bold;
-  }
-  dd::before {
-    margin-right: 5px;
-    content: "\2192 \00a0";
-  }
-}
-
-// Blockquote with <cite>
-blockquote:has(cite) {
-  cite::before {
-    content: "\2014 \0020";
-  }
-}
-
-// Horizontal rules
-hr {
-  border: 0;
-  margin: $spacing-unit auto;
-  border-bottom: 1px solid var(--bd-1);
-}
-
-// Keyboards
-kbd {
-  padding: 2px 3px;
-  border-bottom: 3px solid var(--bd-1);
-}
-
-samp {
-  color: var(--lk-1);
-}
-
-abbr {
-  cursor: help;
-}
-
-::selection,
-mark {
-  padding: 2px;
-  color: $base00;
-  background-color: $c-yellow;
-}
-
 /**
  * Wrapper
  */
-.container,
 .wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
-  margin: 0 auto;
-  padding: 0 $spacing-unit * 0.5;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit * 0.5;
+  padding-left: $spacing-unit * 0.5;
   @extend %clearfix;
 
   @include breakpoint(lg, min) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-    padding: 0 $spacing-unit;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
   }
 }
 
@@ -302,17 +218,83 @@ mark {
  * Icons
  */
 
-.icon-svg,
-.icon {
-  width: 22px;
-  height: 22px;
-  display: inline-block;
-  vertical-align: middle;
+.orange {
+  color: #f66a0a;
 }
 
-.external-link,
-.external-link svg {
-  width: 16px;
-  height: 16px;
-  vertical-align: top;
+.grey {
+  color: #828282;
+}
+
+.svg-icon {
+  width: 1.25em;
+  height: 1.25em;
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: var(--tx-1);
+  border-left: 4px solid var(--bd-1);
+  padding-left: $spacing-unit * 0.5;
+  font-size: 1.125rem;
+  font-style: italic;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+/**
+ * Tables
+ */
+table {
+  width: 100%;
+  text-align: left;
+  color: var(--tx-1);
+  border-collapse: collapse;
+  margin-bottom: $spacing-unit;
+  th,
+  td {
+    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+  }
+  th {
+    background-color: var(--bg-2);
+    border: 1px solid var(--bd-1);
+  }
+  td {
+    border: 1px solid var(--bd-1);
+  }
+  tr:nth-child(even) {
+    background-color: var(--bg-3);
+  }
+
+  @include breakpoint(lg, max) {
+    // display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+}
+
+details {
+  padding: 0.6rem 1rem;
+  background-color: var(--bg-2);
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+  margin-top: calc($spacing-unit * $line-height);
+  margin-bottom: calc($spacing-unit * $line-height);
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
 }

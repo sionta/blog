@@ -1,0 +1,18 @@
+<ul class="social-media-list">
+  {%- for entry in site.social_links -%}
+    <li>
+      <a
+        {% unless entry.platform == 'rss' %}
+          rel="me"
+        {% endunless -%}
+        href="{{ entry.user_url }}"
+        target="_blank"
+        title="{{ entry.title | default: entry.platform }}"
+      >
+        <svg class="svg-icon grey">
+          <use xlink:href="{{ '/assets/social-icons.svg#' | append: entry.platform | relative_url }}"></use>
+        </svg>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

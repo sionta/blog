@@ -1,5 +1,64 @@
-.icon-svg,
-.icon {
+@charset "utf-8";
+
+// Definition lists
+dl {
+  dt {
+    font-weight: bold;
+  }
+
+  dd::before {
+    margin-right: 5px;
+    content: "\2192 \00a0";
+  }
+}
+
+// Blockquote with <cite>
+blockquote:has(cite) {
+  cite::before {
+    content: "\2014 \0020";
+  }
+}
+
+// Horizontal rules
+hr {
+  border: 0;
+  border-bottom: 2px solid var(--bd-1);
+}
+
+// Keyboards
+kbd {
+  background-color: var(--bg-2);
+  color: var(--tx-1);
+  padding: 2px 5px;
+  border-radius: 3px;
+  border-bottom: 3px solid var(--bd-1);
+}
+
+samp {
+  background-color: inherit !important;
+  color: var(--lk-1);
+}
+
+abbr {
+  cursor: help;
+}
+
+mark,
+::selection {
+  padding: 2px;
+  color: var(--black);
+}
+
+::selection {
+  background-color: var(--lk-1);
+}
+
+mark {
+  background-color: var(--yellow);
+}
+
+.icon,
+.icon-svg {
   width: 22px;
   height: 22px;
   display: inline-block;
@@ -17,6 +76,7 @@
 .task-list {
   margin-left: 0;
   list-style: none;
+
   &-item {
     &-checkbox {
       cursor: not-allowed;
@@ -29,9 +89,11 @@
   li {
     margin-top: 0.5rem;
   }
+
   a {
     color: var(--lk-1);
     text-decoration: none;
+
     &:hover {
       color: var(--lk-2);
     }
@@ -44,6 +106,7 @@
   font-weight: bold;
   color: var(--bd-1);
   text-decoration: none;
+
   &:hover {
     text-decoration: none;
     color: var(--lk-1);
@@ -73,10 +136,11 @@
 
 // Alerts
 .alert {
+  padding: 20px;
+  margin: 20px auto;
   font-size: medium;
+  font-weight: normal;
   font-style: normal;
-  padding: 10px auto;
-  margin: 20px 0;
   border-radius: 5px;
 
   @mixin color-alert($color) {
@@ -84,6 +148,7 @@
     // border-left: 5px solid $color;
     border-left: 0;
     color: $color;
+
     code {
       color: $color;
       border: 1px solid rgba($color, 0.35);

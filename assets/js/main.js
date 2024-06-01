@@ -1,10 +1,8 @@
-(function main() {
-  function createScriptTag(path) {
-    let scriptTag = document.createElement("script");
-    scriptTag.src = path;
-    document.body.appendChild(scriptTag);
-  }
+---
+# main.js
+---
 
+(function main() {
   function menuToggle() {
     let menuToggle = document.getElementById("menu-toggle");
     let navbar = document.querySelector(".navbar");
@@ -18,7 +16,7 @@
       });
     }
   }
-  menuToggle();
+  // menuToggle();
 
   function switchTheme() {
     const themeToggle = document.getElementById("theme-toggle");

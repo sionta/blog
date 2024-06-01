@@ -1,7 +1,5 @@
 ---
-# the default layout is `page`
 title: About
-layout: page
 order: 1
 # icon: info-circle
 ---

@@ -1,85 +1,107 @@
-$base00: #1d1f21;    // Default Background
-$base01: #282a2e;    // Lighter Background (Used for status bars, line number and folding marks)
-$base02: #373b41;    // Selection Background
-$base03: #969896;    // Comments, Invisibles, Line Highlighting
-$base04: #b4b7b4;    // Dark Foreground (Used for status bars)
-$base05: #c5c8c6;    // Default Foreground, Caret, Delimiters, Operators
-$base06: #e0e0e0;    // Light Foreground (Not often used)
-$base07: #fcfcfc;    // Light Background (Not often used)
+@charset "utf-8";
 
-$c-black: #121212;   // Alternative Background
-$c-white: #f2f2f2;   // Alternative Foreground
-$c-red: #cc6666;     // Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-$c-orange: #de935f;  // Integers, Boolean, Constants, XML Attributes, Markup Link Url
-$c-yellow: #f0c674;  // Classes, Markup Bold, Search Text Background
-$c-green: #b5bd68;   // Strings, Inherited Class, Markup Code, Diff Inserted
-$c-cyan: #8abeb7;    // Support, Regular Expressions, Escape Characters, Markup Quotes
-$c-blue: #81a2be;    // Functions, Methods, Attribute IDs, Headings
-$c-violet: #b294bb;  // Keywords, Storage, Selector, Markup Italic, Diff Changed
-$c-magenta: #d33682; // Magenta taken from Solarized
-$c-brown: #a3685a;    // Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+$base00: #1d1f21;
+$base01: #282a2e;
+$base02: #373b41;
+$base03: #969896;
+$base04: #c1cadb;
+$base05: #d8dee9;
+$base06: #e5e9f0;
+$base07: #eceff4;
+$base08: #cc6666;
+$base09: #de935f;
+$base0A: #f0c674;
+$base0B: #b5bd68;
+$base0C: #8abeb7;
+$base0D: #81a2be;
+$base0E: #b294bb;
+$base0F: #a3685a;
+$base0G: #d33682;
 
 /* prettier-ignore */
-@mixin colorScheme(
-  $rebase00, $rebase01, $rebase02, $rebase03,
-  $rebase04, $rebase05, $rebase06, $rebase07
+@mixin css-variables(
+  $scheme: dark,
+  $base00: #{$base00},
+  $base01: #{$base01},
+  $base02: #{$base02},
+  $base03: #{$base03},
+  $base04: #{$base04},
+  $base05: #{$base05},
+  $base06: #{$base06},
+  $base07: #{$base07},
 ) {
-  --bg-1: #{$rebase00};
-  --bg-2: #{$rebase01};
-  --bg-3: #{$rebase02};
+  color-scheme: #{$scheme};
+  --bg-1:     #{$base00};
+  --bg-2:     #{$base01};
+  --bg-3:     #{$base02};
+  --tx-1:     #{$base05};
+  --tx-2:     #{$base06};
+  --tx-3:     #{$base07};
+  --bd-1:     #{$base02};
+  --bd-2:     #{$base03};
+  --bd-3:     #{$base04};
 
-  --tx-1: #{$rebase07};
-  --tx-2: #{$rebase06};
-  --tx-3: #{$rebase05};
+  --lk-1: var(--blue);
+  --lk-2: var(--cyan);
+  --lk-3: var(--violet);
 
-  --bd-1: #{$rebase02};
-  --bd-2: #{$rebase03};
-  --bd-3: #{$rebase04};
+  --syntax-error: var(--red);
+  @if $scheme == dark {
+    --syntax-string: #{$base04};
+    --syntax-comment: #{$base03};
+  } @else {
+    --syntax-string: #{$base04};
+    --syntax-comment: #{$base04};
+  }
 
-  --lk-1: #{$c-green};
-  --lk-2: #{$c-orange};
-  --lk-3: #{$c-cyan};
-
+  @if $scheme == dark {
+    --red:      #{$base08};
+    --orange:   #{$base09};
+    --yellow:   #{$base0A};
+    --green:    #{$base0B};
+    --cyan:     #{$base0C};
+    --blue:     #{$base0D};
+    --violet:   #{$base0E};
+    --brown:    #{$base0F};
+    --magenta:  #{$base0G};
+  } @else {
+    --red:      #{darken($base08, 10%)};
+    --orange:   #{darken($base09, 10%)};
+    --yellow:   #{darken($base0A, 10%)};
+    --green:    #{darken($base0B, 10%)};
+    --cyan:     #{darken($base0C, 10%)};
+    --blue:     #{darken($base0D, 10%)};
+    --violet:   #{darken($base0E, 10%)};
+    --brown:    #{darken($base0F, 10%)};
+    --magenta:  #{darken($base0G, 10%)};
+  }
   @content;
 }
 
-/* prettier-ignore */
 :root {
-  color-scheme: light;
-  @include colorScheme(
-    $rebase07: $base00,
-    $rebase06: $base01,
-    $rebase05: $base02,
-    $rebase04: $base03,
-    $rebase03: $base04,
-    $rebase02: $base05,
-    $rebase01: $base06,
-    $rebase00: $base07
-  ) {
-    --black: #{$c-black};
-    --white: #{$c-white};
-    --red: #{$c-red};
-    --orange: #{$c-orange};
-    --yellow: #{$c-yellow};
-    --green: #{$c-green};
-    --cyan: #{$c-cyan};
-    --blue: #{$c-blue};
-    --violet: #{$c-violet};
-    --magenta: #{$c-magenta};
-    --brown: #{$c-brown};
-  }
+  @include css-variables(
+    $scheme: light,
+    $base00: #eceff4,
+    $base01: #e5e9f0,
+    $base02: #d8dee9,
+    $base03: #c1cadb,
+    $base04: #969896,
+    $base05: #373b41,
+    $base06: #282a2e,
+    $base07: #1d1f21
+  );
 }
-/* prettier-ignore */
+
 [data-theme="dark"] {
-  color-scheme: dark;
-  @include colorScheme(
-    $rebase00: $base00,
-    $rebase01: $base01,
-    $rebase02: $base02,
-    $rebase03: $base03,
-    $rebase04: $base04,
-    $rebase05: $base05,
-    $rebase06: $base06,
-    $rebase07: $base07
+  @include css-variables(
+    $scheme: dark,
+    $base00: #1d1f21,
+    $base01: #282a2e,
+    $base02: #373b41,
+    $base03: #969896,
+    $base04: #c1cadb,
+    $base05: #d8dee9,
+    $base06: #e5e9f0,
+    $base07: #eceff4
   );
 }

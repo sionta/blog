@@ -17,20 +17,24 @@ image: "/assets/img/avatar.svg" # https://github.com/sionta.png?size=100
 # Set to `true` to enable site logo in header and "image:" is required.
 enable_logo: false
 
-# Generate social links
+twitter:
+  username: R007MMXV
+
+# Generate social links in footer. for available platforms see "includes/social-item".
 social_links:
-  - { platform: github, url: "https://github.com/sionta" }
-  - { platform: mastodon, url: "https://mastodon.social/@sionta" }
-  - { platform: twitter, url: "https://twitter.com/r007mmxv" }
+  - { platform: github, user_url: "https://github.com/sionta" }
+  - { platform: mastodon, user_url: "https://mastodon.social/@sionta" }
+  - { platform: twitter, user_url: "https://twitter.com/r007mmxv" }
 
 #
 # Post settings ******************************************
 #
 
 author:
-  avatar: "/assets/img/avatar.svg"
+  picture: "/assets/img/avatar.svg"
   name: Andre Attamimi
   twitter: R007MMXV
+  email: info@andreattamimi.com
   url: https://github.com/sionta
 
 # The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
@@ -113,6 +117,9 @@ jekyll-archives:
   permalinks:
     tag: "/tags/:name/"
     category: "/categories/:name/"
+
+paginate: 5
+paginate_path: "/blog/page:num/"
 
 collections:
   redirects:
