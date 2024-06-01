@@ -29,7 +29,7 @@ function ConvertTo-SVGSymbol {
 
         if ($classesSVG -match 'outline') {
             $contentSVG = $contentSVG -replace 'xmlns="http://www.w3.org/2000/svg"', ''
-            $contentSVG = $contentSVG -replace '<svg', "<symbol id=`"$symbolID`" class=`"icon icon-svg`""
+            $contentSVG = $contentSVG -replace '<svg', "<symbol id=`"$symbolID`" class=`"icon icon-tabler`""
             $contentSVG = $contentSVG -replace '</svg>', '</symbol>'
             $contentSVG = $contentSVG -replace $classesSVG, ''
             $contentSVG = $contentSVG -replace '\s{2,}', ' '

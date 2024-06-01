@@ -5,7 +5,7 @@
       {% if nav.disable != true %}
         {%- capture item_name -%}
           {% if nav.icon %}
-            <svg class="icon-svg {{ nav.icon }}" viewBox="0 0 24 24">
+            <svg class="icon-tabler {{ nav.icon }}" viewBox="0 0 24 24">
               <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#{{- nav.icon -}}" />
             </svg> {{ nav.title }}
           {% else -%}
@@ -17,7 +17,7 @@
             <a href="{{ nav.url }}" target="_blank" rel="noopener noreferrer">
               {{ item_name }}
               {% if nav.external_icon == true %}
-                <svg class="icon-svg external-link" viewBox="0 0 24 24">
+                <svg class="icon-tabler external-link" viewBox="0 0 24 24">
                   <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
                 </svg>
               {% endif %}

@@ -75,7 +75,8 @@ hr {
  * `main` element
  */
 main {
-  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+  display: block;
+  /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
 /**
@@ -127,8 +128,10 @@ h6 {
 @each $heading, $size in $heading-sizes {
   #{$heading} {
     font-size: $size;
+
     @if $heading == "h1" {
       font-weight: bold;
+
       &:not(:first-child) {
         font-weight: $font-weight;
       }
@@ -263,17 +266,21 @@ table {
   color: var(--tx-1);
   border-collapse: collapse;
   margin-bottom: $spacing-unit;
+
   th,
   td {
     padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
   }
+
   th {
     background-color: var(--bg-2);
     border: 1px solid var(--bd-1);
   }
+
   td {
     border: 1px solid var(--bd-1);
   }
+
   tr:nth-child(even) {
     background-color: var(--bg-3);
   }
@@ -293,6 +300,7 @@ details {
   border-radius: $border-radius;
   margin-top: calc($spacing-unit * $line-height);
   margin-bottom: calc($spacing-unit * $line-height);
+
   summary {
     cursor: pointer;
     font-weight: bold;

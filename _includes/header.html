@@ -10,7 +10,7 @@
               <li>
                 {%- capture item_name -%}
                   {% if item.icon %}
-                    <svg class="icon-svg {{ item.icon }}" viewBox="0 0 24 24">
+                    <svg class="icon-tabler {{ item.icon }}" viewBox="0 0 24 24">
                       <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#{{- item.icon -}}" />
                     </svg> {{ item.title }}
                   {% else -%}
@@ -22,7 +22,7 @@
                     {{ item_name }}
                     {% if item.external_icon == true %}
                       <span class="external-link">
-                        <svg class="icon-svg" viewBox="0 0 24 24">
+                        <svg class="icon-tabler" viewBox="0 0 24 24">
                           <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
                         </svg>
                       </span>
@@ -43,7 +43,7 @@
       </ul>
       <label for="theme-toggle" class="theme-toggle">
         <input id="theme-toggle" type="checkbox" name="Switch light and dark theme">
-        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <svg class="icon-tabler" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <use class="icon-sun" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#sun" />
           <use class="icon-moon" xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#moon" />
         </svg>

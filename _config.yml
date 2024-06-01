@@ -37,6 +37,9 @@ author:
   email: info@andreattamimi.com
   url: https://github.com/sionta
 
+# Set to `true` to show excerpts on the homepage.
+show_excerpts: false
+
 # The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%b %d, %Y"
@@ -89,8 +92,8 @@ compress_html:
 
 # https://sass-lang.com/documentation/cli/ruby-sass/
 sass:
-  # style: compressed
-  style: expanded # better test in local
+  style: compressed
+  # style: expanded # for development
 
 markdown: kramdown
 kramdown:
