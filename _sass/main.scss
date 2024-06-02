@@ -6,6 +6,8 @@
 @import url("../fonts/jetbrains-mono/jetbrains-mono.min.css");
 @import url("../fonts/fira-code/fira_code.min.css");
 
+$font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols;
 $font-sans: Lato, Arial, system-ui, -apple-system !default;
 $font-serif: "Cormorant Garamond", serif !default;
 $font-mono: "Fira Code", "JetBrains Mono", Consolas, monospace !default;
@@ -34,7 +36,7 @@ $font-weight: 400 !default;
 
 $line-height: 1.5 !default;
 $spacing-unit: 20px !default;
-$border-radius: 5px !default;
+$border-radius: 3px !default;
 
 @mixin breakpoint($size, $for: max) {
   @media screen and (#{$for}-width: #{map-get($breakpoints, $size)}) {

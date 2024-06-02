@@ -4,10 +4,10 @@
       <a
         {% unless entry.platform == 'rss' %}
           rel="me"
-        {% endunless -%}
+        {% endunless %}
         href="{{ entry.user_url }}"
-        target="_blank"
         title="{{ entry.title | default: entry.platform }}"
+        target="_blank"
       >
         <svg class="svg-icon grey">
           <use xlink:href="{{ '/assets/social-icons.svg#' | append: entry.platform | relative_url }}"></use>

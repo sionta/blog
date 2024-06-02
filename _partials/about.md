@@ -1,43 +1,10 @@
 ---
+navigation: true
+layout: base
+order: 2
+
 title: About
-order: 1
 # icon: info-circle
----
-
-`{{ page.path | split: '/' | first }}` is a ✨ _special_ ✨ directory because it appears in the header navigation. For example, Front Matter header pages can be seen below:
-
-### Internal link
-
-<!-- markdownlint-disable -->
-{% raw %}
-```yaml
----
-# _pages/blog.html
-title: Blog   # default name is '/:title/'
-layout: home  # default layout is `page`.
-disable: true # default is false.
-order: 2      # sorted by number.
-icon: book-2  # icon name by tabler `https://tabler.io/` and with style `outline`.
----
-
-{{ content }}
-
-```
-{% endraw %}
-<!-- markdownlint-restore -->
-
-### External link
-
-```yaml
----
-# _pages/github.md
-redirect_to: https://github.com/sionta/
-order: 3
-#icon: brand-github
----
-
-```
-
 ---
 
 ## Hi there 👋

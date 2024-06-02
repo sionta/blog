@@ -1,22 +1,11 @@
----
-# main.js
----
-
 (function main() {
-  function menuToggle() {
-    let menuToggle = document.getElementById("menu-toggle");
-    let navbar = document.querySelector(".navbar");
-    if (menuToggle && navbar) {
-      menuToggle.addEventListener("change", function () {
-        if (menuToggle.checked) {
-          navbar.style.display = "flex";
-        } else {
-          navbar.style.display = "none";
-        }
-      });
-    }
+  if (window.location.pathname !== "/search/") {
+    document.addEventListener("keydown", function (event) {
+      if (event.ctrlKey && event.shiftKey && event.key === "F") {
+        window.location.href = "/search/";
+      }
+    });
   }
-  // menuToggle();
 
   function switchTheme() {
     const themeToggle = document.getElementById("theme-toggle");

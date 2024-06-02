@@ -1,47 +1,34 @@
 ---
-layout: default
+layout: base
 ---
-<article
-  class="standalone"
-  itemscope
-  itemtype="https://schema.org/BlogPosting"
-  itemid="{{ page.url | absolute_url }}"
->
-  <meta itemprop="wordCount" content="{{ page.content | strip_html | size }}">
-  <header>
-    <h1 itemprop="name headline">{{ page.title | escape }}</h1>
-    <div>
-      <p>
-        <strong>Author:</strong>
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">
-            {%- assign author_name = site.author.name | default: page.author -%}
-            {%- assign author_url = site.author.url | default: '' -%}
-            {% if author_url %}
-              <a itemprop="url" href="{{ author_url }}">{{ author_name | escape }}</a>
-            {% else %}
-              {{ author_name }}
-            {% endif %}
-          </span>
-        </span>
-        {%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
-        {%- assign modified_date = page.modified_date | default: page.last_modified_at -%}
-        {%- assign date_upload = page.date | date: date_format -%}
-        {%- assign date_update = modified_date | date: date_format -%}
-        <strong>Published:</strong>
-        <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
-          {{- date_upload -}}
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      {%- assign date_format = site.minima.date_format | default: '%b %-d, %Y' -%}
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: date_format }}
+      </time>
+      {%- assign modified_date = page.modified_date | default: page.last_modified_at -%}
+      {%- if modified_date -%}
+        ~
+        <time class="dt-modified" datetime="{{ modified_date | date_to_xmlschema }}" itemprop="dateModified">
+          {{ modified_date | date: date_format }}
         </time>
-        {% if date_update != date_upload %}
-          <strong>Modified:</strong>
-          <time itemprop="dateModified" datetime="{{ modified_date | date_to_xmlschema }}">
-            {{- date_update -}}</time
-          >.
-        {% endif %}
-      </p>
-    </div>
+      {%- endif -%}
+      {%- if page.author -%}
+        •
+        {% for author in page.author %}
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">{{ author }}</span></span
+          >
+          {%- if forloop.last == false %}, {% endif -%}
+        {% endfor %}
+      {%- endif -%}
+    </p>
   </header>
-  <section itemprop="articleBody">
+
+  <section class="post-content e-content" itemprop="articleBody">
     {% if page.toc == true or page.table_of_content == true %}
       <details open>
         <summary>Table of content</summary>
@@ -50,15 +37,19 @@ layout: default
     {% endif %}
     {{ content | inject_anchors }}
   </section>
+
   <footer>
     {% if page.tags or page.categories %}
-      <div>
+      <div class="page-tags">
         {% if page.tags %}
           <p>
+            <svg class="icon-tabler" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#tags" />
+            </svg>
             <strong>Tags:</strong>
             <span itemprop="keywords">
               {%- for tag in page.tags %}
-                <a href="/tags/{{- tag -}}/">{{- tag -}}</a>
+                <a class="page-tag" href="/tags/{{- tag -}}/">{{- tag -}}</a>
                 {%- unless forloop.last %}&comma; {% endunless -%}
               {% endfor -%}
             </span>
@@ -66,10 +57,13 @@ layout: default
         {% endif %}
         {% if page.categories != empty %}
           <p>
+            <svg class="icon-tabler" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#category" />
+            </svg>
             <strong>Categories:</strong>
             <span itemprop="articleSection">
               {% for category in page.categories %}
-                <a href="/categories/{{- category -}}/">{{- category -}}</a>
+                <a class="page-tag" href="/categories/{{- category -}}/">{{- category -}}</a>
                 {%- unless forloop.last %}&comma; {% endunless -%}
               {% endfor %}
             </span>
@@ -91,4 +85,6 @@ layout: default
       ></div>
     {% endif %}
   </footer>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

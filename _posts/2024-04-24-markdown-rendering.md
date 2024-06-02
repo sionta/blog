@@ -4,9 +4,7 @@ title: Markdown Test page
 description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown]
-author:
-  - name: Andre Attamimi
-  - url: https://github.com/sionta
+author: Andre Attamimi
 
 # Special configuration for layout "post":
 toc: true       # Enable table of contents
@@ -18,7 +16,9 @@ comments: true  # Enable comments
 
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
-## Headings
+## Basic Features
+
+### Headings
 
 # H1
 {:.no_toc .no_anchor}
@@ -27,7 +27,7 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 ### H3
 {:.no_toc .no_anchor}
 
-## Paragraphs
+### Paragraphs
 
 Elit ex ex eiusmod duis cupidatat duis esse laboris et sit reprehenderit eu. Elit sint nostrud ex reprehenderit fugiat do elit anim veniam nulla veniam amet. Nisi velit deserunt sunt excepteur irure ut ipsum excepteur minim.
 
@@ -35,7 +35,7 @@ Et laborum minim elit laboris dolor in. Nisi sunt labore pariatur magna fugiat c
 
 Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea nulla labore laboris irure consectetur. Ut nostrud sunt ipsum amet cupidatat ex quis cupidatat qui in anim culpa. Est velit voluptate reprehenderit eu ad commodo. Tempor laborum dolore velit est laboris.
 
-## Emphasis
+### Emphasis
 
 **bold text**
 
@@ -45,9 +45,9 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
 
 ~~strikethrough~~
 
-## Lists
+### Lists
 
-### Ordered List
+#### Ordered List
 
 1. First item
 2. Second item
@@ -56,7 +56,7 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
     2. Indented item
 4. Fourth item
 
-### Unordered List
+#### Unordered List
 
 - First item
 - Second item
@@ -67,7 +67,7 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
     - Indented item
 - Fourth item
 
-### Definition List
+#### Definition List
 
 Sun
 : The Sun is the star at the center of the Solar System.
@@ -76,53 +76,26 @@ Moon
 : The Moon is the brightest celestial object in Earth's night sky.
 : It orbits at an average distance of 384,400 km, about 30 times the diameter of Earth.
 
-### Task List
+#### Task List
 
 - [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
 
-## Links
+#### Links
 
 <https://jekyllrb.com>
 
 Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
 
-## Blockquotes
+### Blockquotes
 
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
 > <cite>Nikola Tesla</cite>
 <!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
-## Admonitions
-
-Admonitions or Alerts are frequently used in documentation to call attention to warnings, notes, tips and etc.
-
-<!-- > **Normal:** Default or alternative blockqoute.
-{:.alert} -->
-
-> **Note:** Highlights information that users should take into account, even when skimming.
->
-{:.alert .alert-note}
-
-> **Tip:** Optional information to help a user be more successful.
->
-{:.alert .alert-tip}
-
-> **Important:** Crucial information necessary for users to succeed.
->
-{:.alert .alert-important}
-
-> **Warning:** Critical content demanding immediate user attention due to potential risks.
->
-{:.alert .alert-warning}
-
-> **Caution:** Negative potential consequences of an action.
->
-{:.alert .alert-caution}
-
-## Codes
+### Codes
 
 **Keyboard input:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd>
 
@@ -130,33 +103,7 @@ Admonitions or Alerts are frequently used in documentation to call attention to 
 
 **Sample output:** <samp>This is sample output from a computer program.</samp>
 
-## Fenced Code Block
-
-This is a code block on plain text:
-
-```plain
-{
-  "thisSyntax": error
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-This is a code block with syntax highlighting:
-
-```json
-{
-  "thisSyntax": error
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-For more syntax highlighting see: [Code Preview]({% post_url 2023-03-23-markdown-highlighting %})
-
-## Images
+### Images
 
 ![alt text](https://placehold.co/100x100?text=Lorem+Ipsum)
 
@@ -164,7 +111,7 @@ For more syntax highlighting see: [Code Preview]({% post_url 2023-03-23-markdown
 
 ![alt text](https://placehold.co/512x256?text=Lorem+Ipsum)
 
-## Tables
+### Tables
 
 | Column 1 | Column 2 | Column 3 |
 | -------- | :------: | -------: |
@@ -201,7 +148,7 @@ For more syntax highlighting see: [Code Preview]({% post_url 2023-03-23-markdown
   </tfoot>
 </table>
 
-## Footnotes
+### Footnotes
 
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
@@ -217,11 +164,69 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
 The [Result Footnotes](#result-footnotes)
 
-## Horizontal Rule
+### Horizontal Rule
 
 ---
 
-## Mathematics
+## Extended Features
+
+### Fenced Code Blocks
+
+This is a code block on plain text:
+
+```plain
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+This is a code block with syntax highlighting:
+
+```json
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+For more syntax highlighting see: [Code Preview]({% post_url 2023-03-23-markdown-highlighting %})
+
+### Alerts
+
+Alerts or Admonitions are frequently used in documentation to call attention to warnings, notes, tips and etc.
+
+<!-- > **Normal:** Default or alternative blockqoute.
+{:.alert} -->
+
+{% assign alerts = 'note,tip,important,warning,caution' | strip | split: ',' %}
+{% for item in alerts %}
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+>
+> `{:.alert .alert-{{- item }}}`
+>
+{:.alert .alert-{{- item }}}
+
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+>
+> `{:.alert .alert-{{- item }} .alert-{{- item -}}-icon}`
+>
+{:.alert .alert-{{- item }} .alert-{{- item -}}-icon}
+
+---
+
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+>
+> `{:.alert .alert-{{- item }} .alert-{{- item -}}-emoji}`
+>
+{:.alert .alert-{{- item }} .alert-{{- item -}}-emoji}
+{% endfor %}
+
+### Mathematics
 
 The Mathematics Powered by [KaTeX:](https://katex.org/)
 
@@ -233,7 +238,7 @@ $$
 c = \pm\sqrt{a^2 + b^2}
 $$
 
-## Diagramming
+### Diagramming
 
 The Diagramming and charting Powered by [Mermaid:](https://mermaid.js.org/)
 
@@ -253,7 +258,11 @@ gitGraph:
   commit
 ```
 
-## Emoji Shortcodes
+### Github Gist
+
+{% gist a3e9dec5ae0453cf21543bf5332e7fe0 %}
+
+### Emoji Shortcodes
 
 If you see **:raised_hand:** as an emoji like this ✋ it means Emoji Shortcode is enable by plugin, otherwise open terminal and run the command below:
 

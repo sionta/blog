@@ -1,15 +1,5 @@
-{% comment %}
-  RESTRICTIONS for "_includes/compress.html":
-  - Whitespaces inside of the textarea element are squeezed. Please don’t use the layout on pages with non-empty textarea.
-  - Inline JS can become broken where // comments used. Please remove the comments or change to /**/ style.
-  - Invalid markup can lead to unexpected results. Please make sure your markup is valid before.
-{% endcomment %}
-
-{% comment %} Main script {% endcomment %}
 <script src="{{- '/assets/js/main.js' | relative_url -}}"></script>
-
-{% comment %} Vendor scripts {% endcomment %}
-{%- assign vendor_js = '/assets/js/vendor' | relative_url -%}
+{% assign vendor_js = '/assets/js/vendor' | relative_url %}
 
 {% if page.collection == 'posts' or page.layout == 'post' %}
   {% include comments.html %}
@@ -36,7 +26,11 @@
     <script type="text/javascript" src="{{- vendor_js -}}/mermaid.min.js"></script>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', () => {
-        mermaid.initialize({ startOnLoad: true, theme: 'default', securityLevel: 'loose' });
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'default',
+          securityLevel: 'loose',
+        });
         let mermaidClass = document.getElementsByClassName('language-mermaid');
         Array.from(mermaidClass).forEach((element) => {
           element.classList.add('mermaid');

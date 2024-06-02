@@ -80,31 +80,23 @@ toc:
   item_class: toc-item
   item_prefix: toc-
 
-# https://jch.penibelst.de/
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  profile: false
-  blanklines: false
-  ignore:
-    envs: []
+# https://github.com/jekyll/jekyll-gist
+gist:
+  noscript: false
 
 # https://sass-lang.com/documentation/cli/ruby-sass/
 sass:
-  style: compressed
-  # style: expanded # for development
+  # style: compressed
+  style: expanded # for development
 
-markdown: kramdown
 kramdown:
-  # input: GFM
   hard_wrap: false
   auto_ids: true
-  # parse_block_html: true
+  parse_block_html: true
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
-    # default_lang: html
+    # default_lang: plain
     # span:
     #   line_numbers: false
     # block:
@@ -113,29 +105,22 @@ kramdown:
   math_engine: katex
   math_engine_opts: {}
 
-# https://github.com/jekyll/jekyll-archives
-jekyll-archives:
-  enabled: [categories, tags]
-  layout: archive
-  permalinks:
-    tag: "/tags/:name/"
-    category: "/categories/:name/"
-
+# https://github.com/jekyll/jekyll-paginate
 paginate: 5
 paginate_path: "/blog/page:num/"
 
 collections:
-  redirects:
+  partials:
     output: true
-    sort_by: order
+    # sort_by: order
 
 defaults:
   - scope:
       path: ""
-      type: redirects
+      type: partials
     values:
-      layout: page
-      permalink: "/:title/"
+      # layout: [default, base]
+      permalink: /:name/
   - scope:
       path: ""
       type: posts
@@ -143,12 +128,23 @@ defaults:
       layout: post
       permalink: "/blog/:title/"
 
+# https://github.com/jekyll/jekyll-archives
+jekyll-archives:
+  enabled: [categories, tags]
+  # layout: archive
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: "/tags/:name/"
+    category: "/categories/:name/"
+
 exclude:
   - "*.gem"
   - "*.gemspec"
   - "*.lock"
-  - "test*"
-  - "tool*"
+  - "docs"
+  - "tests"
+  - "tools"
   - "package*.json"
-  - "screenshot*"
-  - "README*"
+  - "README.md"
