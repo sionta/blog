@@ -37,10 +37,16 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+
   @include breakpoint(md, max) {
     display: inline-flex;
     justify-content: space-around;
+
+    li {
+      margin-top: 10px;
+    }
   }
+
   ul {
     margin: 0;
     padding: 0;
@@ -63,6 +69,7 @@
     &:hover {
       color: var(--lk-1);
     }
+
     &.current {
       font-weight: bold;
       color: var(--lk-1);
@@ -70,6 +77,14 @@
       text-decoration-thickness: 2px;
       text-underline-offset: 3px;
     }
+  }
+
+  label {
+    cursor: pointer;
+  }
+
+  input {
+    display: none;
   }
 
   svg {
@@ -80,14 +95,6 @@
     .icon-moon {
       display: none;
     }
-  }
-
-  input {
-    display: none;
-  }
-
-  label {
-    cursor: pointer;
   }
 
   #theme-toggle:checked + svg {

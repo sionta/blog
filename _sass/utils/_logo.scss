@@ -34,9 +34,9 @@
   line-height: 0.85;
   perspective: 500px;
 
-  @include breakpoint(md, max) {
-    font-size: 18px;
-  }
+  // @include breakpoint(md, max) {
+  //   font-size: 18px;
+  // }
 }
 
 .word {
