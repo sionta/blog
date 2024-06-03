@@ -1,55 +1,28 @@
 @charset "utf-8";
 
-// Fonts
-@import url("../fonts/lato/lato.min.css");
-@import url("../fonts/cormorant-garamond/cormorant_garamond.min.css");
-@import url("../fonts/jetbrains-mono/jetbrains-mono.min.css");
-@import url("../fonts/fira-code/fira_code.min.css");
-
-$font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-  "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols;
-$font-sans: Lato, Arial, system-ui, -apple-system !default;
-$font-serif: "Cormorant Garamond", serif !default;
-$font-mono: "Fira Code", "JetBrains Mono", Consolas, monospace !default;
-
-$heading-sizes: (
-  h1: 2rem,
-  h2: 1.75rem,
-  h3: 1.5rem,
-  h4: 1.25rem,
-  h5: 1rem,
-  h6: 0.875rem,
-);
-
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-);
-
-$content-width: map-get($breakpoints, md);
-
-$font-size: 16px !default;
-$font-small: $font-size * 0.875 !default;
-$font-weight: 400 !default;
-
-$line-height: 1.5 !default;
-$spacing-unit: 20px !default;
-$border-radius: 3px !default;
-
-@mixin breakpoint($size, $for: max) {
-  @media screen and (#{$for}-width: #{map-get($breakpoints, $size)}) {
-    @content;
-  }
-}
-
 // Import pre-styling-overrides hook and style-partials.
 @import "variables";
-@import "libs/reset";
-@import "libs/colors";
-@import "libs/base";
-@import "libs/layout";
-@import "libs/utilities";
-@import "libs/syntax";
-@import "styles";
+@import "mixins";
+
+// Layouts
+@import "normalize";
+@import "gridism";
+@import "base";
+@import "layout";
+
+// utilities
+@import "utils/logo";
+@import "utils/misc";
+@import "utils/alert";
+@import "utils/gist";
+@import "utils/syntax";
+
+// Fonts
+@import url("../fonts/lato/lato.min.css");
+@import url("../fonts/open-sans/open_sans.min.css");
+@import url("../fonts/cormorant-garamond/cormorant_garamond.min.css");
+@import url("../fonts/fira-code/fira_code.min.css");
+@import url("../fonts/jetbrains-mono/jetbrains-mono.min.css");
+
+// Icons
+@import url("../fonts/tabler-icons/tabler-icons.min.css");

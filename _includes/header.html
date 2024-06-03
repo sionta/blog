@@ -1,7 +1,14 @@
 <header class="header sticky">
   <div class="wrapper">
     <nav class="navbar">
-      <a class="brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      {% assign site_title = site.title | split: ' ' %}
+      <h1 class="logo">
+        <span class="word">
+          {{- site_title[0] -}}
+          <span class="superscript"> {{ site_title[1] | downcase -}}</span>
+        </span>
+        <span class="word">{{- site_title[2] | downcase -}}</span>
+      </h1>
       {% include navbar.html %}
       <label for="theme-toggle" class="theme-toggle">
         <input id="theme-toggle" type="checkbox" name="Switch light and dark theme">

@@ -1,0 +1,80 @@
+svg.icon-tabler {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.external-link,
+.external-link svg {
+  width: 16px;
+  height: 16px;
+  vertical-align: top;
+}
+
+// Fixed `- [x] Task list` from rendering markdown.
+.task-list {
+  margin-left: 0;
+  list-style: none;
+
+  &-item {
+    &-checkbox {
+      cursor: not-allowed;
+      margin-right: 10px;
+    }
+  }
+}
+
+.toc-list {
+  li {
+    margin-top: 0.5rem;
+  }
+
+  a {
+    color: var(--lk-1);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--lk-2);
+    }
+  }
+}
+
+.anchor-link {
+  margin-left: calc(#{$spacing-unit} / 2);
+  font-style: normal;
+  font-weight: bold;
+  color: var(--bd-1);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: var(--lk-1);
+  }
+}
+
+// Fixed multiple KaTeX output from rendering markdown.
+.katex-html {
+  display: none;
+}
+
+.mermaid {
+  svg {
+    // display: block;
+    margin: 0 auto;
+    align-items: center;
+    // background-color: red;
+  }
+}
+
+.emoji {
+  height: $font-size;
+  width: $font-size;
+  display: inline-block;
+}

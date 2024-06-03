@@ -1,0 +1,64 @@
+/*
+  Tutorial:
+    https://www.roboleary.net/animation/2022/10/31/how-to-make-a-slick-animation-schitts-creek-title-sequence.html
+  Part of Title Sequences collection:
+    https://codepen.io/collection/nNmwgP
+  Source code:
+    https://github.com/robole/title-sequences
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600");
+
+@keyframes pop-word {
+  to {
+    transform: rotateX(0);
+  }
+}
+
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    text-shadow: 0 0 8px var(--lk-1);
+  }
+}
+
+.logo {
+  color: var(--tx-1);
+  font-family: "Playfair Display", Vidaloka, serif;
+  font-size: 22px;
+  line-height: 0.85;
+  perspective: 500px;
+
+  @include breakpoint(md, max) {
+    font-size: 18px;
+  }
+}
+
+.word {
+  opacity: 0;
+  display: block;
+
+  animation: show 0.01s forwards, pop-word 1.5s forwards;
+  animation-timing-function: cubic-bezier(0.14, 1.23, 0.33, 1.16);
+
+  transform: rotateX(120deg);
+  transform-origin: 50% 100%;
+
+  &:nth-of-type(2) {
+    padding: 0 2rem;
+    animation-delay: 0.4s;
+    color: var(--lk-1);
+  }
+}
+.superscript {
+  position: relative;
+  animation-name: shimmer;
+  animation-delay: 1.6s;
+  animation-duration: 0.25s;
+  vertical-align: text-top;
+}

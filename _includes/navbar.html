@@ -1,35 +1,36 @@
 {% assign page_items = site.partials | sort: 'order' %}
 {% if page_items.size > 0 %}
   <ul>
+    <li>
+      <a
+        href="{{ '/' | relative_url }}"
+        {% if '/' == page.url %}
+          class="current"
+        {% endif %}
+        >Home</a
+      >
+    </li>
     {% for item in page_items %}
       {% if item.navigation == true %}
-        {% capture item_name %}
-          {% if item.icon %}
-            <svg class="icon-tabler {{ item.icon }}" viewBox="0 0 24 24">
-              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#{{- item.icon -}}"/>
-            </svg>
-            {{ item.title }}
-          {% else %}
-            {{ item.title }}
-          {% endif %}
-        {% endcapture %}
         <li>
-          {% if item.redirect_to contains 'http://' or item.redirect_to contains 'https://' %}
-            <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
-              {{ item_name }}
-              {% if item.external_icon == true %}
-                <span class="external-link">
-                  <svg class="icon-tabler" viewBox="0 0 24 24">
-                    <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
-                  </svg>
-                </span>
-              {% endif %}
-            </a>
-          {% else %}
-            <a class="{% if page.url == item.url %}current{% endif %}" href="{{ item.url | relative_url }}">
-              {{ item_name }}
-            </a>
-          {% endif %}
+          <a
+            href="{{ item.url | relative_url }}"
+            {% if item.url == page.url %}
+              class="current"
+            {% endif %}
+            {% if item.redirect_to contains 'http' %}
+              target="_blank" rel="noopener noreferrer"
+            {% endif %}
+          >
+            {{ item.title }}
+            {% if item.redirect_to and item.external_icon == true %}
+              <span class="external-link">
+                <svg class="icon-tabler" viewBox="0 0 24 24">
+                  <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
+                </svg>
+              </span>
+            {% endif %}
+          </a>
         </li>
       {% endif %}
     {% endfor %}

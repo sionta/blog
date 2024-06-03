@@ -2,6 +2,7 @@
 param (
     [Parameter(Mandatory = $true)]
     [Alias('s')][string]$Source,
+    [Parameter(Mandatory = $true)]
     [Alias('o')][string]$Output,
     [Alias('r')][switch]$Recurse
 )
@@ -12,13 +13,14 @@ $ErrorActionPreference = 'Stop'
 
 if ($Recurse) {
     $searchOption = [System.IO.SearchOption]::AllDirectories
-} else {
+}
+else {
     $searchOption = [System.IO.SearchOption]::TopDirectoryOnly
 }
 
 $sourceDir = [System.IO.Path]::GetDirectoryName($Source)
 $outputFile = [System.IO.Path]::GetFullPath($Output)
-$svgFiles = [System.IO.Directory]::EnumerateFiles("$sourceDir", '*.svg', $searchOption)
+$svgFiles = [System.IO.Directory]::EnumerateFiles($sourceDir, '*.svg', $searchOption)
 
 # Convert SVG file to <symbol> element in SVG sprite
 function ConvertTo-SVGSymbol {

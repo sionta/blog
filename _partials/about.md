@@ -1,7 +1,7 @@
 ---
 navigation: true
 layout: base
-order: 2
+order: 0
 
 title: About
 # icon: info-circle

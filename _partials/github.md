@@ -1,7 +1,7 @@
 ---
 navigation: true
 layout: page
-order: 4
+order: 3
 
 # icon: brand-github
 external_icon: true

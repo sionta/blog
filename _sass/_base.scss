@@ -1,0 +1,437 @@
+:root {
+  @include color-theme(
+    $scheme: light,
+    $rebase00: $base07,
+    $rebase01: $base06,
+    $rebase02: $base05,
+    $rebase03: $base04,
+    $rebase04: $base03,
+    $rebase05: $base02,
+    $rebase06: $base01,
+    $rebase07: $base00
+  );
+}
+[data-theme="dark"] {
+  @include color-theme(
+    $scheme: dark,
+    $rebase00: $base00,
+    $rebase01: $base01,
+    $rebase02: $base02,
+    $rebase03: $base03,
+    $rebase04: $base04,
+    $rebase05: $base05,
+    $rebase06: $base06,
+    $rebase07: $base07
+  );
+}
+
+/* Base on Minima v3 https://github.com/jekyll/minima */
+
+html {
+  font-size: $font-size;
+}
+
+/**
+ * Reset some basic elements
+ */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Basic styling
+ */
+/* prettier-ignore */
+body {
+  font: $font-weight #{$font-size}/#{$line-height} $font-sans;
+  color: var(--tx-1);
+  background-color: var(--bg-1);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-wrap: break-word;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
+%vertical-rhythm {
+  margin-bottom: $spacing-unit * 0.5;
+}
+
+hr {
+  margin-top: $spacing-unit;
+  margin-bottom: $spacing-unit;
+}
+
+/**
+ * `main` element
+ */
+main {
+  display: block;
+  /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+/**
+ * Images
+ */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: $font-size-small;
+}
+
+/**
+ * Lists
+ */
+ul,
+ol {
+  margin-left: $spacing-unit;
+}
+
+li {
+  > ul,
+  > ol {
+    margin-bottom: 0;
+  }
+}
+
+/**
+ * Headings
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight;
+}
+
+@each $heading, $size in $heading-sizes {
+  #{$heading} {
+    font-size: $size;
+
+    @if $heading == "h1" {
+      font-weight: 600;
+
+      &:not(:first-child) {
+        font-weight: $font-weight;
+      }
+    }
+  }
+}
+
+/**
+ * Links
+ */
+a {
+  color: var(--lk-1);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--lk-2);
+    text-decoration: underline;
+  }
+
+  // &:visited {
+  //   color: var(--lk-3);
+  // }
+  .social-media-list &:hover {
+    text-decoration: none;
+
+    .username {
+      text-decoration: underline;
+    }
+  }
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: var(--tx-1);
+  border-left: 5px solid var(--bd-1);
+  padding-left: $spacing-unit * 0.5;
+  font-size: 1.125rem;
+  font-style: italic;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+  font-family: $font-mono;
+  font-size: $font-size-code;
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+  background-color: var(--bg-2);
+}
+
+code {
+  padding: 1px 5px;
+}
+
+pre {
+  padding: 8px 12px;
+  overflow-x: auto;
+
+  > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.highlight {
+  border-radius: $border-radius;
+  background: var(--bg-2);
+  @extend %vertical-rhythm;
+
+  .highlighter-rouge & {
+    background: var(--bg-2);
+  }
+}
+
+/**
+ * Wrapper
+ */
+.wrapper {
+  max-width: calc(#{$content-width} - (#{$spacing-unit}));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit * 0.5;
+  padding-left: $spacing-unit * 0.5;
+  @extend %clearfix;
+
+  @include breakpoint(lg, min) {
+    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
+  }
+}
+
+/**
+ * Clearfix
+ */
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+ * Clearfix
+ */
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**
+ * Icons
+ */
+
+.orange {
+  color: var(--orange);
+}
+
+.grey {
+  color: $base03;
+}
+
+.svg-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: var(--tx-1);
+  border-left: 5px solid var(--bd-1);
+  padding-left: $spacing-unit * 0.5;
+  font-size: 1.125rem;
+  font-style: italic;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+/**
+ * Tables
+ */
+table {
+  margin-bottom: $spacing-unit;
+  width: 100%;
+  text-align: left;
+  color: var(--tx-1);
+  border-collapse: collapse;
+  // border: 1px solid $table-border-color;
+
+  th,
+  td {
+    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+  }
+
+  th {
+    background-color: var(--bg-2);
+    border: 1px solid var(--bd-1);
+  }
+
+  td {
+    border: 1px solid var(--bd-1);
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--bg-3);
+  }
+
+  /* prettier-ignore */
+  @include breakpoint(lg, max) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+}
+
+/* END PART MINIMA */
+
+details {
+  padding: 0.6rem 1rem;
+  background-color: var(--bg-2);
+  border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+  margin-top: calc($spacing-unit * $line-height);
+  margin-bottom: calc($spacing-unit * $line-height);
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+
+// Definition lists
+dl {
+  dt {
+    font-weight: bold;
+  }
+
+  dd::before {
+    margin-right: 5px;
+    content: "\2192 \00a0";
+  }
+}
+
+// Blockquote with <cite>
+blockquote:has(cite) {
+  cite::before {
+    content: "\2014 \0020";
+  }
+}
+
+// Horizontal rules
+hr {
+  border: 0;
+  border-bottom: 2px solid var(--bd-1);
+}
+
+// Keyboards
+kbd {
+  background-color: var(--bg-2);
+  color: var(--tx-1);
+  padding: 2px 5px;
+  border-radius: $border-radius;
+  border-bottom: 3px solid var(--bd-1);
+}
+
+samp {
+  background-color: inherit !important;
+  color: var(--lk-1);
+}
+
+abbr {
+  cursor: help;
+}
+
+mark,
+::selection {
+  padding: 2px;
+  color: var(--black);
+}
+
+::selection {
+  background-color: var(--lk-1);
+}
+
+mark {
+  color: $base00;
+  background-color: var(--yellow);
+}

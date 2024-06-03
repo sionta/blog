@@ -1,34 +1,43 @@
 ---
 layout: base
 ---
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      {%- assign date_format = site.minima.date_format | default: '%b %-d, %Y' -%}
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {{ page.date | date: date_format }}
-      </time>
-      {%- assign modified_date = page.modified_date | default: page.last_modified_at -%}
-      {%- if modified_date -%}
-        ~
-        <time class="dt-modified" datetime="{{ modified_date | date_to_xmlschema }}" itemprop="dateModified">
-          {{ modified_date | date: date_format }}
-        </time>
-      {%- endif -%}
-      {%- if page.author -%}
-        •
-        {% for author in page.author %}
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">{{ author }}</span></span
-          >
-          {%- if forloop.last == false %}, {% endif -%}
-        {% endfor %}
-      {%- endif -%}
-    </p>
-  </header>
+{%- assign author_name = site.author.name | default: page.author -%}
+{%- assign author_url = site.author.url | default: '/' -%}
 
-  <section class="post-content e-content" itemprop="articleBody">
+{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
+{%- assign date_published = page.date -%}
+{%- assign date_modified = page.modified_date | default: page.last_modified_at -%}
+
+<article
+  class="post h-entry"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  itemid="{{ page.url | absolute_url }}"
+>
+  <a href="{{ page.url | relative_url }}" hidden></a>
+  <meta itemprop="wordCount" content="{{ page.content | strip_html | size }}">
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+    <div>
+      <p class="post-meta">
+        Posted by
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">
+            <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
+          </span>
+        </span>
+        on
+        <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
+          {{- date_published | date: date_format -}}</time
+        >, and updated on
+        <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
+          {{- date_modified | date: date_format -}}</time
+        >.
+      </p>
+    </div>
+  </header>
+  {% comment %} <hr> {% endcomment %}
+  <section class="post-content" itemprop="articleBody">
     {% if page.toc == true or page.table_of_content == true %}
       <details open>
         <summary>Table of content</summary>
@@ -37,42 +46,18 @@ layout: base
     {% endif %}
     {{ content | inject_anchors }}
   </section>
-
   <footer>
-    {% if page.tags or page.categories %}
-      <div class="page-tags">
-        {% if page.tags %}
-          <p>
-            <svg class="icon-tabler" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#tags" />
-            </svg>
-            <strong>Tags:</strong>
-            <span itemprop="keywords">
-              {%- for tag in page.tags %}
-                <a class="page-tag" href="/tags/{{- tag -}}/">{{- tag -}}</a>
-                {%- unless forloop.last %}&comma; {% endunless -%}
-              {% endfor -%}
-            </span>
-          </p>
-        {% endif %}
-        {% if page.categories != empty %}
-          <p>
-            <svg class="icon-tabler" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#category" />
-            </svg>
-            <strong>Categories:</strong>
-            <span itemprop="articleSection">
-              {% for category in page.categories %}
-                <a class="page-tag" href="/categories/{{- category -}}/">{{- category -}}</a>
-                {%- unless forloop.last %}&comma; {% endunless -%}
-              {% endfor %}
-            </span>
-          </p>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% if page.comments %}
+    <p>
+      Tagged with:
+      <span itemprop="keywords">
+        {% for tag in page.tags %}
+          {% assign tag_url = '/tags/' | append: tag %}
+          <a href="{{ tag_url | relative_url }}">{{- tag -}}</a>
+          {%- unless forloop.last %}&#44; {% endunless -%}
+        {% endfor -%}
+      </span>
+    </p>
+    {% if page.comments == true %}
       <div
         itemscope
         itemtype="https://schema.org/Comment"
@@ -85,6 +70,4 @@ layout: base
       ></div>
     {% endif %}
   </footer>
-
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

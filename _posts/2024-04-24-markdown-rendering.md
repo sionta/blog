@@ -3,7 +3,7 @@ layout: post
 title: Markdown Test page
 description: A quick overview of all the Markdown syntax elements
 categories: test
-tags: [markdown]
+tags: [markdown, cheatsheet]
 author: Andre Attamimi
 
 # Special configuration for layout "post":
@@ -200,31 +200,29 @@ For more syntax highlighting see: [Code Preview]({% post_url 2023-03-23-markdown
 
 Alerts or Admonitions are frequently used in documentation to call attention to warnings, notes, tips and etc.
 
-<!-- > **Normal:** Default or alternative blockqoute.
-{:.alert} -->
+> **Normal:** Default or alternative blockqoute.
+>
+{:.alert}
 
-{% assign alerts = 'note,tip,important,warning,caution' | strip | split: ',' %}
-{% for item in alerts %}
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+> **Note:** Highlights information that users should take into account, even when skimming.
 >
-> `{:.alert .alert-{{- item }}}`
->
-{:.alert .alert-{{- item }}}
+{:.alert .alert-note}
 
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+> **Tip:** Optional information to help a user be more successful.
 >
-> `{:.alert .alert-{{- item }} .alert-{{- item -}}-icon}`
->
-{:.alert .alert-{{- item }} .alert-{{- item -}}-icon}
+{:.alert .alert-tip}
 
----
+> **Important:** Crucial information necessary for users to succeed.
+>
+{:.alert .alert-important}
 
-> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+> **Warning:** Critical content demanding immediate user attention due to potential risks.
 >
-> `{:.alert .alert-{{- item }} .alert-{{- item -}}-emoji}`
+{:.alert .alert-warning}
+
+> **Caution:** Negative potential consequences of an action.
 >
-{:.alert .alert-{{- item }} .alert-{{- item -}}-emoji}
-{% endfor %}
+{:.alert .alert-caution}
 
 ### Mathematics
 
