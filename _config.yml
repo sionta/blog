@@ -2,7 +2,8 @@
 # Site settings ******************************************
 #
 
-title: Andre S. Attamimi
+title: Andre S Attamimi
+# TODO: brand: {{ site.title }} # alternative site name for animation
 description: >- # this means to ignore newlines until "baseurl:"
   run, study, modify, and share
 
