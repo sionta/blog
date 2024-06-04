@@ -47,16 +47,17 @@ layout: base
     {{ content | inject_anchors }}
   </section>
   <footer>
-    <p>
-      Tagged with:
-      <span itemprop="keywords">
-        {% for tag in page.tags %}
-          {% assign tag_url = '/tags/' | append: tag %}
-          <a href="{{ tag_url | relative_url }}">{{- tag -}}</a>
-          {%- unless forloop.last %}&#44; {% endunless -%}
-        {% endfor -%}
-      </span>
-    </p>
+    {% if page.tags %}
+      <p>
+        Tagged with:
+        <span class="tag-link" itemprop="keywords">
+          {% for tag in page.tags %}
+            <a href="{{ '/tags/' | append: tag | relative_url }}">{{- tag -}}</a>
+            {%- unless forloop.last %}&#44; {% endunless -%}
+          {% endfor -%}
+        </span>
+      </p>
+    {% endif %}
     {% if page.comments == true %}
       <div
         itemscope

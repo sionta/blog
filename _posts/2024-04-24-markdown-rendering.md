@@ -88,12 +88,29 @@ Moon
 
 Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
 
-### Blockquotes
+### Footnotes
 
-> "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
->
-> <cite>Nikola Tesla</cite>
-<!-- > <cite>&mdash; Nikola Tesla</cite> -->
+Here's a simple footnote,[^1] and here's a longer one.[^bignote]
+
+[^1]: This is the first footnote.
+
+[^bignote]: Here's one with multiple paragraphs and code.
+
+    Indent paragraphs to include them in the footnote.
+
+    `{ my code }`
+
+    Add as many paragraphs as you like.
+
+The [Result Footnotes](#result-footnotes)
+
+### Images
+
+![alt text](https://placehold.co/100x100?text=Lorem+Ipsum)
+
+![alt text](https://placehold.co/128x256?text=Lorem+Ipsum)
+
+![alt text](https://placehold.co/512x256?text=Lorem+Ipsum)
 
 ### Codes
 
@@ -103,13 +120,12 @@ Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
 
 **Sample output:** <samp>This is sample output from a computer program.</samp>
 
-### Images
+### Blockquotes
 
-![alt text](https://placehold.co/100x100?text=Lorem+Ipsum)
-
-![alt text](https://placehold.co/128x256?text=Lorem+Ipsum)
-
-![alt text](https://placehold.co/512x256?text=Lorem+Ipsum)
+> "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
+>
+> <cite>Nikola Tesla</cite>
+<!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
 ### Tables
 
@@ -147,22 +163,6 @@ Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
     </tr>
   </tfoot>
 </table>
-
-### Footnotes
-
-Here's a simple footnote,[^1] and here's a longer one.[^bignote]
-
-[^1]: This is the first footnote.
-
-[^bignote]: Here's one with multiple paragraphs and code.
-
-    Indent paragraphs to include them in the footnote.
-
-    `{ my code }`
-
-    Add as many paragraphs as you like.
-
-The [Result Footnotes](#result-footnotes)
 
 ### Horizontal Rule
 

@@ -4,11 +4,19 @@
 @import "variables";
 @import "mixins";
 
+// Bases
+@import "base/normalize";
+@import "base/base";
+
 // Layouts
-@import "normalize";
-@import "gridism";
-@import "base";
-@import "layout";
+@import "layout/gridism";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/home";
+@import "layout/page";
+@import "layout/post";
+@import "layout/tags";
+@import "layout/pagination";
 
 // utilities
 @import "utils/logo";
@@ -16,6 +24,7 @@
 @import "utils/alert";
 @import "utils/gist";
 @import "utils/syntax";
+@import "utils/theme-toggle.min.scss";
 
 // Fonts
 @import url("../fonts/lato/lato.min.css");

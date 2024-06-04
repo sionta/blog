@@ -197,7 +197,7 @@ a {
   // &:visited {
   //   color: var(--lk-3);
   // }
-  
+
   .social-media-list &:hover {
     text-decoration: none;
 
@@ -208,35 +208,12 @@ a {
 }
 
 /**
- * Blockquotes
- */
-blockquote {
-  color: var(--tx-1);
-  border-left: 5px solid var(--bd-1);
-  padding-left: $spacing-unit * 0.5;
-  font-size: 1.125rem;
-  font-style: italic;
-
-  > :last-child {
-    margin-bottom: 0;
-  }
-  
-  cite::before {
-    content: "\2014 \0020";
-  }
-  
-  i,
-  em {
-    font-style: normal;
-  }
-}
-
-/**
  * Code formatting
  */
 kbd,
 pre,
-code {
+code,
+%code-style {
   font-family: $font-mono;
   font-size: $font-size-code;
   border: 1px solid var(--bd-1);
@@ -246,7 +223,7 @@ code {
 }
 
 kbd {
-  border-bottom: 2px solid var(--bd-1);
+  border-bottom: 3px solid var(--bd-1);
 }
 
 kbd,
@@ -308,7 +285,14 @@ table {
   text-align: left;
   color: var(--tx-1);
   border-collapse: collapse;
-  // border: 1px solid $table-border-color;
+
+  caption {
+    padding: 10px;
+    font-weight: bold;
+    font-size: map-get($heading-sizes, h5);
+    background-color: var(--bg-2);
+    border: 1px solid var(--bd-1);
+  }
 
   th,
   td {
@@ -316,6 +300,7 @@ table {
   }
 
   th {
+    color: var(--tx-2);
     background-color: var(--bg-2);
     border: 1px solid var(--bd-1);
   }
@@ -337,14 +322,38 @@ table {
   }
 }
 
+/**
+ * Blockquotes
+ */
+blockquote {
+  border-left: 5px solid var(--bd-1);
+  color: var(--tx-1);
+  font-size: 1.125rem;
+  font-style: italic;
+  padding: $spacing-unit;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  cite::before {
+    content: "\2014 \0020";
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
 // Can also be used as a table of content.
 details {
-  padding: 0.6rem 1rem;
   background-color: var(--bg-2);
-  border: 1px solid var(--bd-1);
   border-radius: $border-radius;
-  margin-top: calc($spacing-unit * $line-height);
+  border: 1px solid var(--bd-1);
   margin-bottom: calc($spacing-unit * $line-height);
+  margin-top: calc($spacing-unit * $line-height);
+  padding: 0.6rem 1rem;
 
   summary {
     cursor: pointer;
@@ -364,16 +373,18 @@ abbr {
 
 // Selection color
 ::selection {
+  background-color: var(--blue);
   color: $base00;
-  background-color: var(--lk-1), var(--blue);
 }
 
 // Marker color
 mark {
-  color: $base00;
-  background-color: var(--yellow), var(--orange);
+  background-color: var(--yellow);
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-weight: 500;
+  padding: 1px;
 }
-
 
 /**
  * Icons
@@ -386,10 +397,23 @@ mark {
   color: $base03;
 }
 
-.svg-icon {
+.icon-svg {
   width: 24px;
   height: 24px;
-  display: inline-block;
   fill: currentColor;
+  display: inline-block;
   vertical-align: text-bottom;
+}
+
+svg.icon-tabler {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+
+  display: inline-block;
+  vertical-align: middle;
 }

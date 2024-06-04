@@ -2,24 +2,22 @@
 # Site settings ******************************************
 #
 
-title: Andre S Attamimi
-# TODO: brand: {{ site.title }} # alternative site name for animation
+title: Andre Attamimi
+brand: Andre S. Attamimi # alternative site name for animation
 description: >- # this means to ignore newlines until "baseurl:"
   run, study, modify, and share
 
 baseurl: "" # the subpath of your site, e.g. "/blog" (DON'T include a trailing slash)
 url: "" # the base hostname & protocol for your site, e.g. "http://example.com"
-google_analytics: G-31WRW155T4
 
 timezone: Asia/Tokyo
 lang: en
 
 image: "/assets/img/avatar.svg" # https://github.com/sionta.png?size=100
-# Set to `true` to enable site logo in header and "image:" is required.
-enable_logo: false
-
 twitter:
   username: R007MMXV
+
+google_analytics: G-31WRW155T4
 
 # Generate social links in footer. for available platforms see "includes/social-item".
 social_links:
@@ -30,6 +28,8 @@ social_links:
 #
 # Post settings ******************************************
 #
+
+banner: "https://placehold.co/600x400?text=Hello+World/"
 
 author:
   picture: "/assets/img/avatar.svg"
@@ -65,10 +65,23 @@ comments:
 # Build settings *****************************************
 #
 
+# https://github.com/jekyll/jekyll-paginate
+paginate: 3
+paginate_path: "/blog/page:num/"
+
 # https://github.com/jekyll/jekyll-feed
 feed:
   posts_limit: 10
   excerpt_only: false
+
+# https://github.com/jekyll/jekyll-gist
+gist:
+  noscript: false
+
+# https://sass-lang.com/documentation/cli/ruby-sass/
+sass:
+  style: compressed
+  # style: expanded # for development
 
 # https://github.com/toshimaru/jekyll-toc
 toc:
@@ -81,15 +94,8 @@ toc:
   item_class: toc-item
   item_prefix: toc-
 
-# https://github.com/jekyll/jekyll-gist
-gist:
-  noscript: false
-
-# https://sass-lang.com/documentation/cli/ruby-sass/
-sass:
-  style: compressed
-  # style: expanded # for development
-
+# https://jekyllrb.com/docs/configuration/markdown/
+markdown: kramdown
 kramdown:
   hard_wrap: false
   auto_ids: true
@@ -97,7 +103,8 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
-    # default_lang: plain
+    default_lang: plain
+    line_numbers: table
     # span:
     #   line_numbers: false
     # block:
@@ -106,9 +113,13 @@ kramdown:
   math_engine: katex
   math_engine_opts: {}
 
-# https://github.com/jekyll/jekyll-paginate
-paginate: 5
-paginate_path: "/blog/page:num/"
+# https://github.com/jekyll/jekyll-archives
+jekyll-archives:
+  enabled: [tags]
+  layouts:
+    tag: tag
+  permalinks:
+    tag: "/tags/:name/"
 
 collections:
   partials:
@@ -120,7 +131,7 @@ defaults:
       path: ""
       type: partials
     values:
-      # layout: [default, base]
+      layout: page
       permalink: /:name/
   - scope:
       path: ""
@@ -128,17 +139,6 @@ defaults:
     values:
       layout: post
       permalink: "/blog/:title/"
-
-# https://github.com/jekyll/jekyll-archives
-jekyll-archives:
-  enabled: [categories, tags]
-  # layout: archive
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: "/tags/:name/"
-    category: "/categories/:name/"
 
 exclude:
   - "*.gem"

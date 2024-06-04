@@ -2,12 +2,28 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% feed_meta %}
+  <title>
+    {% if page.layout == 'home' or page.url == '/' -%}
+      {{- site.title | escape -}}
+    {%- else -%}
+      {{- page.title | escape -}}
+    {%- endif %}
+  </title>
+
+  {% comment %}
+    <title>
+      {%- unless page.layout == 'home' or page.url == '/' -%}
+        {{ page.title | append: '&nbsp;|&nbsp;' }}
+      {%- endunless -%}
+      {{ site.title | escape }}
+    </title>
+  {% endcomment %}
+
+  {%- seo title=false -%}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
   <link rel="icon" type="image/png" href="{{ '/assets/img/avatar.png' | relative_url }}">
-  {% seo %}
-  {% include analytics.html %}
-  {% include head_custom.html %}
+  {%- feed_meta -%}
+  {%- include analytics.html -%}
 </head>

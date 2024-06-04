@@ -1,38 +1,31 @@
-{% assign page_items = site.partials | sort: 'order' %}
+{%- assign page_items = site.partials | sort: 'order' -%}
+
 {% if page_items.size > 0 %}
   <ul>
     <li>
-      <a
-        href="{{ '/' | relative_url }}"
-        {% if '/' == page.url %}
-          class="current"
-        {% endif %}
-        >Home</a
-      >
+      <a class="{% if '/' == page.url %}current{% endif %}" href="{{ '/' | relative_url }}"> Home </a>
     </li>
-    {% for item in page_items %}
-      {% if item.navigation == true %}
+    {%- for item in page_items %}
+      {%- if item.navigation == true %}
         <li>
           <a
+            class="{% if item.url == page.url %}current{% endif %}"
             href="{{ item.url | relative_url }}"
-            {% if item.url == page.url %}
-              class="current"
-            {% endif %}
-            {% if item.redirect_to contains 'http' %}
+            {% if item.redirect_to contains 'http' -%}
               target="_blank" rel="noopener noreferrer"
-            {% endif %}
+            {% endif -%}
           >
-            {{ item.title }}
-            {% if item.redirect_to and item.external_icon == true %}
+            {{- item.title }}
+            {% if item.redirect_to and item.external_icon == true -%}
               <span class="external-link">
                 <svg class="icon-tabler" viewBox="0 0 24 24">
                   <use xlink:href="{{- '/assets/tabler-icons.svg' | relative_url -}}#external-link" />
                 </svg>
               </span>
-            {% endif %}
+            {% endif -%}
           </a>
         </li>
-      {% endif %}
-    {% endfor %}
+      {% endif -%}
+    {% endfor -%}
   </ul>
 {% endif %}
