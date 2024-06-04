@@ -11,6 +11,7 @@
     $rebase07: $base00
   );
 }
+
 [data-theme="dark"] {
   @include color-theme(
     $scheme: dark,
@@ -25,7 +26,7 @@
   );
 }
 
-/* Base on Minima v3 https://github.com/jekyll/minima */
+/* Base on Minima v3 | https://github.com/jekyll/minima */
 
 html {
   font-size: $font-size;
@@ -94,17 +95,19 @@ figure,
   margin-bottom: $spacing-unit * 0.5;
 }
 
+// Horizontal rules
 hr {
+  border: 0;
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
+  border-bottom: 2px solid var(--bd-1);
 }
 
 /**
  * `main` element
  */
 main {
-  display: block;
-  /* Default value of `display` of `main` element is 'inline' in IE 11. */
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
 /**
@@ -141,6 +144,18 @@ li {
   }
 }
 
+// Definition lists
+dl {
+  dt {
+    font-weight: bold;
+  }
+
+  dd::before {
+    margin-right: 5px;
+    content: "\2192 \00a0";
+  }
+}
+
 /**
  * Headings
  */
@@ -153,11 +168,11 @@ h6 {
   font-weight: $font-weight;
 }
 
-@each $heading, $size in $heading-sizes {
-  #{$heading} {
-    font-size: $size;
+@each $h, $s in $heading-sizes {
+  #{$h} {
+    font-size: $s;
 
-    @if $heading == "h1" {
+    @if $h == "h1" {
       font-weight: 600;
 
       &:not(:first-child) {
@@ -182,6 +197,7 @@ a {
   // &:visited {
   //   color: var(--lk-3);
   // }
+  
   .social-media-list &:hover {
     text-decoration: none;
 
@@ -204,7 +220,11 @@ blockquote {
   > :last-child {
     margin-bottom: 0;
   }
-
+  
+  cite::before {
+    content: "\2014 \0020";
+  }
+  
   i,
   em {
     font-style: normal;
@@ -214,15 +234,22 @@ blockquote {
 /**
  * Code formatting
  */
+kbd,
 pre,
 code {
   font-family: $font-mono;
   font-size: $font-size-code;
   border: 1px solid var(--bd-1);
   border-radius: $border-radius;
+  color: var(--tx-1);
   background-color: var(--bg-2);
 }
 
+kbd {
+  border-bottom: 2px solid var(--bd-1);
+}
+
+kbd,
 code {
   padding: 1px 5px;
 }
@@ -233,8 +260,8 @@ pre {
 
   > code {
     border: 0;
-    padding-right: 0;
     padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -270,55 +297,6 @@ pre {
   content: "";
   display: table;
   clear: both;
-}
-
-/**
- * Clearfix
- */
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/**
- * Icons
- */
-
-.orange {
-  color: var(--orange);
-}
-
-.grey {
-  color: $base03;
-}
-
-.svg-icon {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  fill: currentColor;
-  vertical-align: text-bottom;
-}
-
-/**
- * Blockquotes
- */
-blockquote {
-  color: var(--tx-1);
-  border-left: 5px solid var(--bd-1);
-  padding-left: $spacing-unit * 0.5;
-  font-size: 1.125rem;
-  font-style: italic;
-
-  > :last-child {
-    margin-bottom: 0;
-  }
-
-  i,
-  em {
-    font-style: normal;
-  }
 }
 
 /**
@@ -359,8 +337,7 @@ table {
   }
 }
 
-/* END PART MINIMA */
-
+// Can also be used as a table of content.
 details {
   padding: 0.6rem 1rem;
   background-color: var(--bg-2);
@@ -375,40 +352,7 @@ details {
   }
 }
 
-// Definition lists
-dl {
-  dt {
-    font-weight: bold;
-  }
-
-  dd::before {
-    margin-right: 5px;
-    content: "\2192 \00a0";
-  }
-}
-
-// Blockquote with <cite>
-blockquote:has(cite) {
-  cite::before {
-    content: "\2014 \0020";
-  }
-}
-
-// Horizontal rules
-hr {
-  border: 0;
-  border-bottom: 2px solid var(--bd-1);
-}
-
-// Keyboards
-kbd {
-  background-color: var(--bg-2);
-  color: var(--tx-1);
-  padding: 2px 5px;
-  border-radius: $border-radius;
-  border-bottom: 3px solid var(--bd-1);
-}
-
+// Sample output
 samp {
   background-color: inherit !important;
   color: var(--lk-1);
@@ -418,17 +362,34 @@ abbr {
   cursor: help;
 }
 
-mark,
+// Selection color
 ::selection {
-  padding: 2px;
-  color: var(--black);
+  color: $base00;
+  background-color: var(--lk-1), var(--blue);
 }
 
-::selection {
-  background-color: var(--lk-1);
-}
-
+// Marker color
 mark {
   color: $base00;
-  background-color: var(--yellow);
+  background-color: var(--yellow), var(--orange);
+}
+
+
+/**
+ * Icons
+ */
+.orange {
+  color: var(--orange);
+}
+
+.grey {
+  color: $base03;
+}
+
+.svg-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
 }
