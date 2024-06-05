@@ -1,5 +1,6 @@
 ---
-layout: base
+layout: default
+compress_html: false
 ---
 {%- assign author_name = site.author.name | default: page.author -%}
 {%- assign author_url = site.author.url | default: '/' -%}
@@ -18,33 +19,38 @@ layout: base
   <meta itemprop="wordCount" content="{{ page.content | strip_html | size }}">
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <div>
-      <p class="post-meta">
-        Posted by
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">
-            <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
-          </span>
+    <p class="post-meta">
+      Posted by
+      <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <span itemprop="name">
+          <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
         </span>
-        on
-        <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
-          {{- date_published | date: date_format -}}</time
-        >, and updated on
-        <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
-          {{- date_modified | date: date_format -}}</time
-        >.
-      </p>
-    </div>
+      </span>
+      on
+      <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
+        {{- date_published | date: date_format -}}</time
+      >, and updated on
+      <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
+        {{- date_modified | date: date_format -}}</time
+      >.
+    </p>
   </header>
   {% comment %} <hr> {% endcomment %}
   <section class="post-content" itemprop="articleBody">
-    {% if page.toc == true or page.table_of_content == true %}
+    {% if page.toc == true %}
       <details open>
-        <summary>Table of content</summary>
-        {{ content | toc_only }}
+        <summary>Table of Content</summary>
+        {% include toc.html html=content sanitize=true class="toc-list" id="toc" h_min=2 h_max=3 %}
       </details>
+      {% comment %}
+        <aside id="table-of-contents">
+          {% include toc.html html=content sanitize=true class="inline_toc" id="toc" h_min=2 h_max=3 %}
+        </aside>
+      {% endcomment %}
     {% endif %}
-    {{ content | inject_anchors }}
+    <div id="markdown-content">
+      {% include anchor_headings.html html=content anchorBody="#" anchorClass="anchor-link" h_min=2 h_max=3 %}
+    </div>
   </section>
   <footer>
     {% if page.tags %}

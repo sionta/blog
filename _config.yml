@@ -25,6 +25,8 @@ social_links:
   - { platform: mastodon, user_url: "https://mastodon.social/@sionta" }
   - { platform: twitter, user_url: "https://twitter.com/r007mmxv" }
 
+color_scheme: auto # dark, light
+
 #
 # Post settings ******************************************
 #
@@ -83,28 +85,14 @@ sass:
   style: compressed
   # style: expanded # for development
 
-# https://github.com/toshimaru/jekyll-toc
-toc:
-  min_level: 2
-  max_level: 4
-  ordered_list: false
-  list_id: toc
-  list_class: toc-list
-  sublist_class: ""
-  item_class: toc-item
-  item_prefix: toc-
-
 # https://jekyllrb.com/docs/configuration/markdown/
 markdown: kramdown
 kramdown:
   hard_wrap: false
-  auto_ids: true
-  parse_block_html: true
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
     default_lang: plain
-    line_numbers: table
     # span:
     #   line_numbers: false
     # block:
@@ -115,30 +103,32 @@ kramdown:
 
 # https://github.com/jekyll/jekyll-archives
 jekyll-archives:
-  enabled: [tags]
+  enabled:
+    - tags
   layouts:
     tag: tag
   permalinks:
     tag: "/tags/:name/"
 
 collections:
-  partials:
+  pages:
     output: true
-    # sort_by: order
+    permalink: "/:name/"
+  posts:
+    output: true
+    permalink: "/blog/:title/"
 
 defaults:
   - scope:
-      path: ""
-      type: partials
+      path: _pages
+      type: pages
     values:
       layout: page
-      permalink: /:name/
   - scope:
-      path: ""
+      path: _posts
       type: posts
     values:
       layout: post
-      permalink: "/blog/:title/"
 
 exclude:
   - "*.gem"

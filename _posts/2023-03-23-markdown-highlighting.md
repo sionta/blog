@@ -38,6 +38,8 @@ function addTwoNumbers (num1, num2) {
 
 ### CSS
 
+{% raw %}This is use `{% highlight css linenos %}`{% endraw %}
+
 {% highlight css linenos %}
 /* This is a single-line comment */
 
@@ -71,16 +73,17 @@ h1 {
 ```scss
 // This is a single-line comment
 
-$font-family: Arial, sans-serif;
+$font-family: "Lato", Arial, sans-serif;
 $font-weight: 400;
 $font-size: 16px;
 $line-height: 1.5;
 $text-color: #121212;
+$background-color: #f1f1f1;
 
 body {
     font: $font-weight #{$font-size}/#{$line-height} $font-family;
-    font-family: Arial, sans-serif;
     color: $text-color;
+    background-color: $background-color;
 
     h1 {
         font-size: calc($font-size * $line-height);

@@ -1,9 +1,41 @@
+blockquote {
+  cite::before {
+    content: "\2014 \0020";
+  }
+
+  &.normal {
+    font-style: normal;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+}
+
+code {
+  &.filepath {
+    background-color: inherit;
+    border: inherit;
+    color: var(--tx-1);
+    font-weight: 600;
+    padding: 0;
+  }
+}
+
 // Fixed `- [x] Task list` from rendering markdown.
 .task-list {
   margin-left: 0;
   list-style: none;
 
+  &-unchecked {
+    cursor: not-allowed;
+  }
+
   &-item {
+    i {
+      margin-right: 10px;
+    }
+
     &-checkbox {
       cursor: not-allowed;
       margin-right: 10px;
@@ -27,15 +59,16 @@
 }
 
 .anchor-link {
-  margin-left: calc(#{$spacing-unit} / 2);
+  // margin-left: calc(#{$spacing-unit} / 2);
+  font-size: 1.7rem;
   font-style: normal;
   font-weight: bold;
   color: var(--bd-1);
   text-decoration: none;
 
   &:hover {
-    text-decoration: none;
     color: var(--lk-1);
+    text-decoration: none;
   }
 }
 

@@ -1,30 +1,30 @@
-// :root {
-//   @include color-theme(
-//     $scheme: light,
-//     $rebase00: $base07,
-//     $rebase01: $base06,
-//     $rebase02: $base05,
-//     $rebase03: $base04,
-//     $rebase04: $base03,
-//     $rebase05: $base02,
-//     $rebase06: $base01,
-//     $rebase07: $base00
-//   );
-// }
+:root {
+  @include color-theme(
+    $scheme: light,
+    $rebase00: $base07,
+    $rebase01: $base06,
+    $rebase02: $base05,
+    $rebase03: $base04,
+    $rebase04: $base03,
+    $rebase05: $base02,
+    $rebase06: $base01,
+    $rebase07: $base00
+  );
+}
 
-// [data-theme="dark"] {
-//   @include color-theme(
-//     $scheme: dark,
-//     $rebase00: $base00,
-//     $rebase01: $base01,
-//     $rebase02: $base02,
-//     $rebase03: $base03,
-//     $rebase04: $base04,
-//     $rebase05: $base05,
-//     $rebase06: $base06,
-//     $rebase07: $base07
-//   );
-// }
+[data-theme="dark"] {
+  @include color-theme(
+    $scheme: dark,
+    $rebase00: $base00,
+    $rebase01: $base01,
+    $rebase02: $base02,
+    $rebase03: $base03,
+    $rebase04: $base04,
+    $rebase05: $base05,
+    $rebase06: $base06,
+    $rebase07: $base07
+  );
+}
 
 /* Base on Minima v3 | https://github.com/jekyll/minima */
 
@@ -95,10 +95,12 @@ figure,
   margin-bottom: $spacing-unit * 0.5;
 }
 
+// Horizontal rules
 hr {
-  border-color: var(--bd-1);
+  border: 0;
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
+  border-bottom: 2px solid var(--bd-1);
 }
 
 /**
@@ -142,6 +144,18 @@ li {
   }
 }
 
+// Definition lists
+dl {
+  dt {
+    font-weight: bold;
+  }
+
+  dd::before {
+    margin-right: 5px;
+    content: "\2192 \00a0";
+  }
+}
+
 /**
  * Headings
  */
@@ -153,6 +167,7 @@ h5,
 h6 {
   font-weight: $font-weight;
 }
+
 @each $h, $s in $heading-sizes {
   #{$h} {
     font-size: $s;
@@ -193,28 +208,9 @@ a {
 }
 
 /**
- * Blockquotes
- */
-blockquote {
-  color: var(--tx-1);
-  border-left: 4px solid var(--bd-1);
-  padding-left: calc($spacing-unit * 0.5);
-  @include relative-font(1.125);
-  // font-style: italic;
-
-  > :last-child {
-    margin-bottom: 0;
-  }
-
-  i,
-  em {
-    font-style: normal;
-  }
-}
-
-/**
  * Code formatting
  */
+.key,
 kbd,
 pre,
 code,
@@ -223,6 +219,7 @@ code,
   font-size: $font-size-code;
   border: 1px solid var(--bd-1);
   border-radius: $border-radius;
+  color: var(--tx-1);
   background-color: var(--bg-2);
 }
 
@@ -233,10 +230,6 @@ kbd {
 
 .key,
 kbd,
-code {
-  padding: 1px 5px;
-}
-
 code {
   padding: 1px 5px;
 }
@@ -252,31 +245,18 @@ pre {
   }
 }
 
-.highlight {
-  border-radius: $border-radius;
-  background: var(--bg-2);
-  @extend %vertical-rhythm;
-
-  .highlighter-rouge & {
-    background: var(--bg-2);
-  }
-}
-
 /**
  * Wrapper
  */
 .wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: $spacing-unit * 0.5;
-  padding-left: $spacing-unit * 0.5;
+  margin: 0 auto;
+  padding: 0 calc($spacing-unit * 0.5);
   @extend %clearfix;
 
-  @include breakpoint(md, min) {
+  @include breakpoint(md, max) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
+    padding: 0 $spacing-unit;
   }
 }
 
@@ -298,32 +278,61 @@ table {
   text-align: left;
   color: var(--tx-1);
   border-collapse: collapse;
-  // border: 1px solid var(--bd-1);
+
+  caption {
+    padding: 10px;
+    font-weight: bold;
+    font-size: map-get($heading-sizes, h5);
+    background-color: var(--bg-2);
+    border: 1px solid var(--bd-1);
+  }
 
   th,
   td {
     padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
   }
+
   th {
+    color: var(--tx-2);
     background-color: var(--bg-2);
     border: 1px solid var(--bd-1);
   }
+
   td {
     border: 1px solid var(--bd-1);
   }
+
   tr:nth-child(even) {
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
   }
+
   /* prettier-ignore */
-  @include breakpoint(md, max) {
-    // display: block;
+  @include breakpoint(lg, max) {
+    display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
             -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 }
 
-/* ENDED */
+/**
+ * Blockquotes
+ */
+blockquote {
+  border-left: 5px solid var(--bd-1);
+  color: var(--tx-1);
+  font-size: 1.125rem;
+  padding-left: calc($spacing-unit / 2);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
 
 // Can also be used as a table of content.
 details {
@@ -343,7 +352,6 @@ details {
 // Sample output
 samp {
   background-color: inherit !important;
-  background: inherit !important;
   color: var(--lk-1);
 }
 

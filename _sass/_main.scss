@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 // Import pre-styling-overrides hook and style-partials.
-@import "variables";
-@import "mixins";
+// @import "variables";
+// @import "mixins";
 
 // Bases
 @import "base/normalize";
@@ -35,3 +35,4 @@
 
 // Icons
 @import url("../fonts/tabler-icons/tabler-icons.min.css");
+@import url("../fonts/fontawesome-free/fontawesome.min.css");

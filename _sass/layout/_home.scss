@@ -57,10 +57,10 @@
     top: 0;
     bottom: 0;
     left: -100%;
-    transition: left 0.2s;
-    background: rgba(#000, 0.6);
+    transition: left 0.3s ease-in-out;
+    background: rgba($base00, 0.6);
     color: $base05;
-    padding: 10px;
+    padding: $spacing-unit;
     width: 100%;
     font-size: 0.9rem;
 
@@ -137,11 +137,11 @@
       a {
         display: inline-block;
         position: relative;
-        padding: 5px;
-        background-color: var(--bg-2);
+        padding: 8px;
+        background-color: var(--lk-1);
         border-radius: $border-radius;
-        border: 1px solid var(--lk-1);
-        color: var(--lk-1);
+        // border: 1px solid var(--lk-1);
+        color: $base00;
 
         &:hover {
           text-decoration: none;
@@ -176,8 +176,8 @@
       &:before {
         content: "";
         top: -0.75rem;
-        width: 20%;
-        height: 5px;
+        width: 15%;
+        height: 4px;
         position: absolute;
         background: var(--lk-1);
         border-radius: $border-radius;

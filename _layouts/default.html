@@ -4,7 +4,13 @@
   <body>
     {% include header.html %}
     <main class="page-content" aria-label="Content">
-      <div class="wrapper">{{ content }}</div>
+      <div class="wrapper">
+        {% if page.layout == 'post' or page.layout == 'page' %}
+          {% include query_selector.html html=content %}
+        {% else %}
+          {{ content }}
+        {% endif %}
+      </div>
     </main>
     {% include footer.html %}
     {% include script.html %}

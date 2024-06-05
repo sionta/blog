@@ -13,6 +13,10 @@
   word-wrap: break-word;
 }
 
+@mixin relative-font($size) {
+  font-size: #{$size}rem;
+}
+
 @mixin breakpoint($breakpoint, $viewport: max) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media screen and (#{$viewport}-width: map-get($breakpoints, $breakpoint)) {
@@ -28,14 +32,14 @@
 /* prettier-ignore */
 @mixin color-theme(
   $scheme: dark,
-  $rebase00: #1d1f21,
-  $rebase01: #282a2e,
-  $rebase02: #373b41,
-  $rebase03: #969896,
-  $rebase04: #b4b7b4,
-  $rebase05: #c5c8c6,
-  $rebase06: #e0e0e0,
-  $rebase07: #ffffff,
+  $rebase00: #1d1f21, // #1d1f21,
+  $rebase01: #282a2e, // #282a2e,
+  $rebase02: #373b41, // #373b41,
+  $rebase03: #969896, // #969896,
+  $rebase04: #c1cadb, // #b4b7b4,
+  $rebase05: #d8dee9, // #c5c8c6,
+  $rebase06: #e5e9f0, // #e0e0e0,
+  $rebase07: #eceff4, // #ffffff,
   $rebase08: #cc6666,
   $rebase09: #de935f,
   $rebase0A: #f0c674,

@@ -4,24 +4,6 @@
 {% if page.collection == 'posts' or page.layout == 'post' %}
   {% include comments.html %}
 
-  {% if page.anchor == true or page.anchor_headings == true %}
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
-        let headings = document.querySelectorAll('h2, h3, h4');
-        let ignores = ['no_toc', 'no_anchor'];
-        headings.forEach(function (heading) {
-          if (!ignores.some((className) => heading.classList.contains(className))) {
-            let anchor = document.createElement('a');
-            anchor.setAttribute('href', '#' + heading.id);
-            anchor.setAttribute('class', 'anchor-link');
-            anchor.innerHTML = '#';
-            heading.appendChild(anchor);
-          }
-        });
-      });
-    </script>
-  {% endif %}
-
   {% if page.mermaid == true or page.diagram == true %}
     <script type="text/javascript" src="{{- vendor_js -}}/mermaid.min.js"></script>
     <script type="text/javascript">
@@ -40,3 +22,31 @@
     </script>
   {% endif %}
 {% endif %}
+
+{% comment %}
+  <script>
+    // Pilih semua elemen div dan figure dengan kelas 'highlight'
+    const codeLanguages = document.querySelectorAll('[class^="language-"]');
+    const highlightElements = document.querySelectorAll('div.highlight, figure.highlight');
+
+    function getLabelText(element) {
+
+    }
+    // HTML yang akan ditambahkan
+    const newHtml = `
+      <div class="code-header">
+          <span data-lang="{{ _label_text | strip }}">
+              <i class="ti ti-code"></i>
+          </span>
+          <button aria-label="copy" data-title-succeed="Copied!">
+              <i class="ti ti-clipboard"></i>
+          </button>
+      </div>
+    `;
+
+    // Tambahkan HTML baru ke setiap elemen yang dipilih
+    highlightElements.forEach((highlightElement) => {
+      highlightElement.insertAdjacentHTML('afterbegin', newHtml);
+    });
+  </script>
+{% endcomment %}

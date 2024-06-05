@@ -114,17 +114,22 @@ The [Result Footnotes](#result-footnotes)
 
 ### Codes
 
-**Keyboard input:** <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd>
+<!-- Keyboard input <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd> -->
 
-**Inline code:** `<div>code</div>`
+Keyboard input `Ctrl`{:.key} + `Shift`{:.key} + `Esc`{:.key}
 
-**Sample output:** <samp>This is sample output from a computer program.</samp>
+Inline code `<div>code</div>`
+
+File path `/path/to/file.ext`{: .filepath}.
+
+Sample output <samp>This is sample output from a computer program.</samp>
 
 ### Blockquotes
 
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
 > <cite>Nikola Tesla</cite>
+{:.italic}
 <!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
 ### Tables
