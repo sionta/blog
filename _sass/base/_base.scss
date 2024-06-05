@@ -271,7 +271,7 @@ pre {
   padding: 0 calc($spacing-unit * 0.5);
   @extend %clearfix;
 
-  @include breakpoint(md, min) {
+  @include breakpoint(md, max) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
     padding: 0 $spacing-unit;
   }
