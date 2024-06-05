@@ -267,19 +267,15 @@ pre {
  */
 .wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: $spacing-unit * 0.5;
-  padding-left: $spacing-unit * 0.5;
+  margin: 0 auto;
+  padding: 0 calc($spacing-unit * 0.5);
   @extend %clearfix;
 
   @include breakpoint(md, min) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
+    padding: 0 $spacing-unit;
   }
 }
-
 /**
  * Clearfix
  */
