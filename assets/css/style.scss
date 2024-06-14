@@ -1,6 +1,4 @@
 ---
-# style.css
 ---
 
-@import "variables", "mixins",
-  "theme/{{- site.color_scheme | default: 'dark' -}}", "main";
+@use "main";

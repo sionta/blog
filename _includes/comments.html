@@ -1,4 +1,4 @@
-{% if page.comments == true %}
+{% if page.comments == true and site.comments.provider %}
   {% case site.comments.provider %}
     {% when 'disqus' %}
       <script type="text/javascript">
@@ -18,7 +18,9 @@
     {% when 'giscus' %}
       <script type="text/javascript">
         window.addEventListener('DOMContentLoaded', function () {
-          const giscusTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+          const giscusTheme =
+            localStorage.getItem('theme') ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
           const scriptTag = document.createElement('script');
           scriptTag.src = 'https://giscus.app/client.js';
           scriptTag.setAttribute('data-repo', '{{- site.comments.giscus.repo -}}');
@@ -43,7 +45,9 @@
     {% when 'utterances' %}
       <script type="text/javascript">
         window.addEventListener('DOMContentLoaded', function () {
-          const utterancesTheme = localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light';
+          const utterancesTheme =
+            localStorage.getItem('theme') ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
           const scriptTag = document.createElement('script');
           scriptTag.src = 'https://utteranc.es/client.js';
           scriptTag.setAttribute('repo', '{{- site.comments.utterances.repo -}}');

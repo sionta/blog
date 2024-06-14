@@ -5,6 +5,9 @@ description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown, cheatsheet]
 author: Andre Attamimi
+image:
+    url: "/assets/img/hero-markdown-guide.p128.png"
+    alt: "Image by https://culturedcode.com"
 
 # Special configuration for layout "post":
 toc: true       # Enable table of contents
@@ -12,7 +15,7 @@ anchor: true    # Enable anchor headings
 mermaid: true   # Enable mermaid diagrammings
 comments: true  # Enable comments
 ---
-<!-- markdownlint-disable MD022 MD025 MD033 MD036 MD056 -->
+<!-- markdownlint-disable MD022 MD025 MD033 MD034 MD036 MD056 -->
 
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
@@ -130,6 +133,7 @@ Sample output <samp>This is sample output from a computer program.</samp>
 >
 > <cite>Nikola Tesla</cite>
 {:.italic}
+
 <!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
 ### Tables
@@ -246,24 +250,12 @@ $$
 The Diagramming and charting Powered by [Mermaid:](https://mermaid.js.org/)
 
 ```mermaid
-gitGraph:
-  commit "Ashish"
-  branch newbranch
-  checkout newbranch
-  commit id:"1111"
-  commit tag:"test"
-  checkout main
-  commit type: HIGHLIGHT
-  commit
-  merge newbranch
-  commit
-  branch b2
-  commit
+ gantt
+  title  Adding GANTT diagram functionality to mermaid
+  apple :a, 2017-07-20, 1w
+  banana :crit, b, 2017-07-23, 1d
+  cherry :active, c, after b a, 1d
 ```
-
-### Github Gist
-
-{% gist a3e9dec5ae0453cf21543bf5332e7fe0 %}
 
 ### Emoji Shortcodes
 
@@ -280,8 +272,8 @@ bundle install
 bundle exec jekyll serve --livereload # or --watch
 ```
 
-> **TIP:** In most cases, you can simply copy an emoji from a source like [Emojipedia](https://emojipedia.org/) or [EmojiCopy](https://emojicopy.com/) then paste it into your document.
-{:.alert .alert-note}
+In most cases, you can simply copy an emoji from a source like [Emojipedia](https://emojipedia.org/) or [EmojiCopy](https://emojicopy.com/) then paste it into your document.
+{:.alert.alert-tip}
 
 ## Other elements
 

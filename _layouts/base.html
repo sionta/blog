@@ -1,0 +1,18 @@
+---
+layout: clean
+---
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+  <body>
+    {% include header.html %}
+    <main class="content">
+      <div class="container">
+        {%- include rebase.html content=content -%}
+      </div>
+    </main>
+    {% include footer.html %}
+    <script src="{{- '/assets/js/main.js' | relative_url -}}"></script>
+    {%- include scripts.html -%}
+  </body>
+</html>

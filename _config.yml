@@ -1,14 +1,17 @@
-#
-# Site settings ******************************************
-#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
+# Site settings ******************************************
 title: Andre Attamimi
 brand: Andre S. Attamimi # alternative site name for animation
+email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  run, study, modify, and share
-
-baseurl: "" # the subpath of your site, e.g. "/blog" (DON'T include a trailing slash)
-url: "" # the base hostname & protocol for your site, e.g. "http://example.com"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+google_analytics: G-31WRW155T4
 
 timezone: Asia/Tokyo
 lang: en
@@ -17,21 +20,11 @@ image: "/assets/img/avatar.svg" # https://github.com/sionta.png?size=100
 twitter:
   username: R007MMXV
 
-google_analytics: G-31WRW155T4
-
 # Generate social links in footer. for available platforms see "includes/social-item".
 social_links:
   - { platform: github, user_url: "https://github.com/sionta" }
   - { platform: mastodon, user_url: "https://mastodon.social/@sionta" }
   - { platform: twitter, user_url: "https://twitter.com/r007mmxv" }
-
-color_scheme: auto # dark, light
-
-#
-# Post settings ******************************************
-#
-
-banner: "https://placehold.co/600x400?text=Hello+World/"
 
 author:
   picture: "/assets/img/avatar.svg"
@@ -48,7 +41,7 @@ show_excerpts: false
 date_format: "%b %d, %Y"
 
 comments:
-  provider: "giscus" # e.g. "disqus". The provider settings below:
+  provider: "" # e.g. "disqus". The provider settings below:
   disqus:
     # What is `shortname` refer to https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: "andreattamimi"
@@ -63,13 +56,10 @@ comments:
     repo: "sionta/blog" # e.g. "owner/repo"
     issue_term: "pathname"
 
-#
 # Build settings *****************************************
-#
-
 # https://github.com/jekyll/jekyll-paginate
-paginate: 3
-paginate_path: "/blog/page:num/"
+paginate: 5
+paginate_path: /blog/page:num/
 
 # https://github.com/jekyll/jekyll-feed
 feed:
@@ -82,33 +72,29 @@ gist:
 
 # https://sass-lang.com/documentation/cli/ruby-sass/
 sass:
-  style: compressed
-  # style: expanded # for development
+  # style: compressed
+  style: expanded # for development
 
 # https://jekyllrb.com/docs/configuration/markdown/
 markdown: kramdown
 kramdown:
+  input: GFM
   hard_wrap: false
+  # https://github.com/jekyll/jekyll/pull/4090
   syntax_highlighter: rouge
+  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # span, block element options fall back to global
   syntax_highlighter_opts:
+    # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
-    default_lang: plain
-    # span:
-    #   line_numbers: false
-    # block:
-    #   line_numbers: true
-    #   start_line: 1
+    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
   math_engine: katex
   math_engine_opts: {}
-
-# https://github.com/jekyll/jekyll-archives
-jekyll-archives:
-  enabled:
-    - tags
-  layouts:
-    tag: tag
-  permalinks:
-    tag: "/tags/:name/"
 
 collections:
   pages:
@@ -129,13 +115,19 @@ defaults:
       type: posts
     values:
       layout: post
+      # Special configuration for layout "post":
+      toc: true # Enable table of contents
+      anchor: true # Enable anchor headings
+      mermaid: false # Enable mermaid diagrammings
+      comments: false # Enable comments, first set `site.comments.provider`
 
 exclude:
   - "*.gem"
   - "*.gemspec"
   - "*.lock"
-  - "docs"
-  - "tests"
-  - "tools"
+  - "/docs"
+  - "/test*"
+  - "/tool*"
+  - "/script*"
   - "package*.json"
   - "README.md"

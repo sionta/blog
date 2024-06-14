@@ -1,6 +1,6 @@
 ---
 navigation: true
-layout: default
+layout: base
 order: 0
 
 title: About

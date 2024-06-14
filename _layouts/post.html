@@ -1,80 +1,65 @@
 ---
-layout: default
-compress_html: false
+layout: base
 ---
 {%- assign author_name = site.author.name | default: page.author -%}
-{%- assign author_url = site.author.url | default: '/' -%}
-
+{%- assign author_url = site.author.url -%}
 {%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
-{%- assign date_published = page.date -%}
 {%- assign date_modified = page.modified_date | default: page.last_modified_at -%}
-
-<article
-  class="post h-entry"
-  itemscope
-  itemtype="https://schema.org/BlogPosting"
-  itemid="{{ page.url | absolute_url }}"
->
-  <a href="{{ page.url | relative_url }}" hidden></a>
-  <meta itemprop="wordCount" content="{{ page.content | strip_html | size }}">
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      Posted by
-      <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-        <span itemprop="name">
-          <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
+{%- assign date_published = page.date -%}
+<article class="article" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
+  <header>
+    <h1 itemprop="name headline">{{ page.title | escape }}</h1>
+    <p>
+      {%- if author_name -%}
+        Posted by
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">
+            <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
+          </span>
         </span>
-      </span>
-      on
-      <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
-        {{- date_published | date: date_format -}}</time
-      >, and updated on
-      <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
-        {{- date_modified | date: date_format -}}</time
-      >.
+      {%- endif -%}
+      {%- if date_published -%}
+        Published on
+        <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
+          {{- date_published | date: date_format -}}
+        </time>
+      {%- endif -%}
+      {%- if date_modified and date_modified != date_published -%}
+        , Modified on
+        <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
+          {{- date_modified | date: date_format -}}
+        </time>
+      {%- endif -%}
+      .
     </p>
   </header>
-  {% comment %} <hr> {% endcomment %}
-  <section class="post-content" itemprop="articleBody">
-    {% if page.toc == true %}
-      <details open>
-        <summary>Table of Content</summary>
-        {% include toc.html html=content sanitize=true class="toc-list" id="toc" h_min=2 h_max=3 %}
-      </details>
-      {% comment %}
-        <aside id="table-of-contents">
-          {% include toc.html html=content sanitize=true class="inline_toc" id="toc" h_min=2 h_max=3 %}
-        </aside>
-      {% endcomment %}
-    {% endif %}
-    <div id="markdown-content">
-      {% include anchor_headings.html html=content anchorBody="#" anchorClass="anchor-link" h_min=2 h_max=3 %}
-    </div>
+  <section itemprop="articleBody">
+    {{ content }}
   </section>
   <footer>
-    {% if page.tags %}
+    {%- if page.tags -%}
       <p>
         Tagged with:
         <span class="tag-link" itemprop="keywords">
-          {% for tag in page.tags %}
+          {%- for tag in page.tags -%}
             <a href="{{ '/tags/' | append: tag | relative_url }}">{{- tag -}}</a>
             {%- unless forloop.last %}&#44; {% endunless -%}
-          {% endfor -%}
+          {%- endfor -%}
         </span>
       </p>
-    {% endif %}
-    {% if page.comments == true %}
+    {%- endif -%}
+    {%- if page.comments == true -%}
       <div
-        itemscope
-        itemtype="https://schema.org/Comment"
-        {% if site.comments.provider == 'disqus' %}
+        {%- if site.comments.provider == 'disqus' -%}
           id="disqus_thread"
         {% else %}
           id="{{ site.comments.provider }}"
-        {% endif %}
+        {%- endif %}
         class="{{ site.comments.provider }}"
+        itemscope
+        itemtype="https://schema.org/Comment"
       ></div>
-    {% endif %}
+    {%- endif -%}
   </footer>
+  <a href="{{ page.url | relative_url }}" hidden></a>
 </article>

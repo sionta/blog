@@ -1,0 +1,93 @@
+{%- comment -%} MODIFIED CONTENT {%- endcomment -%}
+{%- capture _CONTENT -%}{{ include.content | default: page.content }}{%- endcapture -%}
+{%- comment -%} Alerts {%- endcomment -%}
+{%- if _CONTENT contains '<blockquote class="alert">' -%}
+  {%- for alert in site.data.data.alerts -%}
+    {%- assign alert_name = alert.name -%}
+    {%- assign alert_icon = alert.icon | downcase -%}
+    {%- assign alert_subClass = 'alert-' | append: alert_name | downcase -%}
+    {%- assign alert_svgClass = alert_subClass | append: '-icon' -%}
+    {%- assign currentElement = '<blockquote class="' | append: 'alert ' | append: alert_subClass | append: '">' -%}
+    {%- capture newElement -%}{{ currentElement | replace: '">','" role="alert">' }}
+      <div class="alert-header">
+        {%- include icons.html id=alert_icon class=alert_svgClass -%}
+        <span class="{{ alert_subClass }}-title">{{ alert_name }}</span>
+      </div>
+    {%- endcapture -%}
+    {%- assign _CONTENT = _CONTENT | replace: currentElement, newElement -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- comment -%} Change the icon of checkbox {%- endcomment -%}
+{%- if _CONTENT contains '<input type="checkbox" class="task-list-item-checkbox"' -%}
+  {%- capture _icon_checkbox -%}{%- include icons.html id="checkbox" class="task-list-checked" -%}{%- endcapture -%}
+  {%- capture _icon_uncheck -%}{%- include icons.html id="square" class="task-list-unchecked" -%}{%- endcapture -%}
+  {%- assign _CONTENT = _CONTENT
+    | replace: '<input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />',
+      _icon_checkbox
+    | replace: '<input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />', _icon_uncheck
+  -%}
+{%- endif -%}
+
+{% comment %} Code blocks {% endcomment %}
+{%- if _CONTENT contains 'class="highlight"' -%}
+  {%- assign _CONTENT = _CONTENT
+    | replace: '<figure class="highlight"><pre>',
+      '<div class="language-figure highlighter-rouge"><div class="highlight"><pre class="highlight">'
+    | replace: '</pre></figure>', '</pre></div></div>'
+  -%}
+  {%- assign _CONTENT = _CONTENT
+    | replace: '<div class="highlight"><pre class="highlight">', '<pre class="highlight">'
+    | replace: '</pre></div></div>', '</pre></div>'
+  -%}
+  {%- assign _pre_highlight = '<pre class="highlight">' -%}
+  {%- assign _code_spippets = _CONTENT | split: _pre_highlight -%}
+  {%- for _snippet in _code_spippets -%}
+    {%- if _snippet contains 'data-lang=' -%}
+      {%- assign _code_class = _snippet | split: '><' | first -%}
+      {%- assign _data_lang = _code_class | split: 'data-lang=' | last | replace: '"' -%}
+      {%- assign _new_class = 'language-' | append: _data_lang -%}
+      {%- assign _CONTENT = _CONTENT | replace: 'language-figure', _new_class | replace: _code_class, '<code' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign _code_data = site.data.data.code_blocks -%}
+  {%- assign _code_spippets = _CONTENT | split: _pre_highlight -%}
+  {%- assign _code_blocks = '' -%}
+  {%- for _snippet in _code_spippets -%}
+    {%- if forloop.last -%}
+      {%- assign _code_blocks = _code_blocks | append: _snippet -%}
+    {%- else -%}
+      {%- assign _code_lang = _snippet | split: 'language-' | last | split: ' ' | first -%}
+      {%- assign _label_text = _code_lang | capitalize -%}
+      {%- assign _label_icon = 'code' -%}
+      {%- for block in _code_data.icons -%}
+        {%- if block.alias contains _code_lang -%}
+          {%- assign _label_text = block.name | default: _code_lang -%}
+          {%- assign _label_icon = block.icon | default: _label_icon -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- capture _code_header -%}
+      <div class="code-header">
+        {%- include icons.html id=_label_icon class='code-header-icon' -%}
+        <span class="code-header-title">{{ _label_text | strip }}</span>
+        <button class="copy-button" type="button" data-copy-label="{{ _code_data.label.copy }}" data-success-label="{{ _code_data.label.success }}" data-error-label="{{ _code_data.label.error }}">
+          {%- include icons.html id='copy' class='copy-clipboard' -%}
+          {%- include icons.html id='check' class='copy-succeed' style="display: none;" -%}
+          <span class="tooltip"></span>
+        </button>
+      </div>
+      {%- endcapture -%}
+      {%- assign _data_lang_attr = 'class="highlight" data-lang="' | append: _label_text | append: '">' -%}
+      {%- assign _code_blocks = _code_blocks | replace: 'class="highlight">', _data_lang_attr -%}
+      {%- assign _code_blocks = _code_blocks | append: _snippet | append: _code_header | append: _pre_highlight -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign _CONTENT = _code_blocks -%}
+  {%- assign _CONTENT = _CONTENT
+    | replace: '<td class="gutter gl">', '<td class="rouge-gutter gl">'
+    | replace: '<td class="code">', '<td class="rouge-code">'
+  -%}
+{%- endif -%}
+
+{{ _CONTENT }}
