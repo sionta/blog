@@ -6,9 +6,7 @@ title: Andre Attamimi
 brand: Andre S. Attamimi # alternative site name for animation
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  run, study, modify, and share.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 google_analytics: G-31WRW155T4
@@ -40,26 +38,10 @@ show_excerpts: false
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%b %d, %Y"
 
-comments:
-  provider: "" # e.g. "disqus". The provider settings below:
-  disqus:
-    # What is `shortname` refer to https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-    shortname: "andreattamimi"
-  giscus:
-    # For more setting refer to https://giscus.app/
-    repo: "sionta/blog" # e.g. "owner/repo"
-    repo_id: "R_kgDOLxRA-w"
-    category: "Q&A"
-    category_id: "DIC_kwDOLxRA-84CfGPN"
-  utterances:
-    # For more setting refer to https://utteranc.es/
-    repo: "sionta/blog" # e.g. "owner/repo"
-    issue_term: "pathname"
-
 # Build settings *****************************************
 # https://github.com/jekyll/jekyll-paginate
 paginate: 5
-paginate_path: /blog/page:num/
+paginate_path: "/blog/page:num/"
 
 # https://github.com/jekyll/jekyll-feed
 feed:
@@ -115,11 +97,6 @@ defaults:
       type: posts
     values:
       layout: post
-      # Special configuration for layout "post":
-      toc: true # Enable table of contents
-      anchor: true # Enable anchor headings
-      mermaid: false # Enable mermaid diagrammings
-      comments: false # Enable comments, first set `site.comments.provider`
 
 exclude:
   - "*.gem"

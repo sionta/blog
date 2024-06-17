@@ -1,9 +1,7 @@
 ---
 navigation: true
-layout: page
-order: 3
-
-# icon: brand-github
-external_icon: true
+layout: none
+title: GitHub
 redirect_to: https://github.com/sionta/
+order: 1
 ---

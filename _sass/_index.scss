@@ -1,20 +1,5 @@
-@charset "UTF-8";
-
-// Utilities
-@use "utilities";
-
-// Layouts
+@forward "settings";
+@use "colors";
 @use "base";
 @use "layout";
-
-// Components
-@use "components";
-
-// Icons
-// @import url("../fonts/tabler-icons/tabler-icons.min.css");
-
-// Fonts
-@import url("../fonts/lato/lato.min.css");
-@import url("../fonts/open-sans/open_sans.min.css");
-@import url("../fonts/fira-code/fira_code.min.css");
-@import url("../fonts/cormorant-garamond/cormorant_garamond.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");

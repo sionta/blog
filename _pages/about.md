@@ -1,10 +1,8 @@
 ---
 navigation: true
-layout: base
-order: 0
-
+layout: page
 title: About
-# icon: info-circle
+order: 0
 ---
 
 ## Hi there 👋

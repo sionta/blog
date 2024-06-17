@@ -1,79 +1,62 @@
-@use "sass:map";
-@use "utilities" as *;
-
-$base00: #1d1f21;
-$base01: #282a2e;
-$base02: #373b41;
-$base03: #969896;
-$base04: #c1cadb;
-$base05: #d8dee9;
-$base06: #e5e9f0;
-$base07: #eceff4;
-
-$red: #cc6666;
-$orange: #de935f;
-$yellow: #f0c674;
-$green: #b5bd68;
-$cyan: #8abeb7;
-$blue: #81a2be;
-$violet: #b294bb;
-$brown: #a3685a;
-$magenta: #d33682;
-
-// Create a map for easier theming
-$themes: (
-  "light": (
-    "bg-1": $base07,
-    "bg-2": $base06,
-    "bg-3": $base05,
-    "tx-1": $base02,
-    "tx-2": $base03,
-    "tx-3": $base04,
-    "bd-1": $base04,
-    "bd-2": $base03,
-    "bd-3": $base02,
-    "ac-1": var(--blue),
-    "ac-2": var(--magenta),
-    "ac-3": var(--violet),
-  ),
-  "dark": (
-    "bg-1": $base00,
-    "bg-2": $base01,
-    "bg-3": $base02,
-    "tx-1": $base04,
-    "tx-2": $base05,
-    "tx-3": $base06,
-    "bd-1": $base02,
-    "bd-2": $base03,
-    "bd-3": $base04,
-  ),
-  "colors": (
-    "red": $red,
-    "orange": $orange,
-    "yellow": $yellow,
-    "green": $green,
-    "cyan": $cyan,
-    "blue": $blue,
-    "violet": $violet,
-    "brown": $brown,
-    "magenta": $magenta,
-  ),
-);
-
-@mixin theme($mode: light) {
-  $color-data: map.get($themes, "colors");
-  $theme-data: map.get($themes, $mode);
+@mixin color-scheme($mode: "light") {
   color-scheme: $mode;
 
-  @each $key, $value in $theme-data {
-    --#{$key}: #{$value};
+  @if $mode == "dark" {
+    --bg-1: #020617;
+    --bg-2: #0f172a;
+    --bg-3: #334155;
+    --bg-4: #475569;
+    --tx-1: #64748b;
+    --tx-2: #94a3b8;
+    --tx-3: #cbd5e1;
+    --tx-4: #e2e8f0;
+    --bd-3: #f1f5f9;
+    --bd-4: #f8fafc;
+  } @else {
+    --bg-1: #f8fafc;
+    --bg-2: #f1f5f9;
+    --bg-3: #e2e8f0;
+    --bg-4: #cbd5e1;
+    --tx-1: #94a3b8;
+    --tx-2: #64748b;
+    --tx-3: #475569;
+    --tx-4: #334155;
+    --bd-1: #0f172a;
+    --bd-2: #020617;
+  }
+}
+
+:root {
+  /* colors by luxacss https://github.com/luxonauta/luxacss */
+  --blue: #0ea5e9;
+  --green: #22c55e;
+  --orange: #f97316;
+  --purple: #8b5cf6;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --light-1: #f8fafc;
+  --light-2: #f1f5f9;
+  --light-3: #e2e8f0;
+  --light-4: #cbd5e1;
+  --light-5: #94a3b8;
+  --night-1: #64748b;
+  --night-2: #475569;
+  --night-3: #334155;
+  --night-4: #0f172a;
+  --night-5: #020617;
+
+  &,
+  &[data-theme="light"] {
+    @include color-scheme(light);
   }
 
-  @each $key, $value in $color-data {
-    @if $mode == "dark" {
-      --#{$key}: #{$value};
-    } @else {
-      --#{$key}: #{darken($value, 10%)};
-    }
-  }
+  // &[data-theme="dark"] {
+  //   @include color-scheme(dark);
+  // }
+
+  // @media (prefers-color-scheme: dark) {
+  //   &:not([data-theme]) {
+  //     @include color-scheme(dark);
+  //   }
+  // }
 }

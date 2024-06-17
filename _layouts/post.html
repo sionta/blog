@@ -1,65 +1,26 @@
 ---
 layout: base
 ---
-{%- assign author_name = site.author.name | default: page.author -%}
-{%- assign author_url = site.author.url -%}
-{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
-{%- assign date_modified = page.modified_date | default: page.last_modified_at -%}
-{%- assign date_published = page.date -%}
-<article class="article" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
-  <header>
-    <h1 itemprop="name headline">{{ page.title | escape }}</h1>
-    <p>
-      {%- if author_name -%}
-        Posted by
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">
-            <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
-          </span>
-        </span>
-      {%- endif -%}
-      {%- if date_published -%}
-        Published on
-        <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
-          {{- date_published | date: date_format -}}
-        </time>
-      {%- endif -%}
-      {%- if date_modified and date_modified != date_published -%}
-        , Modified on
-        <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
-          {{- date_modified | date: date_format -}}
-        </time>
-      {%- endif -%}
-      .
-    </p>
-  </header>
-  <section itemprop="articleBody">
+{% capture toc_list %}
+  <nav>
+    {% include toc.html html=content sanitize=true class="toc-list" h_min=2 h_max=3 %}
+  </nav>
+{% endcapture %}
+<div class="post-container">
+  <aside class="post-toc hide-on-mobile">
+    <h3>On this page</h3>
+    <nav>
+      {% include toc.html html=content sanitize=true class="toc-list" h_min=2 h_max=3 %}
+    </nav>
+  </aside>
+  <article class="post-main" itemprop="articleBody">
+    <h1>{{ page.title }}</h1>
+    {% comment %}
+      <details open class="post-toc only-on-mobile">
+        <summary>On this page</summary>
+        {{ toc_list }}
+      </details>
+    {% endcomment %}
     {{ content }}
-  </section>
-  <footer>
-    {%- if page.tags -%}
-      <p>
-        Tagged with:
-        <span class="tag-link" itemprop="keywords">
-          {%- for tag in page.tags -%}
-            <a href="{{ '/tags/' | append: tag | relative_url }}">{{- tag -}}</a>
-            {%- unless forloop.last %}&#44; {% endunless -%}
-          {%- endfor -%}
-        </span>
-      </p>
-    {%- endif -%}
-    {%- if page.comments == true -%}
-      <div
-        {%- if site.comments.provider == 'disqus' -%}
-          id="disqus_thread"
-        {% else %}
-          id="{{ site.comments.provider }}"
-        {%- endif %}
-        class="{{ site.comments.provider }}"
-        itemscope
-        itemtype="https://schema.org/Comment"
-      ></div>
-    {%- endif -%}
-  </footer>
-  <a href="{{ page.url | relative_url }}" hidden></a>
-</article>
+  </article>
+</div>
