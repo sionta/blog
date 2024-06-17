@@ -1,5 +1,0 @@
-- TOC on Mobile use `details > sumary` and on Desktop use scrollpy or sticky.
-- Fix `wrapper` and and `container`.
-- color scheme Solarized light and dark.
-- Color syntax for `highlight` and `rebase.html` them.
-- AND SLEEP PLEASE.

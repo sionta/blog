@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Markdown Test page
+title: Markdown Test Page
 description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown, cheatsheet]

@@ -1,7 +1,7 @@
 ---
 layout: base
 ---
-<main class="home-list">
+<div id="home" class="home">
   {%- for post in site.posts %}
     <section class="home-item">
       <h2>{{ post.title }}</h2>
@@ -9,41 +9,31 @@ layout: base
       <a href="{{ post.url }}" class="home-link">Read more</a>
     </section>
   {%- endfor %}
-  {% if site.paginate %}
+  {%- if site.paginate %}
     <div class="pagination">
-      {% if paginator.total_pages > 0 %}
-        {% if paginator.previous_page %}
+      {%- if paginator.total_pages > 0 %}
+        {%- if paginator.previous_page %}
           <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
-        {% else %}
+        {%- else %}
           <span class="previous disabled">Previous</span>
-        {% endif %}
-        {% for page in (1..paginator.total_pages) %}
-          {% if page == paginator.page %}
+        {%- endif %}
+        {%- for page in (1..paginator.total_pages) %}
+          {%- if page == paginator.page %}
             <span class="page-number current">{{ page }}</span>
-          {% elsif page == 1 %}
+          {%- elsif page == 1 %}
             <a href="{{ '/' | relative_url }}" class="page-number">{{ page }}</a>
-          {% else %}
+          {%- else %}
             <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="page-number">
               {{- page -}}
             </a>
-          {% endif %}
-        {% endfor %}
-        {% if paginator.next_page %}
+          {%- endif %}
+        {%- endfor %}
+        {%- if paginator.next_page %}
           <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-        {% else %}
+        {%- else %}
           <span class="next disabled">Next</span>
-        {% endif %}
-      {% endif %}
+        {%- endif %}
+      {%- endif %}
     </div>
-  {% endif %}
-</main>
-{% comment %}
-  <section class="home-recent">
-    <h3>Recent Posts</h3>
-    <ul>
-      <li><a href="#">Post 1</a></li>
-      <li><a href="#">Post 2</a></li>
-      <li><a href="#">Post 3</a></li>
-    </ul>
-  </section>
-{% endcomment %}
+  {%- endif %}
+</div>

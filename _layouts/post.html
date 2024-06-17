@@ -2,19 +2,11 @@
 layout: base
 ---
 {% capture toc_list %}<nav>{{ content | toc_only }}</nav>{% endcapture %}
-<div class="post-container">
-  <aside class="post-toc hide-on-mobile">
-    <h3>On this page</h3>
-    {{ toc_list }}
-  </aside>
-  <article class="post-main" itemprop="articleBody">
-    <h1>{{ page.title }}</h1>
-    <details open class="post-toc only-on-mobile">
-      <summary>On this page</summary>
-      {{ toc_list }}
-    </details>
-    <div>
-      {{ content | inject_anchors }}
-    </div>
-  </article>
-</div>
+<article itemprop="articleBody">
+  <h1>{{ page.title }}</h1>
+  <details class="only-on-mobile">
+    <summary>On this page</summary>
+    {% include toc.html %}
+  </details>
+  {{ content | inject_anchors }}
+</article>

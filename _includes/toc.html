@@ -1,0 +1,5 @@
+{% capture nav_class %}class="toc {{ include.class | default: '' }}"{% endcapture %}
+{% capture nav_style %}style="{{ include.style | default: '' }}"{% endcapture %}
+<nav {{ nav_class }} {{ nav_style }}>
+  {% toc %}
+</nav>

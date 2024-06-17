@@ -1,62 +1,145 @@
 @mixin color-scheme($mode: "light") {
   color-scheme: $mode;
-
   @if $mode == "dark" {
+    --red: #{lighten(#cc6666, 5%)};
+    --orange: #{lighten(#de935f, 5%)};
+    --yellow: #{lighten(#f0c674, 5%)};
+    --green: #{lighten(#b5bd68, 5%)};
+    --cyan: #{lighten(#8abeb7, 5%)};
+    --blue: #{lighten(#81a2be, 5%)};
+    --violet: #{lighten(#b294bb, 5%)};
+    --brown: #{lighten(#a3685a, 5%)};
+    --magenta: #{lighten(#d33682, 5%)};
     --bg-1: #020617;
     --bg-2: #0f172a;
     --bg-3: #334155;
     --bg-4: #475569;
-    --tx-1: #64748b;
-    --tx-2: #94a3b8;
-    --tx-3: #cbd5e1;
-    --tx-4: #e2e8f0;
-    --bd-3: #f1f5f9;
-    --bd-4: #f8fafc;
+    --bg-5: #64748b;
+    --tx-5: #94a3b8;
+    --tx-4: #cbd5e1;
+    --tx-3: #e2e8f0;
+    --tx-2: #f1f5f9;
+    --tx-1: #f8fafc;
   } @else {
+    --red: #{darken(#cc6666, 10%)};
+    --orange: #{darken(#de935f, 10%)};
+    --yellow: #{darken(#f0c674, 10%)};
+    --green: #{darken(#b5bd68, 10%)};
+    --cyan: #{darken(#8abeb7, 10%)};
+    --blue: #{darken(#81a2be, 10%)};
+    --violet: #{darken(#b294bb, 10%)};
+    --brown: #{darken(#a3685a, 10%)};
+    --magenta: #{darken(#d33682, 10%)};
     --bg-1: #f8fafc;
     --bg-2: #f1f5f9;
     --bg-3: #e2e8f0;
     --bg-4: #cbd5e1;
-    --tx-1: #94a3b8;
-    --tx-2: #64748b;
-    --tx-3: #475569;
-    --tx-4: #334155;
-    --bd-1: #0f172a;
-    --bd-2: #020617;
+    --bg-5: #94a3b8;
+    --tx-5: #64748b;
+    --tx-4: #475569;
+    --tx-3: #334155;
+    --tx-2: #0f172a;
+    --tx-1: #020617;
   }
+  --link-color: var(--blue);
+  --border-color: var(--bg-4);
+  --text-color: var(--tx-4);
+  --background-color: var(--bg-2);
 }
 
 :root {
-  /* colors by luxacss https://github.com/luxonauta/luxacss */
-  --blue: #0ea5e9;
-  --green: #22c55e;
-  --orange: #f97316;
-  --purple: #8b5cf6;
-  --red: #ef4444;
-  --yellow: #eab308;
-  --light-1: #f8fafc;
-  --light-2: #f1f5f9;
-  --light-3: #e2e8f0;
-  --light-4: #cbd5e1;
-  --light-5: #94a3b8;
-  --night-1: #64748b;
-  --night-2: #475569;
-  --night-3: #334155;
-  --night-4: #0f172a;
-  --night-5: #020617;
-
   &,
   &[data-theme="light"] {
     @include color-scheme(light);
   }
 
-  // &[data-theme="dark"] {
-  //   @include color-scheme(dark);
-  // }
+  &[data-theme="dark"] {
+    @include color-scheme(dark);
+  }
 
   // @media (prefers-color-scheme: dark) {
   //   &:not([data-theme]) {
   //     @include color-scheme(dark);
   //   }
   // }
+}
+
+// Syntax highlighting styles should be adjusted appropriately for every theme
+// List of tokens: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+
+/* prettier-ignore */
+.highlight {
+  --syntax-error: var(--red);
+  --syntax-string: var(--text-color);
+  --syntax-comment: var(--bg-5);
+  .gl    { color: var(--syntax-string); } // Generic.Lineno
+  .w     { color: var(--syntax-string); } // Text.Whitespace
+  .bp    { color: var(--blue); } // Name.Builtin.Pseudo
+  .c     { color: var(--syntax-comment); font-style: italic; } // Comment
+  .c1    { color: var(--syntax-comment); font-style: italic; } // Comment.Single
+  .cm    { color: var(--syntax-comment); font-style: italic; } // Comment.Multiline
+  .cp    { color: var(--syntax-comment); font-style: italic; } // Comment.Preproc
+  .cs    { color: var(--syntax-comment); font-style: italic; } // Comment.Special
+  .err   { color: var(--syntax-error); } // Error
+  .gd    { color: var(--syntax-error); } // Generic.Deleted
+  .gi    { color: var(--green); } // Generic.Inserted
+  .g     { color: var(--syntax-string); } // Generic
+  .ge    { font-style: italic; text-decoration: underline } // Generic.Emph
+  .gh    { color: var(--syntax-string); } // Generic.Heading
+  .go    { color: var(--syntax-comment); } // Generic.Output
+  .gp    { color: var(--brown); } // Generic.Prompt
+  .gr    { color: var(--syntax-error); } // Generic.Error
+  .gs    { font-weight: bold; } // Generic.Strong
+  .gt    { color: var(--syntax-error); } // Generic.Traceback
+  .gu    { color: var(--syntax-string); } // Generic.Subheading
+  .il    { color: var(--orange); } // Literal.Number.Integer.Long
+  .k     { color: var(--violet); font-weight: bold; } // Keyword
+  .kc    { color: var(--violet); font-weight: bold; } // Keyword.Constant
+  .kd    { color: var(--violet); font-weight: bold; } // Keyword.Declaration
+  .kn    { color: var(--violet); font-weight: bold; } // Keyword.Namespace
+  .kp    { color: var(--violet); font-weight: bold; } // Keyword.Pseudo
+  .kr    { color: var(--violet); font-weight: bold; } // Keyword.Reserved
+  .kt    { color: var(--violet); font-weight: bold; } // Keyword.Type
+  .l     { color: var(--green); } // Literal
+  .ld    { color: var(--green); } // Literal.Date
+  .m     { color: var(--orange); } // Literal.Number
+  .mb    { color: var(--orange); } // Literal.Number.Bin
+  .mf    { color: var(--orange); } // Literal.Number.Float
+  .mh    { color: var(--orange); } // Literal.Number.Hex
+  .mi    { color: var(--orange); } // Literal.Number.Integer
+  .mo    { color: var(--orange); } // Literal.Number.Oct
+  .n     { color: var(--syntax-error); } // Name
+  .na    { color: var(--yellow); } // Name.Attribute
+  .nb    { color: var(--blue); } // Name.Builtin
+  .nc    { color: var(--yellow); font-weight: bold; } // Name.Class
+  .nd    { color: var(--yellow); } // Name.Decorator
+  .ne    { color: var(--syntax-error); font-weight: bold; } // Name.Exception
+  .nf    { color: var(--blue); } // Name.Function
+  .ni    { color: var(--syntax-error); } // Name.Entity
+  .nl    { color: var(--syntax-error); } // Name.Label
+  .nn    { color: var(--syntax-error); } // Name.Namespace
+  .no    { color: var(--orange); } // Name.Constant
+  .nt    { color: var(--violet); } // Name.Tag
+  .nv    { color: var(--orange); } // Name.Variable
+  .nx    { color: var(--syntax-error); } // Name.Other
+  .o     { color: var(--syntax-string); font-weight: bold; } // Operator
+  .ow    { color: var(--syntax-string); font-weight: bold; } // Operator.Word
+  .p     { color: var(--syntax-string); } // Punctuation
+  .py    { color: var(--syntax-error); } // Name.Property
+  .s     { color: var(--green); } // Literal.String
+  .s1    { color: var(--green); } // Literal.String.Single
+  .s2    { color: var(--green); } // Literal.String.Double
+  .sb    { color: var(--green); } // Literal.String.Backtick
+  .sc    { color: var(--green); } // Literal.String.Char
+  .sd    { color: var(--green); } // Literal.String.Doc
+  .se    { color: var(--cyan); } // Literal.String.Escape
+  .sh    { color: var(--green); } // Literal.String.Heredoc
+  .si    { color: var(--green); } // Literal.String.Interpol
+  .sr    { color: var(--cyan); } // Literal.String.Regex
+  .ss    { color: var(--green); } // Literal.String.Symbol
+  .sx    { color: var(--green); } // Literal.String.Other
+  .vc    { color: var(--orange); } // Name.Variable.Class
+  .vg    { color: var(--orange); } // Name.Variable.Global
+  .vi    { color: var(--orange); } // Name.Variable.Instance
+  .x     { color: var(--brown); } // Other
 }

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
   <head>
@@ -6,23 +9,26 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
   <body>
-    <div class="wrapper">
-      <div class="container">
-        <header class="header">
-          <h1>{{ site.title }}</h1>
-          {% include navbar.html %}
-        </header>
-        <main class="content" aria-label="content">
+    <div class="wrap">
+      <header class="header">
+        <h1 class="header-title">{{ site.title }}</h1>
+        {% include navbar.html %}
+      </header>
+      <main class="row main-content">
+        <div class="col col-12 content">
           {{ content }}
-        </main>
-        <footer class="footer">
-          <p>
-            {{ 'now' | date: '%Y' | prepend: '&copy; ' }}
-            {{ site.title | append: '.' }}
-            {{ site.description }}
-          </p>
-        </footer>
-      </div>
+        </div>
+        {% if page.layout == 'post' %}
+          {% include sidebar.html %}
+        {% endif %}
+      </main>
+      <footer class="footer">
+        <p>
+          {{- 'now' | date: '%Y' | prepend: '&copy; ' }}
+          <a href="{{ site.author.url | default: '/' | relative_url }}">{{ site.title }}</a>
+          {{- '. ' | append: site.description }}
+        </p>
+      </footer>
     </div>
   </body>
 </html>

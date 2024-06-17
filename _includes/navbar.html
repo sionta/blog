@@ -1,5 +1,5 @@
-<nav aria-label="Navigation menu">
-  <ul>
+<nav class="nav" aria-label="Navigation menu">
+  <ul role="list">
     {%- capture navigation %}
     {%- assign items = site.pages | where: 'navigation', true | sort: 'order' %}
     {%- for item in items %}{% if forloop.first %}
