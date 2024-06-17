@@ -38,15 +38,26 @@ show_excerpts: false
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: "%b %d, %Y"
 
-# Build settings *****************************************
-# https://github.com/jekyll/jekyll-paginate
 paginate: 5
 paginate_path: "/blog/page:num/"
 
+# Build settings *****************************************
 # https://github.com/jekyll/jekyll-feed
 feed:
   posts_limit: 10
   excerpt_only: false
+
+# https://github.com/toshimaru/jekyll-toc
+toc:
+  min_level: 2
+  max_level: 3
+  ordered_list: false
+  no_toc_section_class: [no_toc, no_toc_section]
+  list_id: "" # toc
+  list_class: toc-list
+  sublist_class: toc-sublist
+  item_class: "" # toc-item
+  item_prefix: toc-
 
 # https://github.com/jekyll/jekyll-gist
 gist:

@@ -1,26 +1,20 @@
 ---
 layout: base
 ---
-{% capture toc_list %}
-  <nav>
-    {% include toc.html html=content sanitize=true class="toc-list" h_min=2 h_max=3 %}
-  </nav>
-{% endcapture %}
+{% capture toc_list %}<nav>{{ content | toc_only }}</nav>{% endcapture %}
 <div class="post-container">
   <aside class="post-toc hide-on-mobile">
     <h3>On this page</h3>
-    <nav>
-      {% include toc.html html=content sanitize=true class="toc-list" h_min=2 h_max=3 %}
-    </nav>
+    {{ toc_list }}
   </aside>
   <article class="post-main" itemprop="articleBody">
     <h1>{{ page.title }}</h1>
-    {% comment %}
-      <details open class="post-toc only-on-mobile">
-        <summary>On this page</summary>
-        {{ toc_list }}
-      </details>
-    {% endcomment %}
-    {{ content }}
+    <details open class="post-toc only-on-mobile">
+      <summary>On this page</summary>
+      {{ toc_list }}
+    </details>
+    <div>
+      {{ content | inject_anchors }}
+    </div>
   </article>
 </div>

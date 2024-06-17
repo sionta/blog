@@ -1,4 +1,8 @@
 /* Pre-style */
+.katex-html {
+  display: none;
+}
+
 .emoji,
 .icon,
 svg {
@@ -35,7 +39,7 @@ $width-desktop: 900px;
 body {
   font: 400 16px/1.8 "Lato", system-ui, -apple-system, "Open Sans", "Arial",
     sans-serif;
-  background-color: var(--bg-3);
+  background-color: var(--bg-2);
   color: var(--tx-4);
 }
 
@@ -72,6 +76,8 @@ body {
 }
 
 .header {
+  margin-bottom: var(--spacing-unit);
+
   nav {
     margin-top: var(--spacing-unit);
 
@@ -157,8 +163,6 @@ body {
   &-toc {
     flex-basis: 200px;
     padding: var(--spacing-unit);
-    height: fit-content;
-    overflow-y: auto;
     color: var(--tx-3);
 
     nav {
@@ -197,6 +201,15 @@ body {
     }
   }
 
+  @media (min-width: $width-mobile) {
+    &-toc {
+      position: -webkit-sticky;
+      position: sticky;
+      top: var(--spacing-unit);
+      align-self: flex-start;
+    }
+  }
+
   @media (max-width: $width-mobile) {
     &-container {
       flex-direction: column;
@@ -205,66 +218,10 @@ body {
     &-toc {
       flex-basis: auto;
       width: 100%;
+      position: relative;
+      top: auto;
       max-height: 200px;
+      overflow-y: auto;
     }
-  }
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .page-number,
-  .previous,
-  .next {
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 0 2px;
-    border: 1px solid var(--tx-4);
-    border-radius: 3px;
-    color: var(--tx-1);
-    text-decoration: none;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background: var(--bg-4);
-    }
-
-    &.disabled {
-      // cursor: not-allowed;
-      pointer-events: none;
-      opacity: 0.4;
-    }
-  }
-
-  .current {
-    background: var(--blue);
-    color: var(--bd-1);
-
-    &:hover {
-      background: var(--purple);
-      border-color: var(--purple);
-    }
-  }
-}
-
-/* Hide elements using this class by default */
-.only-on-mobile {
-  display: none !important;
-}
-
-@media (max-width: $width-mobile) {
-  .only-on-mobile {
-    display: block !important;
-  }
-
-  .hide-on-mobile {
-    display: none !important;
-  }
-
-  .center-on-mobile {
-    text-align: center !important;
   }
 }
