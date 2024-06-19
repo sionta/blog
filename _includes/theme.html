@@ -1,15 +1,9 @@
-<div id="theme-switcher">
-  <span class="visible" aria-hidden="true">Theme:</span>
-  <label>
-    <input name="theme" type="radio" value="auto" checked>
-    Auto
-  </label>
-  <label>
-    <input name="theme" type="radio" value="light">
-    Light
-  </label>
-  <label>
-    <input name="theme" type="radio" value="dark">
-    Dark
-  </label>
-</div>
+{%- capture theme_switcher -%}<div id="theme-switcher">
+<button type="button" id="theme-auto" data-theme="auto" aria-label="System mode">
+  {%- include icon.html id='device-imac' -%}<span class="visually-hidden">Auto</span></button>
+<button type="button" id="theme-light" data-theme="light" aria-label="Light mode">
+  {%- include icon.html id='sun' -%}<span class="visually-hidden">Light</span></button>
+<button type="button" id="theme-dark" data-theme="dark" aria-label="Dark mode">
+  {%- include icon.html id='moon-stars' -%}<span class="visually-hidden">Dark</span></button>
+</div>{%- endcapture -%}
+{{- theme_switcher -}}

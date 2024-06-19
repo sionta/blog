@@ -1,4 +1,3 @@
-# _plugins/regex.rb
 module Jekyll
   module RegexFilter
     def regex_replace(input, pattern, replacement)

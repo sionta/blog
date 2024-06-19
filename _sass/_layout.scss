@@ -17,8 +17,8 @@ pre {
 body {
   font-family: Lato, Arial, Helvetica, sans-serif;
   line-height: 1.6;
-  color: var(--tx-1);
-  background-color: var(--bg-1);
+  color: var(--tx-3);
+  background-color: var(--bg-2);
 }
 
 $width-palm: 768px;
@@ -61,7 +61,7 @@ $spacing-unit: 20px;
     -ms-flex: 1;
     flex: 1;
 
-    background-color: var(--bg-3);
+    background-color: var(--bg-4);
     > div,
     > section {
       margin-bottom: 15px;
@@ -112,7 +112,7 @@ $spacing-unit: 20px;
 
 .header,
 .footer {
-  background-color: var(--tx-2);
+  background-color: var(--bg-5);
   color: var(--bg-2);
   padding: 20px;
   text-align: center;

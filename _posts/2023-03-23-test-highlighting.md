@@ -5,9 +5,9 @@ categories: test
 ---
 <!-- markdownlint-disable -->
 
-This is use unknown language:
+This is code block without syntax highlighting or language unrecognized by [Rouge][rouge_languages]:
 
-```unknown
+```no_highlight
 {
   "thisSyntax": error
   "firstName": "John",
@@ -16,7 +16,7 @@ This is use unknown language:
 }
 ```
 
-This is <code>```plain</code>
+This is code block without syntax highlighting or use language `plaintext` (default):
 
 ```
 {
@@ -27,25 +27,24 @@ This is <code>```plain</code>
 }
 ```
 
-This is use triple backticks <code>```css</code>:
+This is code block with syntax highlighting use triple backticks:
 
 ```css
-/* This is a single-line comment */
-
-h1 {
-    color: blue;
-    text-decoration: underline;
+body {
+    font-size: 12pt;
+    background: #fff url(temp.png) top left no-repeat;
 }
 ```
 
-{% raw %}This is use `{% highlight css linenos %}`:{% endraw %}
+{% raw %}This is code block with syntax highlighting use `{% highlight %}` tag:{% endraw %}
 
-{% highlight css linenos %}
-/* This is a single-line comment */
-
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-}
+{% highlight ruby linenos %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
 
 {% endhighlight %}
+
+[rouge_languages]: https://rouge-ruby.github.io/docs/file.Languages.html

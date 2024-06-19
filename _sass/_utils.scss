@@ -57,11 +57,73 @@
   }
 }
 
-.highlight {
-  table td {
-    padding: 5px;
-  }
-  table pre {
-    margin: 0;
+#theme-switcher {
+  display: inline-flex; /* Use inline-flex to size based on content */
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 20px;
+  border-radius: 8px;
+  color: var(--text-color);
+  background-color: var(--border-color);
+
+  button {
+    position: relative;
+    cursor: pointer;
+    padding: 0.3em 0.6em;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    transition: background-color 0.2s ease, color 0.2s ease,
+      text-decoration 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg,
+    div,
+    span {
+      pointer-events: none; /* Ensure icon or more element itself doesn't block clicks */
+    }
+
+    /* Ensure the icon has some space around it to make it easier to click */
+    svg {
+      height: 1.5rem;
+      width: 1.5rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &[aria-label]::before {
+      content: attr(aria-label);
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.5em;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: var(--text-color);
+      font-size: 0.8em;
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      white-space: nowrap;
+      pointer-events: none; /* Ensure tooltip doesn't block click events */
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+
+    &:hover,
+    &.active {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .visually-hidden {
+      // display: inline-flex;
+      display: none;
+      margin-left: 5px;
+    }
   }
 }
