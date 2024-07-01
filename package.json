@@ -6,10 +6,7 @@
     "serve": "bundle exec jekyll serve",
     "build": "bundle exec jekyll build",
     "clean": "bundle exec jekyll clean && npm run build && npm run minify",
-    "minify": "npm run minify:html && npm run minify:css && npm run minify:js",
-    "minify:html": "html-minifier --input-dir _site --output-dir _site --file-ext html --collapse-whitespace --remove-comments --remove-attribute-quotes --minify-css --minify-js",
-    "minify:css": "cleancss -o _site/assets/css/style.css _site/assets/css/style.css",
-    "minify:js": "uglifyjs -o _site/assets/js/main.js _site/assets/js/main.js"
+    "minify": "pwsh -c \"& ./scripts/minify.ps1\""
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
