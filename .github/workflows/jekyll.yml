@@ -67,8 +67,8 @@ jobs:
         # Outputs to the './_site' directory by default
         shell: pwsh
         run: |
-          $env:BASE_URL = "${{ steps.pages.outputs.base_path }}"
-          bundle exec jekyll build --baseurl "$env:BASE_URL"
+          $env:BASE_URL = "_site${{ steps.pages.outputs.base_path }}"
+          bundle exec jekyll build -d "$env:BASE_URL"
           & ./scripts/minify.ps1 "$(Resolve-Path "_site$env:BASE_URL")"
         env:
           JEKYLL_ENV: production
