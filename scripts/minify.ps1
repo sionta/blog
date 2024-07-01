@@ -12,7 +12,7 @@ if (-not(Test-Path "node_modules/.bin/*") -or ($ENV:JEKYLL_ENV -eq 'production')
     npm install
 }
 
-$BUILD_DIR = Resolve-Path($Source)
+$BUILD_DIR = $Source
 
 # Minify HTML files
 & "node_modules/.bin/html-minifier" --input-dir "$BUILD_DIR" --output-dir "$BUILD_DIR" --file-ext html --collapse-whitespace --remove-comments --remove-attribute-quotes --minify-css --minify-js
