@@ -65,7 +65,7 @@ jobs:
 
       - name: Build site
         # Outputs to the './_site' directory by default
-        run: npm run build && npm run minify
+        run: npm run build -- -d "_site${{ steps.pages.outputs.base_path }}" && npm run minify
         env:
           JEKYLL_ENV: production
 
