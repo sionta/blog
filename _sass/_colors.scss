@@ -78,14 +78,14 @@ $alerts: (
 
 $tag-colors: (
   t: $base-02,
-  1: $red,
-  2: $orange,
-  3: $yellow,
-  4: $green,
-  5: $cyan,
-  6: $blue,
-  7: $violet,
-  8: $magenta,
+  1: $magenta,
+  2: $violet,
+  3: $blue,
+  4: $cyan,
+  5: $green,
+  6: $yellow,
+  7: $orange,
+  8: $red,
 );
 
 @mixin alert($mode) {

@@ -83,7 +83,9 @@ module Jekyll
     end
 
     def create_svg_sprite(icon, class_name)
-      "<svg class=\"#{class_name}\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"/assets/tabler-icons.svg##{icon}\"></use></svg>"
+      baseurl = Jekyll.sites[0].config['baseurl']
+      url = File.join(baseurl, 'assets/tabler-icons.svg')
+      "<svg class=\"#{class_name}\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><use href=\"#{url}##{icon}\"></use></svg>"
     end
 
     def create_code_header(icon, title, language)
@@ -91,7 +93,7 @@ module Jekyll
       success_label = METADATA['code_blocks']['label']['success']
       error_label = METADATA['code_blocks']['label']['error']
 
-      <<~HTML
+      code_header_element = <<~HTML
         <header class="code-header" code-lang="#{language}">
           #{create_svg_sprite(icon, 'code-icon')}
           <span class="code-title">#{title}</span>
@@ -102,6 +104,8 @@ module Jekyll
           </button>
         </header>
       HTML
+
+      code_header_element
     end
 
     def process_code_block(language, extra_classes, code, is_pre_code = false)

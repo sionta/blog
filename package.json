@@ -1,9 +1,20 @@
 {
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Personal site",
   "scripts": {
-    "minify:html": "node ./script/test.js",
-    "build": "bundle exec jekyll build && node ./script/test.js"
+    "serve": "bundle exec jekyll serve",
+    "build": "bundle exec jekyll build",
+    "clean": "bundle exec jekyll clean && npm run build && npm run minify",
+    "minify": "npm run minify:html && npm run minify:css && npm run minify:js",
+    "minify:html": "html-minifier --input-dir _site --output-dir _site --file-ext html --collapse-whitespace --remove-comments --remove-attribute-quotes --minify-css --minify-js",
+    "minify:css": "cleancss -o _site/assets/css/style.css _site/assets/css/style.css",
+    "minify:js": "uglifyjs -o _site/assets/js/main.js _site/assets/js/main.js"
   },
-  "dependencies": {
-    "html-minifier": "^4.0.0"
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "clean-css-cli": "^5.6.3",
+    "html-minifier": "^4.0.0",
+    "uglify-js": "^3.18.0"
   }
 }

@@ -1,21 +1,16 @@
 @forward "navigation";
-@forward "theme-switch";
-@forward "search-post";
-@forward "back-to-top";
-@forward "task-list";
-
-// tags
-@forward "post-tags";
-@forward "post-toc";
-
-// home
 @forward "blog-card";
 @forward "pagination";
 
-// Alerts
 @forward "alert";
+@forward "back-to-top";
+@forward "search-post";
+@forward "theme-switch";
 
-// Code blocks
 @forward "code-block";
 @forward "highlight";
+
+@forward "post-tags";
+@forward "post-toc";
+@forward "task-list";
 @forward "misc";
