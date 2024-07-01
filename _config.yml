@@ -18,12 +18,6 @@ image: "/assets/img/avatar.svg" # https://github.com/sionta.png?size=100
 twitter:
   username: R007MMXV
 
-# Generate social links in footer. for available platforms see "includes/social-item".
-social_links:
-  - { platform: github, user_url: "https://github.com/sionta" }
-  - { platform: mastodon, user_url: "https://mastodon.social/@sionta" }
-  - { platform: twitter, user_url: "https://twitter.com/r007mmxv" }
-
 author:
   picture: "/assets/img/avatar.svg"
   name: Andre Attamimi
@@ -41,23 +35,28 @@ date_format: "%b %d, %Y"
 paginate: 5
 paginate_path: "/blog/page:num/"
 
+comments:
+  provider: "" # e.g. "disqus".
+  # The provider by settings below:
+  disqus:
+    # What is `shortname` refer to https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: "andreattamimi"
+  giscus:
+    # For more setting refer to https://giscus.app/
+    repo: "sionta/blog" # e.g. "owner/repo"
+    repo_id: "R_kgDOLxRA-w"
+    category: "Q&A"
+    category_id: "DIC_kwDOLxRA-84CfGPN"
+  utterances:
+    # For more setting refer to https://utteranc.es/
+    repo: "sionta/blog" # e.g. "owner/repo"
+    issue_term: "pathname"
+
 # Build settings *****************************************
 # https://github.com/jekyll/jekyll-feed
 feed:
   posts_limit: 10
   excerpt_only: false
-
-# https://github.com/toshimaru/jekyll-toc
-toc:
-  min_level: 2
-  max_level: 3
-  ordered_list: false
-  no_toc_section_class: [no_toc, no_toc_section]
-  list_id: "" # toc
-  list_class: toc-list
-  sublist_class: toc-sublist
-  item_class: toc-item
-  item_prefix: toc-
 
 # https://github.com/jekyll/jekyll-gist
 gist:
@@ -76,18 +75,14 @@ kramdown:
   # https://github.com/jekyll/jekyll/pull/4090
   syntax_highlighter: rouge
   # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
-  # span, block element options fall back to global
   syntax_highlighter_opts:
     # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
-    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
     span:
       line_numbers: false
     block:
       line_numbers: true
       start_line: 1
-  math_engine: katex
-  math_engine_opts: {}
 
 collections:
   pages:
@@ -108,11 +103,17 @@ defaults:
       type: posts
     values:
       layout: post
+      # Special configuration for layout "post":
+      toc: false # Table of contents
+      anchor: true # Anchor headings
+      mermaid: false # Mermaid diagrammings
+      comments: false # Comments, first set `site.comments.provider`
 
 exclude:
   - "*.gem"
   - "*.gemspec"
   - "*.lock"
+  - "*copy*.*"
   - "/docs"
   - "/test*"
   - "/tool*"

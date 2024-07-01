@@ -1,6 +1,7 @@
 *.min.*
 *.html
+# **/*base.scss
 
 # Vendor
-?gridism.*
-?normalize.*
+*gridism.*
+*normalize.*

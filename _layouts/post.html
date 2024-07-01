@@ -1,12 +1,49 @@
 ---
 layout: base
 ---
-{% capture toc_list %}<nav>{{ content | toc_only }}</nav>{% endcapture %}
-<article itemprop="articleBody">
-  <h1>{{ page.title }}</h1>
-  <details class="only-on-mobile">
-    <summary>On this page</summary>
-    {% include toc.html %}
-  </details>
-  {{ content | inject_anchors }}
+{%- assign author_name = site.author.name | default: page.author -%}
+{%- assign author_url = site.author.url -%}
+{%- assign date_format = site.date_format | default: '%B %d, %Y' -%}
+{%- assign date_modified = page.modified_date | default: page.last_modified_at -%}
+{%- assign date_published = page.date -%}
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
+  <header>
+    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p>
+      {%- if author_name -%}
+        Posted by
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">
+            <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
+          </span>
+        </span>
+      {%- endif -%}
+      {%- if date_published -%}
+        Published on
+        <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
+          {{- date_published | date: date_format -}}
+        </time>
+      {%- endif -%}
+      {%- if date_modified and date_modified != date_published -%}
+        , Modified on
+        <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
+          {{- date_modified | date: date_format -}}
+        </time>
+      {%- endif -%}
+      .
+    </p>
+  </header>
+  <section itemprop="articleBody">
+    {%- include partials/toc.html mobile=true -%}
+    {{ content }}
+  </section>
+  <footer>
+    {%- capture id_comments %}
+    <div {% if site.comments.provider == 'disqus' %}id="disqus_thread"{% else %}id="{{ site.comments.provider }}"{% endif %} class="{{ site.comments.provider }}" itemscope itemtype="https://schema.org/Comment"></div>
+    {%- endcapture %}
+    {%- if page.comments == true -%}
+      {{ id_comments }}
+    {%- endif -%}
+  </footer>
+  <a href="{{ page.url | relative_url }}" hidden></a>
 </article>

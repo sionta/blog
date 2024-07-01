@@ -1,5 +1,5 @@
 ---
-navigation: true
+navigation: header
 layout: page
 title: About
 order: 0

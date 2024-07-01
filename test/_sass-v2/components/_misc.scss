@@ -1,0 +1,51 @@
+@use "../mixins" as *;
+@use "../variables" as *;
+
+/**
+ * Utilities Classes
+ */
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1024;
+}
+
+/* Hide elements using this class by default */
+.only-on-mobile {
+  display: none !important;
+}
+
+@include breakpoint($min-width, max) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .only-on-mobile {
+    display: block !important;
+  }
+}
+
+.svg-icon,
+.icon-svg,
+.icon {
+  width: 22px;
+  height: 22px;
+  color: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.katex-html {
+  display: none;
+}
+
+.mermaid {
+  display: block;
+}
+
+.emoji {
+  height: $font-size;
+  width: $font-size;
+  display: inline-block;
+}

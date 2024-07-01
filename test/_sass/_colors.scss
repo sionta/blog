@@ -1,0 +1,279 @@
+$base03: #002b36;
+$base02: #073642;
+$base01: #586e75;
+$base00: #657b83;
+$base0: #839496;
+$base1: #93a1a1;
+$base2: #eee8d5;
+$base3: #fdf6e3;
+$yellow: #b58900;
+$orange: #cb4b16;
+$red: #dc322f;
+$magenta: #d33682;
+$violet: #6c71c4;
+$blue: #268bd2;
+$cyan: #2aa198;
+$green: #859900;
+
+@mixin rebase(
+  $rebase03,
+  $rebase02,
+  $rebase01,
+  $rebase00,
+  $rebase0,
+  $rebase1,
+  $rebase2,
+  $rebase3
+) {
+  background-color: $rebase03;
+  color: $rebase0;
+
+  * {
+    color: $rebase0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $rebase1;
+    border-color: $rebase0;
+  }
+
+  a,
+  a:active,
+  a:visited {
+    color: $rebase1;
+  }
+}
+
+@mixin color-scheme($mode: "light") {
+  color-scheme: $mode;
+
+  @if $mode == "dark" {
+    --red: #{lighten(#cc6666, 5%)};
+    --orange: #{lighten(#de935f, 5%)};
+    --yellow: #{lighten(#f0c674, 5%)};
+    --green: #{lighten(#b5bd68, 5%)};
+    --cyan: #{lighten(#8abeb7, 5%)};
+    --blue: #{lighten(#81a2be, 5%)};
+    --violet: #{lighten(#b294bb, 5%)};
+    --brown: #{lighten(#a3685a, 5%)};
+    --magenta: #{lighten(#d33682, 5%)};
+    --bg-1: #020617;
+    --bg-2: #0f172a;
+    --bg-3: #334155;
+    --bg-4: #475569;
+    --bg-5: #64748b;
+    --tx-5: #94a3b8;
+    --tx-4: #cbd5e1;
+    --tx-3: #e2e8f0;
+    --tx-2: #f1f5f9;
+    --tx-1: #f8fafc;
+  } @else {
+    --red: #{darken(#cc6666, 10%)};
+    --orange: #{darken(#de935f, 10%)};
+    --yellow: #{darken(#f0c674, 10%)};
+    --green: #{darken(#b5bd68, 10%)};
+    --cyan: #{darken(#8abeb7, 10%)};
+    --blue: #{darken(#81a2be, 10%)};
+    --violet: #{darken(#b294bb, 10%)};
+    --brown: #{darken(#a3685a, 10%)};
+    --magenta: #{darken(#d33682, 10%)};
+    --bg-1: #f8fafc;
+    --bg-2: #f1f5f9;
+    --bg-3: #e2e8f0;
+    --bg-4: #cbd5e1;
+    --bg-5: #94a3b8;
+    --tx-5: #64748b;
+    --tx-4: #475569;
+    --tx-3: #334155;
+    --tx-2: #0f172a;
+    --tx-1: #020617;
+  }
+
+  --background-color: var(--bg-3);
+  --text-color: var(--tx-4);
+  --link-color: var(--blue);
+  --border-color: var(--bg-4);
+}
+
+:root {
+  // Default theme (light)
+  @include color-scheme(light);
+
+  // Dark theme when data-theme="dark" is set on :root
+  &[data-theme="dark"] {
+    @include color-scheme(dark);
+  }
+
+  // Dark theme based on user's system preference
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme]) {
+      @include color-scheme(dark);
+    }
+  }
+}
+
+// Syntax highlighting styles should be adjusted appropriately for every theme
+// List of tokens: https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+
+.highlight {
+  // display: contents; /* To replace a highlight element with its internal element */
+
+  table td {
+    padding: 5px;
+  }
+
+  table pre {
+    margin: 0;
+  }
+
+  &,
+  .w {
+    color: #586e75;
+    // background-color: #fdf6e3;
+    background-color: #002b36;
+  }
+
+  .err {
+    color: #002b36;
+    background-color: #dc322f;
+  }
+
+  .c,
+  .ch,
+  .cd,
+  .cm,
+  .cpf,
+  .c1,
+  .cs {
+    color: #657b83;
+  }
+
+  .cp {
+    color: #b58900;
+  }
+
+  .nt {
+    color: #b58900;
+  }
+
+  .o,
+  .ow {
+    color: #93a1a1;
+  }
+
+  .p,
+  .pi {
+    color: #93a1a1;
+  }
+
+  .gi {
+    color: #859900;
+  }
+
+  .gd {
+    color: #dc322f;
+  }
+
+  .gh {
+    color: #268bd2;
+    background-color: #002b36;
+    font-weight: bold;
+  }
+
+  .ge {
+    font-style: italic;
+  }
+
+  .ges {
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .gs {
+    font-weight: bold;
+  }
+
+  .k,
+  .kn,
+  .kp,
+  .kr,
+  .kv {
+    color: #6c71c4;
+  }
+
+  .kc {
+    color: #cb4b16;
+  }
+
+  .kt {
+    color: #cb4b16;
+  }
+
+  .kd {
+    color: #cb4b16;
+  }
+
+  .s,
+  .sb,
+  .sc,
+  .dl,
+  .sd,
+  .s2,
+  .sh,
+  .sx,
+  .s1 {
+    color: #859900;
+  }
+
+  .sa {
+    color: #6c71c4;
+  }
+
+  .sr {
+    color: #2aa198;
+  }
+
+  .si {
+    color: #d33682;
+  }
+
+  .se {
+    color: #d33682;
+  }
+
+  .nn {
+    color: #b58900;
+  }
+
+  .nc {
+    color: #b58900;
+  }
+
+  .no {
+    color: #b58900;
+  }
+
+  .na {
+    color: #268bd2;
+  }
+
+  .m,
+  .mb,
+  .mf,
+  .mh,
+  .mi,
+  .il,
+  .mo,
+  .mx {
+    color: #859900;
+  }
+
+  .ss {
+    color: #859900;
+  }
+}

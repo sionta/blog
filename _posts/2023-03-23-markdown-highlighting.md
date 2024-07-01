@@ -1,14 +1,52 @@
 ---
 layout: post
-title: Example Code Highlighting
+title: Syntax Highlighter
 categories: test
+tags: [rouge, highlight]
 image: "/assets/img/rouge.png"
+toc: true
 ---
+
+## Overview
+
+This is code block language unrecognized by [Rouge][rouge_languages]:
+
+```unknown
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+This is code block without syntax highlighting or `plaintext` (default):
+
+```plaintext
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+This is code block with syntax highlighting use triple backticks:
+
+```json
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+By default "lineos" is enable, to disable it add `{:.no_lineno}` after end triple backticks.
+
 <!-- markdownlint-disable -->
-
-### Plain
-
-```plain
+````markdown
+```json
 {
   "thisSyntax": error
   "firstName": "John",
@@ -16,42 +54,36 @@ image: "/assets/img/rouge.png"
   "age": 25
 }
 ```
+{:.no_lineno} <!-- like this -->
+````
+{:.no_lineno}
 
-This is <code>```plaintext</code>
+{% raw %}This is code block with syntax highlighting use liquid `{% highlight %}` tag in markdown:{% endraw %}
 
-```
-{
-  "thisSyntax": error
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
-```
-
-### CSS
-
-This is use triple backticks <code>```css</code>
-
-```css
-/* This is a single-line comment */
-
-h1 {
-    color: blue;
-    text-decoration: underline;
-}
-```
-
-{% raw %}This is use `{% highlight css linenos %}`{% endraw %}
-
-{% highlight css linenos %}
-/* This is a single-line comment */
-
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
+{% raw %}
+```liquid
+{% highlight ruby linenos %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
+```
+{% endraw %}
+
+Output like this:
+
+{% highlight ruby linenos %}
+def print_hi(name)
+  puts "Hi, #{name}"
+end
+print_hi('Tom')
+#=> prints 'Hi, Tom' to STDOUT.
+{% endhighlight %}
+<!-- markdownlint-restore -->
+
+## Mores
 
 ### Diff
 
@@ -61,7 +93,32 @@ function addTwoNumbers (num1, num2) {
 +  return num1 + num2
 }
 ```
-<!-- {:.no_lineno} -->
+
+### YAML
+
+```yaml
+kramdown:
+  input: GFM
+
+# Generate social links.
+social_links:
+  - { title: GitHub, url: "https://github.com/sionta" }
+  - { title: Twitter, url: "https://twitter.com/r007mmxv" }
+```
+
+### TOML
+
+```toml
+[social_links]
+  name = "Andre Attamimi"
+  github = "https://github.com/sinonta/"
+
+[menu]
+[[menu.header]]
+identifier = "about"
+name = "About"
+url = "/about/"
+```
 
 ### HTML
 
@@ -125,18 +182,6 @@ class Person {
 
 const person = new Person("John");
 person.greet();
-```
-
-### JSON
-
-```json
-{
-    "example": error syntax,
-    "name": "John",
-    "age": 30,
-    "city": "New York",
-    "hobbies": ["reading", "coding", "hiking"]
-}
 ```
 
 ### Bash
@@ -219,5 +264,6 @@ class Person:
 
 person = Person('John')
 person.greet()
-
 ```
+
+[rouge_languages]: https://rouge-ruby.github.io/docs/file.Languages.html

@@ -1,0 +1,65 @@
+@use "variables";
+
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: variables.$spacing-unit;
+}
+
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.blog-card {
+  background-color: var(--bg-2);
+  border-radius: 8px;
+  // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: variables.$spacing-unit;
+  margin-bottom: variables.$spacing-unit;
+
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  @media screen and (max-width: 768px) {
+    flex: 1 1 100%;
+  }
+
+  .blog-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .blog-title {
+    font-size: variables.$font-size + 0.5;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .blog-description {
+    font-size: 16px;
+    color: var(--bd-2);
+    margin-bottom: 10px;
+  }
+
+  .blog-read-more {
+    color: var(--ac-1);
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

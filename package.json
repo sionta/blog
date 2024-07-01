@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "minify:html": "node ./script/test.js",
+    "build": "bundle exec jekyll build && node ./script/test.js"
+  },
+  "dependencies": {
+    "html-minifier": "^4.0.0"
+  }
+}

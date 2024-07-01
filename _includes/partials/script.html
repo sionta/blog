@@ -1,0 +1,19 @@
+{%- assign js_vendor = '/assets/js/vendor' | relative_url -%}
+<script type="text/javascript" id="search-script" src="{{- js_vendor -}}/simple-jekyll-search.min.js"></script>
+<!-- prettier-ignore -->
+{%- if page.collection == 'posts' or page.layout == 'post' -%}
+  {%- if page.toc == true or page.table_of_content == true -%}
+    <script type="text/javascript" id="tocbot-script" src="{{- js_vendor -}}/tocbot.min.js"></script>
+  {%- endif -%}
+  {%- if page.mermaid == true or page.diagram == true -%}
+    <script type="text/javascript" id="mermaid-script" src="{{- js_vendor -}}/mermaid.min.js"></script>
+  {%- endif -%}
+  {%- case page.math -%}
+    {%- when 'katex', true -%}
+      <link rel="stylesheet" href="{{- js_vendor -}}/katex/katex.min.css">
+      <script type="text/javascript" id="katex-script" defer src="{{- js_vendor -}}/katex/katex.min.js"></script>
+      <script type="text/javascript" defer src="{{- js_vendor -}}/katex/contrib/auto-render.min.js"></script>
+    {%- when 'mathjax' -%}
+      <script type="text/javascript" async id="Mathjax-script" src="{{- js_vendor -}}/mathjax/tex-mml-chtml.js"></script>
+  {%- endcase -%}
+{%- endif -%}

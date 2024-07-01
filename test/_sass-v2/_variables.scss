@@ -1,0 +1,46 @@
+@use "sass:map";
+
+$base00: #1d1f21 !default;
+$base01: #282a2e !default;
+$base02: #373b41 !default;
+$base03: #969896 !default;
+$base04: #c1cadb !default;
+$base05: #d8dee9 !default;
+$base06: #e5e9f0 !default;
+$base07: #eceff4 !default;
+
+// Font Family
+$font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols !default;
+$font-sans: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Helvetica, Arial, $font-emoji, sans-serif !default;
+$font-mono: "Fira Code", "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
+  "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace !default;
+$font-serif: "Cormorant Garamond", "Times New Roman", Times, serif !default;
+
+$font-heading: "Lato", sans-serif !default;
+$heading-sizes: (
+  "h1": 2rem,
+  "h2": 1.75rem,
+  "h3": 1.5rem,
+  "h4": 1.25rem,
+  "h5": 1rem,
+  "h6": 0.875rem,
+) !default;
+
+$font-weight: 400 !default;
+$font-size: map.get($heading-sizes, h5) !default;
+
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+) !default;
+
+$line-height: 1.6 !default;
+$spacing-unit: 20px !default;
+$border-radius: 3px !default;
+
+$min-width: map.get($breakpoints, "sm") !default;
+$max-width: map.get($breakpoints, "lg") !default;

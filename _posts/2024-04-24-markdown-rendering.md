@@ -3,7 +3,7 @@ layout: post
 title: Markdown Test Page
 description: A quick overview of all the Markdown syntax elements
 categories: test
-tags: [markdown, cheatsheet]
+tags: [sample, markdown, cheatsheet, typography]
 author: Andre Attamimi
 image:
     url: "/assets/img/hero-markdown-guide.p128.png"
@@ -12,8 +12,9 @@ image:
 # Special configuration for layout "post":
 toc: true       # Enable table of contents
 anchor: true    # Enable anchor headings
-mermaid: true   # Enable mermaid diagrammings
+diagram: true   # Enable mermaid diagrammings
 comments: true  # Enable comments
+math: true
 ---
 <!-- markdownlint-disable MD022 MD025 MD033 MD034 MD036 MD056 -->
 
@@ -29,10 +30,17 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 {:.no_toc .no_anchor}
 ### H3
 {:.no_toc .no_anchor}
+#### H4
+{:.no_toc .no_anchor}
+##### H5
+{:.no_toc .no_anchor}
+###### H6
+{:.no_toc .no_anchor}
 
 ### Paragraphs
 
-Elit ex ex eiusmod duis cupidatat duis esse laboris et sit reprehenderit eu. Elit sint nostrud ex reprehenderit fugiat do elit anim veniam nulla veniam amet. Nisi velit deserunt sunt excepteur irure ut ipsum excepteur minim.
+Elit ex ex eiusmod duis cupidatat duis esse laboris et sit reprehenderit eu. Elit sint nostrud ex reprehenderit fugiat do elit anim veniam nulla veniam amet. Nisi velit deserunt sunt excepteur irure ut ipsum excepteur minim. ![alt text](/assets/img/rouge.png)
+{:.img-right}
 
 Et laborum minim elit laboris dolor in. Nisi sunt labore pariatur magna fugiat cupidatat qui quis consequat aliqua commodo. Dolor nisi veniam elit proident. Irure laboris tempor consectetur ad enim ea officia ullamco.
 
@@ -109,21 +117,26 @@ The [Result Footnotes](#result-footnotes)
 
 ### Images
 
-![alt text](https://placehold.co/100x100?text=Lorem+Ipsum)
+![alt text](/assets/img/rouge.png)
+{:.img-center}
 
-![alt text](https://placehold.co/128x256?text=Lorem+Ipsum)
+![alt text](/assets/img//hero-markdown-guide.p128.png){: width="500px" }
 
-![alt text](https://placehold.co/512x256?text=Lorem+Ipsum)
+<!-- ![alt text]('https://placehold.co/100x100?text=Lorem+Ipsum') -->
+
+<!-- ![alt text](https://placehold.co/128x256?text=Lorem+Ipsum) -->
+
+<!-- ![alt text](https://placehold.co/512x256?text=Lorem+Ipsum) -->
 
 ### Codes
 
 <!-- Keyboard input <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd> -->
 
-Keyboard input `Ctrl`{:.key} + `Shift`{:.key} + `Esc`{:.key}
-
 Inline code `<div>code</div>`
 
-File path `/path/to/file.ext`{: .filepath}.
+Keyboard input <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Esc</kbd>
+
+Keyboard input use class `{:.key}`: `Ctrl`{:.key} + `Shift`{:.key} + `Esc`{:.key}
 
 Sample output <samp>This is sample output from a computer program.</samp>
 
@@ -147,28 +160,28 @@ Sample output <samp>This is sample output from a computer program.</samp>
 
 <table>
   <caption>
-    Council budget (in £) 2018
+    Table Caption
   </caption>
   <thead>
     <tr>
-      <th scope="col">Items</th>
-      <th scope="col">Expenditure</th>
+      <th scope="col">Table Heading 1 (scope="col")</th>
+      <th scope="col">Table Heading 2 (scope="col")</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">Donuts</th>
-      <td>3,000</td>
+      <th scope="row">Table Body 1 (scope="row")</th>
+      <td>Table Data 1</td>
     </tr>
     <tr>
-      <th scope="row">Stationery</th>
-      <td>18,000</td>
+      <th>Table Body 2</th>
+      <td>Table Data 2</td>
     </tr>
   </tbody>
   <tfoot>
     <tr>
-      <th scope="row">Totals</th>
-      <td>21,000</td>
+      <th scope="row">Table Foot 1 (scope="row")</th>
+      <td>Table Foot 1</td>
     </tr>
   </tfoot>
 </table>
@@ -215,29 +228,29 @@ Alerts or Admonitions are frequently used in documentation to call attention to 
 
 > **Note:** Highlights information that users should take into account, even when skimming.
 >
-{:.alert .alert-note}
+{:.alert.alert-note}
 
 > **Tip:** Optional information to help a user be more successful.
 >
-{:.alert .alert-tip}
+{:.alert.alert-tip}
 
 > **Important:** Crucial information necessary for users to succeed.
 >
-{:.alert .alert-important}
+{:.alert.alert-important}
 
 > **Warning:** Critical content demanding immediate user attention due to potential risks.
 >
-{:.alert .alert-warning}
+{:.alert.alert-warning}
 
 > **Caution:** Negative potential consequences of an action.
 >
-{:.alert .alert-caution}
+{:.alert.alert-caution}
 
 ### Mathematics
 
-The Mathematics Powered by [KaTeX:](https://katex.org/)
+<!-- The Mathematics Powered by [KaTeX:](https://katex.org/) -->
 
-**Inline formula:** $$a^2 + b^2 = c^2$$.
+**Inline formula:** $a^2 + b^2 = c^2$.
 
 **Block formula:**
 

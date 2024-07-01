@@ -3,40 +3,25 @@ layout: default
 ---
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-      {%- if page.layout == 'home' or page.url == '/' -%}
-        {{- site.title | escape -}}
-      {%- else -%}
-        {{- page.title | escape -}}
-      {%- endif %}
-    </title>
-    <link rel="stylesheet" href="{{- '/assets/css/style.css' | relative_url -}}">
-    {%- seo title=false -%}
-    {%- feed_meta -%}
-  </head>
+  {%- include partials/head.html -%}
   <body>
     <div class="wrap">
-      <header class="header">
-        <h1 class="header-title">{{ site.title }}</h1>
-        {% include navbar.html %}
-      </header>
-      <main class="row main-content">
-        <div class="col col-12 content">{% include rebase.html %}</div>
-        {% if page.layout == 'post' and page.content contains 'h2' %}{% include sidebar.html %}{% endif %}
+      {%- include partials/header.html -%}
+      <main class="main">
+        <div class="flex">
+          <div class="unit w-1-1 content">
+            {{- content -}}
+          </div>
+          {%- if page.layout == 'post' -%}
+            <div class="unit w-1-4 sidebar">
+              {%- include partials/sidebar.html -%}
+            </div>
+          {%- endif -%}
+        </div>
       </main>
-      <footer class="footer">
-        <p>
-          {{- 'now' | date: '%Y' | prepend: '&copy; ' }}
-          <a href="{{ site.author.url | default: '/' | relative_url }}">{{ site.title }}</a>
-          {{- '. ' | append: site.description }}
-        </p>
-        {% include theme.html %}
-      </footer>
+      {%- include partials/footer.html -%}
     </div>
+    {%- include partials/script.html -%}
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </body>
 </html>

@@ -1,0 +1,132 @@
+@use "sass:map";
+@use "variables" as *;
+
+$base00: #1d1f21;
+$base01: #282a2e;
+$base02: #373b41;
+$base03: #969896;
+$base04: #c1cadb;
+$base05: #d8dee9;
+$base06: #e5e9f0;
+$base07: #eceff4;
+$light-red: #dc322f;
+$light-orange: #cb4b16;
+$light-yellow: #b58900;
+$light-green: #859900;
+$light-cyan: #2aa198;
+$light-blue: #268bd2;
+$light-violet: #6c71c4;
+$light-magenta: #d33682;
+$dark-red: #cc6666;
+$dark-orange: #de935f;
+$dark-yellow: #f0c674;
+$dark-green: #b5bd68;
+$dark-cyan: #8abeb7;
+$dark-blue: #81a2be;
+$dark-violet: #b294bb;
+$dark-magenta: #d33682;
+
+// Create a map for easier theming
+$themes: (
+  "light": (
+    "bg-1": $base04,
+    "bg-2": $base05,
+    "bg-3": $base06,
+    "tx-1": $base02,
+    "tx-2": $base01,
+    "tx-3": $base00,
+    "bd-1": $base03,
+    "bd-2": $base02,
+    "ac-1": var(--violet),
+    "ac-2": var(--blue),
+    "ac-3": var(--magenta),
+  ),
+  "dark": (
+    "bg-1": $base00,
+    "bg-2": $base01,
+    "bg-3": $base02,
+    "tx-1": $base04,
+    "tx-2": $base05,
+    "tx-3": $base06,
+    "bd-1": $base02,
+    "bd-2": $base03,
+    "ac-1": var(--blue),
+    "ac-2": var(--violet),
+    "ac-3": var(--cyan),
+  ),
+);
+
+// Alerts
+$alerts: (
+  "variables": (
+    "note",
+    "tip",
+    "important",
+    "warning",
+    "caution",
+  ),
+  "dark": (
+    "note": $dark-blue,
+    "tip": $dark-green,
+    "important": $dark-violet,
+    "warning": $dark-orange,
+    "caution": $dark-red,
+  ),
+  "light": (
+    "note": $light-blue,
+    "tip": $light-green,
+    "important": $light-violet,
+    "warning": $light-orange,
+    "caution": $light-red,
+  ),
+);
+
+@mixin theme($mode: light) {
+  color-scheme: $mode;
+
+  $theme: map.get($themes, $mode);
+  @each $key, $value in $theme {
+    --#{$key}: #{$value};
+  }
+
+  @if $mode == "dark" {
+    --red: #{$dark-red};
+    --orange: #{$dark-orange};
+    --yellow: #{$dark-yellow};
+    --green: #{$dark-green};
+    --cyan: #{$dark-cyan};
+    --blue: #{$dark-blue};
+    --violet: #{$dark-violet};
+    --magenta: #{$dark-magenta};
+  } @else {
+    --red: #{$light-red};
+    --orange: #{$light-orange};
+    --yellow: #{$light-yellow};
+    --green: #{$light-green};
+    --cyan: #{$light-cyan};
+    --blue: #{$light-blue};
+    --violet: #{$light-violet};
+    --magenta: #{$light-magenta};
+  }
+
+  $alert: map.get($alerts, $mode);
+  @each $name, $color in $alert {
+    --alert-tx-#{$name}: #{$color};
+    --alert-bg-#{$name}: #{rgba($color, 0.2)};
+    --alert-bd-#{$name}: #{rgba($color, 0.65)};
+  }
+}
+
+:root {
+  @include theme(light);
+
+  &[data-theme="dark"] {
+    @include theme(dark);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme]) {
+      @include theme(dark);
+    }
+  }
+}

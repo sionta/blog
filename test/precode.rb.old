@@ -1,0 +1,55 @@
+# frozen_string_literal: true
+
+module Jekyll
+  module RebaseContentFilter
+    def fix_rouge(content)
+      content = content.clone
+
+      # Remove <div class="highlight"> while keeping its child nodes
+      content.gsub!(%r{<div class="highlight">(.*?)</div>}m, '\1')
+
+      # Replace <figure class="highlight"> with <div class="language-... highlighter-rouge">
+      content.gsub!(%r{<figure class="highlight"><pre><code class="language-(.*?)">(.*?)</code></pre></figure>}m) do
+        language = $1
+        code_content = $2
+        "<div class=\"language-#{language} highlighter-rouge\"><pre class=\"highlight\" data-lang=\"#{language}\"><code>#{code_content}</code></pre></div>"
+      end
+
+      # Fix from figure '<div class="language-..." data-lang=".. highlighter-rouge">'
+      content.gsub!(%r{<div class="language-(\w+)" data-lang="\1 highlighter-rouge">}m) do |match|
+        match.gsub('" data-lang="' + $1, '')
+      end
+
+      # Ensure 'data-lang' is not duplicated in <pre> elements
+      content.gsub!(%r{(<pre[^>]*?)\sdata-lang="[^"]*"(.*?>)}m) do
+        "#{$1}#{$2}"
+      end
+
+      # Add 'data-lang' attribute to <pre> elements based on parent <div> class
+      content.gsub!(%r{<div class="language-(.*?) highlighter-rouge"><pre class="highlight">(.*?)</pre></div>}m) do
+        language = $1
+        pre_content = $2
+        "<div class=\"language-#{language} highlighter-rouge\"><pre class=\"highlight\" data-lang=\"#{language}\">#{pre_content}</pre></div>"
+      end
+
+      # # Remove 'class' from <code> elements if they have 'data-lang' attribute
+      # content.gsub!(%r{<code class="language-(.*?)"(.*?)>(.*?)</code>}m) do
+      #   "<code>#{$3}</code>"
+      # end
+
+      # Replace <td class="gutter gl"> with <td class="rouge-gutter gl">
+      content.gsub!(%r{<td class="gutter gl">(.*?)</td>}m) do
+        "<td class=\"rouge-gutter gl\">#{$1}</td>"
+      end
+
+      # Replace <td class="code"> with <td class="rouge-code">
+      content.gsub!(%r{<td class="code">(.*?)</td>}m) do
+        "<td class=\"rouge-code\">#{$1}</td>"
+      end
+
+      content
+    end
+  end
+end
+
+Liquid::Template.register_filter(Jekyll::RebaseContentFilter)

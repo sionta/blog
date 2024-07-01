@@ -1,0 +1,41 @@
+@use "sass:map";
+@use "colors";
+
+/**
+ * Alerts
+ */
+.alert {
+  font: 400 16px/1.5 var(--font-sans);
+  background-color: var(--bg-2);
+  padding: 10px 15px;
+  // border-radius: 3px;
+  border-left: 5px solid var(--bd-1);
+
+  &-header {
+    display: flex;
+    align-items: center;
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    span {
+      padding-left: 5px;
+      font-weight: 700;
+    }
+  }
+
+  $alerts: map.get(colors.$alerts, "class");
+  @each $name in $alerts {
+    &.alert-#{$name} {
+      background: var(--alert-bg-#{$name});
+      border-left: 5px solid var(--alert-bd-#{$name});
+    }
+
+    &-#{$name}-title,
+    &-#{$name}-icon {
+      color: var(--alert-tx-#{$name});
+    }
+  }
+}

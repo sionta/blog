@@ -1,0 +1,96 @@
+/**
+ * Utility classes
+ */
+.pfixed {
+  position: fixed !important;
+  top: 0;
+}
+
+.sticky {
+  position: sticky !important;
+  top: 0;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+/* Hide elements using this class by default */
+.only-on-mobiles {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .center-on-mobiles {
+    text-align: center !important;
+  }
+
+  .hide-on-mobiles {
+    display: none !important;
+  }
+
+  .only-on-mobiles {
+    display: block !important;
+  }
+}
+
+// Class after generated rendering markdown.
+.key {
+  line-height: 0.8;
+  padding: 1px 5px;
+  border: 1px solid var(--cyan);
+  border-bottom: 3px solid var(--blue);
+}
+
+// to disable line number in pre code on markdown.
+.no_lineno td:has(.lineno) {
+  display: none;
+}
+
+/**
+ * Footnotes
+ */
+// a[role="doc-backlink"],
+// sup[role="doc-noteref"],
+a[href^="#fn"] {
+  font-family: sans-serif;
+  line-height: 1;
+  padding: 1.5px 3px;
+  margin-left: 2px;
+  border-radius: 2px;
+
+  text-decoration: none;
+  background-color: var(--bg-3);
+  color: var(--tx-1) !important;
+
+  &:hover {
+    background-color: var(--lk-1);
+    color: var(--bg-1);
+  }
+}
+
+/**
+ * Mermaid diagram
+ */
+.mermaid {
+  width: 100%;
+  display: block;
+}
+
+/**
+ * Emoji shorthand
+ */
+.emoji {
+  height: var(--font-size);
+  width: var(--font-size);
+  display: inline-block;
+  vertical-align: text-bottom;
+}

@@ -1,0 +1,13 @@
+{%- if page.toc == true and page.content contains 'h2' %}
+  {%- if include.mobile == true %}
+    <details class="post-toc only-on-mobiles">
+      <summary class="toc-title" title="Table of Content"></summary>
+      <nav class="toc-mobile"></nav>
+    </details>
+  {%- else %}
+    <div class="post-toc hide-on-mobiles">
+      <h1>On this page</h1>
+      <nav class="toc"></nav>
+    </div>
+  {%- endif %}
+{%- endif %}

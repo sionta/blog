@@ -1,0 +1,71 @@
+/**
+ * Code Header
+ */
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px;
+  color: var(--tx-1);
+  background: var(--bg-3);
+  border-bottom: 1px solid var(--bg-3);
+  border-radius: calc(var(--rounded) * 2) calc(var(--rounded) * 2) 0 0;
+
+  + .highlight {
+    border-radius: 0 0 var(--rounded) var(--rounded);
+  }
+
+  svg {
+    pointer-events: none;
+    color: var(--tx-1);
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  button {
+    cursor: pointer;
+    border: unset;
+    color: unset;
+    background: unset;
+    position: relative;
+  }
+
+  .code-title {
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  .icon-clipboard {
+    color: var(--tx-1);
+  }
+
+  .icon-success {
+    display: none;
+    color: var(--green);
+  }
+
+  .code-tooltip {
+    white-space: nowrap;
+    pointer-events: none;
+
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    background-color: var(--bg-3);
+    border-radius: 4px;
+    color: var(--tx-1);
+    font-size: 0.8em;
+    padding: 0.5em;
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+}

@@ -3,10 +3,11 @@ _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
-*.lock
+Gemfile.lock
 
 # Node.js
 node_modules
+package-lock.json
 
 # Misc
 .history/

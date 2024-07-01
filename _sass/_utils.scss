@@ -1,129 +1,88 @@
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@forward "variables";
+@forward "colors";
 
-  .page-number,
-  .previous,
-  .next {
-    cursor: pointer;
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 0 2px;
-    border: 1px solid var(--tx-4);
-    border-radius: 3px;
-    color: var(--tx-1);
+@use "sass:map";
+@use "variables" as var;
+
+@mixin breakpoint($breakpoint: 992px, $viewport: max) {
+  @if map.get(var.$breakpoints, $breakpoint) {
+    $breakpoint: map.get(var.$breakpoints, $breakpoint);
+  }
+
+  @media (#{$viewport}-width: $breakpoint) {
+    @content;
+  }
+}
+
+.a {
+  @include breakpoint("md", "min");
+}
+
+@mixin relative-font($size) {
+  font-size: #{$size}rem;
+}
+
+@mixin clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+@mixin reset-link {
+  &,
+  &:hover {
     text-decoration: none;
-    transition: background 0.3s ease;
-
-    &:hover {
-      background: var(--bg-4);
-    }
-
-    &.disabled {
-      // cursor: not-allowed;
-      pointer-events: none;
-      opacity: 0.4;
-    }
-  }
-
-  .current {
-    background: var(--blue);
-    color: var(--bd-1);
-
-    &:hover {
-      background: var(--purple);
-      border-color: var(--purple);
-    }
   }
 }
 
-/* Hide elements using this class by default */
-.only-on-mobile {
-  display: none !important;
+@mixin reset-gutter {
+  gap: 0;
+  margin: 0;
+  padding: 0;
 }
 
-@media (max-width: 600px) {
-  .only-on-mobile {
-    display: block !important;
-  }
-
-  .hide-on-mobile {
-    display: none !important;
-  }
-
-  .center-on-mobile {
-    text-align: center !important;
-  }
+@mixin reset-list {
+  @include reset-gutter();
+  list-style: none;
 }
 
-#theme-switcher {
-  display: inline-flex; /* Use inline-flex to size based on content */
+@mixin center-flex {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
-  margin-top: 20px;
-  border-radius: 8px;
-  color: var(--text-color);
-  background-color: var(--border-color);
+}
 
-  button {
-    position: relative;
-    cursor: pointer;
-    padding: 0.3em 0.6em;
-    border: none;
-    background-color: transparent;
-    color: inherit;
-    transition: background-color 0.2s ease, color 0.2s ease,
-      text-decoration 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@mixin inline-block {
+  display: -webkit-inline-box;
+  display: inline-block;
+}
 
-    svg,
-    div,
-    span {
-      pointer-events: none; /* Ensure icon or more element itself doesn't block clicks */
-    }
+@mixin inline-flex {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
 
-    /* Ensure the icon has some space around it to make it easier to click */
-    svg {
-      height: 1.5rem;
-      width: 1.5rem;
-      display: inline-block;
-      vertical-align: middle;
-    }
+@mixin menu-item($type: line) {
+  @include reset-list();
 
-    &[aria-label]::before {
-      content: attr(aria-label);
-      position: absolute;
-      bottom: 110%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 0.5em;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: var(--text-color);
-      font-size: 0.8em;
-      border-radius: 4px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      white-space: nowrap;
-      pointer-events: none; /* Ensure tooltip doesn't block click events */
-    }
+  li {
+    @if $type == "line" {
+      @include inline-block();
 
-    &:hover::before {
-      opacity: 1;
-    }
+      margin-right: 10px;
 
-    &:hover,
-    &.active {
-      background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    .visually-hidden {
-      // display: inline-flex;
-      display: none;
-      margin-left: 5px;
+      &:last-child {
+        margin-right: 0;
+      }
+    } @else if $type == "list" {
+      display: block;
+      margin-bottom: 10px;
+    } @else {
+      display: inherit;
+      margin: inherit;
     }
   }
 }

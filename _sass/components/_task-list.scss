@@ -1,0 +1,35 @@
+/**
+ * Task list
+ */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &-item {
+    display: -webkit-box;
+    display: block;
+    margin: 0;
+
+    &:last-child {
+      margin-bottom: var(--gutter-x);
+    }
+
+    svg {
+      &.task-list-checked {
+        max-width: 18px;
+        color: var(--green);
+      }
+
+      &.task-list-unchecked {
+        max-width: 17px;
+        color: currentColor;
+      }
+    }
+
+    &-checkbox {
+      cursor: not-allowed;
+      margin-right: 8px;
+    }
+  }
+}

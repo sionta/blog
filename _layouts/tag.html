@@ -2,22 +2,22 @@
 layout: base
 ---
 <style>
-  .tag-item {
+  .tag-link {
     text-decoration: none;
-    color: #333;
+    color: currentColor;
     transition: background-color 0.3s ease;
     display: inline-block;
   }
 </style>
 {%- assign date_format = site.date_format | default: '%B %d, %Y' %}
 <section>
-  <h1>Tag #{{ page.tag }}</h1>
+  <h1 class="page-title">Tag #{{ page.tag }}</h1>
   <nav>
     <ul>
       {%- for post in site.posts %}
         {%- if post.tags contains page.tag %}
           <li>
-            <a class="tag-item" href="{{ post.url }}">{{ post.title }}</a>
+            <a class="tag-link" href="{{ post.url }}">{{ post.title }}</a>
             <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
           </li>
         {%- endif %}

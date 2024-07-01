@@ -1,0 +1,15 @@
+{%- comment -%} Remove HTML comments, Doesn't work for <script> elements {%- endcomment -%}
+{%- assign input = include.html | default: content -%}
+{%- assign parts = input | split: '<!--' -%}
+{%- assign output = '' -%}
+{%- for part in parts -%}
+  {%- if forloop.first -%}
+    {%- assign output = part -%}
+  {%- else -%}
+    {%- assign subparts = part | split: '-->' -%}
+    {%- if subparts.size > 1 -%}
+      {%- assign output = output | append: subparts[1] -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{{- output -}}

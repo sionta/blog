@@ -1,0 +1,286 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* by Josh Comeau https://www.joshwcomeau.com/css/custom-css-reset */
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: inline-block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: $font-size;
+}
+
+/**
+ * Basic styling
+ */
+/* prettier-ignore */
+body {
+  font: $font-weight #{$font-size}/#{$line-height} $font-sans;
+  color: var(--tx-1);
+  background: var(--bg-1);
+
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  text-rendering: optimizeSpeed;
+
+  min-height: 100vh;
+  overflow-wrap: break-word;
+}
+
+/**
+ * Set `margin-bottom` to maintain vertical rhythm
+ */
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
+%vertical-rhythm {
+  margin-bottom: calc($spacing-unit * 0.5);
+}
+
+hr {
+  border: 1px solid var(--bd-1);
+  margin: $spacing-unit auto;
+}
+
+/**
+ * `main` element
+ */
+main {
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: calc($font-size * 0.875);
+}
+
+/**
+ * Lists
+ */
+
+/**
+ * Headings
+ */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @if $font-heading != $font-sans {
+    font-family: $font-heading;
+  }
+  font-weight: $font-weight;
+  overflow-wrap: break-word;
+  @extend %vertical-rhythm;
+}
+
+@each $key, $size in $heading-sizes {
+  #{$key} {
+    font-size: $size;
+
+    @if $key == "h1" {
+      font-weight: 600;
+
+      &:not(:first-child) {
+        font-weight: $font-weight;
+      }
+    }
+  }
+}
+
+/**
+ * Links
+ */
+a {
+  color: var(--ac-1);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--ac-1);
+    text-decoration: underline;
+  }
+
+  // &:visited {
+  //   color: none;
+  //   background: none;
+  // }
+}
+
+/**
+ * Blockquotes
+ */
+blockquote:not(.alert) {
+  color: var(--tx-1);
+  // border-left: 4px solid var(--bd-1);
+  padding-left: calc($spacing-unit * 0.5);
+  @include relative-font(1.125);
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  cite::before {
+    content: "\2014 \0020";
+  }
+
+  &.normal {
+    font-style: normal;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+/**
+ * Tables
+ */
+table:not(.rouge-table) {
+  margin-bottom: $spacing-unit;
+  width: 100%;
+  text-align: left;
+  color: var(--tx-1);
+  border-collapse: collapse;
+  // border: 1px solid var(--bd-1);
+
+  caption {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  th,
+  td {
+    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+  }
+  th {
+    background: var(--bg-1);
+    // border: 1px solid var(--bd-1);
+  }
+  // td {
+  //   border: 1px solid var(--bd-1);
+  // }
+  tr:nth-child(even) {
+    background: var(--bg-3);
+  }
+  /* prettier-ignore */
+  @include breakpoint(md, max) {
+    // display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+}
+
+/**
+ * Details
+ */
+details {
+  margin: {
+    top: $spacing-unit;
+    bottom: $spacing-unit;
+  }
+
+  padding: 0.6rem 1rem;
+  background: var(--bg-1);
+  // border: 1px solid var(--bd-1);
+  border-radius: $border-radius;
+
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  &[open] {
+    padding-bottom: 0.75rem;
+
+    summary {
+      margin-bottom: 6px;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

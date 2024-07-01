@@ -1,0 +1,27 @@
+<table class="table-html">
+  <caption>
+    {{ include.caption }}
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Table Heading 1</th>
+      <th scope="col">Table Heading 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Table Body 1</th>
+      <td>Table Data 1</td>
+    </tr>
+    <tr>
+      <th>Table Body 2</th>
+      <td>Table Data 2</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th scope="row">Table Foot 1</th>
+      <td>Table Foot 1</td>
+    </tr>
+  </tfoot>
+</table>

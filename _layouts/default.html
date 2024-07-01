@@ -1,17 +1,5 @@
 ---
-# Layout default only for remove HTML comments
-# LIMITATION: Doesn't work for <script> elements
+# Layout default for remove HTML comments
 ---
-{%- assign parts = content | split: '<!--' -%}
-{%- assign cleaned_content = '' -%}
-{%- for part in parts -%}
-  {%- if forloop.first -%}
-    {%- assign cleaned_content = part -%}
-  {%- else -%}
-    {%- assign subparts = part | split: '-->' -%}
-    {%- if subparts.size > 1 -%}
-      {%- assign cleaned_content = cleaned_content | append: subparts[1] -%}
-    {%- endif -%}
-  {%- endif -%}
-{%- endfor -%}
-{{ cleaned_content }}
+{%- assign content = content | custom_content -%}
+{%- include partials/cleaned.html -%}

@@ -1,135 +1,284 @@
 (function () {
-  document.addEventListener("DOMContentLoaded", function () {
-    const Theme = {
-      AUTO: "auto",
-      LIGHT: "light",
-      DARK: "dark",
-    };
+  "use strict";
 
-    const THEME_STORAGE_KEY = "theme";
-    const THEME_OWNER = document.documentElement;
+  /* always load on DOM */
+  document.addEventListener("DOMContentLoaded", () => {
+    /* required */
+    initialTheme();
+    navigationMenu();
+    backToTop();
+    searchPost();
 
-    // Function to set theme
-    function setTheme(theme) {
-      if (theme === Theme.AUTO) {
-        delete THEME_OWNER.dataset[THEME_STORAGE_KEY];
-        localStorage.removeItem(THEME_STORAGE_KEY);
-      } else {
-        THEME_OWNER.dataset[THEME_STORAGE_KEY] = theme;
-        localStorage.setItem(THEME_STORAGE_KEY, theme);
-      }
-      updateButtonStates();
-    }
-
-    // Function to update button states based on current theme
-    function updateButtonStates() {
-      const currentTheme =
-        localStorage.getItem(THEME_STORAGE_KEY) || Theme.AUTO;
-      document.querySelectorAll("#theme-switcher button").forEach((button) => {
-        button.classList.remove("active");
-      });
-      document.getElementById(`theme-${currentTheme}`).classList.add("active");
-    }
-
-    // Handle theme button click
-    function handleThemeButtonClick(event) {
-      const theme = event.target.dataset.theme;
-      if (theme) {
-        setTheme(theme);
-      }
-    }
-
-    // Initialize theme switcher
-    function initializeThemeSwitcher() {
-      const themeSwitcher = document.getElementById("theme-switcher");
-      if (!themeSwitcher) return;
-
-      themeSwitcher.addEventListener("click", handleThemeButtonClick);
-
-      // Sync initial state
-      const initialTheme =
-        localStorage.getItem(THEME_STORAGE_KEY) || Theme.AUTO;
-      setTheme(initialTheme); // Set initial theme from localStorage
-    }
-
-    // Call initializeThemeSwitcher on DOMContentLoaded
-    initializeThemeSwitcher();
+    /* post features */
+    tableOfContent();
+    codeButton();
+    diagramMermaid();
+    mathKaTex();
+    mathMathJax();
+    // customHighlighter();
   });
 
-  /* // Process all if it has class 'highlight'
-  function fixRougeHighlighter() {
-    if (document.querySelectorAll('[class^="highlight"]')) {
-      // Remove <div class="highlight"> while keeping its child nodes
-      const divHighlightElements = document.querySelectorAll("div.highlight");
-      divHighlightElements.forEach((element) => {
-        let children = Array.from(element.childNodes);
-        children.forEach((child) =>
-          element.parentNode.insertBefore(child, element)
-        );
-        element.parentNode.removeChild(element);
+  // Function to set theme
+  const themeSwitcher = document.getElementById("theme-switcher");
+
+  function setupTheme(theme) {
+    if (theme === "auto") {
+      delete document.documentElement.dataset.theme;
+      localStorage.removeItem("theme");
+    } else {
+      document.documentElement.dataset["theme"] = theme;
+      localStorage.setItem("theme", theme);
+    }
+
+    var currentTheme = localStorage.getItem("theme") || "auto";
+    var modeTheme = document.getElementById(`theme-${currentTheme}`);
+    if (themeSwitcher && modeTheme) {
+      themeSwitcher.querySelectorAll("button").forEach((button) => {
+        if (!button.classList.value) return;
+        button.classList.remove("active");
+      });
+      modeTheme.classList.add("active");
+    }
+  }
+
+  function initialTheme() {
+    if (themeSwitcher) {
+      themeSwitcher.addEventListener("click", (e) => {
+        var theme = e.target.dataset.theme;
+        if (theme) { setupTheme(theme); } // prettier-ignore
+      });
+    }
+    // Sync initial state
+    var cacheTheme = localStorage.getItem("theme") || "auto";
+    setupTheme(cacheTheme); // Set initial theme from localStorage
+  }
+
+  // clipboard
+  function codeButton() {
+    var tooltipTimeout = 1000;
+    const copyButtons = document.querySelectorAll(".code-button");
+    if (!copyButtons) return;
+
+    copyButtons.forEach(function (copyButton) {
+      var copyTooltip = copyButton.querySelector(".code-tooltip");
+      var labelCopy = copyButton.getAttribute("copy-label");
+      var labelSuccess = copyButton.getAttribute("success-label");
+      var labelError = copyButton.getAttribute("error-label");
+
+      // Displays a message from the attribute when the mouse enters the button
+      copyButton.addEventListener("mouseenter", () => {
+        showTooltip(copyTooltip, labelCopy);
       });
 
-      // Replace <figure class="highlight"> with <div class="language-... highlighter-rouge">
-      const figureHighlightElements =
-        document.querySelectorAll("figure.highlight");
-      figureHighlightElements.forEach((figureElement) => {
-        let codeElement = figureElement.querySelector("code");
-        if (codeElement) {
-          let languageClass = codeElement.className;
-          let divElement = document.createElement("div");
-          divElement.className = languageClass + " highlighter-rouge";
-          let preElement = figureElement.querySelector("pre");
-          if (preElement) {
-            divElement
-              .appendChild(preElement.cloneNode(true))
-              .classList.add("highlight");
-            figureElement.parentNode.replaceChild(divElement, figureElement);
-          }
-        }
-      });
+      // Copy code
+      copyButton.addEventListener("click", () => {
+        var codeContent = copyButton
+          .closest("[class^=language-]") // or .highlighter-rouge
+          .querySelector(".rouge-code").innerText;
 
-      // Add 'data-lang' attribute to <pre> elements based on parent <div> class
-      const preHighlightElements = document.querySelectorAll("pre.highlight");
-      preHighlightElements.forEach((preElement) => {
-        let languageClassMatch =
-          preElement.parentNode.className.match(/language-(\w+)/);
-        if (languageClassMatch) {
-          preElement.setAttribute("data-lang", languageClassMatch[1]);
-        }
-      });
-
-      // Remove 'class' from <code> elements if they have 'data-lang' attribute
-      const codeElements = document.querySelectorAll("pre code");
-      codeElements.forEach((codeElement) => {
-        if (codeElement.hasAttribute("data-lang")) {
-          codeElement.removeAttribute("class");
-          codeElement.removeAttribute("data-lang");
-        }
-      });
-
-      // Select all tables with class "rouge-table"
-      const tableElements = document.querySelectorAll("table.rouge-table");
-      // Iterate over each table element
-      tableElements.forEach((tableElement) => {
-        // Replace <td class="gutter gl"> with <td class="rouge-gutter gl">
-        tableElement
-          .querySelectorAll("td.gutter.gl")
-          .forEach(function (tdElement) {
-            tdElement.className = tdElement.className.replace(
-              "gutter",
-              "rouge-gutter"
-            );
+        navigator.clipboard
+          .writeText(codeContent)
+          .then(() => {
+            showTooltip(copyTooltip, labelSuccess);
+            iconTooltip(copyButton, true);
+          })
+          .catch((err) => {
+            showTooltip(copyTooltip, labelError);
+            console.error("Failed to copy text: ", err);
           });
+      });
+    });
 
-        // Replace <td class="code"> with <td class="rouge-code">
-        tableElement.querySelectorAll("td.code").forEach(function (tdElement) {
-          tdElement.className = tdElement.className.replace(
-            "code",
-            "rouge-code"
-          );
-        });
+    function iconTooltip(button, isSuccess) {
+      var clipboardIcon = button.querySelector(".icon-clipboard");
+      var successIcon = button.querySelector(".icon-success");
+
+      if (isSuccess) {
+        clipboardIcon.style.display = "none";
+        successIcon.style.display = "inline";
+      }
+
+      setTimeout(() => {
+        clipboardIcon.style.display = "inline";
+        successIcon.style.display = "none";
+      }, tooltipTimeout);
+    }
+
+    function showTooltip(tooltip, message, timeout = tooltipTimeout) {
+      tooltip.textContent = message;
+      tooltip.classList.add("active");
+      setTimeout(() => {
+        tooltip.classList.remove("active");
+      }, timeout);
+    }
+  }
+
+  // katex
+  function mathKaTex() {
+    if (document.getElementById("katex-script") && renderMathInElement) {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true },
+        ],
       });
     }
   }
-  fixRougeHighlighter(); */
+
+  // mathjax
+  function mathMathJax() {
+    if (!window.MathJax) return;
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      options: {
+        processHtmlClass: "mathjax-process",
+      },
+    };
+  }
+
+  // mermaid
+  function diagramMermaid() {
+    if (!window.mermaid) return;
+    // Select all Mermaid code elements
+    const MERMAID_DIAGRAM = document.querySelectorAll(".language-mermaid");
+    if (!MERMAID_DIAGRAM) return;
+
+    MERMAID_DIAGRAM.forEach((codeElement) => {
+      // Create a new div element with the 'mermaid' class
+      var newElement = document.createElement("div");
+      newElement.classList.add("mermaid");
+      newElement.innerHTML = codeElement.textContent;
+
+      // Replace the original element with the new element
+      codeElement.parentElement.replaceWith(newElement);
+    });
+
+    // Initialize Mermaid
+    mermaid.initialize({ startOnLoad: true });
+  }
+
+  // search
+  function searchPost() {
+    if (!window.SimpleJekyllSearch) return;
+    var searchInput = document.getElementById("search-input");
+    var resultsContainer = document.getElementById("search-results");
+    if (!searchInput && !resultsContainer) return;
+
+    window.SimpleJekyllSearch({
+      searchInput: searchInput,
+      resultsContainer: resultsContainer,
+      json: "assets/search-data.json",
+      searchResultTemplate:
+        '<li class="result-item"><a href="{url}">{title}</a></li>',
+      noResultsText: "",
+      limit: 10,
+      fuzzy: false,
+    });
+
+    searchInput.addEventListener("input", () => {
+      var searchTerm = searchInput.value;
+      if (searchTerm === "") {
+        resultsContainer.innerHTML = "";
+      } else {
+        setTimeout(() => {
+          if (resultsContainer.innerdocument.documentElement.trim() === "") {
+            resultsContainer.innerHTML = `<span class="no-results">'${searchTerm}'</span>`;
+          }
+        }, 300);
+      }
+    });
+  }
+
+  // tocbot
+  function tableOfContent() {
+    if (!window.tocbot) return;
+    function initializeToc() {
+      // Clear any existing TOC
+      tocbot.destroy();
+
+      var tocSelector = window.innerWidth >= 768 ? ".toc" : ".toc-mobile";
+
+      tocbot.init({
+        tocSelector: tocSelector,
+        contentSelector: '[itemprop="articleBody"]',
+        ignoreSelector: ".no_toc",
+        headingSelector: "h2, h3",
+        orderedList: false,
+        scrollSmooth: false,
+        collapseDepth: 0,
+        /* listClass: "toc-list",
+          listItemClass: "toc-list-item",
+          activeListItemClass: "is-active-li",
+          linkClass: "toc-link",
+          activeLinkClass: "is-active-link",
+          isCollapsedClass: "is-collapsed",
+          collapsibleClass: "is-collapsible",
+          positionFixedClass: "is-position-fixed",
+          fixedSidebarOffset: "auto", */
+      });
+
+      tocbot.refresh();
+    }
+
+    // Initialize TOC on page load
+    initializeToc();
+
+    // Re-initialize TOC on window resize
+    window.addEventListener("resize", () => {
+      initializeToc();
+    });
+  }
+
+  // Navigation menu
+  function navigationMenu() {
+    var hamburger = document.querySelector(".hamburger");
+    var navMenu = document.querySelector(".site-menu");
+    var navLink = document.querySelectorAll(".menu-link");
+
+    hamburger.addEventListener("click", mobileMenu);
+    navLink.forEach((n) => n.addEventListener("click", closeMenu));
+
+    function mobileMenu() {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }
+
+    function closeMenu() {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+    }
+  }
+
+  // Go to Top
+  function backToTop() {
+    var backToTop = document.getElementById("back-to-top");
+    if (!backToTop) return;
+
+    window.onscroll = () => {
+      scrollFunction();
+    };
+
+    function scrollFunction() {
+      if (
+        document.documentElement.scrollTop > 20 ||
+        document.body.scrollTop > 20
+      ) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
+    }
+
+    backToTop.addEventListener("click", () => {
+      document.documentElement.scrollTop = 0; /* For other browsers */
+      document.body.scrollTop = 0; /* For Safari */
+    });
+  }
 })();

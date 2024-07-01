@@ -1,93 +1,522 @@
-/* by Josh Comeau https://www.joshwcomeau.com/css/custom-css-reset */
+@use "sass:map";
+@use "utils";
 
-/*
-  1. Use a more-intuitive box-sizing model.
-*/
+//  CSS Variables
+:root {
+  --font-emoji: #{utils.$font-emoji};
+  --font-sans: #{utils.$font-sans};
+  --font-mono: #{utils.$font-mono};
+  --font-serif: #{utils.$font-serif};
+  --font-size: #{utils.$font-size};
+  --rounded: #{utils.$border-radius};
+  --gutter: #{utils.$spacing-unit};
+  --gutter-x: calc(#{utils.$spacing-unit} * 0.5);
+  --base-01: #{utils.$base-01};
+  --base-02: #{utils.$base-02};
+  --base-03: #{utils.$base-03};
+  --base-04: #{utils.$base-04};
+  --base-05: #{utils.$base-05};
+  --base-06: #{utils.$base-06};
+  --base-07: #{utils.$base-07};
+  --base-08: #{utils.$base-08};
+  --base-09: #{utils.$base-09};
+  --base-10: #{utils.$base-10};
+  --red: #{utils.$red};
+  --orange: #{utils.$orange};
+  --yellow: #{utils.$yellow};
+  --green: #{utils.$green};
+  --cyan: #{utils.$cyan};
+  --blue: #{utils.$blue};
+  --violet: #{utils.$violet};
+  --magenta: #{utils.$magenta};
+  --red-light: #{utils.$dark-red};
+  --orange-light: #{utils.$dark-orange};
+  --yellow-light: #{utils.$dark-yellow};
+  --green-light: #{utils.$dark-green};
+  --cyan-light: #{utils.$dark-cyan};
+  --blue-light: #{utils.$dark-blue};
+  --violet-light: #{utils.$dark-violet};
+  --magenta-light: #{utils.$dark-magenta};
+
+  @include utils.alert("light");
+
+  @include utils.theme(light);
+
+  &[data-theme="dark"] {
+    @include utils.theme(dark);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme]) {
+      @include utils.theme(dark);
+    }
+  }
+}
+
 *,
 *::before,
 *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/*
-  2. Remove default margin
-*/
-* {
+
+*,
+%reset-gutter {
   margin: 0;
+  padding: 0;
 }
-/*
-  Typographic tweaks!
-  3. Add accessible line-height
-  4. Improve text rendering
-*/
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+  /* Firefox doesn't support ::-moz-scrollbar, use scrollbar-width and scrollbar-color instead */
+  @supports not
+    selector(
+      ::-moz-scrollbar,
+      ::-webkit-scrollbar
+    ) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--lk-1) var(--bg-3);
+  }
+}
+
+/* Custom scrollbar styling for WebKit browsers (Chrome, Safari) */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    @media screen and (min-height: utils.$content-width) {
+      width: 11px;
+    }
+    &-track,
+    &-thumb {
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+    }
+    &-track {
+      background: var(--bg-3);
+    }
+    &-thumb {
+      // height: 6em;
+      border: 2px solid var(--bg-3);
+      background: var(--tx-1);
+      &:hover {
+        background: var(--lk-1);
+      }
+      // &:window-inactive {
+      //   background: var(--bg-1);
+      // }
+    }
+  }
+}
+
+::selection {
+  color: utils.$base-03;
+  background: var(--lk-1);
+}
+
+/**
+ * Basic styling
+ */
 body {
-  line-height: 1.5;
+  font: 400 16px/1.6 utils.$font-sans;
+  color: var(--tx-1);
+  background-color: var(--bg-1);
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+
+  -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
-}
-/*
-  5. Improve media defaults
-*/
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-/*
-  6. Remove built-in form typography styles
-*/
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-/*
-  7. Avoid text overflows
-*/
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+  -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   overflow-wrap: break-word;
 }
-/*
-  8. Create a root stacking context
-*/
-#root,
-#__next {
-  isolation: isolate;
+
+/**
+ * `main` element
+ */
+main {
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
-details {
-  margin: {
-    top: 20px;
-    bottom: 20px;
+hr {
+  border: 1px solid var(--bd-1);
+  margin-top: utils.$spacing-unit;
+  margin-bottom: utils.$spacing-unit;
+}
+
+/**
+ * Set `margin-bottom` to maintain gutter-x
+ */
+%gutter-x,
+ol,
+ul,
+dl,
+blockquote,
+details,
+figure,
+pre,
+table {
+  margin-bottom: calc(utils.$spacing-unit * 0.5);
+}
+
+/**
+ * Headings
+ */
+p,
+%typography {
+  font-weight: 400;
+  @extend %reset-gutter;
+  @extend %gutter-x;
+}
+
+@each $n, $s in utils.$font-sizes {
+  #{h}#{$n} {
+    font-size: $s;
+    @extend %typography;
+  }
+}
+
+/**
+ * Links
+ */
+a {
+  color: var(--tx-1);
+
+  &:hover {
+    color: var(--lk-1);
   }
 
-  padding: 0.6rem 1rem;
-  background: var(--bg-2);
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
+  // &:visited {
+  //   color: var(--tx-1);
+  // }
+
+  &,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/**
+ * Images
+ */
+svg,
+img {
+  max-width: 100%;
+}
+
+img {
+  display: block;
+}
+
+.icon,
+.svg,
+svg {
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+
+/**
+ * Figures
+ */
+figure > img {
+  display: block;
+}
+
+figcaption {
+  font-size: calc(1rem * 0.875);
+}
+
+/**
+ * Lists
+ */
+ul,
+ol {
+  padding: 0;
+  margin-left: utils.$spacing-unit;
+}
+
+li {
+  > ul,
+  > ol {
+    margin-bottom: 0;
+  }
+}
+
+dt {
+  font-weight: 700;
+}
+
+dd::before {
+  content: "→\0020";
+}
+
+/**
+ * Emphasis
+ */
+b,
+strong {
+  font-weight: 700;
+}
+
+i,
+em {
+  color: var(--yellow);
+}
+
+del {
+  color: var(--red);
+}
+
+/* Marked and selection  */
+
+mark {
+  padding: 1px 3px;
+  border-radius: 2px;
+  color: var(--yellow);
+  background: rgba(utils.$dark-yellow, 0.3);
+}
+
+/**
+ * Blockquotes
+ */
+blockquote {
+  color: var(--tx-1);
+  border-left: 5px solid var(--bd-1);
+  padding: calc(utils.$spacing-unit / 2) utils.$spacing-unit;
+  font-size: 1.125rem;
+  font-style: italic;
+
+  cite::before {
+    content: "\2014\0020";
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+/**
+ * Tables
+ */
+table:not(:has(pre)) {
+  margin-bottom: utils.$spacing-unit;
+  width: 100%;
+  text-align: left;
+  color: var(--tx-1);
+  border-collapse: collapse;
+
+  & + caption {
+    margin: 0 !important;
+  }
+
+  caption {
+    border-radius: calc(var(--rounded) * 2) calc(var(--rounded) * 2) 0 0;
+    border: 1px solid var(--bd-1);
+    background-color: var(--lk-1);
+    color: var(--tx-1);
+    font-weight: 700;
+    border-bottom: none;
+  }
+
+  caption,
+  th,
+  td {
+    padding: calc(utils.$spacing-unit * 33.3333333333 * 0.01)
+      calc(utils.$spacing-unit * 0.5);
+  }
+
+  th {
+    background-color: var(--bg-1);
+    border: 1px solid var(--bd-1);
+
+    &[scope="col"] {
+      background-color: var(--bg-3);
+    }
+
+    &[scope="row"] {
+      background-color: var(--bg-2);
+    }
+  }
+
+  td {
+    border: 1px solid var(--bd-1);
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--bg-3);
+  }
+
+  @media screen and (max-width: 960px) {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+}
+
+/**
+ * Details
+ */
+details {
+  padding: 0.5rem 1rem;
+  border-radius: var(--rounded);
+  background-color: var(--bg-3);
+  @extend %gutter-x;
 
   summary {
     cursor: pointer;
     font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin: -0.5rem -1rem;
+    word-break: break-all;
   }
 
   &[open] {
-    padding-bottom: 0.75rem;
+    > summary {
+      margin-bottom: 0.1rem;
 
-    summary {
-      margin-bottom: 6px;
+      + * {
+        margin-top: 0;
+      }
     }
 
-    > *:last-child {
+    > :last-child {
       margin-bottom: 0;
     }
   }
+}
+
+/**
+ * Code formatting
+ */
+samp,
+kbd,
+pre,
+code {
+  background-color: var(--bg-1);
+  border-radius: var(--rounded);
+  border: 1px solid var(--bd-1);
+  font-family: var(--font-mono);
+  font-size: 0.9375em;
+  padding: 1px 5px;
+  line-height: 1.15;
+}
+
+samp {
+  background-color: inherit;
+  border: none;
+}
+
+kbd {
+  border-bottom: 3px solid var(--bg-3);
+}
+
+pre {
+  padding: 8px 12px;
+  border-radius: 0;
+  border: none;
+  line-height: 1.5;
+
+  letter-spacing: 0.2px;
+  overflow-x: auto;
+
+  > code {
+    background-color: inherit !important;
+    border: none;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  td pre {
+    padding: 0;
+    margin: 0;
+
+    &.lineno {
+      padding-right: 10px;
+      text-align: right;
+    }
+  }
+}
+
+/* CLASSES */
+.header {
+  border-bottom: 1px solid var(--bd-1);
+  margin-bottom: utils.$spacing-unit;
+}
+
+.footer {
+  border-top: 1px solid var(--bd-1);
+  margin-top: utils.$spacing-unit;
+}
+
+.footer,
+.header {
+  background-color: var(--bg-2);
+
+  @media screen and (max-width: 768px) {
+    border: none;
+    margin: 0;
+  }
+}
+
+.content:has(.post),
+.sidebar {
+  background-color: var(--bg-2);
+  border-radius: var(--rounded);
+}
+
+.content:has(.post) {
+  margin-right: 10px !important;
+}
+
+.sidebar {
+  @media screen and (min-width: 768px) {
+    position: sticky;
+    top: 10px;
+    // top: 5.5rem; // only when .header is sticky
+    height: min-content;
+    // overflow: auto;
+    // scrollbar-width: thin;
+    // scroll-behavior: smooth;
+  }
+
+  &:not(:has(*)) {
+    display: none;
+  }
+
+  div {
+    h1:first-child {
+      font-size: var(--font-size);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    @extend %gutter-x;
+  }
+}
+
+/**
+ * Content
+ */
+.page-title {
+  font-weight: 700;
+}
+
+.post-title {
+  font-size: 2.625rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.15;
 }

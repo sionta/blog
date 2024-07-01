@@ -1,5 +1,0 @@
-{%- comment -%} Icon use Tabler https://tabler.io/icons {%- endcomment -%}
-{% comment %} {%- assign svg_attrib = 'xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1.25em" height="1.25em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"' -%} {% endcomment %}
-{%- assign svg_attrib = 'aria-hidden="true" width="1.25em" height="1.25em" viewBox="0 0 24 24"' -%}
-{%- capture svg_symbol -%}<svg class="{{ include.class | default: 'icon' }}" {{ svg_attrib }} style="{{ include.style }}"><use href="{{ '/assets/tabler-icons.svg' | relative_url -}}#{{- include.id -}}"></use></svg>{%- endcapture -%}
-{{- svg_symbol -}}
