@@ -3,7 +3,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- seo title=false -%}
-  {%- include partials/analytics.html -%}
+  {%- include analytics.html -%}
   {%- capture head_title %}{%- if page.url == '/' %}{{- site.title -}}{%- else %}{{- page.title -}}{%- endif %}{% endcapture %}
   <title>{{ head_title | escape }}</title>
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">

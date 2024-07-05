@@ -2,8 +2,8 @@
 {%- assign SITE_META_DATA = site.data.metadata %}
 
 {%- if _CONTENT contains '<input type="checkbox" class="task-list-item-checkbox"' %}
-  {%- capture iconCheckbox %}{%- include partials/icon.html id="checkbox" class="task-list-checked" %}{%- endcapture %}
-  {%- capture iconUncheck %}{%- include partials/icon.html id="square" class="task-list-unchecked" %}{%- endcapture %}
+  {%- capture iconCheckbox %}{%- include icon.html id="checkbox" class="task-list-checked" %}{%- endcapture %}
+  {%- capture iconUncheck %}{%- include icon.html id="square" class="task-list-unchecked" %}{%- endcapture %}
   {%- assign _CONTENT = _CONTENT
     | replace: '<input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />',
       iconCheckbox
@@ -23,7 +23,7 @@
     {%- assign currentElement = '<blockquote class="' | append: 'alert ' | append: alert_subClass | append: '">' %}
     {%- capture newElement %}{{ currentElement | replace: '">','" role="alert">' }}
       <div class="alert-header">
-        {%- include partials/icon.html id=alert_icon class=alert_svgClass %}
+        {%- include icon.html id=alert_icon class=alert_svgClass %}
         <span class="{{ alert_subClass }}-title">{{ alert_name }}</span>
       </div>
     {%- endcapture %}
@@ -49,13 +49,13 @@
       {%- endif %}
     {%- endfor %}
     {%- capture newCodeHeader %}
-    {%- include partials/icon.html id=label_icon class='code-icon' %}
+    {%- include icon.html id=label_icon class='code-icon' %}
     <span class="code-title">{{ label_text }}</span>
     <button class="code-button" copy-label="{{ data_label.copy }}" success-label="{{ data_label.success }}" error-label="{{ data_label.error }}" aria-label="Copy {{ label_text }} code to clipboard" aria-live="polite" aria-atomic="true">
       <span class="code-tooltip"></span>
-      {%- include partials/icon.html id='copy' class='icon-clipboard' %}
-      {%- include partials/icon.html id='check' class='icon-success' %}
-      {%- comment %} {%- include partials/icon.html id='copy-check' class='icon-success' %} {% endcomment %}
+      {%- include icon.html id='copy' class='icon-clipboard' %}
+      {%- include icon.html id='check' class='icon-success' %}
+      {%- comment %} {%- include icon.html id='copy-check' class='icon-success' %} {% endcomment %}
     </button>
     {%- endcapture %}
     {%- assign customCodeBlock = customCodeBlock | regex_append: codeHeader, newCodeHeader %}

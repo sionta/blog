@@ -3,7 +3,7 @@ layout: post
 title: Markdown Test Page
 description: A quick overview of all the Markdown syntax elements
 categories: test
-tags: [sample, markdown, cheatsheet, typography]
+tags: [markdown, cheatsheet]
 author: Andre Attamimi
 image:
     url: "/assets/img/hero-markdown-guide.p128.png"

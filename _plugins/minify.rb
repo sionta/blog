@@ -3,17 +3,23 @@ require 'open3'
 
 # Function to run a command and handle errors
 def run_command(cmd, args)
-  stdout_str, error_str, status = Open3.capture3("#{cmd} #{args}")
-  if !status.success?
-    Jekyll.logger.error "Jekyll Minify:", "#{cmd} #{error_str}"
+  if File.exist?(cmd)
+    stdout_str, error_str, status = Open3.capture3("#{cmd} #{args}")
+    if !status.success?
+      Jekyll.logger.error "Jekyll Minify:", "Error running #{cmd}: #{error_str}"
+    else
+      Jekyll.logger.info "Jekyll Minify:", "Successfully ran #{cmd}"
+    end
+    stdout_str
+  else
+    Jekyll.logger.error "Jekyll Minify:", "#{File.basename(cmd)} not found. Try running `npm install`"
   end
-  stdout_str
 end
 
 # Function to minify HTML files
 def minify_html(output_dir)
   html_cmd = File.expand_path('./node_modules/.bin/html-minifier')
-  html_opts = "--input-dir \"#{output_dir}\" --output-dir \"#{output_dir}\" --file-ext html --collapse-whitespace --remove-comments --remove-attribute-quotes --minify-css --minify-js"
+  html_opts = "--input-dir \"#{output_dir}\" --output-dir \"#{output_dir}\" --file-ext html --collapse-whitespace --remove-comments --minify-css --minify-js"
   run_command(html_cmd, html_opts)
 end
 
@@ -23,6 +29,7 @@ def minify_css(output_dir)
   css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| file.include?('vendor') || file.end_with?('.min.css') }
   css_files.each do |css_file|
     css_opts = "--with-rebase -o #{css_file} #{css_file}"
+    Jekyll.logger.info "Jekyll Minify:", "Minifying CSS file: #{css_file}"
     run_command(css_cmd, css_opts)
   end
 end
@@ -33,22 +40,35 @@ def minify_js(output_dir)
   js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| file.include?('vendor') || file.end_with?('.min.js') }
   js_files.each do |js_file|
     js_opts = "-o \"#{js_file}\" \"#{js_file}\""
+    Jekyll.logger.info "Jekyll Minify:", "Minifying JS file: #{js_file}"
     run_command(js_cmd, js_opts)
   end
 end
 
 # Register hooks to run after Jekyll site is written
 Jekyll::Hooks.register :site, :post_write do |site|
-  Jekyll.logger.info "Jekyll Minify:", "Minifying HTML, CSS, and JS..."
+  config = site.config['minify'] || {}
+  env = config.fetch('env', 'production')
+  html_minify = config.fetch('html', true)
+  css_minify = config.fetch('css', true)
+  js_minify = config.fetch('js', true)
 
-  output_dir = site.dest
+  if Jekyll.env == env
+    Jekyll.logger.info "Jekyll Minify:", "Starting minification of HTML, CSS, and JS..."
 
-  # Minify HTML
-  minify_html(output_dir)
+    output_dir = site.dest
 
-  # Minify CSS
-  minify_css(output_dir)
+    # Minify HTML
+    minify_html(output_dir) if html_minify
 
-  # Minify JS
-  minify_js(output_dir)
+    # Minify CSS
+    minify_css(output_dir) if css_minify
+
+    # Minify JS
+    minify_js(output_dir) if js_minify
+
+    Jekyll.logger.info "Jekyll Minify:", "Minification completed."
+  else
+    Jekyll.logger.info "Jekyll Minify:", "Skipping minification (env: #{Jekyll.env})"
+  end
 end

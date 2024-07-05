@@ -1,24 +1,24 @@
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  {%- include partials/head.html -%}
+  {%- include head.html -%}
   <body>
-    <div class="wrap">
-      {%- include partials/header.html -%}
+    <div class="wrap md">
+      {%- include header.html -%}
       <main class="main">
-        <div class="flex">
-          <div class="unit w-1-1 content">
-            {{- content | custom_content -}}
-          </div>
+        <div class="grid">
           {%- if page.layout == 'post' -%}
-            <div class="unit w-1-4 sidebar">
-              {%- include partials/sidebar.html -%}
+            <div class="unit one-quarter sidebar">
+              {%- include sidebar.html -%}
             </div>
           {%- endif -%}
+          <div class="unit whole content">
+            {{- content | custom_content -}}
+          </div>
         </div>
       </main>
-      {%- include partials/footer.html -%}
+      {%- include footer.html -%}
     </div>
-    {%- include partials/script.html -%}
+    {%- include script.html -%}
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </body>
 </html>

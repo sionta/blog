@@ -12,7 +12,7 @@ layout: base
     {%- assign posts = site.posts -%}
   {%- endif -%}
   {%- if posts.size > 0 -%}
-    {% include partials/blog.html %}
-    {% include partials/pagination.html %}
+    {% include blog.html %}
+    {% include pagination.html %}
   {%- endif -%}
 </div>

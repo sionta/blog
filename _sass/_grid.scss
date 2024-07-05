@@ -1,61 +1,48 @@
 /* Preserve some sanity */
-.flex,
+.grid,
 .unit {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 /* Set up some rules to govern the grid */
 /* prettier-ignore */
-.flex {
-  display: -webkit-flex;
+.grid {
   display: flex;
-  -webkit-flex-direction: row;
   flex-direction: row;
 
-  .w-1-1 { flex-basis: 100%; }
-  .w-1-2 { flex-basis: 50%; }
+  .whole { flex-basis: 100%; }
+  .half { flex-basis: 50%; }
 
-  .w-2-3 { flex-basis: 66.6666%; }
-  .w-1-3 { flex-basis: 33.3333%; }
+  .one-third { flex-basis: 33.3333%; }
+  .two-thirds { flex-basis: 66.6666%; }
 
-  .w-3-5 { flex-basis: 60%; }
-  .w-2-5 { flex-basis: 40%; }
+  .four-fifths { flex-basis: 80%; }
+  .one-fifth { flex-basis: 20%; }
 
-  .w-3-4 { flex-basis: 75%; }
-  .w-1-4 { flex-basis: 25%; }
+  .three-fifths { flex-basis: 60%; }
+  .two-fifths { flex-basis: 40%; }
 
-  .w-4-5 { flex-basis: 80%; }
-  .w-1-5 { flex-basis: 20%; }
+  .one-quarter,
+  .one-fourth { flex-basis: 25%; }
+  .three-quarters,
+  .three-fourths { flex-basis: 75%; }
 
   .unit {
     width: 100%;
     padding: 10px;
 
-    &:first-child {
-      padding-left: 20px;
-    }
-
-    &:last-child {
-      padding-right: 20px;
-    }
+    &:first-child { padding-left: 20px; }
+    &:last-child { padding-right: 20px; }
   }
 }
 
 .unit {
-  & &:first-child {
-    padding-left: 0;
-  }
-  & &:last-child {
-    padding-right: 0;
-  }
-  & .flex:first-child > & {
-    padding-top: 0;
-  }
-  & .flex:last-child > & {
-    padding-bottom: 0;
-  }
+  & &:first-child { padding-left: 0; }
+  & &:last-child { padding-right: 0; }
+
+  & .grid:first-child > & { padding-top: 0; }
+  & .grid:last-child > & { padding-bottom: 0; }
+
   .no-gutters &,
   &.no-gutters {
     padding: 0 !important;
@@ -64,32 +51,31 @@
 
 /* Responsive Stuff */
 @media screen and (max-width: 768px) {
-  .flex {
-    -webkit-flex-direction: column;
+  .grid {
     flex-direction: column;
+    flex-basis: 100%;
   }
-  .flex:not(.no-stacking-on-mobiles) > .unit {
-    flex-basis: 100% !important;
-    width: 100% !important;
+  .grid:not(.no-stacking-on-mobiles) > .unit {
+    width: 100%;
     padding-left: 20px;
     padding-right: 20px;
   }
-  .unit .flex .unit {
+  .unit .grid .unit {
     padding-left: 0px;
     padding-right: 0px;
   }
 }
 
 /* Wrapping at a maximum width is optional */
-.wrap .flex,
-.flex.wrap {
+.wrap .grid,
+.grid.wrap {
   max-width: 1080px;
   margin: 0 auto;
 }
 @each $key, $value in ("xs": 576px, "sm": 768px, "lg": 992px, "xl": 1200px) {
   @media screen and (min-width: #{$value}) {
-    .wrap.#{$key} .flex,
-    .flex.wrap.#{$key} {
+    .wrap.#{$key} .grid,
+    .grid.wrap.#{$key} {
       max-width: #{$value} !important;
       margin: 0 auto;
     }

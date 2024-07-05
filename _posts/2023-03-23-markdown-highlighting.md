@@ -62,7 +62,7 @@ By default "lineos" is enable, to disable it add `{:.no_lineno}` after end tripl
 
 {% raw %}
 ```liquid
-{% highlight ruby linenos %}
+{% highlight ruby linenos mark_lines="1 2" %}
 def print_hi(name)
   puts "Hi, #{name}"
 end
@@ -74,7 +74,7 @@ print_hi('Tom')
 
 Output like this:
 
-{% highlight ruby linenos %}
+{% highlight ruby linenos mark_lines="1 2" %}
 def print_hi(name)
   puts "Hi, #{name}"
 end

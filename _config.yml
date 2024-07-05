@@ -67,6 +67,12 @@ sass:
   # style: compressed
   style: expanded # for development
 
+minify:
+  env: production
+  html: true
+  css: true # or use `sass:...`
+  js: true
+
 # https://jekyllrb.com/docs/configuration/markdown/
 markdown: kramdown
 kramdown:

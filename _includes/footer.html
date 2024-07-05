@@ -1,9 +1,9 @@
 <footer class="footer">
   <button id="back-to-top" aria-label="Go to top">
-    {% include partials/icon.html id="chevron-up" %}
+    {% include icon.html id="chevron-up" %}
   </button>
-  <div class="flex">
-    <div class="unit w-1-2 footer-left">
+  <div class="grid">
+    <div class="unit half footer-left">
       {% comment %}
         <a class="logo" href="{{ '/' | relative_url  }}">
           <img style="max-width: 100px;" src="{{ site.image | relative_url }}" alt="{{ site.title }}">
@@ -14,11 +14,11 @@
         {{- 'now' | date: '%Y' | prepend: '&copy; ' }}
         <a href="{{ '/' | relative_url }}">{{ site.title }}</a>.
       </p>
-      {% include partials/theme.html %}
+      {% include theme.html %}
     </div>
-    <div class="unit w-1-2 footer-right">
-      {% include partials/social.html %}
-      {% comment %} {% include partials/navbar.html menu='footer' %} {% endcomment %}
+    <div class="unit half footer-right">
+      {% include social.html %}
+      {% comment %} {% include navbar.html menu='footer' %} {% endcomment %}
     </div>
   </div>
 </footer>

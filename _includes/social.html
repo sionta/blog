@@ -8,7 +8,7 @@
       {%- assign social_icon = 'brand-' | append: social_title | downcase %}
     {% endif %}
     <li><a href="{{ social_link }}" target="_blank" title="{{ social_title }}">
-      {%- include partials/icon.html id=social_icon %}
+      {%- include icon.html id=social_icon %}
       <span class="visually-hidden">{{ social_title }}</span></a></li>
   {%- endfor %}
 {%- endcapture %}
