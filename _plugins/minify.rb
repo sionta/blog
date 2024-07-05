@@ -13,7 +13,7 @@ end
 # Function to minify HTML files
 def minify_html(output_dir)
   html_cmd = File.expand_path('./node_modules/.bin/html-minifier')
-  html_opts = "--input-dir \"#{output_dir}\" --output-dir \"#{output_dir}\" --file-ext html --collapse-whitespace --remove-comments --remove-attribute-quotes --minify-css --minify-js"
+  html_opts = "--input-dir \"#{output_dir}\" --output-dir \"#{output_dir}\" --file-ext html --collapse-whitespace --remove-comments --minify-css --minify-js"
   run_command(html_cmd, html_opts)
 end
 
