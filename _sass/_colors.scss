@@ -1,16 +1,13 @@
 @use "sass:map";
+$base00: #020617;
+$base01: #0f172a;
+$base02: #586e75;
+$base03: #657b83;
+$base04: #839496;
+$base05: #93a1a1;
+$base06: #eee8d5;
+$base07: #fdf6e3;
 
-// SASS VARIABLES
-$base-01: #f8fafc;
-$base-02: #f1f5f9;
-$base-03: #e2e8f0;
-$base-04: #cbd5e1;
-$base-05: #94a3b8;
-$base-06: #64748b;
-$base-07: #475569;
-$base-08: #334155;
-$base-09: #0f172a;
-$base-10: #020617;
 $red: #dc322f;
 $orange: #cb4b16;
 $yellow: #b58900;
@@ -19,6 +16,7 @@ $cyan: #2aa198;
 $blue: #268bd2;
 $violet: #6c71c4;
 $magenta: #d33682;
+
 $dark-red: #cc6666;
 $dark-orange: #de935f;
 $dark-yellow: #f0c674;
@@ -31,28 +29,26 @@ $dark-magenta: #eb5ea2;
 // Schemes data
 $themes: (
   "light": (
-    "bg-1": $base-02,
-    "bg-2": $base-03,
-    "bg-3": $base-04,
-    "tx-1": $base-08,
-    "tx-2": $base-09,
-    "tx-3": $base-10,
-    "bd-1": $base-04,
-    "bd-2": $base-05,
-    "bd-3": $base-06,
+    "bg-1": $base07,
+    "bg-2": $base06,
+    "bg-3": $base05,
+    "tx-1": $base02,
+    "tx-2": $base03,
+    "tx-3": $base04,
+    "bd-1": var(--tx-1),
+    "bd-2": var(--bg-2),
     "lk-1": $violet,
     "lk-2": $blue,
   ),
   "dark": (
-    "bg-1": $base-10,
-    "bg-2": $base-09,
-    "bg-3": $base-08,
-    "tx-1": $base-04,
-    "tx-2": $base-03,
-    "tx-3": $base-02,
-    "bd-1": $base-07,
-    "bd-2": $base-06,
-    "bd-3": $base-05,
+    "bg-1": $base00,
+    "bg-2": $base01,
+    "bg-3": $base02,
+    "tx-1": $base05,
+    "tx-2": $base04,
+    "tx-3": $base03,
+    "bd-1": $base06,
+    "bd-2": $base07,
     "lk-1": $blue,
     "lk-2": $violet,
   ),
@@ -77,7 +73,7 @@ $alerts: (
 );
 
 $tag-colors: (
-  t: $base-02,
+  t: $base07,
   1: $magenta,
   2: $violet,
   3: $blue,

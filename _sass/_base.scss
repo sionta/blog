@@ -10,17 +10,7 @@
   --font-size: #{utils.$font-size};
   --rounded: #{utils.$border-radius};
   --gutter: #{utils.$spacing-unit};
-  --gutter-x: calc(#{utils.$spacing-unit} * 0.5);
-  --base-01: #{utils.$base-01};
-  --base-02: #{utils.$base-02};
-  --base-03: #{utils.$base-03};
-  --base-04: #{utils.$base-04};
-  --base-05: #{utils.$base-05};
-  --base-06: #{utils.$base-06};
-  --base-07: #{utils.$base-07};
-  --base-08: #{utils.$base-08};
-  --base-09: #{utils.$base-09};
-  --base-10: #{utils.$base-10};
+  --gutter-y: calc(#{utils.$spacing-unit} * 0.5);
   --red: #{utils.$red};
   --orange: #{utils.$orange};
   --yellow: #{utils.$yellow};
@@ -62,7 +52,7 @@
 }
 
 *,
-%reset-gutter {
+%no-gutter {
   margin: 0;
   padding: 0;
 }
@@ -110,7 +100,7 @@ html {
 }
 
 ::selection {
-  color: utils.$base-03;
+  color: utils.$base03;
   background: var(--lk-1);
 }
 
@@ -152,9 +142,9 @@ hr {
 }
 
 /**
- * Set `margin-bottom` to maintain gutter-x
+ * Set `margin-bottom` to maintain gutter-y
  */
-%gutter-x,
+%gutter-y,
 ol,
 ul,
 dl,
@@ -172,8 +162,8 @@ table {
 p,
 %typography {
   font-weight: 400;
-  @extend %reset-gutter;
-  @extend %gutter-x;
+  @extend %no-gutter;
+  @extend %gutter-y;
 }
 
 @each $n, $s in utils.$font-sizes {
@@ -215,9 +205,7 @@ img {
   display: block;
 }
 
-.icon,
-.svg,
-svg {
+.icon {
   display: inline-block;
   vertical-align: text-bottom;
 }
@@ -373,7 +361,7 @@ details {
   padding: 0.5rem 1rem;
   border-radius: var(--rounded);
   background-color: var(--bg-3);
-  @extend %gutter-x;
+  @extend %gutter-y;
 
   summary {
     cursor: pointer;
@@ -405,7 +393,7 @@ samp,
 kbd,
 pre,
 code {
-  background-color: var(--bg-1);
+  background-color: var(--bg-2);
   border-radius: var(--rounded);
   border: 1px solid var(--bd-1);
   font-family: var(--font-mono);
@@ -452,12 +440,12 @@ pre {
 
 /* CLASSES */
 .header {
-  border-bottom: 1px solid var(--bd-1);
+  // border-bottom: 1px solid var(--bd-1);
   margin-bottom: utils.$spacing-unit;
 }
 
 .footer {
-  border-top: 1px solid var(--bd-1);
+  // border-top: 1px solid var(--bd-1);
   margin-top: utils.$spacing-unit;
 }
 
@@ -471,15 +459,15 @@ pre {
   }
 }
 
-.content:has(.post),
-.sidebar {
-  background-color: var(--bg-2);
-  border-radius: var(--rounded);
-}
+// .content:has(.post),
+// .sidebar {
+//   background-color: var(--bg-2);
+//   border-radius: var(--rounded);
+// }
 
-.content:has(.post) {
-  margin-right: 10px !important;
-}
+// .content:has(.post) {
+//   margin-right: 10px !important;
+// }
 
 .sidebar {
   @media screen and (min-width: 768px) {
@@ -503,7 +491,7 @@ pre {
       text-transform: uppercase;
     }
 
-    @extend %gutter-x;
+    @extend %gutter-y;
   }
 }
 

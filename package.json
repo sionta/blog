@@ -4,11 +4,10 @@
   "description": "Personal site",
   "scripts": {
     "serve": "bundle exec jekyll serve",
-    "build": "bundle exec jekyll build",
-    "clean": "bundle exec jekyll clean && npm run build && npm run minify",
-    "minify": "pwsh -c \"& ./scripts/minify.ps1\""
+    "clean": "bundle exec jekyll clean",
+    "build": "bundle exec jekyll build"
   },
-  "devDependencies": {
+  "dependencies": {
     "clean-css": "^5.3.3",
     "clean-css-cli": "^5.6.3",
     "html-minifier": "^4.0.0",

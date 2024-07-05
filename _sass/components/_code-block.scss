@@ -4,12 +4,12 @@
 .code-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 2px 4px;
+  // justify-content: space-between;
+  padding: 5px 6px;
   color: var(--tx-1);
   background: var(--bg-3);
   border-bottom: 1px solid var(--bg-3);
-  border-radius: calc(var(--rounded) * 2) calc(var(--rounded) * 2) 0 0;
+  border-radius: 5px 5px 0 0;
 
   + .highlight {
     border-radius: 0 0 var(--rounded) var(--rounded);
@@ -32,11 +32,15 @@
     position: relative;
   }
 
+  .code-icon {
+    width: 18px;
+    height: 18px;
+  }
+
   .code-title {
     flex-grow: 1;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 10px;
+    font-size: 15px;
+    margin-left: 5px;
   }
 
   .icon-clipboard {
@@ -58,7 +62,6 @@
     background-color: var(--bg-3);
     border-radius: 4px;
     color: var(--tx-1);
-    font-size: 0.8em;
     padding: 0.5em;
 
     opacity: 0;
