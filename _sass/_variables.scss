@@ -18,18 +18,21 @@ $font-sizes: (
   6: 0.875rem,
 ) !default;
 
-$font-size: map.get($font-sizes, 5) !default;
+$font-size: 16px !default;
+$font-weight: 400 !default;
+$line-height: 1.5 !default;
+$small-size: $font-size * 0.875 !default;
 
 $breakpoints: (
-  "sm": 576px,
-  "md": 768px,
-  "lg": 992px,
-  "xl": 1200px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
 ) !default;
 
 $spacing-unit: 20px !default;
 $border-radius: 3px !default;
 
-$content-width: map.get($breakpoints, "sm") !default;
-$min-width: map.get($breakpoints, "sm") !default;
-$max-width: map.get($breakpoints, "lg") !default;
+$content-width: map.get($breakpoints, lg) !default;
+$min-width: map.get($breakpoints, sm) !default;
+$max-width: map.get($breakpoints, lg) !default;

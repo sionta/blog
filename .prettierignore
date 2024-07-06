@@ -1,8 +1,1 @@
 *.min.*
-*.html
-**/*grid.scss
-# **/*base.scss
-
-# Vendor
-*gridism.*
-*normalize.*

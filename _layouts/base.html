@@ -1,24 +1,54 @@
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  {%- include head.html -%}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- seo title=false -%}
+    {%- include analytics.html -%}
+    {%- capture head_title %}{%- if page.url == '/' %}{{- site.title -}}{%- else %}{{- page.title -}}{%- endif %}{% endcapture %}
+    <title>{{ head_title | escape }}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">
+    <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
+    <link rel="icon" type="image/png" href="{{ '/assets/img/avatar.png' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    {%- feed_meta -%}
+  </head>
   <body>
-    <div class="wrap md">
-      {%- include header.html -%}
-      <main class="main">
-        <div class="grid">
-          {%- if page.layout == 'post' -%}
-            <div class="unit one-quarter sidebar">
-              {%- include sidebar.html -%}
-            </div>
-          {%- endif -%}
-          <div class="unit whole content">
+    <header id="site-header" role="banner">
+      <div class="wrapper">
+        <div class="site-header__inner">
+          {% include brand.html %}
+          {% include navbar.html %}
+        </div>
+      </div>
+    </header>
+    <main id="site-content" role="main">
+      <div class="wrapper">
+        <div class="site-content__inner">
+          <div class="content">
             {{- content | custom_content -}}
           </div>
+          {%- if page.layout == 'post' -%}
+            <div class="sidebar">
+              {%- include toc.html mobile=false -%}
+            </div>
+          {%- endif -%}
         </div>
-      </main>
-      {%- include footer.html -%}
-    </div>
+      </div>
+    </main>
+    <footer id="site-footer" role="contentinfo">
+      <div class="wrapper">
+        <div class="site-footer__inner">
+          {% include social.html %}
+          {% include theme.html %}
+          {% include brand.html %}
+          <button id="back-to-top" aria-label="Go to top">
+            {% include icon.html id="chevron-up" %}
+          </button>
+        </div>
+      </div>
+    </footer>
     {%- include script.html -%}
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   </body>
 </html>

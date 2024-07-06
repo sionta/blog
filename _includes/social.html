@@ -1,19 +1,19 @@
-{%- capture social_items %}
-  {%- for item in site.data.metadata.social_links %}
-    {%- assign social_link = item.link | default: item.url | relative_url %}
-    {%- assign social_title = item.title | default: item.platform %}
+{% capture social_items %}
+  {% for item in site.data.metadata.social_links %}
+    {% assign social_link = item.link | default: item.url | relative_url %}
+    {% assign social_title = item.title | default: item.platform %}
     {% if item.icon %}
-      {%- assign social_icon = item.icon | downcase %}
+      {% assign social_icon = item.icon | downcase %}
       {% else %}
-      {%- assign social_icon = 'brand-' | append: social_title | downcase %}
+      {% assign social_icon = 'brand-' | append: social_title | downcase %}
     {% endif %}
     <li><a href="{{ social_link }}" target="_blank" title="{{ social_title }}">
-      {%- include icon.html id=social_icon %}
-      <span class="visually-hidden">{{ social_title }}</span></a></li>
-  {%- endfor %}
-{%- endcapture %}
+      {% include icon.html id=social_icon %}
+      <span class="sr-only">{{ social_title }}</span></a></li>
+  {% endfor %}
+{% endcapture %}
 <nav class="social-links">
-  <ul role="menuitem">
+  <ul>
     {{- social_items }}
   </ul>
 </nav>

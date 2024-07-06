@@ -203,7 +203,7 @@
       // Clear any existing TOC
       tocbot.destroy();
 
-      var tocSelector = window.innerWidth >= 768 ? ".toc" : ".toc-mobile";
+      var tocSelector = window.innerWidth >= 768 ? "#toc" : "#toc-mobile";
 
       tocbot.init({
         tocSelector: tocSelector,
@@ -241,6 +241,7 @@
     var hamburger = document.querySelector(".hamburger");
     var navMenu = document.querySelector(".site-menu");
     var navLink = document.querySelectorAll(".menu-link");
+    if (!hamburger) return;
 
     hamburger.addEventListener("click", mobileMenu);
     navLink.forEach((n) => n.addEventListener("click", closeMenu));

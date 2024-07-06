@@ -7,8 +7,6 @@ def run_command(cmd, args)
     stdout_str, error_str, status = Open3.capture3("#{cmd} #{args}")
     if !status.success?
       Jekyll.logger.error "Jekyll Minify:", "Error running #{cmd}: #{error_str}"
-    else
-      Jekyll.logger.info "Jekyll Minify:", "Successfully ran #{cmd}"
     end
     stdout_str
   else

@@ -1,43 +1,18 @@
-{%- assign nav_menu = include.menu | default: 'header' %}
-{%- assign nav_items = site.pages | where: 'navigation', nav_menu | sort: 'order' %}
-{%- assign site_brand = site.brand | default: site.title | split: ' ' -%}
+{%- assign nav_menu = include.nav | default: 'header' %}
+{%- assign nav_items = site.pages | where: 'navigation', nav_menu | sort: 'order' | uniq %}
 {%- if nav_menu == 'footer' %}
-  <nav>
-    <ul role="menuitem">
-      {%- for item in nav_items -%}
-        {%- assign item_url = item.redirect_to | default: item.url | relative_url %}
-        {%- capture attrib_url %}{% if item_url contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}{% endcapture %}
-        <li>
-          <a href="{{ item_url }} {{ attrib_url }}">{{- item.title -}}</a>
-        </li>
-      {%- endfor %}
-    </ul>
-  </nav>
-{% else %}
-  <nav class="site-navbar">
-    <a class="site-logo" href="{{ '/' | relative_url }}">
-      <div class="logo">
-        <span>{{ site_brand[0] }}</span>
-        <span class="logo-anim">{{ site_brand[1] }}</span>
-        <span>{{ site_brand[2] }}</span>
-      </div>
-    </a>
-    <ul class="site-menu">
-      {%- for item in nav_items -%}
-        {%- if forloop.first %}
-          <li class="menu-item"><a class="menu-link" href="{{ '/' | relative_url }}">Home</a></li>
-        {% endif %}
-        {%- assign item_url = item.redirect_to | default: item.url | relative_url %}
-        {%- capture attrib_url %}{% if item_url contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}{% endcapture %}
-        <li class="menu-item">
-          <a class="menu-link" href="{{ item_url }} {{ attrib_url }}">{{- item.title -}}</a>
-        </li>
-      {%- endfor %}
-    </ul>
-    <div class="hamburger">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
-    </div>
-  </nav>
+  {%- assign nav_class = 'site-menu__foot' %}
+{%- else %}
+  {%- assign nav_class = 'site-menu__head' %}
 {%- endif %}
+<ul class="{{ nav_class }}">
+  {%- if nav_menu == 'header' %}
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+  {%- endif %}
+  {%- for item in nav_items %}
+    {%- assign item_url = item.redirect_to | default: item.url | relative_url %}
+    {%- capture attrib_url %}{% if item_url contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}{% endcapture %}
+    {%- capture line_url %}<li><a href="{{ item_url }} {{ attrib_url }}">{{- item.title -}}</a></li>{% endcapture %}
+    {{ line_url }}
+  {%- endfor %}
+</ul>

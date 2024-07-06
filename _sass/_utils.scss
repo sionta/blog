@@ -2,34 +2,43 @@
 @forward "colors";
 
 @use "sass:map";
+@use "sass:math";
 @use "variables" as var;
 
-@mixin breakpoint($breakpoint: 992px, $viewport: max) {
-  @if map.get(var.$breakpoints, $breakpoint) {
-    $breakpoint: map.get(var.$breakpoints, $breakpoint);
-  }
-
-  @media (#{$viewport}-width: $breakpoint) {
-    @content;
+@mixin font-headings {
+  @each $level, $size in var.$font-sizes {
+    h#{$level} {
+      font-size: $size;
+    }
   }
 }
 
-.a {
-  @include breakpoint("md", "min");
+// Function to convert px to rem
+@function px-to-rem($px) {
+  $fs: 16px; // Default font-size
+
+  @if var.$font-size {
+    $fs: var.$font-size;
+  }
+
+  // Convert px to rem using math.div for division
+  @return math.div($px, $fs) * 1rem;
 }
 
-@mixin relative-font($size) {
-  font-size: #{$size}rem;
+@mixin px-to-rem($px) {
+  font-size: px-to-rem($px);
 }
 
+// Mixin for clearfix
 @mixin clearfix {
   &::after {
+    content: "";
     display: block;
     clear: both;
-    content: "";
   }
 }
 
+// Mixin to reset link styles
 @mixin reset-link {
   &,
   &:hover {
@@ -37,52 +46,51 @@
   }
 }
 
+// Mixin to reset padding and margin
 @mixin reset-gutter {
-  gap: 0;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
+// Mixin to reset list styles
 @mixin reset-list {
-  @include reset-gutter();
   list-style: none;
+  @include reset-gutter();
 }
 
-@mixin center-flex {
+// Mixin to center elements using flexbox
+@mixin flex-box($justify-content: "") {
   display: flex;
   align-items: center;
-  justify-content: center;
+  @if $justify-content {
+    justify-content: #{$justify-content};
+  }
+
+  @content;
 }
 
-@mixin inline-block {
-  display: -webkit-inline-box;
-  display: inline-block;
+@mixin flex-center {
+  @include flex-box(center);
 }
 
-@mixin inline-flex {
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-@mixin menu-item($type: line) {
-  @include reset-list();
+@mixin menu-item($inline: false, $gutter: 10px) {
+  ul {
+    @include reset-list;
+  }
 
   li {
-    @if $type == "line" {
-      @include inline-block();
-
-      margin-right: 10px;
+    @if $inline ==true {
+      display: inline-block;
+      margin-right: $gutter;
 
       &:last-child {
         margin-right: 0;
       }
-    } @else if $type == "list" {
-      display: block;
-      margin-bottom: 10px;
     } @else {
-      display: inherit;
-      margin: inherit;
+      display: list-item;
+      margin-bottom: $gutter;
     }
   }
+
+  @content;
 }

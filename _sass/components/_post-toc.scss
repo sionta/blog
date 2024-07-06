@@ -1,14 +1,23 @@
+@use "../utils" as *;
+
 /**
  * Table of content
  */
 .post-toc {
+  position: sticky;
+  top: 0;
+
   color: var(--tx-1);
 
-  .toc,
-  .toc-mobile {
+  .toc-title {
+    font-size: px-to-rem(15px);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  #toc,
+  #toc-mobile {
     overflow-y: auto;
-    font-size: 15px;
-    line-height: 1.5;
 
     ul {
       margin: 0;
@@ -23,7 +32,7 @@
   }
 
   // toc mobile use details > summary
-  &:has(.toc-mobile) {
+  &:has(#toc-mobile) {
     position: fixed;
     top: 5.5em;
     right: 0;
@@ -32,6 +41,7 @@
     border-radius: 0;
     opacity: 0.5;
     transition: opacity 0.3s ease;
+    background-color: var(--bg-2);
 
     &:hover,
     &[open] {

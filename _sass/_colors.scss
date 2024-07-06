@@ -1,12 +1,14 @@
 @use "sass:map";
 $base00: #020617;
 $base01: #0f172a;
-$base02: #586e75;
-$base03: #657b83;
-$base04: #839496;
-$base05: #93a1a1;
-$base06: #eee8d5;
-$base07: #fdf6e3;
+$base02: #334155;
+$base03: #475569;
+$base04: #64748b;
+$base05: #94a3b8;
+$base06: #cbd5e1;
+$base07: #e2e8f0;
+$base08: #f1f5f9;
+$base09: #f8fafc;
 
 $red: #dc322f;
 $orange: #cb4b16;
@@ -35,8 +37,9 @@ $themes: (
     "tx-1": $base02,
     "tx-2": $base03,
     "tx-3": $base04,
-    "bd-1": var(--tx-1),
-    "bd-2": var(--bg-2),
+    "bd-1": $base03,
+    "bd-2": $base04,
+    "bd-3": $base05,
     "lk-1": $violet,
     "lk-2": $blue,
   ),
@@ -47,8 +50,9 @@ $themes: (
     "tx-1": $base05,
     "tx-2": $base04,
     "tx-3": $base03,
-    "bd-1": $base06,
-    "bd-2": $base07,
+    "bd-1": $base03,
+    "bd-2": $base04,
+    "bd-3": $base05,
     "lk-1": $blue,
     "lk-2": $violet,
   ),
@@ -98,13 +102,32 @@ $tag-colors: (
   }
 }
 
-@mixin theme($mode) {
+@mixin theme($mode, $init: false) {
   color-scheme: $mode;
 
   $theme: map.get($themes, $mode);
 
   @each $key, $value in $theme {
     --#{$key}: #{$value};
+  }
+
+  @if $init {
+    --red: #{$red};
+    --orange: #{$orange};
+    --yellow: #{$yellow};
+    --green: #{$green};
+    --cyan: #{$cyan};
+    --blue: #{$blue};
+    --violet: #{$violet};
+    --magenta: #{$magenta};
+    --red-light: #{$dark-red};
+    --orange-light: #{$dark-orange};
+    --yellow-light: #{$dark-yellow};
+    --green-light: #{$dark-green};
+    --cyan-light: #{$dark-cyan};
+    --blue-light: #{$dark-blue};
+    --violet-light: #{$dark-violet};
+    --magenta-light: #{$dark-magenta};
   }
 
   @if $mode == "dark" {
