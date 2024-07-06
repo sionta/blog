@@ -371,9 +371,9 @@ table:not(:has(pre)) {
 #site-header,
 #site-footer {
   background-color: var(--bg-2);
-  padding: calc(#{$spacing-unit} * 0.5) 0;
-  @media screen and (min-width: $max-width) {
-    padding: $spacing-unit 0;
+  padding: $spacing-unit 0;
+  @media screen and (max-width: $max-width) {
+    padding: $spacing-unit calc(#{$spacing-unit} * 0.5);
   }
 }
 
