@@ -39,8 +39,7 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 
 ### Paragraphs
 
-Elit ex ex eiusmod duis cupidatat duis esse laboris et sit reprehenderit eu. Elit sint nostrud ex reprehenderit fugiat do elit anim veniam nulla veniam amet. Nisi velit deserunt sunt excepteur irure ut ipsum excepteur minim. ![alt text](/assets/img/rouge.png)
-{:.img-right}
+Elit ex ex eiusmod duis cupidatat duis esse laboris et sit reprehenderit eu. Elit sint nostrud ex reprehenderit fugiat do elit anim veniam nulla veniam amet. Nisi velit deserunt sunt excepteur irure ut ipsum excepteur minim.
 
 Et laborum minim elit laboris dolor in. Nisi sunt labore pariatur magna fugiat cupidatat qui quis consequat aliqua commodo. Dolor nisi veniam elit proident. Irure laboris tempor consectetur ad enim ea officia ullamco.
 
@@ -117,10 +116,10 @@ The [Result Footnotes](#result-footnotes)
 
 ### Images
 
-![alt text](/assets/img/rouge.png)
+![alt text]({{ '/assets/img/rouge.png' | relative_url }})
 {:.img-center}
 
-![alt text](/assets/img//hero-markdown-guide.p128.png){: width="500px" }
+![alt text]({{ '/assets/img/hero-markdown-guide.p128.png' | relative_url }}){: width="500px" }
 
 <!-- ![alt text]('https://placehold.co/100x100?text=Lorem+Ipsum') -->
 
