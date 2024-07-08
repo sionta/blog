@@ -1,16 +1,18 @@
 require 'fileutils'
 require 'open3'
 
+cur_name = File.basename(__FILE__)
+
 # Function to run a command and handle errors
 def run_command(cmd, args)
   if File.exist?(cmd)
     stdout_str, error_str, status = Open3.capture3("#{cmd} #{args}")
     if !status.success?
-      Jekyll.logger.error "Jekyll Minify:", "Error running #{cmd}: #{error_str}"
+      Jekyll.logger.error "#{cur_name}:", "Error running #{cmd}: #{error_str}"
     end
     stdout_str
   else
-    Jekyll.logger.error "Jekyll Minify:", "#{File.basename(cmd)} not found. Try running `npm install`"
+    Jekyll.logger.error "#{cur_name}:", "#{File.basename(cmd)} not found. Try running `npm install`"
   end
 end
 
@@ -27,7 +29,7 @@ def minify_css(output_dir)
   css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| file.include?('vendor') || file.end_with?('.min.css') }
   css_files.each do |css_file|
     css_opts = "--with-rebase -o #{css_file} #{css_file}"
-    Jekyll.logger.info "Jekyll Minify:", "Minifying CSS file: #{css_file}"
+    Jekyll.logger.info "#{cur_name}:", "Minifying CSS file: #{css_file}"
     run_command(css_cmd, css_opts)
   end
 end
@@ -38,7 +40,7 @@ def minify_js(output_dir)
   js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| file.include?('vendor') || file.end_with?('.min.js') }
   js_files.each do |js_file|
     js_opts = "-o \"#{js_file}\" \"#{js_file}\""
-    Jekyll.logger.info "Jekyll Minify:", "Minifying JS file: #{js_file}"
+    Jekyll.logger.info "#{cur_name}:", "Minifying JS file: #{js_file}"
     run_command(js_cmd, js_opts)
   end
 end
@@ -52,7 +54,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
   js_minify = config.fetch('js', true)
 
   if Jekyll.env == env
-    Jekyll.logger.info "Jekyll Minify:", "Starting minification of HTML, CSS, and JS..."
+    Jekyll.logger.info "#{cur_name}:", "Starting minification of HTML, CSS, and JS..."
 
     output_dir = site.dest
 
@@ -64,9 +66,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
     # Minify JS
     minify_js(output_dir) if js_minify
-
-    Jekyll.logger.info "Jekyll Minify:", "Minification completed."
-  else
-    Jekyll.logger.info "Jekyll Minify:", "Skipping minification (env: #{Jekyll.env})"
+  # else
+  #   Jekyll.logger.info "#{cur_name}:", "Skipping minification (env: #{Jekyll.env})"
   end
 end

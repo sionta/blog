@@ -3,18 +3,18 @@
 
   /* always load on DOM */
   document.addEventListener("DOMContentLoaded", () => {
-    /* required */
+    // required
     initialTheme();
     navigationMenu();
     backToTop();
     searchPost();
 
-    /* post features */
+    // post features
     tableOfContent();
-    codeButton();
+    anchorHeadings();
+    copyCodeBlock();
     diagramMermaid();
-    mathKaTex();
-    mathMathJax();
+    mathEngines();
     // customHighlighter();
   });
 
@@ -30,8 +30,8 @@
       localStorage.setItem("theme", theme);
     }
 
-    var currentTheme = localStorage.getItem("theme") || "auto";
-    var modeTheme = document.getElementById(`theme-${currentTheme}`);
+    const currentTheme = localStorage.getItem("theme") || "auto";
+    const modeTheme = document.getElementById(`theme-${currentTheme}`);
     if (themeSwitcher && modeTheme) {
       themeSwitcher.querySelectorAll("button").forEach((button) => {
         if (!button.classList.value) return;
@@ -44,26 +44,43 @@
   function initialTheme() {
     if (themeSwitcher) {
       themeSwitcher.addEventListener("click", (e) => {
-        var theme = e.target.dataset.theme;
-        if (theme) { setupTheme(theme); } // prettier-ignore
+        const theme = e.target.dataset.theme;
+        if (theme) {
+          setupTheme(theme); // prettier-ignore
+        }
       });
     }
     // Sync initial state
-    var cacheTheme = localStorage.getItem("theme") || "auto";
+    const cacheTheme = localStorage.getItem("theme") || "auto";
     setupTheme(cacheTheme); // Set initial theme from localStorage
   }
 
-  // clipboard
-  function codeButton() {
-    var tooltipTimeout = 1000;
-    const copyButtons = document.querySelectorAll(".code-button");
-    if (!copyButtons) return;
+  function anchorHeadings() {
+    if (window.anchors) {
+      // Initialize AnchorJS with custom options
+      anchors.options = {
+        placement: "right", // Position of the anchor link (left, right)
+        visible: "hover", // When the anchor link is visible (always, hover, touch)
+        // icon: "¶", // Character or HTML for the anchor icon
+        class: "anchor-link", // CSS class for the anchor link
+        ariaLabel: "Anchor", // Aria-label for the anchor link
+        selectors: "h1, h2, h3, h4, h5, h6", // Default selector
+      };
+      anchors.add().remove(".no-anchor, .no_anchor");
+    }
+  }
 
-    copyButtons.forEach(function (copyButton) {
-      var copyTooltip = copyButton.querySelector(".code-tooltip");
-      var labelCopy = copyButton.getAttribute("copy-label");
-      var labelSuccess = copyButton.getAttribute("success-label");
-      var labelError = copyButton.getAttribute("error-label");
+  // clipboard
+  function copyCodeBlock() {
+    const tooltipTimeout = 1000;
+    const copyButtons = document.querySelectorAll(".code-button");
+    if (!copyButtons.length) return;
+
+    copyButtons.forEach((copyButton) => {
+      const copyTooltip = copyButton.querySelector(".code-tooltip");
+      const labelCopy = copyButton.getAttribute("copy-label");
+      const labelSuccess = copyButton.getAttribute("success-label");
+      const labelError = copyButton.getAttribute("error-label");
 
       // Displays a message from the attribute when the mouse enters the button
       copyButton.addEventListener("mouseenter", () => {
@@ -72,26 +89,31 @@
 
       // Copy code
       copyButton.addEventListener("click", () => {
-        var codeContent = copyButton
-          .closest("[class^=language-]") // or .highlighter-rouge
-          .querySelector(".rouge-code").innerText;
+        // .highlighter-rouge
+        const codeElement = copyButton
+          .closest("[class^=language-]")
+          ?.querySelector(".rouge-code");
 
-        navigator.clipboard
-          .writeText(codeContent)
-          .then(() => {
-            showTooltip(copyTooltip, labelSuccess);
-            iconTooltip(copyButton, true);
-          })
-          .catch((err) => {
-            showTooltip(copyTooltip, labelError);
-            console.error("Failed to copy text: ", err);
-          });
+        if (codeElement) {
+          const codeContent = codeElement.innerText;
+
+          navigator.clipboard
+            .writeText(codeContent)
+            .then(() => {
+              showTooltip(copyTooltip, labelSuccess);
+              iconTooltip(copyButton, true);
+            })
+            .catch((err) => {
+              showTooltip(copyTooltip, labelError);
+              console.error("Failed to copy text: ", err);
+            });
+        }
       });
     });
 
     function iconTooltip(button, isSuccess) {
-      var clipboardIcon = button.querySelector(".icon-clipboard");
-      var successIcon = button.querySelector(".icon-success");
+      const clipboardIcon = button.querySelector(".icon-clipboard");
+      const successIcon = button.querySelector(".icon-success");
 
       if (isSuccess) {
         clipboardIcon.style.display = "none";
@@ -114,8 +136,9 @@
   }
 
   // katex
-  function mathKaTex() {
-    if (document.getElementById("katex-script") && renderMathInElement) {
+  function mathEngines() {
+    if (window.renderMathInElement) {
+      // KaTeX configuration
       renderMathInElement(document.body, {
         delimiters: [
           { left: "$$", right: "$$", display: true },
@@ -124,35 +147,38 @@
           { left: "\\[", right: "\\]", display: true },
         ],
       });
+    } else if (window.MathJax) {
+      // MathJax configuration
+      window.MathJax = {
+        tex: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+          processHtmlClass: "mathjax-process",
+          ignoreHtmlClass: "mathjax-ignore",
+        },
+      };
     }
-  }
-
-  // mathjax
-  function mathMathJax() {
-    if (!window.MathJax) return;
-    MathJax = {
-      tex: {
-        inlineMath: [
-          ["$", "$"],
-          ["\\(", "\\)"],
-        ],
-      },
-      options: {
-        processHtmlClass: "mathjax-process",
-      },
-    };
   }
 
   // mermaid
   function diagramMermaid() {
     if (!window.mermaid) return;
     // Select all Mermaid code elements
-    const MERMAID_DIAGRAM = document.querySelectorAll(".language-mermaid");
-    if (!MERMAID_DIAGRAM) return;
+    const mermaidDiagrams = document.querySelectorAll(".language-mermaid");
+    if (!mermaidDiagrams.length) return;
 
-    MERMAID_DIAGRAM.forEach((codeElement) => {
+    mermaidDiagrams.forEach((codeElement) => {
       // Create a new div element with the 'mermaid' class
-      var newElement = document.createElement("div");
+      const newElement = document.createElement("div");
       newElement.classList.add("mermaid");
       newElement.innerHTML = codeElement.textContent;
 
@@ -167,9 +193,9 @@
   // search
   function searchPost() {
     if (!window.SimpleJekyllSearch) return;
-    var searchInput = document.getElementById("search-input");
-    var resultsContainer = document.getElementById("search-results");
-    if (!searchInput && !resultsContainer) return;
+    const searchInput = document.getElementById("search-input");
+    const resultsContainer = document.getElementById("search-results");
+    if (!searchInput || !resultsContainer) return;
 
     window.SimpleJekyllSearch({
       searchInput: searchInput,
@@ -183,12 +209,12 @@
     });
 
     searchInput.addEventListener("input", () => {
-      var searchTerm = searchInput.value;
+      const searchTerm = searchInput.value;
       if (searchTerm === "") {
         resultsContainer.innerHTML = "";
       } else {
         setTimeout(() => {
-          if (resultsContainer.innerdocument.documentElement.trim() === "") {
+          if (resultsContainer.innerHTML.trim() === "") {
             resultsContainer.innerHTML = `<span class="no-results">'${searchTerm}'</span>`;
           }
         }, 300);
@@ -203,7 +229,7 @@
       // Clear any existing TOC
       tocbot.destroy();
 
-      var tocSelector = window.innerWidth >= 768 ? "#toc" : "#toc-mobile";
+      const tocSelector = window.innerWidth >= 768 ? "#toc" : "#toc-mobile";
 
       tocbot.init({
         tocSelector: tocSelector,
@@ -231,20 +257,18 @@
     initializeToc();
 
     // Re-initialize TOC on window resize
-    window.addEventListener("resize", () => {
-      initializeToc();
-    });
+    window.addEventListener("resize", initializeToc);
   }
 
   // Navigation menu
   function navigationMenu() {
-    var hamburger = document.querySelector(".hamburger");
-    var navMenu = document.querySelector(".site-menu");
-    var navLink = document.querySelectorAll(".menu-link");
-    if (!hamburger) return;
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".site-menu");
+    const navLinks = document.querySelectorAll(".menu-link");
+    if (!hamburger || !navMenu || !navLinks.length) return;
 
     hamburger.addEventListener("click", mobileMenu);
-    navLink.forEach((n) => n.addEventListener("click", closeMenu));
+    navLinks.forEach((n) => n.addEventListener("click", closeMenu));
 
     function mobileMenu() {
       hamburger.classList.toggle("active");
@@ -259,8 +283,8 @@
 
   // Go to Top
   function backToTop() {
-    var backToTop = document.getElementById("back-to-top");
-    if (!backToTop) return;
+    const backToTopButton = document.getElementById("back-to-top");
+    if (!backToTopButton) return;
 
     window.onscroll = () => {
       scrollFunction();
@@ -271,13 +295,13 @@
         document.documentElement.scrollTop > 20 ||
         document.body.scrollTop > 20
       ) {
-        backToTop.classList.add("visible");
+        backToTopButton.classList.add("visible");
       } else {
-        backToTop.classList.remove("visible");
+        backToTopButton.classList.remove("visible");
       }
     }
 
-    backToTop.addEventListener("click", () => {
+    backToTopButton.addEventListener("click", () => {
       document.documentElement.scrollTop = 0; /* For other browsers */
       document.body.scrollTop = 0; /* For Safari */
     });

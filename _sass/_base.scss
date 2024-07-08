@@ -129,7 +129,8 @@ hr {
   * `main` element
   */
 main {
-  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+  display: block;
+  /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
 /**
@@ -239,7 +240,6 @@ code {
 }
 
 pre {
-  border: none;
   padding: 8px 12px;
   overflow-x: auto;
 
@@ -249,28 +249,33 @@ pre {
     line-height: 1.5rem;
   }
 
-  td:first-child {
-    padding-right: 10px;
+  pre,
+  code {
+    border: none;
+    @include reset-gutter;
   }
 
-  pre {
-    @include reset-gutter;
+  td:first-child {
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    padding-right: 10px;
 
-    &.lineno {
+    .lineno {
       text-align: right;
     }
   }
 
-  > code {
-    border: none;
-    padding-left: 0;
-    padding-right: 0;
+  td:last-child {
+    width: 100%;
   }
 }
 
 .no_lineno td:has(.lineno) {
   display: none !important;
 }
+
 /**
  * Details
  */
@@ -323,20 +328,22 @@ table:not(:has(pre)) {
     background-color: var(--bg-2);
     border: 1px solid var(--bd-1);
   }
+
   td {
     border: 1px solid var(--bd-1);
   }
+
   tr:nth-child(even) {
     background-color: var(--bg-2);
   }
 
   /* prettier-ignore */
   @media screen and (max-width: $max-width) {
-     display: block;
-     overflow-x: auto;
-     -webkit-overflow-scrolling: touch;
-             -ms-overflow-style: -ms-autohiding-scrollbar;
-   }
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
 }
 
 /**
@@ -372,6 +379,7 @@ table:not(:has(pre)) {
 #site-footer {
   background-color: var(--bg-2);
   padding: $spacing-unit 0;
+
   @media screen and (max-width: $max-width) {
     padding: $spacing-unit calc(#{$spacing-unit} * 0.5);
   }

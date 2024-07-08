@@ -1,94 +1,61 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
-# Site settings ******************************************
-title: Andre Attamimi
-brand: Andre S. Attamimi # alternative site name for animation
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
+# SITE SETTINGS ******************************************
+title: "Andre Attamimi"
+description: >-
   run, study, modify, and share.
-baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
 google_analytics: G-31WRW155T4
-
-timezone: Asia/Tokyo
-lang: en
-
-image: "/assets/img/avatar.svg" # https://github.com/sionta.png?size=100
-twitter:
-  username: R007MMXV
-
-author:
-  picture: "/assets/img/avatar.svg"
-  name: Andre Attamimi
-  twitter: R007MMXV
-  email: info@andreattamimi.com
-  url: https://github.com/sionta
-
-# Set to `true` to show excerpts on the homepage.
-show_excerpts: false
 
 # The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
-date_format: "%b %d, %Y"
-
-paginate: 5
-paginate_path: "/blog/page:num/"
+date_format: ""
 
 comments:
-  provider: "" # e.g. "disqus".
+  provider: "disqus" # e.g. "disqus".
   # The provider by settings below:
   disqus:
-    # What is `shortname` refer to https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
     shortname: "andreattamimi"
   giscus:
-    # For more setting refer to https://giscus.app/
+    # For more settings see https://giscus.app/
     repo: "sionta/blog" # e.g. "owner/repo"
     repo_id: "R_kgDOLxRA-w"
     category: "Q&A"
     category_id: "DIC_kwDOLxRA-84CfGPN"
-  utterances:
-    # For more setting refer to https://utteranc.es/
-    repo: "sionta/blog" # e.g. "owner/repo"
-    issue_term: "pathname"
 
-# Build settings *****************************************
-# https://github.com/jekyll/jekyll-feed
-feed:
-  posts_limit: 10
-  excerpt_only: false
+paginate: 5
+paginate_path: "/blog/page:num/"
 
-# https://github.com/jekyll/jekyll-gist
-gist:
-  noscript: false
+# self-hosted assets are enabled while in `JEKYLL _ENV`.
+self_host: ""
 
-# https://sass-lang.com/documentation/cli/ruby-sass/
-sass:
-  # style: compressed
-  style: expanded # for development
-
+# Options for _plugins/minify.rb
 minify:
   env: production
   html: true
-  css: true # or use `sass:...`
+  css: true
   js: true
 
+# IMPORTANT SETTINGS *****************************************
+
 # https://jekyllrb.com/docs/configuration/markdown/
-markdown: kramdown
 kramdown:
   input: GFM
-  hard_wrap: false
+  # hard_wrap: false
   # https://github.com/jekyll/jekyll/pull/4090
+  # http://kramdown.gettalong.org/syntax_highlighter/rouge.html
   syntax_highlighter: rouge
-  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
   syntax_highlighter_opts:
-    # Rouge Options › https://github.com/jneen/rouge#full-options
     css_class: highlight
-    span:
-      line_numbers: false
     block:
       line_numbers: true
       start_line: 1
+      table_class: "rouge-table" # - a CSS class for the table
+      gutter_class: "rouge-gutter" # - a CSS class for the line-number cell
+      code_class: "rouge-code" # - a CSS class for the code cell
 
 collections:
   pages:
@@ -112,17 +79,14 @@ defaults:
       # Special configuration for layout "post":
       toc: false # Table of contents
       anchor: true # Anchor headings
-      mermaid: false # Mermaid diagrammings
+      diagram: false # Mermaid diagrammings
       comments: false # Comments, first set `site.comments.provider`
+      math: "" # Math engine, "katex" or "mathjax"
 
 exclude:
-  - "*.gem"
-  - "*.gemspec"
-  - "*.lock"
-  - "*copy*.*"
-  - "/docs"
   - "/test*"
   - "/tool*"
   - "/script*"
   - "package*.json"
+  - "LICENSE"
   - "README.md"

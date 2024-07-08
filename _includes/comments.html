@@ -1,64 +1,60 @@
-{% if site.comments.provider != empty and page.comments == true %}
+{% if page.comments == true and site.comments.provider != empty %}
+  <div
+    {% if site.comments.provider == 'disqus' %}
+      id="disqus_thread"
+    {% else %}
+      id="{{ site.comments.provider }}"
+    {% endif %}
+    class="{{ site.comments.provider }} site-comments"
+    itemscope
+    itemtype="https://schema.org/Comment"
+  ></div>
   {% case site.comments.provider %}
     {% when 'disqus' %}
-      <script type="text/javascript">
-        let disqus_config = function () {
-          this.page.title = '{{- page.title | escape -}}';
+      <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        var disqus_shortname = '{{ site.comments.disqus.shortname }}';
+        var disqus_config = function () {
           this.page.url = '{{- page.url | absolute_url -}}';
-          this.page.identifier = '{{- page.url | relative_url -}}';
+          this.page.identifier = '{{- page.url | absolute_url -}}';
         };
         (function () {
-          let d = document,
+          // DON'T EDIT BELOW THIS LINE
+          var d = document,
             s = d.createElement('script');
-          s.src = 'https://{{- site.comments.disqus.shortname -}}.disqus.com/embed.js';
+          s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
           s.setAttribute('data-timestamp', +new Date());
-          d.body.appendChild(s);
+          (d.head || d.body).appendChild(s);
         })();
       </script>
+      <noscript
+        >Please enable JavaScript to view the
+        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
+      >
     {% when 'giscus' %}
       <script type="text/javascript">
         window.addEventListener('DOMContentLoaded', function () {
-          const giscusTheme =
-            localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-          const scriptTag = document.createElement('script');
-          scriptTag.src = 'https://giscus.app/client.js';
-          scriptTag.setAttribute('data-repo', '{{- site.comments.giscus.repo -}}');
-          scriptTag.setAttribute('data-repo-id', '{{- site.comments.giscus.repo_id -}}');
-          scriptTag.setAttribute('data-category', '{{- site.comments.giscus.category -}}');
-          scriptTag.setAttribute('data-category-id', '{{- site.comments.giscus.category_id -}}');
-          scriptTag.setAttribute('data-mapping', "{{- site.comments.giscus.mapping | default: 'pathname' -}}");
-          scriptTag.setAttribute('data-strict', '{{- site.comments.giscus.strict | default: 0 -}}');
-          scriptTag.setAttribute(
-            'data-reactions-enabled',
-            '{{- site.comments.giscus.reactions_enabled | default: 1 -}}'
-          );
-          scriptTag.setAttribute('data-emit-metadata', '{{- site.comments.giscus.metadata | default: 0 -}}');
-          scriptTag.setAttribute('data-theme', giscusTheme);
-          scriptTag.setAttribute('data-lang', "{{- site.comments.giscus.lang | default: site.lang | default: 'en' -}}");
-          scriptTag.setAttribute('data-loading', 'lazy');
-          scriptTag.setAttribute('crossorigin', 'anonymous');
-          scriptTag.async = true;
-          document.body.appendChild(scriptTag);
-        });
-      </script>
-    {% when 'utterances' %}
-      <script type="text/javascript">
-        window.addEventListener('DOMContentLoaded', function () {
-          const utterancesTheme =
-            localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-          const scriptTag = document.createElement('script');
-          scriptTag.src = 'https://utteranc.es/client.js';
-          scriptTag.setAttribute('repo', '{{- site.comments.utterances.repo -}}');
-          scriptTag.setAttribute('issue-term', "{{- site.comments.utterances.issue_term | default: 'pathname' -}}");
-          scriptTag.setAttribute('theme', utterancesTheme);
-          scriptTag.setAttribute('crossorigin', 'anonymous');
-          scriptTag.async = true;
-          document.body.appendChild(scriptTag);
+          const giscusTheme = localStorage.getItem('theme') || 'preferred_color_scheme';
+          const script = document.createElement('script');
+          script.src = 'https://giscus.app/client.js';
+          script.setAttribute('data-repo', '{{- site.comments.giscus.repo -}}');
+          script.setAttribute('data-repo-id', '{{- site.comments.giscus.repo_id -}}');
+          script.setAttribute('data-category', '{{- site.comments.giscus.category -}}');
+          script.setAttribute('data-category-id', '{{- site.comments.giscus.category_id -}}');
+          script.setAttribute('data-mapping', "{{- site.comments.giscus.mapping | default: 'pathname' -}}");
+          script.setAttribute('data-strict', '{{- site.comments.giscus.strict | default: 0 -}}');
+          script.setAttribute('data-reactions-enabled', '{{- site.comments.giscus.reactions_enabled | default: 1 -}}');
+          script.setAttribute('data-emit-metadata', '{{- site.comments.giscus.metadata | default: 0 -}}');
+          script.setAttribute('data-theme', giscusTheme);
+          script.setAttribute('data-lang', "{{- site.comments.giscus.lang | default: site.lang | default: 'en' -}}");
+          script.setAttribute('data-loading', 'lazy');
+          script.setAttribute('crossorigin', 'anonymous');
+          script.async = true;
+          document.body.appendChild(script);
         });
       </script>
   {% endcase %}
 {% endif %}
-
 <!-- data-theme="https://giscus.app/themes/custom_example.css" -->

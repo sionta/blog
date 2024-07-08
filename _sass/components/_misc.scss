@@ -84,9 +84,17 @@ a[href^="#fn"] {
   display: block;
 }
 
-/**
- * Emoji shorthand
- */
+.anchor-link {
+  &,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.site-comments {
+  padding-top: 10px;
+}
+
 .emoji {
   // height: var(--font-size);
   // width: var(--font-size);

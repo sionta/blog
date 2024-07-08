@@ -1,21 +1,21 @@
 ---
 layout: post
 title: Markdown Test Page
-description: A quick overview of all the Markdown syntax elements
+# description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown, cheatsheet]
 author: Andre Attamimi
 image:
-    url: "/assets/img/hero-markdown-guide.p128.png"
-    alt: "Image by https://culturedcode.com"
+    url: /assets/img/hero-markdown-guide.p128.png
+    alt: Image by https://culturedcode.com"
 
-# Special configuration for layout "post":
-toc: true       # Enable table of contents
-anchor: true    # Enable anchor headings
-diagram: true   # Enable mermaid diagrammings
-comments: true  # Enable comments
-math: true
+toc: true
+anchor: true
+comments: true
+diagram: true
+math: katex
 ---
+
 <!-- markdownlint-disable MD022 MD025 MD033 MD034 MD036 MD056 -->
 
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
@@ -26,14 +26,19 @@ This Markdown cheat sheet provides a quick overview of all the Markdown syntax e
 
 # H1
 {:.no_toc .no_anchor}
+
 ## H2
 {:.no_toc .no_anchor}
+
 ### H3
 {:.no_toc .no_anchor}
+
 #### H4
 {:.no_toc .no_anchor}
+
 ##### H5
 {:.no_toc .no_anchor}
+
 ###### H6
 {:.no_toc .no_anchor}
 
@@ -49,9 +54,9 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
 
 **bold text**
 
-*italicized text*
+_italicized text_
 
-**Bold** and *Italic*
+**Bold** and _Italic_
 
 ~~strikethrough~~
 
@@ -68,14 +73,14 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
 
 #### Unordered List
 
-- First item
-- Second item
-- Third item
-  - Indented item
-  - Indented item
-    - Indented item
-    - Indented item
-- Fourth item
+-   First item
+-   Second item
+-   Third item
+    -   Indented item
+    -   Indented item
+        -   Indented item
+        -   Indented item
+-   Fourth item
 
 #### Definition List
 
@@ -88,9 +93,9 @@ Moon
 
 #### Task List
 
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
+-   [x] Write the press release
+-   [ ] Update the website
+-   [ ] Contact the media
 
 #### Links
 
@@ -103,7 +108,6 @@ Free **[Palestine](https://www.google.com/search?q=free+palestine)**.
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
 [^1]: This is the first footnote.
-
 [^bignote]: Here's one with multiple paragraphs and code.
 
     Indent paragraphs to include them in the footnote.
@@ -144,7 +148,7 @@ Sample output <samp>This is sample output from a computer program.</samp>
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
 > <cite>Nikola Tesla</cite>
-{:.italic}
+> {:.italic}
 
 <!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
@@ -223,33 +227,31 @@ Alerts or Admonitions are frequently used in documentation to call attention to 
 
 > **Normal:** Default or alternative blockqoute.
 >
-{:.alert}
+> {:.alert}
 
 > **Note:** Highlights information that users should take into account, even when skimming.
 >
-{:.alert.alert-note}
+> {:.alert.alert-note}
 
 > **Tip:** Optional information to help a user be more successful.
 >
-{:.alert.alert-tip}
+> {:.alert.alert-tip}
 
 > **Important:** Crucial information necessary for users to succeed.
 >
-{:.alert.alert-important}
+> {:.alert.alert-important}
 
 > **Warning:** Critical content demanding immediate user attention due to potential risks.
 >
-{:.alert.alert-warning}
+> {:.alert.alert-warning}
 
 > **Caution:** Negative potential consequences of an action.
 >
-{:.alert.alert-caution}
+> {:.alert.alert-caution}
 
 ### Mathematics
 
-<!-- The Mathematics Powered by [KaTeX:](https://katex.org/) -->
-
-**Inline formula:** $a^2 + b^2 = c^2$.
+**Inline formula:** $$a^2 + b^2 = c^2$$.
 
 **Block formula:**
 

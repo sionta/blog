@@ -34,11 +34,10 @@ module Jekyll
         end
       end
 
-      # Adjust td classes for rouge
+      # Adjust td classes for rouge-table
       content.gsub!(%r{<td class="gutter gl">(.*?)</td>}m) do
         "<td class=\"rouge-gutter gl\">#{$1}</td>"
       end
-
       content.gsub!(%r{<td class="code">(.*?)</td>}m) do
         "<td class=\"rouge-code\">#{$1}</td>"
       end
@@ -115,7 +114,7 @@ module Jekyll
 
       code_header = create_code_header(icon, title, language)
       if is_pre_code
-        "<div class=\"language-#{language}\">#{code_header}<pre class=\"highlight\"><code class=\"rouge-code\">#{code}</code></pre></div>"
+        "<div class=\"language-#{language}\">#{code_header}<pre class=\"highlight\"><code class=\"code\">#{code}</code></pre></div>"
       else
         "<div class=\"language-#{language} #{extra_classes}\">#{code_header}<pre class=\"highlight\"><code>#{code}</code></pre></div>"
       end

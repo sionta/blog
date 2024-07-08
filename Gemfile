@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-gem 'jekyll', '~> 4.3.3'
+gem 'jekyll', '~> 4.3'
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem 'jemoji', '~> 0.13'     # GitHub-flavored Emoji
-  gem 'jekyll-gist', '~> 1.5' # GitHub Gists
   gem 'jekyll-feed', '~> 0.17'
   gem 'jekyll-seo-tag', '~> 2.8'
   gem 'jekyll-sitemap', '~> 1.4'
@@ -23,7 +21,3 @@ end
 
 # Performance-booster for watching directories on Windows
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
-
-# Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
-# do not have a Java counterpart.
-gem 'http_parser.rb', '~> 0.6', :platforms => [:jruby]
