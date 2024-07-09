@@ -114,7 +114,7 @@ module Jekyll
 
       code_header = create_code_header(icon, title, language)
       if is_pre_code
-        "<div class=\"language-#{language}\">#{code_header}<pre class=\"highlight\"><code class=\"code\">#{code}</code></pre></div>"
+        "<div class=\"language-#{language}\">#{code_header}<pre class=\"highlight\"><code class=\"rouge-code\">#{code}</code></pre></div>"
       else
         "<div class=\"language-#{language} #{extra_classes}\">#{code_header}<pre class=\"highlight\"><code>#{code}</code></pre></div>"
       end

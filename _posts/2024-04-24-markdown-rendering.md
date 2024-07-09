@@ -16,7 +16,7 @@ diagram: true
 math: katex
 ---
 
-<!-- markdownlint-disable MD022 MD025 MD033 MD034 MD036 MD056 -->
+<!-- markdownlint-disable MD022 MD025 MD033 MD036 -->
 
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
@@ -73,14 +73,14 @@ _italicized text_
 
 #### Unordered List
 
--   First item
--   Second item
--   Third item
-    -   Indented item
-    -   Indented item
-        -   Indented item
-        -   Indented item
--   Fourth item
+- First item
+- Second item
+- Third item
+  - Indented item
+  - Indented item
+    - Indented item
+    - Indented item
+- Fourth item
 
 #### Definition List
 
@@ -93,9 +93,9 @@ Moon
 
 #### Task List
 
--   [x] Write the press release
--   [ ] Update the website
--   [ ] Contact the media
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
 
 #### Links
 
@@ -148,7 +148,7 @@ Sample output <samp>This is sample output from a computer program.</samp>
 > "If you want to find the secrets of the universe, think in terms of energy, frequency, and vibration."
 >
 > <cite>Nikola Tesla</cite>
-> {:.italic}
+{:.italic}
 
 <!-- > <cite>&mdash; Nikola Tesla</cite> -->
 
@@ -227,27 +227,27 @@ Alerts or Admonitions are frequently used in documentation to call attention to 
 
 > **Normal:** Default or alternative blockqoute.
 >
-> {:.alert}
+{:.alert}
 
 > **Note:** Highlights information that users should take into account, even when skimming.
 >
-> {:.alert.alert-note}
+{:.alert.alert-note}
 
 > **Tip:** Optional information to help a user be more successful.
 >
-> {:.alert.alert-tip}
+{:.alert.alert-tip}
 
 > **Important:** Crucial information necessary for users to succeed.
 >
-> {:.alert.alert-important}
+{:.alert.alert-important}
 
 > **Warning:** Critical content demanding immediate user attention due to potential risks.
 >
-> {:.alert.alert-warning}
+{:.alert.alert-warning}
 
 > **Caution:** Negative potential consequences of an action.
 >
-> {:.alert.alert-caution}
+{:.alert.alert-caution}
 
 ### Mathematics
 

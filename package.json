@@ -6,7 +6,7 @@
     "serve": "bundle exec jekyll serve",
     "clean": "bundle exec jekyll clean",
     "build": "bundle exec jekyll build",
-    "test": "bundle exec jekyll clean && bundle exec jekyll serve --watch --trace"
+    "test": "npm run clean && npm serve --config _config.yml,_config.dev.yml --watch --trace"
   },
   "dependencies": {
     "clean-css": "^5.3.3",

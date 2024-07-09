@@ -9,19 +9,19 @@ layout: base
     display: inline-block;
   }
 </style>
-{%- assign date_format = site.date_format | default: '%B %d, %Y' %}
+{% assign date_format = site.date_format | default: '%B %d, %Y' %}
 <div>
   <h1 class="page-title">Tag #{{ page.tag }}</h1>
   <nav>
     <ul>
-      {%- for post in site.posts %}
-        {%- if post.tags contains page.tag %}
+      {% for post in site.posts %}
+        {% if post.tags contains page.tag %}
           <li>
             <a class="tag-link" href="{{ post.url }}">{{ post.title }}</a>
             <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
           </li>
-        {%- endif %}
-      {%- endfor %}
+        {% endif %}
+      {% endfor %}
     </ul>
   </nav>
 </div>

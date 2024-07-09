@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {%- seo title=false -%}
-    {%- capture head_title %}{%- if page.url == '/' %}{{- site.title -}}{%- else %}{{- page.title -}}{%- endif %}{% endcapture %}
+    {% seo title=false %}
+    {% capture head_title %}{% if page.url == '/' %}{{ site.title }}{% else %}{{ page.title }}{% endif %}{% endcapture %}
     <title>{{ head_title | escape }}</title>
     <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">
     <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
     <link rel="icon" type="image/png" href="{{ '/assets/img/avatar.png' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    {%- feed_meta -%}
-    {%- include analytics.html -%}
+    {% feed_meta %}
+    {% include analytics.html %}
+    {% include verifications.html %}
     <script rel="preload" src="{{ '/assets/js/main.js' | relative_url }}" as="script"></script>
   </head>
   <body>
@@ -28,13 +29,13 @@
       <div class="wrapper">
         <div class="site-content__inner">
           <div class="content">
-            {{- content | custom_content -}}
+            {{ content | custom_content }}
           </div>
-          {%- if page.layout == 'post' -%}
+          {% if page.layout == 'post' %}
             <div class="sidebar">
-              {%- include toc.html mobile=false -%}
+              {% include toc.html mobile=false %}
             </div>
-          {%- endif -%}
+          {% endif %}
         </div>
       </div>
     </main>
@@ -44,12 +45,12 @@
           {% include social.html %}
           {% include theme.html %}
           {% include brand.html %}
-          <button id="back-to-top" aria-label="Go to top">
+          <button type="button" id="back-to-top" aria-label="Go to top">
             {% include icon.html id="chevron-up" %}
           </button>
         </div>
       </div>
     </footer>
-    {%- include script.html -%}
+    {% include script.html %}
   </body>
 </html>

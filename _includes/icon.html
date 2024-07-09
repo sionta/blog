@@ -1,5 +1,5 @@
-{%- comment %} Icon use Tabler https://tabler.io/icons {%- endcomment %}
-{%- assign svg_path = '/assets/tabler-icons.svg' | relative_url %}
-{%- capture svg_attrib %}{% if include.class %}class="{{ include.class }}"{% endif %} {% if include.style %}style="{{ include.style }}"{% endif %} width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"{% endcapture %}
-{%- capture svg_symbol %}<svg {{ svg_attrib | strip }}><use href="{{ svg_path -}}#{{- include.id | downcase }}"></use></svg>{% endcapture %}
-{%- if include.id %}{{ svg_symbol }}{% endif %}
+{% comment %} Icon use Tabler https://tabler.io/icons {% endcomment %}
+{% assign svg_path = '/assets/tabler-icons.svg' | relative_url %}
+{% capture svg_attrib %}{% if include.class %}class="{{ include.class }}"{% endif %} {% if include.style %}style="{{ include.style }}"{% endif %} width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"{% endcapture %}
+{% capture svg_symbol %}<svg {{ svg_attrib | strip }}><use href="{{ svg_path }}#{{ include.id | downcase }}"></use></svg>{% endcapture %}
+{% if include.id %}{{ svg_symbol }}{% endif %}

@@ -1,43 +1,43 @@
 {% if site.self_host == jekyll.environment %}
-  {% assign vendor_host = '/assets/lib' | relative_url %}
+  {% assign VENDOR_ORIGIN = '/assets/lib' | relative_url %}
 {% else %}
-  {% assign vendor_host = 'https://cdnjs.cloudflare.com/ajax/libs' %}
-  {% assign anchor_js = '/5.0.0' %}
-  {% assign katex = '/0.16.9' %}
-  {% assign mathjax = '/3.2.2/es5' %}
-  {% assign mermaid = '/10.9.1' %}
-  {% assign simple_jekyll_search = '/1.9.2' %}
-  {% assign tocbot = '/4.28.2' %}
+  {% assign VENDOR_ORIGIN = 'https://cdn.jsdelivr.net/npm' %}
+  {% comment %} '@major.minor.revision' or '@latest' {% endcomment %}
+  {% assign __JS_ANCHOR__ = '@5.0.0' %}
+  {% assign __JS_TOCBOT__ = '@4.28.2/dist' %}
+  {% assign __JS_MERMAID__ = '@10.9.1/dist' %}
+  {% assign __JS_KATEX__ = '@0.16.11/dist' %}
+  {% assign __JS_MATHJAX__ = '@3.2.2/es5' %}
+  {% assign __JS_SEARCH__ = '@1.10.0/dest' %}
 {% endif %}
-
-<script src="{{ vendor_host }}/simple-jekyll-search{{ simple_jekyll_search }}/simple-jekyll-search.min.js"></script>
 
 {% if page.collection == 'posts' or page.layout == 'post' %}
   {% if page.toc == true or page.table_of_content == true %}
-    <script src="{{ vendor_host }}/tocbot{{ tocbot }}/tocbot.min.js"></script>
+    <script src="{{ VENDOR_ORIGIN }}/tocbot{{ __JS_TOCBOT__ }}/tocbot.min.js"></script>
   {% endif %}
 
   {% if page.anchor == true or page.anchor_heading == true %}
-    <script src="{{ vendor_host }}/anchor-js{{ anchor_js }}/anchor.min.js"></script>
+    <script src="{{ VENDOR_ORIGIN }}/anchor-js{{ __JS_ANCHOR__ }}/anchor.min.js"></script>
   {% endif %}
 
   {% if page.mermaid == true or page.diagram == true %}
-    <script src="{{ vendor_host }}/mermaid{{ mermaid }}/mermaid.min.js"></script>
+    <script src="{{ VENDOR_ORIGIN }}/mermaid{{ __JS_MERMAID__ }}/mermaid.min.js"></script>
   {% endif %}
 
   {% case page.math %}
-    {% when 'mathjax' %}
-      <script id="Mathjax-script" async src="{{ vendor_host }}/mathjax{{ mathjax }}/tex-mml-chtml.js"></script>
     {% when 'katex' %}
-      <link rel="stylesheet" href="{{ vendor_host }}/KaTeX{{ katex }}/katex.min.css" crossorigin="anonymous">
-      <script defer src="{{ vendor_host }}/KaTeX{{ katex }}/katex.min.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.css" crossorigin="anonymous">
+      <script defer src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.js" crossorigin="anonymous"></script>
       <script
         defer
-        src="{{ vendor_host }}/KaTeX{{ katex }}/contrib/auto-render.min.js"
+        src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/contrib/auto-render.min.js"
         crossorigin="anonymous"
       ></script>
+    {% when 'mathjax' %}
+      <script async id="Mathjax-script" src="{{ VENDOR_ORIGIN }}/mathjax{{ __JS_MATHJAX__ }}/tex-mml-chtml.js"></script>
   {% endcase %}
 {% endif %}
 
+{% comment %} <script src="{{ VENDOR_ORIGIN }}/simple-jekyll-search{{ __JS_JEKYLL_SEARCH__ }}/simple-jekyll-search.min.js"></script> {% endcomment %}
 {% comment %} bundle scripts {% endcomment %}
 <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>

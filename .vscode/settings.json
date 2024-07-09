@@ -4,7 +4,13 @@
   "files.associations": {
     "*.html": "liquid"
   },
-  "[html][liquid]": {
+  "[liquid]": {
     "editor.defaultFormatter": "Shopify.theme-check-vscode"
+  },
+  "search.exclude": {
+    "**/assets": true,
+    "**/_site": true,
+    "**/*.map": true,
+    "**/test*": true
   }
 }

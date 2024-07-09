@@ -2,17 +2,17 @@
 layout: base
 ---
 <div class="home">
-  {%- if page.title -%}
+  {% if page.title %}
     <h1 class="page-title">{{ page.title }}</h1>
-  {%- endif -%}
-  {{- content -}}
-  {%- if site.paginate -%}
-    {%- assign posts = paginator.posts -%}
-  {%- else -%}
-    {%- assign posts = site.posts -%}
-  {%- endif -%}
-  {%- if posts.size > 0 -%}
+  {% endif %}
+  {{ content }}
+  {% if site.paginate %}
+    {% assign posts = paginator.posts %}
+  {% else %}
+    {% assign posts = site.posts %}
+  {% endif %}
+  {% if posts.size > 0 %}
     {% include blog.html %}
     {% include pagination.html %}
-  {%- endif -%}
+  {% endif %}
 </div>

@@ -1,20 +1,46 @@
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
 # SITE SETTINGS ******************************************
 title: "Andre Attamimi"
 description: >-
   run, study, modify, and share.
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
-google_analytics: G-31WRW155T4
+
+# Site Verifications. NOTE: if you this on private build
+site_verification:
+  google: ""
+  bing: ""
+  yandex: ""
+  pinterest: ""
+  facebook: ""
+
+# Web Analytics
+web_analytics:
+  google:
+    id: "G-31WRW155T4" # fill in your Google Analytics ID
+  goatcounter:
+    id: # fill in your GoatCounter ID
+  umami:
+    id: # fill in your Umami ID
+    domain: # fill in your Umami domain
+  matomo:
+    id: # fill in your Matomo ID
+    domain: # fill in your Matomo domain
+  cloudflare:
+    id: # fill in your Cloudflare Web Analytics token
 
 # The default value is "%b %d, %Y" (e.g. Nov 14, 2023)
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
 date_format: ""
 
+# Generate social links. Icon use Tabler https://tabler.io/icons
+social_links:
+  - { title: Email, icon: mail, url: "mailto:info@andreattamimi.com" }
+  - { title: GitHub, url: "https://github.com/sionta" }
+  - { title: Mastodon, url: "https://mastodon.social/@sionta" }
+  - { title: Twitter, url: "https://twitter.com/r007mmxv" }
+
 comments:
-  provider: "disqus" # e.g. "disqus".
+  provider: "giscus" # e.g. "disqus".
   # The provider by settings below:
   disqus:
     # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
@@ -25,68 +51,10 @@ comments:
     repo_id: "R_kgDOLxRA-w"
     category: "Q&A"
     category_id: "DIC_kwDOLxRA-84CfGPN"
+  utterances:
+    # For more setting see to https://utteranc.es/
+    repo: "sionta/blog" # e.g. "owner/repo"
+    issue_term: "pathname"
 
 paginate: 5
 paginate_path: "/blog/page:num/"
-
-# self-hosted assets are enabled while in `JEKYLL _ENV`.
-self_host: ""
-
-# Options for _plugins/minify.rb
-minify:
-  env: production
-  html: true
-  css: true
-  js: true
-
-# IMPORTANT SETTINGS *****************************************
-
-# https://jekyllrb.com/docs/configuration/markdown/
-kramdown:
-  input: GFM
-  # hard_wrap: false
-  # https://github.com/jekyll/jekyll/pull/4090
-  # http://kramdown.gettalong.org/syntax_highlighter/rouge.html
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: highlight
-    block:
-      line_numbers: true
-      start_line: 1
-      table_class: "rouge-table" # - a CSS class for the table
-      gutter_class: "rouge-gutter" # - a CSS class for the line-number cell
-      code_class: "rouge-code" # - a CSS class for the code cell
-
-collections:
-  pages:
-    output: true
-    permalink: "/:name/"
-  posts:
-    output: true
-    permalink: "/blog/:title/"
-
-defaults:
-  - scope:
-      path: _pages
-      type: pages
-    values:
-      layout: page
-  - scope:
-      path: _posts
-      type: posts
-    values:
-      layout: post
-      # Special configuration for layout "post":
-      toc: false # Table of contents
-      anchor: true # Anchor headings
-      diagram: false # Mermaid diagrammings
-      comments: false # Comments, first set `site.comments.provider`
-      math: "" # Math engine, "katex" or "mathjax"
-
-exclude:
-  - "/test*"
-  - "/tool*"
-  - "/script*"
-  - "package*.json"
-  - "LICENSE"
-  - "README.md"

@@ -1,58 +1,22 @@
 (function () {
   "use strict";
 
-  /* always load on DOM */
-  document.addEventListener("DOMContentLoaded", () => {
-    // required
-    initialTheme();
-    navigationMenu();
-    backToTop();
-    searchPost();
-
-    // post features
-    tableOfContent();
-    anchorHeadings();
-    copyCodeBlock();
-    diagramMermaid();
-    mathEngines();
-    // customHighlighter();
-  });
-
-  // Function to set theme
-  const themeSwitcher = document.getElementById("theme-switcher");
-
-  function setupTheme(theme) {
-    if (theme === "auto") {
-      delete document.documentElement.dataset.theme;
-      localStorage.removeItem("theme");
-    } else {
-      document.documentElement.dataset["theme"] = theme;
-      localStorage.setItem("theme", theme);
-    }
-
-    const currentTheme = localStorage.getItem("theme") || "auto";
-    const modeTheme = document.getElementById(`theme-${currentTheme}`);
-    if (themeSwitcher && modeTheme) {
-      themeSwitcher.querySelectorAll("button").forEach((button) => {
-        if (!button.classList.value) return;
-        button.classList.remove("active");
-      });
-      modeTheme.classList.add("active");
-    }
-  }
-
-  function initialTheme() {
-    if (themeSwitcher) {
-      themeSwitcher.addEventListener("click", (e) => {
-        const theme = e.target.dataset.theme;
-        if (theme) {
-          setupTheme(theme); // prettier-ignore
-        }
-      });
-    }
-    // Sync initial state
-    const cacheTheme = localStorage.getItem("theme") || "auto";
-    setupTheme(cacheTheme); // Set initial theme from localStorage
+  const gotoTop = document.getElementById("back-to-top");
+  if (gotoTop) {
+    window.onscroll = function () {
+      if (
+        document.documentElement.scrollTop > 20 ||
+        document.body.scrollTop > 20
+      ) {
+        gotoTop.classList.add("visible");
+      } else {
+        gotoTop.classList.remove("visible");
+      }
+    };
+    gotoTop.addEventListener("click", () => {
+      document.documentElement.scrollTop = 0; /* For other browsers */
+      document.body.scrollTop = 0; /* For Safari */
+    });
   }
 
   function anchorHeadings() {
@@ -72,71 +36,86 @@
 
   // clipboard
   function copyCodeBlock() {
+    /* so there are no typos */
+    const data = {
+      // querySelector
+      CODE_QUERY: ".rouge-code",
+      CODE_BUTTON: ".code-button", // querySelectorAll
+      COPY_TOOLTIP: ".code-tooltip",
+      ICON_CLIPBOARD: ".icon-clipboard",
+      ICON_SUCCESS: ".icon-success",
+
+      // getAttribute
+      LABEL_COPY: "copy-label",
+      LABEL_SUCCESS: "success-label",
+      LABEL_ERROR: "error-label",
+    };
+
+    const codeButtons = document.querySelectorAll(data.CODE_BUTTON);
+    if (!codeButtons) return;
+
     const tooltipTimeout = 1000;
-    const copyButtons = document.querySelectorAll(".code-button");
-    if (!copyButtons.length) return;
-
-    copyButtons.forEach((copyButton) => {
-      const copyTooltip = copyButton.querySelector(".code-tooltip");
-      const labelCopy = copyButton.getAttribute("copy-label");
-      const labelSuccess = copyButton.getAttribute("success-label");
-      const labelError = copyButton.getAttribute("error-label");
-
+    codeButtons.forEach((copyBtn) => {
       // Displays a message from the attribute when the mouse enters the button
-      copyButton.addEventListener("mouseenter", () => {
-        showTooltip(copyTooltip, labelCopy);
+      copyBtn.addEventListener("mouseenter", () => {
+        textTooltip(
+          copyBtn.querySelector(data.COPY_TOOLTIP),
+          copyBtn.getAttribute(data.LABEL_COPY)
+        );
       });
 
       // Copy code
-      copyButton.addEventListener("click", () => {
-        // .highlighter-rouge
-        const codeElement = copyButton
+      copyBtn.addEventListener("click", () => {
+        const textValue = copyBtn
           .closest("[class^=language-]")
-          ?.querySelector(".rouge-code");
+          ?.querySelector(data.CODE_QUERY);
+        if (!textValue) return;
 
-        if (codeElement) {
-          const codeContent = codeElement.innerText;
-
-          navigator.clipboard
-            .writeText(codeContent)
-            .then(() => {
-              showTooltip(copyTooltip, labelSuccess);
-              iconTooltip(copyButton, true);
-            })
-            .catch((err) => {
-              showTooltip(copyTooltip, labelError);
-              console.error("Failed to copy text: ", err);
-            });
-        }
+        navigator.clipboard
+          .writeText(textValue.innerText)
+          .then(() => {
+            textTooltip(
+              copyBtn.querySelector(data.COPY_TOOLTIP),
+              copyBtn.getAttribute(data.LABEL_SUCCESS)
+            );
+            iconTooltip(copyBtn, true);
+          })
+          .catch((err) => {
+            textTooltip(
+              copyBtn.querySelector(data.COPY_TOOLTIP),
+              copyBtn.getAttribute(data.LABEL_ERROR)
+            );
+            alert("Failed to copy text: ", err);
+          });
       });
     });
 
-    function iconTooltip(button, isSuccess) {
-      const clipboardIcon = button.querySelector(".icon-clipboard");
-      const successIcon = button.querySelector(".icon-success");
+    function iconTooltip(button, success) {
+      const iconClip = button.querySelector(data.ICON_CLIPBOARD),
+        iconDone = button.querySelector(data.ICON_SUCCESS);
 
-      if (isSuccess) {
-        clipboardIcon.style.display = "none";
-        successIcon.style.display = "inline";
+      if (success) {
+        iconClip.style.display = "none";
+        iconDone.style.display = "inline";
       }
 
       setTimeout(() => {
-        clipboardIcon.style.display = "inline";
-        successIcon.style.display = "none";
+        iconClip.style.display = "inline";
+        iconDone.style.display = "none";
       }, tooltipTimeout);
     }
 
-    function showTooltip(tooltip, message, timeout = tooltipTimeout) {
-      tooltip.textContent = message;
-      tooltip.classList.add("active");
+    function textTooltip(btn, msg, ms = 1000) {
+      btn.textContent = msg;
+      btn.classList.add("active");
       setTimeout(() => {
-        tooltip.classList.remove("active");
-      }, timeout);
+        btn.classList.remove("active");
+      }, ms);
     }
   }
 
-  // katex
-  function mathEngines() {
+  // katex and mathjax
+  function loadMathEngines() {
     if (window.renderMathInElement) {
       // KaTeX configuration
       renderMathInElement(document.body, {
@@ -147,8 +126,9 @@
           { left: "\\[", right: "\\]", display: true },
         ],
       });
-    } else if (window.MathJax) {
-      // MathJax configuration
+    }
+    // MathJax configuration
+    else if (window.MathJax) {
       window.MathJax = {
         tex: {
           inlineMath: [
@@ -190,38 +170,6 @@
     mermaid.initialize({ startOnLoad: true });
   }
 
-  // search
-  function searchPost() {
-    if (!window.SimpleJekyllSearch) return;
-    const searchInput = document.getElementById("search-input");
-    const resultsContainer = document.getElementById("search-results");
-    if (!searchInput || !resultsContainer) return;
-
-    window.SimpleJekyllSearch({
-      searchInput: searchInput,
-      resultsContainer: resultsContainer,
-      json: "assets/search-data.json",
-      searchResultTemplate:
-        '<li class="result-item"><a href="{url}">{title}</a></li>',
-      noResultsText: "",
-      limit: 10,
-      fuzzy: false,
-    });
-
-    searchInput.addEventListener("input", () => {
-      const searchTerm = searchInput.value;
-      if (searchTerm === "") {
-        resultsContainer.innerHTML = "";
-      } else {
-        setTimeout(() => {
-          if (resultsContainer.innerHTML.trim() === "") {
-            resultsContainer.innerHTML = `<span class="no-results">'${searchTerm}'</span>`;
-          }
-        }, 300);
-      }
-    });
-  }
-
   // tocbot
   function tableOfContent() {
     if (!window.tocbot) return;
@@ -257,53 +205,15 @@
     initializeToc();
 
     // Re-initialize TOC on window resize
-    window.addEventListener("resize", initializeToc);
+    addEventListener("resize", initializeToc);
   }
 
-  // Navigation menu
-  function navigationMenu() {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".site-menu");
-    const navLinks = document.querySelectorAll(".menu-link");
-    if (!hamburger || !navMenu || !navLinks.length) return;
-
-    hamburger.addEventListener("click", mobileMenu);
-    navLinks.forEach((n) => n.addEventListener("click", closeMenu));
-
-    function mobileMenu() {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    }
-
-    function closeMenu() {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-    }
-  }
-
-  // Go to Top
-  function backToTop() {
-    const backToTopButton = document.getElementById("back-to-top");
-    if (!backToTopButton) return;
-
-    window.onscroll = () => {
-      scrollFunction();
-    };
-
-    function scrollFunction() {
-      if (
-        document.documentElement.scrollTop > 20 ||
-        document.body.scrollTop > 20
-      ) {
-        backToTopButton.classList.add("visible");
-      } else {
-        backToTopButton.classList.remove("visible");
-      }
-    }
-
-    backToTopButton.addEventListener("click", () => {
-      document.documentElement.scrollTop = 0; /* For other browsers */
-      document.body.scrollTop = 0; /* For Safari */
-    });
-  }
+  /* Load DOM only on `layout: post` */
+  addEventListener("DOMContentLoaded", () => {
+    tableOfContent();
+    anchorHeadings();
+    copyCodeBlock();
+    diagramMermaid();
+    loadMathEngines();
+  });
 })();

@@ -1,5 +1,5 @@
 {% capture social_items %}
-  {% for item in site.data.metadata.social_links %}
+  {% for item in site.social_links %}
     {% assign social_link = item.link | default: item.url | relative_url %}
     {% assign social_title = item.title | default: item.platform %}
     {% if item.icon %}
@@ -14,6 +14,6 @@
 {% endcapture %}
 <nav class="social-links">
   <ul>
-    {{- social_items }}
+    {{ social_items }}
   </ul>
 </nav>

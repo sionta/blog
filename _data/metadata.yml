@@ -1,11 +1,17 @@
 # Icon use Tabler https://tabler.io/icons
 
-# Generate social links.
-social_links:
-  - { title: Email, icon: mail, url: "mailto:info@andreattamimi.com" }
-  - { title: GitHub, url: "https://github.com/sionta" }
-  - { title: Mastodon, url: "https://mastodon.social/@sionta" }
-  - { title: Twitter, url: "https://twitter.com/r007mmxv" }
+cdn_origins:
+  local:
+    js: "/assets/js"
+  remote:
+    js: "https://cdn.jsdelivr.net/npm"
+  vendor:
+    - { name: "anchor-js", version: "5.0.0" }
+    - { name: "katex", version: "0.16.11" }
+    - { name: "mathjax", version: "3.2.2" }
+    - { name: "mermaid", version: "10.9.1" }
+    - { name: "simple-jekyll-search", version: "1.10.0" }
+    - { name: "tocbot", version: "4.28.2" }
 
 alerts:
   - name: Tip

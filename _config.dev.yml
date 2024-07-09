@@ -1,0 +1,66 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# IMPORTANT SETTINGS *****************************************
+
+# url: "http://localhost:4000"
+
+# self-hosted assets are enabled while in `JEKYLL _ENV`.
+self_host: ""
+
+# Options for _plugins/minify.rb
+minify:
+  env: production
+  html: true
+  css: true
+  js: true
+
+# https://jekyllrb.com/docs/configuration/markdown/
+kramdown:
+  input: GFM
+  # hard_wrap: false
+  # https://github.com/jekyll/jekyll/pull/4090
+  # http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: true
+      start_line: 1
+      table_class: "rouge-table" # - a CSS class for the table
+      gutter_class: "rouge-gutter" # - a CSS class for the line-number cell
+      code_class: "rouge-code" # - a CSS class for the code cell
+
+collections:
+  pages:
+    output: true
+    permalink: "/:name/"
+  posts:
+    output: true
+    permalink: "/blog/:title/"
+
+defaults:
+  - scope:
+      path: _pages
+      type: pages
+    values:
+      layout: page
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+      # Special configuration for layout "post":
+      toc: false # Table of contents
+      anchor: true # Anchor headings
+      diagram: false # Mermaid diagrammings
+      comments: false # Comments, first set `site.comments.provider`
+      math: "" # Math engine, "katex" or "mathjax"
+
+exclude:
+  - "/test*"
+  - "/tool*"
+  - "/script*"
+  - "package*.json"
+  - "LICENSE"
+  - "README.md"

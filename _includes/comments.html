@@ -3,9 +3,9 @@
     {% if site.comments.provider == 'disqus' %}
       id="disqus_thread"
     {% else %}
-      id="{{ site.comments.provider }}"
+      id="site-comment"
     {% endif %}
-    class="{{ site.comments.provider }} site-comments"
+    class="{{ site.comments.provider }}"
     itemscope
     itemtype="https://schema.org/Comment"
   ></div>
@@ -17,8 +17,8 @@
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
         var disqus_shortname = '{{ site.comments.disqus.shortname }}';
         var disqus_config = function () {
-          this.page.url = '{{- page.url | absolute_url -}}';
-          this.page.identifier = '{{- page.url | absolute_url -}}';
+          this.page.url = '{{ page.url | absolute_url }}';
+          this.page.identifier = '{{ page.url | absolute_url }}';
         };
         (function () {
           // DON'T EDIT BELOW THIS LINE
@@ -35,26 +35,47 @@
       >
     {% when 'giscus' %}
       <script type="text/javascript">
-        window.addEventListener('DOMContentLoaded', function () {
-          const giscusTheme = localStorage.getItem('theme') || 'preferred_color_scheme';
-          const script = document.createElement('script');
-          script.src = 'https://giscus.app/client.js';
-          script.setAttribute('data-repo', '{{- site.comments.giscus.repo -}}');
-          script.setAttribute('data-repo-id', '{{- site.comments.giscus.repo_id -}}');
-          script.setAttribute('data-category', '{{- site.comments.giscus.category -}}');
-          script.setAttribute('data-category-id', '{{- site.comments.giscus.category_id -}}');
-          script.setAttribute('data-mapping', "{{- site.comments.giscus.mapping | default: 'pathname' -}}");
-          script.setAttribute('data-strict', '{{- site.comments.giscus.strict | default: 0 -}}');
-          script.setAttribute('data-reactions-enabled', '{{- site.comments.giscus.reactions_enabled | default: 1 -}}');
-          script.setAttribute('data-emit-metadata', '{{- site.comments.giscus.metadata | default: 0 -}}');
-          script.setAttribute('data-theme', giscusTheme);
-          script.setAttribute('data-lang', "{{- site.comments.giscus.lang | default: site.lang | default: 'en' -}}");
-          script.setAttribute('data-loading', 'lazy');
-          script.setAttribute('crossorigin', 'anonymous');
-          script.async = true;
-          document.body.appendChild(script);
-        });
+        (function () {
+          let giscusTheme = localStorage.getItem('theme') || 'preferred_color_scheme';
+          let giscusAttributes = {
+            src: 'https://giscus.app/client.js',
+            'data-repo': '{{ site.comments.giscus.repo }}',
+            'data-repo-id': '{{ site.comments.giscus.repo_id }}',
+            'data-category': '{{ site.comments.giscus.category }}',
+            'data-category-id': '{{ site.comments.giscus.category_id }}',
+            'data-mapping': "{{ site.comments.giscus.mapping | default: 'pathname' }}",
+            'data-strict': '{{ site.comments.giscus.strict | default: 0 }}',
+            'data-reactions-enabled': '{{ site.comments.giscus.reactions_enabled | default: 1 }}',
+            'data-emit-metadata': '{{ site.comments.giscus.metadata | default: 0 }}',
+            'data-theme': giscusTheme,
+            'data-lang': "{{ site.comments.giscus.lang | default: site.lang | default: 'en' }}",
+            'data-loading': 'lazy',
+            crossorigin: 'anonymous',
+            async: true,
+          };
+          let giscusScript = document.createElement('script');
+          Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+          document.getElementById('site-comment').appendChild(giscusScript);
+        })();
+      </script>
+    {% when 'utterances' %}
+      <script type="text/javascript">
+        (function () {
+          let utterancesTheme = localStorage.getItem('theme')
+            ? 'github-dark'
+            : 'github-light' || 'preferred-color-scheme';
+          let utterancesAttributes = {
+            src: 'https://utteranc.es/client.js',
+            repo: '{{ site.comments.utterances.repo }}',
+            'issue-term': "{{ site.comments.utterances.issue_term | default: 'pathname' }}",
+            theme: utterancesTheme,
+            crossorigin: 'anonymous',
+            async: true,
+          };
+          let utterancesScript = document.createElement('script');
+          Object.entries(utterancesAttributes).forEach(([key, value]) => utterancesScript.setAttribute(key, value));
+          document.getElementById('site-comment').appendChild(utterancesScript);
+        })();
       </script>
   {% endcase %}
 {% endif %}
-<!-- data-theme="https://giscus.app/themes/custom_example.css" -->

@@ -1,14 +1,74 @@
-<div id="theme-switcher">
-  <button type="button" id="theme-auto" data-theme="auto" aria-label="System mode">
+<style>
+  .theme-toggle button {
+    cursor: pointer;
+  }
+  .theme-toggle button.active {
+    color: red;
+  }
+  .theme-toggle svg,
+  .theme-toggle span {
+    pointer-events: none;
+  }
+</style>
+<div id="theme-toggle" class="theme-toggle">
+  <button data-mode="system" type="button" aria-label="System mode" class="active">
     {% include icon.html id='device-imac' %}
-    <span class="sr-only">Auto</span>
+    <span class="sr-only">System</span>
   </button>
-  <button type="button" id="theme-light" data-theme="light" aria-label="Light mode">
+  <button data-mode="light" type="button" aria-label="Light mode">
     {% include icon.html id='sun' %}
     <span class="sr-only">Light</span>
   </button>
-  <button type="button" id="theme-dark" data-theme="dark" aria-label="Dark mode">
+  <button data-mode="dark" type="button" aria-label="Dark mode">
     {% include icon.html id='moon-stars' %}
     <span class="sr-only">Dark</span>
   </button>
 </div>
+<script type="text/javascript">
+  (function () {
+    const themeToggle = document.querySelector('#theme-toggle'),
+      themeButtons = themeToggle.querySelectorAll('button');
+
+    function setTheme(button, mode) {
+      // Simpan tombol aktif saat ini
+      let activeButton = themeToggle.querySelector('button.active');
+      // Hanya menghapus kelas 'active' dari tombol sebelumnya yang aktif
+      if (activeButton) {
+        activeButton.classList.remove('active');
+      }
+      // Menambahkan kelas 'active' pada tombol yang diklik
+      button.classList.add('active');
+      // Mengupdate tombol aktif saat ini
+      activeButton = button;
+
+      // Atur tema berdasarkan mode yang dipilih
+      const html = document.documentElement;
+      if (mode === 'system') {
+        html.removeAttribute('data-theme');
+      } else {
+        html.setAttribute('data-theme', mode);
+      }
+
+      // Simpan preferensi tema di local storage
+      localStorage.setItem('theme', mode);
+    }
+
+    // Ambil tema yang tersimpan dari local storage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      // Temukan tombol dengan mode yang sesuai dan terapkan tema yang disimpan
+      const button = Array.from(themeButtons).find((btn) => btn.getAttribute('data-mode') === savedTheme);
+      if (button) {
+        setTheme(button, savedTheme);
+      }
+    }
+
+    // Tambahkan event listener untuk setiap tombol tema
+    themeButtons.forEach((button) => {
+      button.addEventListener('click', function () {
+        const mode = button.getAttribute('data-mode');
+        setTheme(button, mode);
+      });
+    });
+  })();
+</script>
