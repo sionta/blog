@@ -1,16 +1,17 @@
 // @forward "navigation";
-@forward "blog-card";
-@forward "pagination";
+@forward "buttons";
 
-@forward "alert";
-@forward "back-to-top";
-@forward "search-post";
-@forward "theme-switch";
-
-@forward "code-block";
-@forward "highlight";
-
+// content
+@forward "alerts";
 @forward "post-tags";
 @forward "post-toc";
+@forward "blog-card";
+@forward "pagination";
+@forward "code-block";
+@forward "highlight";
 @forward "task-list";
+
+@forward "back-to-top";
+@forward "search-post";
+@forward "theme-toggle";
 @forward "misc";

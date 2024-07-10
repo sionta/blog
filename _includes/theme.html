@@ -1,72 +1,82 @@
-<style>
-  .theme-toggle button {
-    cursor: pointer;
-  }
-  .theme-toggle button.active {
-    color: red;
-  }
-  .theme-toggle svg,
-  .theme-toggle span {
-    pointer-events: none;
-  }
-</style>
 <div id="theme-toggle" class="theme-toggle">
-  <button data-mode="system" type="button" aria-label="System mode" class="active">
-    {% include icon.html id='device-imac' %}
-    <span class="sr-only">System</span>
+  <button theme-mode="system" type="button" aria-label="System mode" class="active tooltip">
+    {% include icon.html id='device-desktop' %} System
   </button>
-  <button data-mode="light" type="button" aria-label="Light mode">
-    {% include icon.html id='sun' %}
-    <span class="sr-only">Light</span>
+  <button theme-mode="light" type="button" aria-label="Light mode" class="tooltip">
+    {% include icon.html id='sun' %} Light
   </button>
-  <button data-mode="dark" type="button" aria-label="Dark mode">
-    {% include icon.html id='moon-stars' %}
-    <span class="sr-only">Dark</span>
+  <button theme-mode="dark" type="button" aria-label="Dark mode" class="tooltip">
+    {% include icon.html id='moon' %} Dark
   </button>
 </div>
 <script type="text/javascript">
   (function () {
-    const themeToggle = document.querySelector('#theme-toggle'),
-      themeButtons = themeToggle.querySelectorAll('button');
+    const html = document.documentElement;
+    const themeToggle = document.querySelector('#theme-toggle');
+    const themeButtons = themeToggle.querySelectorAll('button');
 
     function setTheme(button, mode) {
       // Simpan tombol aktif saat ini
-      let activeButton = themeToggle.querySelector('button.active');
+      const activeButton = themeToggle.querySelector('button.active');
       // Hanya menghapus kelas 'active' dari tombol sebelumnya yang aktif
       if (activeButton) {
         activeButton.classList.remove('active');
       }
       // Menambahkan kelas 'active' pada tombol yang diklik
       button.classList.add('active');
-      // Mengupdate tombol aktif saat ini
-      activeButton = button;
 
       // Atur tema berdasarkan mode yang dipilih
-      const html = document.documentElement;
-      if (mode === 'system') {
+      if (mode === 'system' || mode === 'auto') {
         html.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
       } else {
         html.setAttribute('data-theme', mode);
+        localStorage.setItem('theme', mode);
       }
 
-      // Simpan preferensi tema di local storage
-      localStorage.setItem('theme', mode);
+      // Update giscus theme
+      const giscusFrame = document.querySelector('.giscus-frame');
+      const giscusTheme = html.getAttribute('data-theme') || 'preferred_color_scheme';
+
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: giscusTheme,
+              },
+            },
+          },
+          'https://giscus.app'
+        );
+      }
+
+      const utterancesFrame = document.querySelector('.utterances-frame');
+      const utterancesTheme = html.getAttribute('data-theme') || 'preferred-color-scheme';
+      if (utterancesFrame) {
+        utterancesFrame.contentWindow.postMessage(
+          {
+            type: 'set-theme',
+            theme: utterancesTheme,
+          },
+          'https://utteranc.es'
+        );
+      }
     }
 
     // Ambil tema yang tersimpan dari local storage
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      // Temukan tombol dengan mode yang sesuai dan terapkan tema yang disimpan
-      const button = Array.from(themeButtons).find((btn) => btn.getAttribute('data-mode') === savedTheme);
-      if (button) {
-        setTheme(button, savedTheme);
-      }
+    const cacheTheme = localStorage.getItem('theme') || 'system';
+
+    // Temukan tombol dengan mode yang sesuai dan terapkan tema yang disimpan
+    const initialButton = Array.from(themeButtons).find((btn) => btn.getAttribute('theme-mode') === cacheTheme);
+    if (initialButton) {
+      setTheme(initialButton, cacheTheme);
     }
 
     // Tambahkan event listener untuk setiap tombol tema
     themeButtons.forEach((button) => {
       button.addEventListener('click', function () {
-        const mode = button.getAttribute('data-mode');
+        const mode = button.getAttribute('theme-mode');
         setTheme(button, mode);
       });
     });

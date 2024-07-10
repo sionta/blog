@@ -5,7 +5,7 @@ description: >-
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 
-# Site Verifications. NOTE: if you this on private build
+# Site Verifications. NOTE: Please build on private repository
 site_verification:
   google: ""
   bing: ""
@@ -56,5 +56,73 @@ comments:
     repo: "sionta/blog" # e.g. "owner/repo"
     issue_term: "pathname"
 
-paginate: 5
-paginate_path: "/blog/page:num/"
+paginater: 10
+paginater_path: "page:num"
+
+# paginate: 3
+# paginate_path: "/:num/"
+
+# IMPORTANT SETTINGS *****************************************
+
+# self-hosted assets are enabled while in `JEKYLL _ENV`.
+self_host: ""
+
+# Options for _plugins/minify.rb
+minify:
+  env: production
+  html: true
+  css: true
+  js: true
+
+# https://jekyllrb.com/docs/configuration/markdown/
+kramdown:
+  input: GFM
+  # hard_wrap: false
+  # https://github.com/jekyll/jekyll/pull/4090
+  # http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: true
+      start_line: 1
+      table_class: "rouge-table" # - a CSS class for the table
+      gutter_class: "rouge-gutter" # - a CSS class for the line-number cell
+      code_class: "rouge-code" # - a CSS class for the code cell
+
+redirect_from:
+  json: false
+
+collections:
+  pages:
+    output: true
+    permalink: "/:name"
+  posts:
+    output: true
+    permalink: "/blog/:title/"
+
+defaults:
+  - scope:
+      path: _pages
+      type: pages
+    values:
+      layout: page
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+      # Special configuration for layout "post":
+      toc: false # Table of contents
+      anchor: true # Anchor headings
+      diagram: false # Mermaid diagrammings
+      comments: false # Comments, first set `site.comments.provider`
+      math: "" # To enable set to "katex" or "mathjax"
+
+exclude:
+  - "/test*"
+  - "/tool*"
+  - "/script*"
+  - "package*.json"
+  - "LICENSE"
+  - "README.md"

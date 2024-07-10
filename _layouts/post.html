@@ -1,12 +1,16 @@
 ---
-layout: base
+layout: default
 ---
 {% assign author_name = site.author.name | default: page.author %}
 {% assign author_url = site.author.url %}
 {% assign date_format = site.date_format | default: '%B %d, %Y' %}
 {% assign date_modified = page.modified_date | default: page.last_modified_at %}
-{% assign date_published = page.date %}
-<article class="post" itemscope itemtype="https://schema.org/BlogPosting" itemid="{{ page.url | absolute_url }}">
+<article
+  class="post-content"
+  itemscope
+  itemtype="https://schema.org/BlogPosting"
+  itemid="{{ page.url | absolute_url }}"
+>
   <header>
     <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
     <p>
@@ -14,17 +18,19 @@ layout: base
         Posted by
         <span itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">
-            <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
+            {% if author_url %}
+              <a itemprop="url" href="{{ author_url | relative_url }}">{{ author_name }}</a>
+            {% else %}
+              <strong>{{ author_name }}</strong>
+            {% endif %}
           </span>
         </span>
       {% endif %}
-      {% if date_published %}
-        Published on
-        <time itemprop="datePublished" datetime="{{ date_published | date_to_xmlschema }}">
-          {{ date_published | date: date_format }}
-        </time>
-      {% endif %}
-      {% if date_modified and date_modified != date_published %}
+      Published on
+      <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
+        {{ page.date | date: date_format }}
+      </time>
+      {% if date_modified and date_modified != page.date %}
         , Modified on
         <time itemprop="dateModified" datetime="{{ date_modified | date_to_xmlschema }}">
           {{ date_modified | date: date_format }}
@@ -37,6 +43,9 @@ layout: base
     {% include toc.html mobile=true %}
     {{ content }}
   </section>
-  {% comment %} <footer>{% include comments.html %}</footer> {% endcomment %}
+  <footer>{% include comments.html %}</footer>
   <a href="{{ page.url | relative_url }}" hidden></a>
+</article>
+<article class="post-sidebar">
+  {% include toc.html mobile=false %}
 </article>

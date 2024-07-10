@@ -178,6 +178,7 @@
       tocbot.destroy();
 
       const tocSelector = window.innerWidth >= 768 ? "#toc" : "#toc-mobile";
+      if (!tocSelector) return;
 
       tocbot.init({
         tocSelector: tocSelector,

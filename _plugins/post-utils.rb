@@ -3,6 +3,34 @@
 require 'yaml'
 
 module Jekyll
+
+  # class ExcerptGenerator < Generator
+  #   safe true
+  #   priority :low
+
+  #   def generate(site)
+  #     site.posts.docs.each do |post|
+  #       # Generate excerpt if it doesn't exist
+  #       if !post.data['excerpt']
+  #         post.data['excerpt'] = generate_excerpt(post.content)
+  #       end
+  #     end
+  #   end
+
+  #   private
+
+  #   def generate_excerpt(content)
+  #     # Define the number of sentences to include in the excerpt
+  #     sentence_count = 20
+
+  #     # Split content into sentences and take the first few sentences
+  #     excerpt = content.split(/(?<=\.)\s+/)[0, sentence_count].join(' ')
+
+  #     # Return the generated excerpt
+  #     excerpt
+  #   end
+  # end
+
   module RebaseContentFilter
     # Load data from _data/metadata.yml file.
     METADATA = YAML.load_file(File.join(Dir.pwd, '_data', 'metadata.yml'))
@@ -120,6 +148,7 @@ module Jekyll
       end
     end
   end
+
 end
 
 Liquid::Template.register_filter(Jekyll::RebaseContentFilter)

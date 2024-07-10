@@ -33,6 +33,6 @@ $breakpoints: (
 $spacing-unit: 20px !default;
 $border-radius: 3px !default;
 
-$content-width: map.get($breakpoints, lg) !default;
-$min-width: map.get($breakpoints, sm) !default;
+$content-width: 1080px !default;
+$min-width: map.get($breakpoints, md) !default;
 $max-width: map.get($breakpoints, lg) !default;

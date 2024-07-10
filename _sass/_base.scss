@@ -362,7 +362,7 @@ table:not(:has(pre)) {
   max-width: calc(#{$content-width} - #{$spacing-unit});
   margin: 0 auto;
   padding: 0 calc(#{$spacing-unit} * 0.5);
-  @extend %clearfix;
+  // @extend %clearfix;
 
   @media screen and (min-width: $max-width) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
@@ -394,12 +394,12 @@ table:not(:has(pre)) {
   flex-direction: row;
   width: 100%;
 
-  .content {
-    flex: 1; // Ensures content takes up remaining space
+  .post-content {
+    flex: 1;
   }
 
-  .sidebar {
-    flex: 0 0 25%;
+  .post-sidebar {
+    flex: 0 0 20%;
     margin-left: $spacing-unit;
   }
 
@@ -414,14 +414,15 @@ table:not(:has(pre)) {
     @media screen and (max-width: $max-width) {
       flex-direction: column;
       text-align: center;
+      gap: $spacing-unit;
     }
+  }
 
-    @include menu-item(true, $spacing-unit);
+  @include menu-item(true, $spacing-unit);
 
-    a {
-      font-size: 1rem;
-      font-weight: 700;
-    }
+  a {
+    font-size: 1rem;
+    font-weight: 700;
   }
 }
 

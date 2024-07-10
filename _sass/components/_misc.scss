@@ -1,6 +1,61 @@
+@use "../utils" as *;
 /**
  * Utility classes
  */
+.tooltip {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: var(--tx-1);
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    font: 400 14px/1.15 $font-sans;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-3);
+    color: var(--tx-1);
+    padding: 0.4em;
+    border-radius: 0.25em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    content: "";
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--bg-3) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  &:hover::after,
+  &:hover::before {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &[aria-label]:hover::after {
+    content: attr(aria-label);
+  }
+
+  &[title]:hover::after {
+    content: attr(title) !important;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -89,10 +144,6 @@ a[href^="#fn"] {
   &:hover {
     text-decoration: none;
   }
-}
-
-.site-comments {
-  padding-top: 10px;
 }
 
 .emoji {

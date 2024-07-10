@@ -1,4 +1,4 @@
-{% if site.paginate %}
+{% if site.paginate and paginator.posts.size > 0 %}
   <div class="pagination">
     {% if paginator.total_pages > 0 %}
       {% if paginator.previous_page %}
@@ -12,9 +12,15 @@
         {% elsif page == 1 %}
           <a href="{{ '/' | relative_url }}" class="page-number">{{ page }}</a>
         {% else %}
-          <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="page-number">
+          <a href="{{ page }}" class="page-number">
             {{ page }}
           </a>
+          {% comment %} Only when "paginate_path: /page/:num/"  {% endcomment %}
+          {% comment %}
+            <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="page-number">
+              {{ page }}
+            </a>
+          {% endcomment %}
         {% endif %}
       {% endfor %}
       {% if paginator.next_page %}

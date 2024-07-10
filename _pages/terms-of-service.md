@@ -1,6 +1,6 @@
 ---
-navigation: footer
-layout: base
+navbar: footer
+layout: default
 order: 0
 ---
 

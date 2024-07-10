@@ -111,6 +111,9 @@ $tag-colors: (
     --#{$key}: #{$value};
   }
 
+  --tooltip-bg: var(--bg-3);
+  --tooltip-tx: var(--tx-1);
+
   @if $init {
     --red: #{$red};
     --orange: #{$orange};

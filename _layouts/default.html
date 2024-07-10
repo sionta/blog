@@ -18,37 +18,24 @@
   </head>
   <body>
     <header id="site-header" role="banner">
-      <div class="wrapper">
-        <div class="site-header__inner">
-          {% include brand.html %}
-          {% include navbar.html %}
-        </div>
+      <div class="wrapper site-header__inner">
+        {% include brand.html %}
+        {% include navbar.html %}
       </div>
     </header>
     <main id="site-content" role="main">
-      <div class="wrapper">
-        <div class="site-content__inner">
-          <div class="content">
-            {{ content | custom_content }}
-          </div>
-          {% if page.layout == 'post' %}
-            <div class="sidebar">
-              {% include toc.html mobile=false %}
-            </div>
-          {% endif %}
-        </div>
+      <div class="wrapper site-content__inner">
+        {{ content | custom_content }}
       </div>
     </main>
     <footer id="site-footer" role="contentinfo">
-      <div class="wrapper">
-        <div class="site-footer__inner">
-          {% include social.html %}
-          {% include theme.html %}
-          {% include brand.html %}
-          <button type="button" id="back-to-top" aria-label="Go to top">
-            {% include icon.html id="chevron-up" %}
-          </button>
-        </div>
+      <div class="wrapper site-footer__inner">
+        {% include social.html %}
+        {% include theme.html %}
+        {% include brand.html class='align-right center-on-mobiles' %}
+        <button type="button" id="back-to-top" aria-label="Go to top">
+          {% include icon.html id="chevron-up" %}
+        </button>
       </div>
     </footer>
     {% include script.html %}

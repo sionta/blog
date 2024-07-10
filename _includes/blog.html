@@ -1,22 +1,26 @@
-{% if site.paginate %}
+{% if paginator.posts.size > 0 %}
   {% assign posts = paginator.posts %}
 {% else %}
   {% assign posts = site.posts %}
 {% endif %}
-{% assign date_format = site.date_format | default: '%B %d, %Y' %}
+
+{% if include.search %}{% include search.html %}{% endif %}
+
 <div class="blog-container">
-  {% for post in posts %}
-    <a class="blog-link" href="{{ post.url | relative_url }}">
-      <div class="blog-card">
-        {% if post.image %}
-          {% assign image_url = post.image.url | default: post.image | relative_url %}
-          {% assign image_alt = post.image.alt | default: post.title %}
-          <img class="blog-image" src="{{ image_url }}" alt="{{ image_alt }}">
-        {% endif %}
+  {% for post in posts | limit: include.total %}
+    <div class="blog-card">
+      {% if include.image and post.image %}
+        {% assign img_url = post.image.url | default: post.image | relative_url %}
+        {% assign img_alt = post.image.alt | default: post.title %}
+        <img class="blog-image" src="{{ img_url }}" alt="{{ img_alt }}">
+      {% endif %}
+      <a class="blog-link" href="{{ post.url | relative_url }}">
         <h2 class="blog-title">{{ post.title }}</h2>
-        <p class="blog-description">{{ post.description }}</p>
-        {% comment %} <a href="{{ post.url | relative_url }}" class="blog-read-more">Read more</a> {% endcomment %}
-      </div>
-    </a>
+        <p class="blog-description">{{ post.content | strip_html | truncatewords: 30, '...' }}</p>
+        {% comment %} <p class="blog-description">{{ post.excerpt }}</p> {% endcomment %}
+      </a>
+    </div>
   {% endfor %}
 </div>
+
+{% include pagination.html %}

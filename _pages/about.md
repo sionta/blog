@@ -1,8 +1,8 @@
 ---
-navigation: header
+navbar: header
 layout: page
 title: About
-order: 0
+order: 2
 ---
 
 ## Hi there 👋
