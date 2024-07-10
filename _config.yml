@@ -57,7 +57,7 @@ comments:
     issue_term: "pathname"
 
 paginater: 10
-paginater_path: "page:num"
+paginater_path: "page:num/"
 
 # paginate: 3
 # paginate_path: "/:num/"
