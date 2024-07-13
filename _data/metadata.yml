@@ -23,7 +23,7 @@ alerts:
   - name: Warning
     icon: alert-triangle
   - name: Caution
-    icon: alert-octagon
+    icon: alert-hexagon
 
 # https://github.com/rouge-ruby/rouge/blob/master/docs/Languages.md
 code_blocks:

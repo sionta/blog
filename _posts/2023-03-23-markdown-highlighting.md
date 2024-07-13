@@ -105,6 +105,7 @@ social_links:
   - { title: GitHub, url: "https://github.com/sionta" }
   - { title: Twitter, url: "https://twitter.com/r007mmxv" }
 ```
+{: mark_lines='2'}
 
 ### TOML
 

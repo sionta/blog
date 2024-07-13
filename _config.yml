@@ -64,20 +64,11 @@ paginater_path: "/page/:num/"
 
 # IMPORTANT SETTINGS *****************************************
 
-# self-hosted assets are enabled while in `JEKYLL _ENV`.
-self_host: "development"
-
-# Options for _plugins/minify.rb
-minify:
-  env: "production"
-  html: true
-  css: true
-  js: true
-
 # https://jekyllrb.com/docs/configuration/markdown/
+markdown: "kramdown"
 kramdown:
   input: "GFM"
-  # hard_wrap: false
+  hard_wrap: false
   # https://github.com/jekyll/jekyll/pull/4090
   syntax_highlighter: "rouge"
   syntax_highlighter_opts:
@@ -118,6 +109,13 @@ defaults:
       diagram: false # Mermaid diagrammings
       comments: false # Comments, first set `site.comments.provider`
       math: "" # To enable set to "katex" or "mathjax"
+
+# Options for _plugins/minify.rb
+minify:
+  env: "production"
+  html: true
+  css: true
+  js: true
 
 exclude:
   - "/test*"

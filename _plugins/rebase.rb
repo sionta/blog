@@ -95,8 +95,8 @@ module Jekyll
       <<~HTML
         <div class="code-blocks">
           <div class="code-header">
-          <span code-lang="#{language}">#{title}</span>
-          <button type="button" success-label="#{success_label}" aria-label="Copy #{title} code to clipboard">#{copy_label}</button>
+            <span code-lang="#{language}">#{title}</span>
+            <button type="button" copy-label="#{copy_label}" success-label="#{success_label}" aria-label="Copy #{title} code to clipboard">#{copy_label}</button>
           </div>
           <pre class="highlight"><code class="language-#{language}">#{code}</code></pre>
       </div>

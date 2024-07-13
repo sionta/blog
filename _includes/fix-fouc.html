@@ -1,6 +1,11 @@
-{% capture FIX_FOUC %}
-  {% comment %} https://stackoverflow.com/a/5983338 {% endcomment %}
-  <style type="text/css">body{visibility:hidden;}</style>
-  <script type="text/javascript">window.onload=function(){document.body.style.visibility='visible';};</script>
-{% endcapture %}
-{{ FIX_FOUC }}
+{% comment %} FIX FOUC for themeToggle https://stackoverflow.com/a/5983338 {% endcomment %}
+<style type="text/css">
+  body {
+    visibility: hidden;
+  }
+</style>
+<script type="text/javascript">
+  window.onload = () => {
+    document.body.style.visibility = 'visible';
+  };
+</script>

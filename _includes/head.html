@@ -5,8 +5,9 @@
   <title>
     {%- if page.url == '/' %}{{ site.title }}{% else %}{{ page.title }}{% endif -%}
   </title>
-  <link rel="stylesheet" type="text/css" href="{{ '/assets/css/style.css' | relative_url }}">
   {% include fix-fouc.html %}
+  <link rel="stylesheet" type="text/css" href="{{ '/assets/css/style.css' | relative_url }}">
+
   {% seo title=false %}
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">

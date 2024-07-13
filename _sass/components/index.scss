@@ -3,7 +3,6 @@
 
 // content
 @forward "alerts";
-@forward "post-tags";
 @forward "post-toc";
 @forward "blog-card";
 @forward "pagination";
@@ -11,7 +10,7 @@
 @forward "highlight";
 @forward "task-list";
 
-@forward "back-to-top";
+@forward "goto-top";
 @forward "search-post";
 @forward "theme-toggle";
 @forward "misc";

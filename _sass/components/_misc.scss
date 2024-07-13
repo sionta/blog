@@ -5,8 +5,8 @@
 .tooltip {
   cursor: pointer;
   position: relative;
-  // display: inline-block;
-  // color: var(--tx-1);
+  display: inline-flex;
+  color: var(--tx-1);
 
   &[aria-label]::after {
     content: attr(aria-label);
@@ -18,7 +18,7 @@
 
   &::after {
     content: attr(data-tooltip);
-    font: 400 14px/1.15 "Arial", sans-serif;
+    font: 400 14px/1 "Arial", sans-serif;
     position: absolute;
     bottom: 125%; // Position the tooltip above the element
     left: 50%;
@@ -30,19 +30,19 @@
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease-in-out;
     z-index: 1;
   }
 
   &::before {
     content: "";
     position: absolute;
-    bottom: 10px; // Position the arrow above the tooltip
+    bottom: 35%; // Position the arrow above the tooltip
     left: 50%;
     transform: translateX(-50%);
     border-width: 12px; // Adjust the size of the arrow
     border-style: solid;
-    border-color: red transparent transparent transparent;
+    border-color: var(--bg-3) transparent transparent transparent;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;

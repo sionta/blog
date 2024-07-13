@@ -4,31 +4,44 @@
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  padding: 0;
-  margin: 0;
+  margin-bottom: 1.5rem;
 
   .code-header {
-    position: absolute;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-
+    justify-content: center;
+    position: absolute;
     top: 0;
     right: 0;
     border-bottom-left-radius: 8px;
     background: var(--bg-3);
+    width: 8rem;
 
     span[code-lang],
     button {
       color: var(--base07);
-      padding: 8px 10px;
-      font-size: px-to-rem(14.5px);
+      font-size: 0.875rem;
       line-height: 1;
+      padding: 8px 10px;
     }
 
     button {
       cursor: pointer;
       border: none;
-      background: inherit;
+      display: none;
+      background: none;
+    }
+
+    &:hover {
+      background: var(--lk-1);
+
+      span[code-lang] {
+        display: none;
+      }
+
+      button {
+        display: inline-block;
+      }
     }
   }
 }
