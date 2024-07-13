@@ -5,14 +5,22 @@
 .tooltip {
   cursor: pointer;
   position: relative;
-  display: inline-block;
-  color: var(--tx-1);
+  // display: inline-block;
+  // color: var(--tx-1);
 
-  &:hover::after {
+  &[aria-label]::after {
+    content: attr(aria-label);
+  }
+
+  &[title]::after {
+    content: attr(title);
+  }
+
+  &::after {
     content: attr(data-tooltip);
-    font: 400 14px/1.15 $font-sans;
+    font: 400 14px/1.15 "Arial", sans-serif;
     position: absolute;
-    bottom: 125%;
+    bottom: 125%; // Position the tooltip above the element
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--bg-3);
@@ -22,19 +30,19 @@
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease;
     z-index: 1;
   }
 
-  &:hover::before {
+  &::before {
     content: "";
     position: absolute;
-    bottom: 120%;
+    bottom: 10px; // Position the arrow above the tooltip
     left: 50%;
     transform: translateX(-50%);
-    border-width: 5px;
+    border-width: 12px; // Adjust the size of the arrow
     border-style: solid;
-    border-color: var(--bg-3) transparent transparent transparent;
+    border-color: red transparent transparent transparent;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
@@ -45,14 +53,6 @@
   &:hover::before {
     opacity: 1;
     visibility: visible;
-  }
-
-  &[aria-label]:hover::after {
-    content: attr(aria-label);
-  }
-
-  &[title]:hover::after {
-    content: attr(title) !important;
   }
 }
 

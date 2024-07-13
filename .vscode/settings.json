@@ -2,7 +2,9 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "files.associations": {
-    "*.html": "liquid"
+    "*.html": "liquid",
+    "**/js/main.js": "javascript",
+    "**/js/*.js": "liquid-javascript"
   },
   "[liquid]": {
     "editor.defaultFormatter": "Shopify.theme-check-vscode"

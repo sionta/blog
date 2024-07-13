@@ -33,8 +33,13 @@
   // }
 
   .blog-link {
-    text-decoration: none;
     height: min-content;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: var(--lk-1);
+    }
   }
 
   .blog-title {

@@ -28,8 +28,8 @@ alerts:
 # https://github.com/rouge-ruby/rouge/blob/master/docs/Languages.md
 code_blocks:
   label:
-    copy: "Click to copy"
-    success: "You did it!" # "Copied!"
+    copy: "Copy"
+    success: "Copied!"
     error: "Whoops, error!"
   language:
     - title: Plain Text

@@ -136,9 +136,15 @@ main {
 /**
   * Images
   */
+svg,
 img {
   max-width: 100%;
   vertical-align: middle;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: text-bottom;
 }
 
 /**

@@ -13,31 +13,46 @@
 
 {% if page.collection == 'posts' or page.layout == 'post' %}
   {% if page.toc == true or page.table_of_content == true %}
-    <script src="{{ VENDOR_ORIGIN }}/tocbot{{ __JS_TOCBOT__ }}/tocbot.min.js"></script>
+    <script type="text/javascript" src="{{ VENDOR_ORIGIN }}/tocbot{{ __JS_TOCBOT__ }}/tocbot.min.js"></script>
   {% endif %}
 
   {% if page.anchor == true or page.anchor_heading == true %}
-    <script src="{{ VENDOR_ORIGIN }}/anchor-js{{ __JS_ANCHOR__ }}/anchor.min.js"></script>
+    <script type="text/javascript" src="{{ VENDOR_ORIGIN }}/anchor-js{{ __JS_ANCHOR__ }}/anchor.min.js"></script>
   {% endif %}
 
   {% if page.mermaid == true or page.diagram == true %}
-    <script src="{{ VENDOR_ORIGIN }}/mermaid{{ __JS_MERMAID__ }}/mermaid.min.js"></script>
+    <script type="text/javascript" src="{{ VENDOR_ORIGIN }}/mermaid{{ __JS_MERMAID__ }}/mermaid.min.js"></script>
   {% endif %}
 
   {% case page.math %}
-    {% when 'katex' %}
-      <link rel="stylesheet" href="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.css" crossorigin="anonymous">
-      <script defer src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.js" crossorigin="anonymous"></script>
+    {% when 'katex', true %}
+      <link
+        type="text/css"
+        rel="stylesheet"
+        href="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.css"
+        crossorigin="anonymous"
+      >
       <script
+        type="text/javascript"
+        defer
+        src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.js"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        type="text/javascript"
         defer
         src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/contrib/auto-render.min.js"
         crossorigin="anonymous"
       ></script>
     {% when 'mathjax' %}
-      <script async id="Mathjax-script" src="{{ VENDOR_ORIGIN }}/mathjax{{ __JS_MATHJAX__ }}/tex-mml-chtml.js"></script>
+      <script
+        type="text/javascript"
+        async
+        id="Mathjax-script"
+        src="{{ VENDOR_ORIGIN }}/mathjax{{ __JS_MATHJAX__ }}/tex-mml-chtml.js"
+      ></script>
   {% endcase %}
 {% endif %}
 
 {% comment %} <script src="{{ VENDOR_ORIGIN }}/simple-jekyll-search{{ __JS_JEKYLL_SEARCH__ }}/simple-jekyll-search.min.js"></script> {% endcomment %}
-{% comment %} bundle scripts {% endcomment %}
-<script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+<script type="module" src="{{ '/assets/js/main.js' | relative_url }}"></script>

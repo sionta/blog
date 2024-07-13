@@ -7,9 +7,8 @@
       {% else %}
       {% assign social_icon = 'brand-' | append: social_title | downcase %}
     {% endif %}
-    <li><a href="{{ social_link }}" target="_blank" title="{{ social_title }}" class="tooltip" data-tooltip="{{ social_title }}">
-      {% include icon.html id=social_icon %}
-      <span class="sr-only">{{ social_title }}</span></a></li>
+    <li class="tooltip" data-tooltip="{{ social_title }}"><a href="{{ social_link }}" target="_blank" title="{{ social_title }}">
+      {% include icon.html id=social_icon %}<span class="sr-only">{{ social_title }}</span></a></li>
   {% endfor %}
 {% endcapture %}
 <nav class="social-links">

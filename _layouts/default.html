@@ -1,43 +1,14 @@
 <!doctype html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% seo title=false %}
-    {% capture head_title %}{% if page.url == '/' %}{{ site.title }}{% else %}{{ page.title }}{% endif %}{% endcapture %}
-    <title>{{ head_title | escape }}</title>
-    <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/avatar.svg' | relative_url }}">
-    <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
-    <link rel="icon" type="image/png" href="{{ '/assets/img/avatar.png' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    {% feed_meta %}
-    {% include analytics.html %}
-    {% include verifications.html %}
-    <script rel="preload" src="{{ '/assets/js/main.js' | relative_url }}" as="script"></script>
-  </head>
+  {% include head.html %}
   <body>
-    <header id="site-header" role="banner">
-      <div class="wrapper site-header__inner">
-        {% include brand.html %}
-        {% include navbar.html %}
-      </div>
-    </header>
+    {% include header.html %}
     <main id="site-content" role="main">
       <div class="wrapper site-content__inner">
-        {{ content | custom_content }}
+        {{ content | rebase_content }}
       </div>
     </main>
-    <footer id="site-footer" role="contentinfo">
-      <div class="wrapper site-footer__inner">
-        {% include social.html %}
-        {% include theme.html %}
-        {% include brand.html class='align-right center-on-mobiles' %}
-        <button type="button" id="back-to-top" aria-label="Go to top">
-          {% include icon.html id="chevron-up" %}
-        </button>
-      </div>
-    </footer>
+    {% include footer.html %}
     {% include script.html %}
   </body>
 </html>

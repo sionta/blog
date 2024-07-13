@@ -16,15 +16,15 @@ end
 
 # Function to minify HTML files
 def minify_html(output_dir)
-  html_cmd = File.expand_path('./node_modules/.bin/html-minifier')
+  html_cmd = File.expand_path('node_modules/.bin/html-minifier')
   html_opts = "--input-dir \"#{output_dir}\" --output-dir \"#{output_dir}\" --file-ext html --collapse-whitespace --remove-comments --minify-css --minify-js"
   run_command(html_cmd, html_opts)
 end
 
 # Function to minify CSS files
 def minify_css(output_dir)
-  css_cmd = File.expand_path('./node_modules/.bin/cleancss')
-  css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| file.include?('vendor') || file.end_with?('.min.css') }
+  css_cmd = File.expand_path('node_modules/.bin/cleancss')
+  css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| file.include?('vendor') || file.include?('lib') || file.end_with?('.min.css') }
   css_files.each do |css_file|
     css_opts = "--with-rebase -o #{css_file} #{css_file}"
     Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minifying CSS file: #{css_file}"
@@ -34,8 +34,8 @@ end
 
 # Function to minify JS files
 def minify_js(output_dir)
-  js_cmd = File.expand_path('./node_modules/.bin/uglifyjs')
-  js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| file.include?('vendor') || file.end_with?('.min.js') }
+  js_cmd = File.expand_path('node_modules/.bin/uglifyjs')
+  js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| file.include?('vendor') || file.include?('lib') || file.end_with?('.min.js') }
   js_files.each do |js_file|
     js_opts = "-o \"#{js_file}\" \"#{js_file}\""
     Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minifying JS file: #{js_file}"

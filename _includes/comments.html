@@ -1,83 +1,104 @@
-{% if page.comments == true and site.comments.provider != empty %}
-  <div
-    {% if site.comments.provider == 'disqus' %}
-      id="disqus_thread"
-    {% else %}
-      id="site-comment"
-    {% endif %}
-    class="{{ site.comments.provider }}"
-    itemscope
-    itemtype="https://schema.org/Comment"
-  ></div>
-  {% case site.comments.provider %}
-    {% when 'disqus' %}
+{% if page.comments == true and site.comments.provider %}
+  {% assign PROVIDER_NAME = site.comments.provider %}
+  {% assign PROVIDER_DATA = site.comments[PROVIDER_NAME] %}
+  {% if include.only == 'html' %}
+    <div
+      {% if PROVIDER_NAME == 'disqus' %}
+        id="disqus_thread"
+      {% else %}
+        id="site-comment"
+      {% endif %}
+      class="{{ PROVIDER_NAME }}"
+      itemscope
+      itemtype="https://schema.org/Comment"
+      pageurl="{{ page.url | absolute_url }}"
+    ></div>
+  {% endif %}
+  {% comment %}
+    {% if include.only == 'script' %}
       <script>
-        /**
-         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        var disqus_shortname = '{{ site.comments.disqus.shortname }}';
-        var disqus_config = function () {
-          this.page.url = '{{ page.url | absolute_url }}';
-          this.page.identifier = '{{ page.url | absolute_url }}';
-        };
-        (function () {
-          // DON'T EDIT BELOW THIS LINE
-          var d = document,
-            s = d.createElement('script');
-          s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-        })();
+        (window.themeMode =
+          localStorage.getItem('theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')),
+          (giscusTheme = themeMode === 'dark' ? 'dark_dimmed' : 'light'),
+          (utterancesTheme = themeMode === 'dark' ? 'dark_dimmed' : 'light');
       </script>
-      <noscript
-        >Please enable JavaScript to view the
-        <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
-      >
-    {% when 'giscus' %}
-      <script type="text/javascript">
-        (function () {
-          const giscusTheme =
-            localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-          const giscusAttributes = {
-            src: 'https://giscus.app/client.js',
-            'data-repo': '{{ site.comments.giscus.repo }}',
-            'data-repo-id': '{{ site.comments.giscus.repo_id }}',
-            'data-category': '{{ site.comments.giscus.category }}',
-            'data-category-id': '{{ site.comments.giscus.category_id }}',
-            'data-mapping': "{{ site.comments.giscus.mapping | default: 'pathname' }}",
-            'data-strict': '{{ site.comments.giscus.strict | default: 0 }}',
-            'data-reactions-enabled': '{{ site.comments.giscus.reactions_enabled | default: 1 }}',
-            'data-emit-metadata': '{{ site.comments.giscus.metadata | default: 0 }}',
-            'data-theme': giscusTheme,
-            'data-lang': "{{ site.comments.giscus.lang | default: site.lang | default: 'en' }}",
-            'data-loading': 'lazy',
-            crossorigin: 'anonymous',
-            async: true,
-          };
-          let giscusScript = document.createElement('script');
-          Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
-          document.getElementById('site-comment').appendChild(giscusScript);
-        })();
-      </script>
-    {% when 'utterances' %}
-      <script type="text/javascript">
-        (function () {
-          const utterancesTheme =
-            localStorage.getItem('theme') ||
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'github-dark' : 'github-light');
-          const utterancesAttributes = {
-            src: 'https://utteranc.es/client.js',
-            repo: '{{ site.comments.utterances.repo }}',
-            'issue-term': "{{ site.comments.utterances.issue_term | default: 'pathname' }}",
-            theme: utterancesTheme,
-            crossorigin: 'anonymous',
-            async: true,
-          };
-          const utterancesScript = document.createElement('script');
-          Object.entries(utterancesAttributes).forEach(([key, value]) => utterancesScript.setAttribute(key, value));
-          document.getElementById('site-comment').appendChild(utterancesScript);
-        })();
-      </script>
-  {% endcase %}
+      {% case PROVIDER_NAME %}
+        {% when 'disqus' %}
+          <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            var disqus_config = function () {
+              this.page.url = '{{ page.url | absolute_url }}';
+              this.page.identifier = '{{ page.id }}';
+            };
+            (function () {
+              // DON'T EDIT BELOW THIS LINE
+              var d = document,
+                s = d.createElement('script');
+              s.src = 'https://{{ PROVIDER_DATA.shortname }}.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', +new Date());
+              (d.getElementById('site-comment') || d.head || d.body).appendChild(s);
+            })();
+          </script>
+          <noscript
+            >Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript
+          >
+        {% when 'giscus' %}
+          <script type="text/javascript">
+            (function () {
+              const themeMode =
+                  localStorage.getItem('theme') ||
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+                giscusTheme = themeMode === 'dark' ? 'dark_dimmed' : 'light';
+
+              const giscusAttributes = {
+                src: 'https://giscus.app/client.js',
+                'data-repo': '{{ PROVIDER_DATA.repo }}',
+                'data-repo-id': '{{ PROVIDER_DATA.repo_id }}',
+                'data-category': '{{ PROVIDER_DATA.category }}',
+                'data-category-id': '{{ PROVIDER_DATA.category_id }}',
+                'data-mapping': "{{ PROVIDER_DATA.mapping | default: 'pathname' }}",
+                'data-strict': '{{ PROVIDER_DATA.strict | default: 0 }}',
+                'data-reactions-enabled': '{{ PROVIDER_DATA.reactions_enabled | default: 1 }}',
+                'data-emit-metadata': '{{ PROVIDER_DATA.metadata | default: 0 }}',
+                'data-theme': giscusTheme,
+                'data-lang': "{{ PROVIDER_DATA.lang | default: site.lang | default: 'en' }}",
+                'data-loading': 'lazy',
+                crossorigin: 'anonymous',
+                async: true,
+              };
+
+              const giscusScript = document.createElement('script');
+              Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+              document.getElementById('site-comment').appendChild(giscusScript);
+            })();
+          </script>
+        {% when 'utterances' %}
+          <script type="text/javascript">
+            (function () {
+              const themeMode =
+                  localStorage.getItem('theme') ||
+                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'),
+                utterancesTheme = themeMode === 'dark' ? 'github-dark' : 'github-light';
+
+              const utterancesAttributes = {
+                src: 'https://utteranc.es/client.js',
+                repo: '{{ PROVIDER_DATA.repo }}',
+                'issue-term': "{{ PROVIDER_DATA.issue_term | default: 'pathname' }}",
+                theme: utterancesTheme,
+                crossorigin: 'anonymous',
+                async: true,
+              };
+
+              const utterancesScript = document.createElement('script');
+              Object.entries(utterancesAttributes).forEach(([key, value]) => utterancesScript.setAttribute(key, value));
+              document.getElementById('site-comment').appendChild(utterancesScript);
+            })();
+          </script>
+      {% endcase %}
+    {% endif %}
+  {% endcomment %}
 {% endif %}

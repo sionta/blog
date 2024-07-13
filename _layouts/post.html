@@ -43,9 +43,14 @@ layout: default
     {% include toc.html mobile=true %}
     {{ content }}
   </section>
-  <footer>{% include comments.html %}</footer>
+  <footer>
+    <p>
+      Tagged with: <span itemprop="keywords">{{ page.tags | join: ', ' }}</span>
+    </p>
+    {% include comments.html only='html' %}
+  </footer>
   <a href="{{ page.url | relative_url }}" hidden></a>
 </article>
-<article class="post-sidebar">
+<aside class="post-sidebar">
   {% include toc.html mobile=false %}
-</article>
+</aside>

@@ -1,84 +1,12 @@
-<div id="theme-toggle" class="theme-toggle">
-  <button theme-mode="system" type="button" aria-label="System mode" class="active tooltip">
+<!-- prettier-ignore -->
+<div class="theme-toggle" id="theme-toggle">
+  <button data-mode="system" aria-label="System mode" type="button">
     {% include icon.html id='device-desktop' %} System
   </button>
-  <button theme-mode="light" type="button" aria-label="Light mode" class="tooltip">
+  <button data-mode="light" aria-label="Light mode" type="button">
     {% include icon.html id='sun' %} Light
   </button>
-  <button theme-mode="dark" type="button" aria-label="Dark mode" class="tooltip">
+  <button data-mode="dark" aria-label="Dark mode" type="button">
     {% include icon.html id='moon' %} Dark
   </button>
 </div>
-<script type="text/javascript">
-  (function () {
-    const html = document.documentElement;
-    const themeToggle = document.querySelector('#theme-toggle');
-    const themeButtons = themeToggle.querySelectorAll('button');
-
-    function setTheme(button, mode) {
-      // Simpan tombol aktif saat ini
-      const activeButton = themeToggle.querySelector('button.active');
-      // Hanya menghapus kelas 'active' dari tombol sebelumnya yang aktif
-      if (activeButton) {
-        activeButton.classList.remove('active');
-      }
-      // Menambahkan kelas 'active' pada tombol yang diklik
-      button.classList.add('active');
-
-      // Atur tema berdasarkan mode yang dipilih
-      if (mode === 'system' || mode === 'auto') {
-        html.removeAttribute('data-theme');
-        localStorage.removeItem('theme');
-      } else {
-        html.setAttribute('data-theme', mode);
-        localStorage.setItem('theme', mode);
-      }
-
-      // Update giscus theme
-      const giscusFrame = document.querySelector('.giscus-frame');
-      const giscusTheme = html.getAttribute('data-theme') || 'preferred_color_scheme';
-
-      if (giscusFrame) {
-        giscusFrame.contentWindow.postMessage(
-          {
-            giscus: {
-              setConfig: {
-                theme: giscusTheme,
-              },
-            },
-          },
-          'https://giscus.app'
-        );
-      }
-
-      const utterancesFrame = document.querySelector('.utterances-frame');
-      const utterancesTheme = html.getAttribute('data-theme') || 'preferred-color-scheme';
-      if (utterancesFrame) {
-        utterancesFrame.contentWindow.postMessage(
-          {
-            type: 'set-theme',
-            theme: utterancesTheme,
-          },
-          'https://utteranc.es'
-        );
-      }
-    }
-
-    // Ambil tema yang tersimpan dari local storage
-    const cacheTheme = localStorage.getItem('theme') || 'system';
-
-    // Temukan tombol dengan mode yang sesuai dan terapkan tema yang disimpan
-    const initialButton = Array.from(themeButtons).find((btn) => btn.getAttribute('theme-mode') === cacheTheme);
-    if (initialButton) {
-      setTheme(initialButton, cacheTheme);
-    }
-
-    // Tambahkan event listener untuk setiap tombol tema
-    themeButtons.forEach((button) => {
-      button.addEventListener('click', function () {
-        const mode = button.getAttribute('theme-mode');
-        setTheme(button, mode);
-      });
-    });
-  })();
-</script>
