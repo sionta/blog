@@ -7,9 +7,12 @@ image: "/assets/img/rouge.png"
 toc: true
 ---
 
-## Overview
+[Rouge][rouge] is a pure Ruby syntax highlighter. It can highlight
+[over 200 different languages][languages-doc], and output HTML
+or ANSI 256-color text. Its HTML output is compatible with
+stylesheets designed for [Pygments][pygments].
 
-This is code block language unrecognized by [Rouge][rouge_languages]:
+This is code block language unrecognized by [Rouge][rouge]:
 
 ```unknown
 {
@@ -267,4 +270,6 @@ person = Person('John')
 person.greet()
 ```
 
-[rouge_languages]: https://rouge-ruby.github.io/docs/file.Languages.html
+[rouge]: http://rouge.jneen.net/ "Rouge"
+[languages-doc]: https://rouge-ruby.github.io/docs/file.Languages.html "Languages"
+[pygments]: http://pygments.org "Pygments"

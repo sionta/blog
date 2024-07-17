@@ -1,5 +1,0 @@
-{%- comment %} Icon use Tabler https://tabler.io/icons {%- endcomment %}
-{%- assign svgpath = '/assets/tabler-icons.svg' | relative_url %}
-{%- capture attrib %}class="icon {{ include.class }}" {{ include.attr }} width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"{% endcapture %}
-{%- capture symbol %}<svg {{ attrib | strip }}><use href="{{ svgpath }}#{{ include.id | downcase }}"></use></svg>{% endcapture %}
-{%- if include.id %}{{ symbol }}{% endif %}

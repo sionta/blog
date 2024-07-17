@@ -25,6 +25,7 @@
 }
 
 * {
+  padding: 0;
   margin: 0;
 }
 
@@ -138,11 +139,11 @@ main {
   */
 svg,
 img {
+  display: block;
   max-width: 100%;
-  vertical-align: middle;
 }
 
-.icon {
+svg {
   display: inline-block;
   vertical-align: text-bottom;
 }
@@ -156,6 +157,7 @@ figure > img {
 
 figcaption {
   font-size: $small-size;
+  text-align: center;
 }
 
 /**
@@ -192,7 +194,7 @@ h6 {
   */
 a {
   color: var(--lk-1);
-  text-decoration: none;
+  text-decoration: underline;
 
   // &:visited {
   //   color: var(--lk-1);
@@ -200,7 +202,7 @@ a {
 
   &:hover {
     color: var(--lk-2);
-    text-decoration: underline;
+    text-decoration: none;
   }
 }
 
@@ -266,7 +268,7 @@ pre {
     -ms-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    padding-right: 10px;
+    padding-right: $spacing-unit;
 
     .lineno {
       text-align: right;
@@ -399,14 +401,14 @@ table:not(:has(pre)) {
   display: flex;
   flex-direction: row;
   width: 100%;
+  gap: $spacing-unit;
 
-  .post-content {
+  .article {
     flex: 1;
   }
 
-  .post-sidebar {
+  .sidebar {
     flex: 0 0 20%;
-    margin-left: $spacing-unit;
   }
 
   @media screen and (max-width: $max-width) {
@@ -432,10 +434,16 @@ table:not(:has(pre)) {
   }
 }
 
-.brand {
-  line-height: 1.15;
+.logo {
+  display: inline-block;
+
+  &,
+  a {
+    padding: 0;
+    margin: 0;
+  }
 
   a {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }

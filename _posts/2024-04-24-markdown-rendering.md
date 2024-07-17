@@ -1,24 +1,23 @@
 ---
 layout: post
 title: Markdown Test Page
-# description: A quick overview of all the Markdown syntax elements
+description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown, cheatsheet]
 author: Andre Attamimi
 image:
     url: /assets/img/hero-markdown-guide.p128.png
-    alt: Image by https://culturedcode.com"
-
+    alt: Image by https://culturedcode.com
 toc: true
-anchor: true
 comments: true
-diagram: true
-math: katex
+math: katex # or mathjax, if set to `true` math enable use katex
 ---
 
-<!-- markdownlint-disable MD022 MD025 MD033 MD036 -->
-
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
+
+<!-- NOTE: for generated page.excerpt dont use comment after front-matter -->
+
+<!-- markdownlint-disable MD022 MD025 MD033 MD036 -->
 
 ## Basic Features
 
@@ -118,18 +117,13 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
 The [Result Footnotes](#result-footnotes)
 
-### Images
+<!-- ### Images
 
-![alt text]({{ '/assets/img/rouge.png' | relative_url }})
-{:.img-center}
+![alt text]({% include placeholder.svg w=100 h=100 s='10px' %})
 
-![alt text]({{ '/assets/img/hero-markdown-guide.p128.png' | relative_url }}){: width="500px" }
+![alt text]({% include placeholder.svg w=128 h=256 s='0.75em' %})
 
-<!-- ![alt text]('https://placehold.co/100x100?text=Lorem+Ipsum') -->
-
-<!-- ![alt text](https://placehold.co/128x256?text=Lorem+Ipsum) -->
-
-<!-- ![alt text](https://placehold.co/512x256?text=Lorem+Ipsum) -->
+![alt text]({% include placeholder.svg w=512 h=256 s='2rem' %}) -->
 
 ### Codes
 

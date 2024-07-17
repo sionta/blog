@@ -1,45 +1,22 @@
-{% if page.collection == 'posts' or page.layout == 'post' %}
-  {% if page.toc == true or page.table_of_content == true %}
+{%- if page.collection == 'posts' or page.layout == 'post' -%}
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+
+  {%- if page.toc == true -%}
+    {% comment %} <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.css"> {% endcomment %}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.js"></script>
-  {% endif %}
+  {%- endif -%}
 
-  {% if page.anchor == true or page.anchor_heading == true %}
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
-  {% endif %}
-
-  {% if page.mermaid == true or page.diagram == true %}
+  {%- if page.content contains '<code class="language-mermaid">' -%}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-  {% endif %}
+  {%- endif -%}
 
-  {% case page.math %}
-    {% when 'katex', true %}
-      <link
-        type="text/css"
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-        crossorigin="anonymous"
-      >
-      <script
-        type="text/javascript"
-        defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        type="text/javascript"
-        defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-        crossorigin="anonymous"
-      ></script>
-    {% when 'mathjax' %}
-      <script
-        type="text/javascript"
-        async
-        id="Mathjax-script"
-        src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"
-      ></script>
-  {% endcase %}
-{% endif %}
-
-{% comment %} <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> {% endcomment %}
-<script type="text/javascript" src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  {%- assign mathEngine = page.math | downcase -%}
+  <!-- prettier-ignore -->
+  {%- if mathEngine == 'katex' or mathEngine == true -%}
+     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" defer onload="renderMathInElement(document.body);"></script>
+  {%- elsif mathEngine == 'mathjax' -%}
+     <script type="text/javascript" id="Mathjax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" async></script>
+  {%- endif -%}
+{%- endif -%}

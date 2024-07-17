@@ -1,0 +1,7 @@
+---
+layout: null
+---
+{
+  "analytics": {{ site.analytics | jsonify }},
+  "comments": {{ site.comments | jsonify }}
+}

@@ -1,12 +1,7 @@
-<!-- prettier-ignore -->
-<div class="theme-toggle" id="theme-toggle">
+<li class="theme-toggle" id="theme-toggle">
   <button data-mode="system" aria-label="System mode" type="button">
-    {% include icon.html id='device-desktop' %} System
+    {% include icons/device-desktop.svg %} System
   </button>
-  <button data-mode="light" aria-label="Light mode" type="button">
-    {% include icon.html id='sun' %} Light
-  </button>
-  <button data-mode="dark" aria-label="Dark mode" type="button">
-    {% include icon.html id='moon' %} Dark
-  </button>
-</div>
+  <button data-mode="light" aria-label="Light mode" type="button">{% include icons/sun.svg %} Light</button>
+  <button data-mode="dark" aria-label="Dark mode" type="button">{% include icons/moon.svg %} Dark</button>
+</li>

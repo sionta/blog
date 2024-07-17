@@ -2,5 +2,37 @@
 layout: default
 ---
 <div class="home">
-  {% include blog.html total=3 no_image=true %}
+  <div class="hero">
+    <h1>{{ site.title }}</h1>
+    <h2>{{ site.description }}</h2>
+  </div>
+  {% comment %} <h2>Latest Posts</h2> {% endcomment %}
+  <nav>
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li class="post-item">
+          <div class="post-meta">
+            <h3>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <p>
+              {%- if post.excerpt.size > 300 %}
+                {%- assign post_excerpt = post.excerpt %}
+              {%- else %}
+                {%- assign post_excerpt = post.content %}
+              {%- endif %}
+              {{ post_excerpt | strip_html | truncatewords: 45, '...' }}
+            </p>
+          </div>
+          {% if post.image %}
+            <img
+              class="post-image"
+              src="{{ post.image.url | default: post.image }}"
+              alt="{{ post.image.alt | default: post.title }}"
+            >
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
 </div>

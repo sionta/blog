@@ -3,6 +3,7 @@
     "esbenp.prettier-vscode",
     "sissel.shopify-liquid",
     "shopify.theme-check-vscode",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "jock.svg"
   ]
 }

@@ -1,9 +1,12 @@
 <footer id="site-footer" role="contentinfo">
   <div class="wrapper site-footer__inner">
-    {% include social.html %}
-    {% include theme.html %}
+    {% include navbar.html nav='footer' class='nav-footer' %}
+    <p>
+      &copy; {{ site.time | date: '%Y' }}
+      {{ site.title }}. All rights reserved.
+    </p>
     <button type="button" id="goto-top" aria-label="Go to top">
-      {% include icon.html id="chevron-up" %}
+      {% include icons/chevron-up.svg %}
     </button>
   </div>
 </footer>

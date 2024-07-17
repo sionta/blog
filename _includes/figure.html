@@ -1,0 +1,17 @@
+<figure>
+  <a href="{{ include.url | default: page.url | relative_url }}">
+    <img
+      itemprop="image"
+      src="{{ include.src | default: page.image.url | default: page.image | relative_url }}"
+      style="max-width:{{ include.max | default: '100%' }};"
+      alt="{{ include.alt | default: page.image.alt | default: page.title | strip }}"
+    >
+  </a>
+  <figcaption>
+    {%- if include.txt or include.str %}
+      {{ include.txt | default: include.str | strip | remove: '"' | remove: "'" }}
+    {%- else %}
+      {{ page.title }} Image's
+    {%- endif %}
+  </figcaption>
+</figure>

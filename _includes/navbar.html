@@ -1,29 +1,15 @@
-{% assign nav_menu = include.nav | default: 'header' %}
-{% assign nav_items = site.pages | where: 'navbar', nav_menu | sort: 'order' | uniq %}
-{% if nav_items.size > 0 %}
-  {% if nav_menu == 'footer' %}
-    {% assign nav_class = 'site-menu__foot' %}
-  {% else %}
-    {% assign nav_class = 'site-menu__head' %}
-  {% endif %}
-  <nav class="{{ nav_class }}">
-    <ul>
+{%- assign nav_menu = include.nav | default: 'header' %}
+{%- assign nav_items = site.menus | where: 'navbar', nav_menu | sort: 'order' | uniq %}
+{%- capture navigation %}{%- if nav_items.size > 0 %}
+  <nav {%- if include.class %} class="{{ include.class }}"{%- endif %}>
+    <ul class="{{ include.class }}__list">{%- for item in nav_items %}
+      {%- assign item_url = item.redirect_to | default: item.url | relative_url %}
+      <li class="{{ include.class }}__item"><a class="{{ include.class }}__link" href="{{ item_url }}"{%- if item_url contains 'http' %} target="_blank" rel="noopener noreferrer"{%- endif -%}>{{ item.title }}</a></li>
+      {%- endfor %}
       {% if nav_menu == 'header' %}
-        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        {% include theme.html %}
       {% endif %}
-      {% for item in nav_items %}
-        {% assign item_url = item.redirect_to | default: item.url | relative_url %}
-        <li>
-          <a
-            href="{{ item_url }} {{ attrib_url }}"
-            {% if item_url contains 'http' %}
-              target="_blank" rel="noopener noreferrer"
-            {% endif %}
-          >
-            {{ item.title }}
-          </a>
-        </li>
-      {% endfor %}
     </ul>
   </nav>
-{% endif %}
+{%- endif %}{%- endcapture %}
+{{- navigation -}}
