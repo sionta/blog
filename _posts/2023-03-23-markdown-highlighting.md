@@ -115,7 +115,7 @@ social_links:
 ```toml
 [social_links]
   name = "Andre Attamimi"
-  github = "https://github.com/sinonta/"
+  github = "https://github.com/sionta"
 
 [menu]
 [[menu.header]]
