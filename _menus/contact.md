@@ -1,4 +1,3 @@
 ---
-navbar: footer
-order: 0
+order: 1
 ---

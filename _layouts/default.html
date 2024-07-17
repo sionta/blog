@@ -2,13 +2,34 @@
 <html lang="en">
   {% include head.html %}
   <body>
-    {% include header.html %}
-    <main id="site-content" role="main">
-      <div class="wrapper site-content__inner">
+    <header class="header" role="banner">
+      <div class="wrapper header__inner">
+        <div class="logo">
+          <h1>
+            <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+          </h1>
+          <p>{{ site.description }}</p>
+        </div>
+        {% include navbar.html %}
+      </div>
+    </header>
+    <main class="content" role="main">
+      <div class="wrapper content__inner">
         {{ content }}
       </div>
     </main>
-    {% include footer.html %}
+    <footer class="footer" role="contentinfo">
+      <div class="wrapper footer__inner">
+        <p>
+          &copy; {{ site.time | date: '%Y' }}
+          {{ site.title }}. All rights reserved.
+        </p>
+        {% include social.html %}
+        <button id="goto-top" type="button" aria-label="Go to top">
+          {% include icons/chevron-up.svg %}
+        </button>
+      </div>
+    </footer>
     {% include script.html %}
     <script type="text/javascript" src="{{ '/assets/js/script.js' | relative_url }}" defer></script>
   </body>

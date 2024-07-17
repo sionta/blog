@@ -1,0 +1,22 @@
+{%- capture social_items %}
+  {%- for item in site.social_links %}
+    {%- assign social_link = item.link | default: item.url | relative_url %}
+    {%- assign social_name = item.title | default: item.platform %}
+    {%- if item.icon %}
+      {%- assign social_icon = item.icon | downcase %}
+    {%- else %}
+      {%- assign social_icon = 'brand-' | append: social_name | downcase %}
+    {%- endif %}
+    {%- assign social_path = 'icons/' |  append: social_icon |  append: '.svg' %}
+    <li>
+      <a href="{{ social_link | relative_url }}" target="_blank" rel="noopener noreferrer" title="{{ social_name }}">
+        {%- include {{ social_path }} %} {{ social_name }}
+      </a>
+    </li>
+  {%- endfor %}
+{%- endcapture %}
+<nav class="social-link" aria-label="Social media links">
+  <ul class="social-link__inner">
+    {{ social_items }}
+  </ul>
+</nav>

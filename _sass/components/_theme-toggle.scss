@@ -6,8 +6,12 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 8px;
+  gap: inherit;
   color: var(--tx-1);
+
+  li {
+    margin: 0 !important;
+  }
 
   svg {
     display: inline-block;
@@ -25,12 +29,6 @@
     border-radius: 4px;
     border: 1px solid var(--bg-3);
     background-color: transparent;
-
-    margin-right: 10px;
-
-    &:last-child {
-      margin-right: 0;
-    }
 
     &.active {
       background-color: var(--bg-3);

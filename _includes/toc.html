@@ -1,11 +1,11 @@
 {% if include.mobile == true %}
   <details class="post-toc only-on-mobiles">
     <summary class="toc-title" title="Table of Content"></summary>
-    <nav id="toc-mobile" aria-label="Table of Content"></nav>
+    <div id="toc-mobile" aria-label="Table of Content"></div>
   </details>
 {% else %}
   <div class="post-toc hide-on-mobiles">
-    <h1 class="toc-title">On this page</h1>
-    <nav id="toc" aria-label="Table of Content"></nav>
+    <h2 class="toc-title">On this page</h2>
+    <div id="toc" aria-label="Table of Content"></div>
   </div>
 {% endif %}

@@ -1,6 +1,6 @@
 ---
-navbar: header
-order: 1
+enable: true
+order: 0
 ---
 
 ## Hi there 👋

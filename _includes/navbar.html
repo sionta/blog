@@ -1,15 +1,12 @@
-{%- assign nav_menu = include.nav | default: 'header' %}
-{%- assign nav_items = site.menus | where: 'navbar', nav_menu | sort: 'order' | uniq %}
-{%- capture navigation %}{%- if nav_items.size > 0 %}
-  <nav {%- if include.class %} class="{{ include.class }}"{%- endif %}>
-    <ul class="{{ include.class }}__list">{%- for item in nav_items %}
+{%- assign nav_items = site.menus | where: 'enable', true | sort: 'order' | uniq %}
+{%- capture navigation %}
+  <nav role="navigation" {%- if include.class %} class="{{ include.class }}"{%- endif %}>
+    <ul class="menu-list">{%- for item in nav_items %}
       {%- assign item_url = item.redirect_to | default: item.url | relative_url %}
-      <li class="{{ include.class }}__item"><a class="{{ include.class }}__link" href="{{ item_url }}"{%- if item_url contains 'http' %} target="_blank" rel="noopener noreferrer"{%- endif -%}>{{ item.title }}</a></li>
+      <li><a href="{{ item_url }}"{%- if item_url contains 'http' %} target="_blank" rel="noopener noreferrer"{%- endif -%}>{{ item.title }}</a></li>
       {%- endfor %}
-      {% if nav_menu == 'header' %}
-        {% include theme.html %}
-      {% endif %}
     </ul>
+    {% include theme.html %}
   </nav>
-{%- endif %}{%- endcapture %}
+{%- endcapture %}
 {{- navigation -}}

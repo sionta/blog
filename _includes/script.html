@@ -2,7 +2,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
 
   {%- if page.toc == true -%}
-    {% comment %} <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.css"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.css"> {% endcomment %}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.js"></script>
   {%- endif -%}
 
@@ -13,7 +13,7 @@
   {%- assign mathEngine = page.math | downcase -%}
   <!-- prettier-ignore -->
   {%- if mathEngine == 'katex' or mathEngine == true -%}
-     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" defer onload="renderMathInElement(document.body);"></script>
   {%- elsif mathEngine == 'mathjax' -%}

@@ -27,7 +27,7 @@ layout: default
           {% if post.image %}
             <img
               class="post-image"
-              src="{{ post.image.url | default: post.image }}"
+              src="{{ post.image.url | default: post.image | relative_url }}"
               alt="{{ post.image.alt | default: post.title }}"
             >
           {% endif %}

@@ -2,15 +2,15 @@
 layout: default
 ---
 {%- assign format = site.date_format | default: '%b %d, %Y' %}
-{%- assign src = page.image.url | default: page.image %}
-{%- assign alt = page.image.alt | default: page.title %}
+{%- assign img_src = page.image.url | default: page.image %}
+{%- assign img_alt = page.image.alt | default: page.title %}
 <article class="article" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     <h1 itemprop="headline">{{ page.title }}</h1>
     <p>{{ page.description }}</p>
     <div class="post-meta">
       {%- if src %}
-        {% include figure.html src=img alt=alt str=alt %}
+        {% include figure.html src=img_src alt=img_alt str=img_alt %}
       {%- endif %}
       <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
         {{- page.date | date: format -}}
@@ -49,6 +49,6 @@ layout: default
     {%- endif %}
   </footer>
 </article>
-<aside class="sidebar">
+<aside role="complementary">
   {% include toc.html mobile=false %}
 </aside>
