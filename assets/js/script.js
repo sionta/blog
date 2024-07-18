@@ -328,7 +328,7 @@
       visible: "always",
       class: "anchor-link",
       ariaLabel: "Anchor",
-      selectors: "h2, h3, h4, h5, h6",
+      selectors: "h2, h3",
     };
     anchors.add().remove(".no-anchor, .no_anchor");
   }
