@@ -1,0 +1,80 @@
+@use "../utils" as *;
+
+/**
+ * Search
+ */
+
+.site-search {
+  margin-bottom: $spacing-unit;
+  position: relative;
+
+  %font-size {
+    font-size: px-to-rem(22px);
+  }
+
+  .result-container {
+    position: absolute;
+    z-index: 1;
+
+    padding: 20px;
+    width: 100%;
+
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+
+    .no-results {
+      @extend %font-size;
+      text-align: center;
+    }
+
+    &:has(li, div) {
+      background-color: var(--bg-3);
+      border: 1px solid var(--bd-1);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+    }
+    a {
+      @extend %font-size;
+    }
+  }
+
+  input[type="text"],
+  input[type="search"] {
+    @extend %font-size;
+
+    padding: 1rem 2rem;
+    width: 100%;
+
+    outline: none;
+    border: 1px solid var(--bd-1);
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    &::placeholder {
+      color: var(--tx-1);
+    }
+
+    &:focus {
+      border-color: var(--blue);
+    }
+  }
+}
+
+.no-results {
+  span:nth-child(1) {
+    font-weight: normal;
+  }
+
+  span:nth-child(2) {
+    font-weight: bold;
+  }
+}

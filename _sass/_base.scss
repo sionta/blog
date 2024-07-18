@@ -138,21 +138,10 @@ main {
   * Images
   */
 svg,
-img {
-  display: block;
-  max-width: 100%;
-}
-
-svg {
-  display: inline-block;
-  vertical-align: text-bottom;
-}
-
-/**
-  * Figures
-  */
+img,
 figure > img {
   display: block;
+  max-width: 100%;
 }
 
 figcaption {
@@ -242,14 +231,21 @@ code {
 samp,
 kbd,
 code {
-  border: 1px solid var(--bd-1);
   font-size: $small-size;
+  border: 1px solid var(--bd-1);
   padding: 1px 5px;
 }
 
 pre {
-  padding: 8px 12px;
   overflow-x: auto;
+  padding: 8px 12px;
+
+  pre,
+  code {
+    border: none;
+    background: none;
+    @include reset-gutter;
+  }
 
   &,
   code {
@@ -257,31 +253,24 @@ pre {
     line-height: 1.5rem;
   }
 
-  pre,
-  code {
-    border: none;
-    @include reset-gutter;
-  }
+  td {
+    &:nth-child(1) {
+      user-select: none;
+      padding-right: $spacing-unit;
+    }
 
-  td:first-child {
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    padding-right: $spacing-unit;
-
-    .lineno {
-      text-align: right;
+    &:nth-child(2) {
+      width: 100%;
     }
   }
 
-  td:last-child {
-    width: 100%;
+  .lineno {
+    text-align: right;
   }
 }
 
 .no_lineno td:has(.lineno) {
-  display: none !important;
+  display: none;
 }
 
 /**
@@ -367,13 +356,16 @@ table:not(:has(pre)) {
   * Wrapper
   */
 .wrapper {
-  max-width: calc(#{$content-width} - #{$spacing-unit});
-  margin: 0 auto;
-  padding: 0 calc(#{$spacing-unit} * 0.5);
+  max-width: calc(#{$content-width} - (#{$spacing-unit}));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit * 0.5;
+  padding-left: $spacing-unit * 0.5;
 
   @media screen and (min-width: $max-width) {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-    padding: 0 $spacing-unit;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
   }
 }
 
@@ -391,6 +383,30 @@ table:not(:has(pre)) {
 
 .content {
   background-color: var(--bg-1);
+}
+
+.content__inner {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-unit;
+  width: 100%;
+
+  .article {
+    flex: 75%;
+
+    header h1 {
+      font-weight: 700;
+    }
+  }
+
+  .sidebar {
+    flex: 25%;
+  }
+
+  @media screen and (max-width: $max-width) {
+    flex-direction: column;
+    max-width: 100%;
+  }
 }
 
 .footer__inner,

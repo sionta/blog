@@ -1,0 +1,17 @@
+---
+layout: null
+---
+{
+  "env": "{{ jekyll.environment }}",
+  "analytics": {{ site.analytics | jsonify }},
+  "comments": {"provider":"{{ site.comments.provider }}","providerData":{{ site.comments[site.comments.provider] | jsonify }}},
+  "search_data": [{%- for post in site.posts %}
+    {
+      "title"    : "{{- post.title -}}",
+      "category" : "{{- post.categories | join: ', ' -}}",
+      "tags"     : "{{- post.tags | join: ', ' -}}",
+      "url"      : "{{- post.url | relative_url -}}",
+      "date"     : "{{- post.date -}}"
+    }{% unless forloop.last %},{% endunless %}{%- endfor %}
+  ]
+}

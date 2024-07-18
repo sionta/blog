@@ -1,15 +1,16 @@
-// @forward "navigation";
-
 // content
-@forward "alerts";
-@forward "post-toc";
-@forward "blog-card";
-@forward "pagination";
-@forward "code-blocks";
+@forward "alert";
+@forward "toc";
+@forward "task";
+@forward "code";
 @forward "highlight";
-@forward "task-list";
 
-@forward "goto-top";
-@forward "search-post";
-@forward "theme-toggle";
+@forward "blog";
+@forward "pagination";
+@forward "search";
+
+@forward "mermaid";
+@forward "hero";
+@forward "totop";
+@forward "toggle";
 @forward "misc";

@@ -34,5 +34,5 @@ $spacing-unit: 20px !default;
 $border-radius: 4px !default;
 
 $content-width: 1080px !default;
-$min-width: map.get($breakpoints, md) !default;
-$max-width: map.get($breakpoints, lg) !default;
+$min-width: map.get($breakpoints, sm) !default;
+$max-width: map.get($breakpoints, md) !default;

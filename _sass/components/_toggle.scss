@@ -1,0 +1,38 @@
+@use "../utils" as *;
+
+/**
+ * Theme toggle
+ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  background-color: inherit;
+  border: 1px solid var(--bd-1);
+
+  &,
+  button {
+    padding: 2px 2px;
+    border-radius: 1.5rem;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: background 0.2s ease;
+
+    &.active {
+      border: 1px solid var(--bd-1);
+      background: var(--bg-3);
+    }
+  }
+
+  span,
+  svg {
+    display: inline-block;
+    pointer-events: none;
+    vertical-align: middle;
+  }
+}

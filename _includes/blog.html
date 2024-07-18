@@ -1,0 +1,32 @@
+{%- if paginator.posts.size > 0 -%}
+  {%- assign posts = paginator.posts -%}
+{%- else -%}
+  {%- assign posts = site.posts -%}
+{%- endif %}
+
+{%- if include.search %}{% include search.html %}{% endif %}
+
+<section class="blog-container">
+  <ul class="blog-list">
+    {% for post in posts | limit: include.total %}
+      <li class="blog-item">
+        <a class="blog-link" href="{{ post.url | relative_url }}">
+          {%- if include.image and post.image %}
+            {%- assign img_url = post.image.url | default: post.image | relative_url %}
+            {%- assign img_alt = post.image.alt | default: post.title %}
+            <img class="blog-image" src="{{ img_url }}" alt="{{ img_alt }}">
+          {%- endif %}
+          <h2 class="blog-title">{{ post.title }}</h2>
+          {%- if post.excerpt.size > 300 -%}
+            {%- assign post_excerpt = post.excerpt -%}
+          {%- else -%}
+            {%- assign post_excerpt = post.description | default: post.content -%}
+          {%- endif %}
+          <p class="blog-description">{{ post_excerpt | strip_html | truncatewords: 50, '...' }}</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{%- if include.pager == true %}{% include pagination.html %}{% endif %}

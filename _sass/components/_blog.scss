@@ -1,0 +1,54 @@
+@use "utils" as *;
+
+.blog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(px-to-rem(250px), 1fr));
+  gap: $spacing-unit;
+}
+
+ul.blog-list {
+  list-style: none;
+  margin: 0;
+}
+
+.blog-item {
+  background-color: var(--bg-2);
+  border-radius: 6px;
+  padding: $spacing-unit;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-5px);
+  }
+}
+
+.blog-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.blog-link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: var(--lk-1);
+  }
+}
+
+.blog-title {
+  font-size: px-to-rem(22px);
+  font-weight: 700;
+}
+
+.blog-description {
+  font-size: px-to-rem(15px);
+  color: var(--bd-2);
+}

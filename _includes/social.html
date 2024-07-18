@@ -10,7 +10,7 @@
     {%- assign social_path = 'icons/' |  append: social_icon |  append: '.svg' %}
     <li>
       <a href="{{ social_link | relative_url }}" target="_blank" rel="noopener noreferrer" title="{{ social_name }}">
-        {%- include {{ social_path }} %} {{ social_name }}
+        {%- include {{ social_path }} %} <span class="sr-only">{{ social_name }}</span>
       </a>
     </li>
   {%- endfor %}

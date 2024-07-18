@@ -5,13 +5,13 @@ description: >-
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 
+timezone: Asia/Tokyo
+
 author:
   name: Andre Attamimi
   url: https://github.com/sionta
   picture: /assets/img/avatar.png
   twitter: r007mmxv
-
-timezone: Asia/Tokyo
 
 # The default value is %b %d, %Y (e.g. Nov 14, 2023)
 # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
@@ -23,6 +23,18 @@ social_links:
   - { title: GitHub, url: https://github.com/sionta }
   - { title: Mastodon, url: https://mastodon.social/@sionta }
   - { title: Twitter, url: https://twitter.com/r007mmxv }
+
+# Web Analytics
+analytics:
+  google:
+    id: G-31WRW155T4 # fill in your Google Analytics ID
+  goatcounter:
+    id: "" # fill in your GoatCounter ID
+  umami:
+    id: "" # fill in your Umami ID
+    domain: "" # fill in your Umami domain
+  cloudflare:
+    id: "" # fill in your Cloudflare Web Analytics token
 
 comments:
   provider: giscus # e.g. disqus.
@@ -41,20 +53,8 @@ comments:
     repo: sionta/blog # e.g. owner/repo
     issue_term: pathname
 
-# Web Analytics
-analytics:
-  google:
-    id: G-31WRW155T4 # fill in your Google Analytics ID
-  goatcounter:
-    id: "" # fill in your GoatCounter ID
-  umami:
-    id: "" # fill in your Umami ID
-    domain: "" # fill in your Umami domain
-  matomo:
-    id: "" # fill in your Matomo ID
-    domain: "" # fill in your Matomo domain
-  cloudflare:
-    id: "" # fill in your Cloudflare Web Analytics token
+paginate: 6
+paginate_path: "/blog/:num/"
 
 # IMPORTANT SETTINGS *****************************************
 
@@ -66,14 +66,16 @@ minify:
   html: true
   js: true
 
+# https://jekyllrb.com/docs/collections/
 collections:
-  menus:
+  menus: # navigation pages
     output: true
     permalink: /:name/
   posts:
     output: true
     permalink: /blog/:title/
 
+# https://jekyllrb.com/docs/configuration/front-matter-defaults/
 defaults:
   - scope:
       path: _menus

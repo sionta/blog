@@ -1,10 +1,10 @@
 ---
 layout: default
 ---
-{%- assign format = site.date_format | default: '%b %d, %Y' %}
+{%- assign date_format = site.date_format | default: '%b %d, %Y' %}
 {%- assign img_src = page.image.url | default: page.image %}
 {%- assign img_alt = page.image.alt | default: page.title %}
-<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="article" itemscope itemtype="http://schema.org/BlogPosting" itemid="{{ page.url | relative_url }}">
   <header>
     <h1 itemprop="headline">{{ page.title }}</h1>
     <p>{{ page.description }}</p>
@@ -13,11 +13,11 @@ layout: default
         {% include figure.html src=img_src alt=img_alt str=img_alt %}
       {%- endif %}
       <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">
-        {{- page.date | date: format -}}
+        {{- page.date | date: date_format -}}
       </time>
       (last modified
       <time itemprop="dateModified" datetime="{{ page.last_modified_at | date_to_xmlschema }}">
-        {{- page.last_modified_at | date: format -}}</time
+        {{- page.last_modified_at | date: date_format -}}</time
       >) by
       <span itemprop="author" itemscope itemtype="https://schema.org/Person">
         <a itemprop="url" href="{{ site.author.url | default: site.url }}">
@@ -27,7 +27,6 @@ layout: default
     </div>
   </header>
   <section itemprop="articleBody">
-    {% include toc.html mobile=true %}
     {{ content }}
   </section>
   <footer>
@@ -49,6 +48,6 @@ layout: default
     {%- endif %}
   </footer>
 </article>
-<aside role="complementary">
-  {% include toc.html mobile=false %}
+<aside class="sidebar" role="complementary">
+  {% include toc.html %}
 </aside>

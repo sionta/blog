@@ -1,13 +1,14 @@
-<ul class="theme-toggle" id="theme-toggle">
-  <li>
-    <button data-mode="system" aria-label="System mode" type="button">
-      {% include icons/device-desktop.svg %} System
-    </button>
-  </li>
-  <li>
-    <button data-mode="light" aria-label="Light mode" type="button">{% include icons/sun.svg %} Light</button>
-  </li>
-  <li>
-    <button data-mode="dark" aria-label="Dark mode" type="button">{% include icons/moon.svg %} Dark</button>
-  </li>
-</ul>
+<div class="theme-toggle" id="theme-toggle">
+  <button data-mode="system" aria-label="System mode" type="button">
+    {% include icons/device-desktop.svg %}
+    <span class="sr-only">System</span>
+  </button>
+  <button data-mode="light" aria-label="Light mode" type="button">
+    {% include icons/sun.svg %}
+    <span class="sr-only">Light</span>
+  </button>
+  <button data-mode="dark" aria-label="Dark mode" type="button">
+    {% include icons/moon.svg %}
+    <span class="sr-only">Dark</span>
+  </button>
+</div>

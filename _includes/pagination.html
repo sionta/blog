@@ -1,0 +1,27 @@
+<section class="pagination">
+  {%- if paginator.total_pages > 0 %}
+    {%- if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}" class="page-previous">Previous</a>
+    {%- else %}
+      <span class="page-previous disabled">Previous</span>
+    {%- endif %}
+
+    {%- for page in (1..paginator.total_pages) %}
+      {%- if page == paginator.page %}
+        <span class="page-number current">{{ page }}</span>
+      {%- elsif page == 1 %}
+        <a href="{{ '/blog/' | relative_url }}" class="page-number">{{ page }}</a>
+      {%- else %}
+        <a href="{{ page }}" class="page-number">
+          {{ page }}
+        </a>
+      {%- endif %}
+    {%- endfor %}
+
+    {%- if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}" class="page-next">Next</a>
+    {%- else %}
+      <span class="page-next disabled">Next</span>
+    {%- endif %}
+  {%- endif %}
+</section>
