@@ -309,7 +309,7 @@
       tocbot.init({
         tocSelector: tocSelector,
         contentSelector: '[itemprop="articleBody"]',
-        ignoreSelector: ".no_toc",
+        ignoreSelector: ".no_toc, .no-toc",
         headingSelector: "h2, h3",
         orderedList: false,
         scrollSmooth: false,
