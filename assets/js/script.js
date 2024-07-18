@@ -325,7 +325,7 @@
   if (window.anchors) {
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "always",
       class: "anchor-link",
       ariaLabel: "Anchor",
       selectors: "h2, h3, h4, h5, h6",
