@@ -53,7 +53,7 @@
     width: 100%;
     padding: $spacing-unit;
     background-color: transparent;
-    transition: background-color 0.3s ease;
+    // transition: background-color 0.3s ease;
 
     &:has(li, div) {
       background-color: var(--bg-2);
