@@ -1,6 +1,14 @@
 (function () {
   "use strict";
 
+  const JEKYLL_ENV = document
+    .querySelector('meta[name="env"]')
+    .getAttribute("content");
+
+  const BASEURL = document
+    .querySelector('meta[name="baseurl"]')
+    .getAttribute("content");
+
   const Theme = {
     toggle: {
       system: "system",
@@ -95,16 +103,12 @@
       (parent || document.body).appendChild(script);
     }
 
-    fetch("./assets/js/data.json")
+    fetch(`${BASEURL}/assets/js/data.json`)
       .then((res) => res.json())
       .then((data) => {
         searchPost(data.search_data);
 
-        const {
-          env: JEKYLL_ENV,
-          analytics: ANALYTICS,
-          comments: COMMENTS,
-        } = data;
+        const { analytics: ANALYTICS, comments: COMMENTS } = data;
 
         const siteComment =
           document.getElementById("site-comment") ||
