@@ -25,7 +25,6 @@ def minify_files(output_dir, config)
       '--file-ext html',
       '--use-short-doctype',
       '--remove-comments',
-      '--remove-attribute-quotes',
       '--collapse-whitespace',
       '--minify-css',
       '--minify-js'
