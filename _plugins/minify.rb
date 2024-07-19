@@ -39,8 +39,7 @@ def minify_files(output_dir, config)
     css_files.each do |css_file|
       css_opts = [
         "-i \"#{css_file}\"",
-        "-o \"#{css_file}\"",
-        '--source-map file'
+        "-o \"#{css_file}\""
       ]
       run_command('csso', css_opts)
     end

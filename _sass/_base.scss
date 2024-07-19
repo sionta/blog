@@ -32,11 +32,11 @@
 html {
   font-size: $font-size;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--lk-1) var(--bg-3);
+  /* scrollbar-width: thin;
+  scrollbar-color: var(--lk-1) var(--bg-3); */
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 11px;
 
   &-track,
@@ -61,7 +61,7 @@ html {
 ::selection {
   color: $base03;
   background: var(--lk-1);
-}
+} */
 
 /**
  * Reset some basic elements
@@ -409,6 +409,23 @@ table:not(:has(pre)) {
   }
 }
 
+.header {
+  a {
+    font-size: px-to-rem(17px);
+    text-decoration: none;
+    color: var(--tx-1);
+    font-weight: 600;
+
+    &:hover {
+      color: var(--lk-2);
+    }
+  }
+
+  p {
+    font-size: px-to-rem(17px);
+  }
+}
+
 .footer__inner,
 .header__inner {
   display: flex;
@@ -432,6 +449,11 @@ table:not(:has(pre)) {
     margin: 0;
   }
 
+  h1 a {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 2.2rem;
+  }
+
   div:has(ul li),
   nav {
     display: flex;
@@ -448,10 +470,6 @@ table:not(:has(pre)) {
 
         &:last-child {
           margin-right: 0;
-        }
-
-        a {
-          text-decoration: none;
         }
       }
 

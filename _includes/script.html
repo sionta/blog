@@ -1,4 +1,4 @@
-{% if page.url contains '/blog/' %}
+{% if page.url contains '/blog/' or page.url contains '/posts/' %}
   <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
 {% endif %}
 
@@ -17,10 +17,12 @@
   {%- assign mathEngine = page.math | downcase -%}
   <!-- prettier-ignore -->
   {%- if mathEngine == 'katex' or mathEngine == true -%}
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
-     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
-     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" defer onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" defer onload="renderMathInElement(document.body);"></script>
   {%- elsif mathEngine == 'mathjax' -%}
-     <script type="text/javascript" id="Mathjax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" async></script>
+    <script type="text/javascript" id="Mathjax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" async></script>
   {%- endif -%}
 {%- endif -%}
+
+<script type="text/javascript" src="{{ '/assets/js/script.js' | relative_url }}" defer></script>

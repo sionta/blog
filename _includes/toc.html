@@ -1,8 +1,10 @@
-<details class="post-toc only-on-mobiles">
-  <summary class="toc-title" title="Table of Content"></summary>
-  <div id="toc-mobile" aria-label="Table of Content"></div>
-</details>
-<div class="post-toc hide-on-mobiles">
-  <h2 class="toc-title">On this page</h2>
-  <div id="toc" aria-label="Table of Content"></div>
-</div>
+{% if page.content contains 'h2' %}
+  <details class="post-toc only-on-mobiles">
+    <summary class="toc-title" title="Table of Content"></summary>
+    <div id="toc-mobile" aria-label="Table of Content"></div>
+  </details>
+  <div class="post-toc hide-on-mobiles">
+    <h2 class="toc-title">On this page</h2>
+    <div id="toc" aria-label="Table of Content"></div>
+  </div>
+{% endif %}

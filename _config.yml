@@ -60,9 +60,10 @@ paginate_path: "/blog/:num/"
 
 # Options minify css and _plugins/minify.rb
 sass:
-  style: compressed
+  # style: compressed
+  sourcemap: development
 minify:
-  css: false # recomended use `sass: {style: compressed}`
+  css: true # recomended use `sass: {style: compressed}`
   html: true
   js: true
 

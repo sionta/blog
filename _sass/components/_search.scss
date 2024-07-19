@@ -12,44 +12,16 @@
     font-size: px-to-rem(22px);
   }
 
-  .result-container {
-    position: absolute;
-    z-index: 1;
-
-    padding: 20px;
-    width: 100%;
-
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-
-    .no-results {
-      @extend %font-size;
-      text-align: center;
-    }
-
-    &:has(li, div) {
-      background-color: var(--bg-3);
-      border: 1px solid var(--bd-1);
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
-
-    ul {
-      list-style: none;
-      margin: 0;
-    }
-    a {
-      @extend %font-size;
-    }
+  &:has(li, input) {
+    border-radius: 8px;
   }
 
-  input[type="text"],
-  input[type="search"] {
+  input {
     @extend %font-size;
-
     padding: 1rem 2rem;
     width: 100%;
-
+    color: var(--tx-1);
+    background: var(--bg-2);
     outline: none;
     border: 1px solid var(--bd-1);
 
@@ -60,21 +32,67 @@
     }
 
     &::placeholder {
-      color: var(--tx-1);
+      color: var(--tx-2);
+    }
+
+    &:not(:focus) {
+      border-radius: $border-radius;
     }
 
     &:focus {
+      border: 1px solid var(--bd-1);
       border-color: var(--blue);
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
     }
   }
-}
 
-.no-results {
-  span:nth-child(1) {
-    font-weight: normal;
+  .result-container {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    padding: $spacing-unit;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+
+    &:has(li, div) {
+      background-color: var(--bg-2);
+      border: 1px solid var(--bd-1);
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    li {
+      @extend %font-size;
+
+      padding: 0 10px;
+      margin: 0;
+
+      color: var(--tx-1);
+
+      &:hover {
+        color: var(--tx-1);
+        background-color: var(--lk-1);
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 
-  span:nth-child(2) {
-    font-weight: bold;
+  .no-results {
+    @extend %font-size;
+    color: var(--tx-2);
+    text-align: center;
+
+    span:nth-child(1) {
+      font-weight: normal;
+    }
+
+    span:nth-child(2) {
+      font-weight: bold;
+    }
   }
 }
