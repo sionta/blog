@@ -95,7 +95,7 @@
       (parent || document.body).appendChild(script);
     }
 
-    fetch("/assets/js/data.json")
+    fetch("./assets/js/data.json")
       .then((res) => res.json())
       .then((data) => {
         searchPost(data.search_data);
