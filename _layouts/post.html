@@ -6,7 +6,7 @@ layout: default
 {%- assign img_alt = page.image.alt | default: page.title %}
 <article class="article" itemscope itemtype="http://schema.org/BlogPosting" itemid="{{ page.url | relative_url }}">
   <header>
-    <h1 itemprop="headline">{{ page.title }}</h1>
+    <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
     <p>{{ page.description }}</p>
     <div class="post-meta">
       {%- if img_src %}
@@ -27,27 +27,16 @@ layout: default
     </div>
   </header>
   <section itemprop="articleBody">
+    {% include toc.html mobile=true %}
     {{ content }}
   </section>
   <footer>
     <p>
       Tags: <span itemprop="keywords"> {{ page.tags | join: ', ' }}</span>
     </p>
-    {%- if page.comments == true and site.comments.provider %}
-      <div
-        {% if site.comments.provider == 'disqus' %}
-          id="disqus_thread"
-        {% else %}
-          id="site-comment"
-        {% endif %}
-        class="{{ site.comments.provider }}"
-        pageid="{{ page.url | relative_url }}"
-        itemscope
-        itemtype="https://schema.org/Comment"
-      ></div>
-    {%- endif %}
+    {% include comments.html only='html' %}
   </footer>
 </article>
-<aside class="sidebar" role="complementary">
-  {% include toc.html %}
+<aside class="sidebar">
+  {% include toc.html mobile=false %}
 </aside>

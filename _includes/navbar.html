@@ -9,7 +9,6 @@
       <li><a href="{{ item_url }}"{%- if item_url contains 'http' %} target="_blank" rel="noopener noreferrer"{%- endif -%}>{{ item.title }}</a></li>
       {%- endfor %}
     </ul>
-    {% include theme.html %}
   </nav>
 {%- endcapture %}
 {{- navigation -}}

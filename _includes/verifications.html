@@ -1,0 +1,20 @@
+{% if jekyll.environment == 'production' %}
+  {% if site.verifications.google %}
+    <meta name="google-site-verification" content="{{ site.verifications.google }}">
+  {% endif %}
+  {% if site.verifications.bing %}
+    <meta name="msvalidate.01" content="{{ site.verifications.bing }}">
+  {% endif %}
+  {% if site.verifications.yandex %}
+    <meta name="yandex-verification" content="{{ site.verifications.yandex }}">
+  {% endif %}
+  {% if site.verifications.apple %}
+    <meta name="apple-domain-verification" content="{{ site.verifications.apple }}">
+  {% endif %}
+  {% if site.verifications.facebook %}
+    <meta name="facebook-domain-verification" content="{{ site.verifications.facebook }}">
+  {% endif %}
+  {% if site.verifications.pinterest %}
+    <meta name="p:domain_verify" content="{{ site.verifications.pinterest }}">
+  {% endif %}
+{% endif %}

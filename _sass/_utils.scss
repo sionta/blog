@@ -5,10 +5,16 @@
 @use "sass:math";
 @use "variables" as var;
 
-@mixin font-headings {
-  @each $level, $size in var.$font-sizes {
-    h#{$level} {
-      font-size: $size;
+@mixin font-size-clamp($key) {
+  $base-size: map.get(var.$font-sizes, $key);
+  $clamp-function: "clamp(#{var.$min-font-size}, #{$base-size}, #{var.$max-font-size})";
+  font-size: #{$clamp-function};
+}
+
+@mixin font-size-headings {
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @include font-size-clamp($i);
     }
   }
 }
@@ -23,10 +29,6 @@
 
   // Convert px to rem using math.div for division
   @return math.div($px, $fs) * 1rem;
-}
-
-@mixin px-to-rem($px) {
-  font-size: px-to-rem($px);
 }
 
 // Mixin for clearfix

@@ -1,0 +1,29 @@
+/**
+ * Back to top
+ */
+#goto-top {
+  cursor: pointer;
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 10px;
+  z-index: 1;
+  border: none;
+  border-radius: 3rem;
+  background: var(--lk-1);
+  color: var(--base07);
+  visibility: hidden;
+  transition: visibility 0.3s ease-in;
+
+  &.visible {
+    visibility: visible;
+  }
+
+  svg {
+    display: block;
+  }
+
+  &:hover {
+    background: var(--bd-1);
+  }
+}

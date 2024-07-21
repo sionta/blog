@@ -1,33 +1,16 @@
 # SITE SETTINGS ******************************************
-title: Andre Attamimi
+title: "Andre Attamimi"
 description: >-
   run, study, modify, and share.
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 
-timezone: Asia/Tokyo
-
-author:
-  name: Andre Attamimi
-  url: https://github.com/sionta
-  picture: /assets/img/avatar.png
-  twitter: r007mmxv
-
-# The default value is %b %d, %Y (e.g. Nov 14, 2023)
-# Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
-date_format:
-
-# Generate social links. Icon use Tabler https://tabler.io/icons
-social_links:
-  - { title: Email, icon: mail, url: mailto:info@andreattamimi.com }
-  - { title: GitHub, url: https://github.com/sionta }
-  - { title: Mastodon, url: https://mastodon.social/@sionta }
-  - { title: Twitter, url: https://twitter.com/r007mmxv }
+timezone: "Asia/Tokyo"
 
 # Web Analytics
 analytics:
   google:
-    id: G-31WRW155T4 # fill in your Google Analytics ID
+    id: "G-31WRW155T4" # fill in your Google Analytics ID
   goatcounter:
     id: "" # fill in your GoatCounter ID
   umami:
@@ -36,22 +19,48 @@ analytics:
   cloudflare:
     id: "" # fill in your Cloudflare Web Analytics token
 
+# Web verifications
+verifications:
+  google: ""
+  bing: ""
+  yandex: ""
+  pinterest: ""
+  facebook: ""
+
+author:
+  name: "Andre Attamimi"
+  url: "https://github.com/sionta"
+  picture: "/assets/img/avatar.png"
+  twitter: "r007mmxv"
+
+# The default value is %b %d, %Y (e.g. Nov 14, 2023)
+# Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
+date_format: "%b %d, %Y"
+
+# Generate social links. Icon use Tabler https://tabler.io/icons
+social_links:
+  - { title: "Email", icon: "mail", url: "mailto:info@andreattamimi.com" }
+  - { title: "GitHub", url: "https://github.com/sionta" }
+  - { title: "Mastodon", url: "https://mastodon.social/@sionta" }
+  - { title: "Twitter", url: "https://twitter.com/r007mmxv" }
+
+# Post comments
 comments:
-  provider: giscus # e.g. disqus.
+  provider: "giscus" # e.g. disqus.
   # The provider by settings below:
   disqus:
     # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-    shortname: andreattamimi
+    shortname: "andreattamimi"
   giscus:
     # For more settings see https://giscus.app/
-    repo: sionta/blog # e.g. owner/repo
-    repo_id: R_kgDOLxRA-w
-    category: Q&A
-    category_id: DIC_kwDOLxRA-84CfGPN
+    repo: "sionta/blog" # e.g. owner/repo
+    repo_id: "R_kgDOLxRA-w"
+    category: "Q&A"
+    category_id: "DIC_kwDOLxRA-84CfGPN"
   utterances:
     # For more setting see to https://utteranc.es/
-    repo: sionta/blog # e.g. owner/repo
-    issue_term: pathname
+    repo: "sionta/blog" # e.g. owner/repo
+    issue_term: "pathname"
 
 paginate: 6
 paginate_path: "/blog/:num/"
@@ -60,10 +69,11 @@ paginate_path: "/blog/:num/"
 
 # Options minify css and _plugins/minify.rb
 sass:
-  # style: compressed
-  sourcemap: development
+  style: "expanded"
+  sourcemap: "development"
 minify:
-  css: true # recomended use `sass: {style: compressed}`
+  env: "production"
+  css: true
   html: true
   js: true
 
@@ -71,44 +81,44 @@ minify:
 collections:
   menus: # navigation pages
     output: true
-    permalink: /:name/
+    permalink: "/:name/"
   posts:
     output: true
-    permalink: /blog/:title/
+    permalink: "/blog/:title/"
 
 # https://jekyllrb.com/docs/configuration/front-matter-defaults/
 defaults:
   - scope:
-      path: _menus
-      type: menus
+      path: "_menus"
+      type: "menus"
     values:
-      layout: page
+      layout: "page"
   - scope:
-      path: _posts
-      type: posts
+      path: "_posts"
+      type: "posts"
     values:
-      layout: post
+      layout: "post"
 
 # https://jekyllrb.com/docs/configuration/markdown/
-markdown: kramdown
+markdown: "kramdown"
 kramdown:
-  input: GFM
+  input: "GFM"
   hard_wrap: false
   # https://github.com/jekyll/jekyll/pull/4090
-  syntax_highlighter: rouge
+  syntax_highlighter: "rouge"
   syntax_highlighter_opts:
-    css_class: highlight
+    css_class: "highlight"
     block:
       line_numbers: true
       start_line: 1
-      table_class: rouge-table # - a CSS class for the table
-      gutter_class: rouge-gutter # - a CSS class for the line-number cell
-      code_class: rouge-code # - a CSS class for the code cell
+      table_class: "rouge-table" # - a CSS class for the table
+      gutter_class: "rouge-gutter" # - a CSS class for the line-number cell
+      code_class: "rouge-code" # - a CSS class for the code cell
 
 exclude:
-  - /test*
-  - /tool*
-  - /script*
-  - package*.json
-  - LICENSE
-  - README.md
+  - "/test*"
+  - "/tool*"
+  - "/script*"
+  - "package*.json"
+  - "LICENSE"
+  - "README.md"

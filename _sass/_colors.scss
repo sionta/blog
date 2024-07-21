@@ -1,5 +1,5 @@
 @use "sass:map";
-$base00: #020617;
+$base00: #030920;
 $base01: #0f172a;
 $base02: #334155;
 $base03: #475569;
@@ -31,34 +31,31 @@ $dark-magenta: #eb5ea2;
 // Schemes data
 $themes: (
   "light": (
-    "bg-1": $base07,
-    "bg-2": $base06,
-    "bg-3": $base05,
-    "tx-1": $base02,
-    "tx-2": $base03,
-    "tx-3": $base04,
-    "bd-1": $base03,
-    "bd-2": $base04,
-    "bd-3": $base05,
     "lk-1": $violet,
     "lk-2": $blue,
+    "bg-1": var(--base07),
+    "bg-2": var(--base06),
+    "bg-3": var(--base05),
+    "tx-1": var(--base02),
+    "tx-2": var(--base03),
+    "tx-3": var(--base04),
+    "bd-1": var(--base03),
+    "bd-2": var(--base04),
+    "bd-3": var(--base05),
   ),
   "dark": (
-    "bg-1": $base00,
-    "bg-2": $base01,
-    "bg-3": $base02,
-    "tx-1": $base05,
-    "tx-2": $base04,
-    "tx-3": $base03,
-    "bd-1": $base03,
-    "bd-2": $base04,
-    "bd-3": $base05,
-    "lk-1": $blue,
-    "lk-2": $violet,
+    "bg-1": var(--base00),
+    "bg-2": var(--base01),
+    "bg-3": var(--base02),
+    "tx-1": var(--base05),
+    "tx-2": var(--base04),
+    "tx-3": var(--base03),
+    "bd-1": var(--base03),
+    "bd-2": var(--base04),
+    "bd-3": var(--base05),
   ),
 );
 
-// Alerts data
 $alerts: (
   "class": (
     "note",
@@ -67,7 +64,7 @@ $alerts: (
     "warning",
     "caution",
   ),
-  "light": (
+  "color": (
     "note": $blue,
     "tip": $green,
     "important": $violet,
@@ -76,45 +73,24 @@ $alerts: (
   ),
 );
 
-$tag-colors: (
-  t: $base07,
-  1: $magenta,
-  2: $violet,
-  3: $blue,
-  4: $cyan,
-  5: $green,
-  6: $yellow,
-  7: $orange,
-  8: $red,
-);
-
 @mixin alert($mode) {
-  $alert: map.get($alerts, $mode);
-
-  @if not $alert {
-    $alert: map.get($alerts, "light");
-  }
-
+  $alert: map.get($alerts, "color");
   @each $name, $color in $alert {
     --alert-tx-#{$name}: #{$color};
-    --alert-bg-#{$name}: #{rgba($color, 0.3)};
+    --alert-bg-#{$name}: #{rgba($color, 0.5)};
     --alert-bd-#{$name}: #{rgba($color, 0.65)};
   }
 }
 
-@mixin theme($mode, $init: false) {
+@mixin theme($mode) {
   color-scheme: $mode;
 
   $theme: map.get($themes, $mode);
-
   @each $key, $value in $theme {
     --#{$key}: #{$value};
   }
 
-  --tooltip-bg: var(--bg-3);
-  --tooltip-tx: var(--tx-1);
-
-  @if $init {
+  @if $mode == light {
     --base00: #{$base00};
     --base01: #{$base01};
     --base02: #{$base02};
@@ -123,10 +99,8 @@ $tag-colors: (
     --base05: #{$base05};
     --base06: #{$base06};
     --base07: #{$base07};
-
     --base08: #{$base08};
     --base09: #{$base09};
-
     --red: #{$red};
     --orange: #{$orange};
     --yellow: #{$yellow};
@@ -135,24 +109,6 @@ $tag-colors: (
     --blue: #{$blue};
     --violet: #{$violet};
     --magenta: #{$magenta};
-    --red-light: #{$dark-red};
-    --orange-light: #{$dark-orange};
-    --yellow-light: #{$dark-yellow};
-    --green-light: #{$dark-green};
-    --cyan-light: #{$dark-cyan};
-    --blue-light: #{$dark-blue};
-    --violet-light: #{$dark-violet};
-    --magenta-light: #{$dark-magenta};
   }
-
-  @if $mode == "dark" {
-    --red: #{$dark-red};
-    --orange: #{$dark-orange};
-    --yellow: #{$dark-yellow};
-    --green: #{$dark-green};
-    --cyan: #{$dark-cyan};
-    --blue: #{$dark-blue};
-    --violet: #{$dark-violet};
-    --magenta: #{$dark-magenta};
-  }
+  @include alert($mode);
 }

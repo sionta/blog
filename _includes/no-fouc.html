@@ -1,6 +1,0 @@
-{%- comment %} FIX FOUC for themeToggle https://stackoverflow.com/a/5983338 {%- endcomment %}
-{%- capture nofouc %}
-  <style type="text/css">body {visibility:hidden;transition:visibility 0.3s ease;}</style>
-  <script type="text/javascript">window.onload=()=>{document.body.style.visibility = 'visible';};</script>
-{%- endcapture %}
-{{ nofouc }}

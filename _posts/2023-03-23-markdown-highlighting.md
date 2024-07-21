@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Syntax Highlighter
+title: Sample syntax highlighter with Rouge
 categories: test
 tags: [rouge, highlight]
 image: "/assets/img/rouge.png"
@@ -45,7 +45,7 @@ This is code block with syntax highlighting use triple backticks:
 }
 ```
 
-By default "lineos" is enable, to disable it add `{:.no_lineno}` after end triple backticks.
+By default "lineos" is disabled, to enable it add `{:.lineno}` after end triple backticks.
 
 <!-- markdownlint-disable -->
 ````markdown
@@ -57,9 +57,9 @@ By default "lineos" is enable, to disable it add `{:.no_lineno}` after end tripl
   "age": 25
 }
 ```
-{:.no_lineno} <!-- like this -->
+{:.lineno} <!-- like this -->
 ````
-{:.no_lineno}
+{:.lineno}
 
 {% raw %}This is code block with syntax highlighting use liquid `{% highlight %}` tag in markdown:{% endraw %}
 

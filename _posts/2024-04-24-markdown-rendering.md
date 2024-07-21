@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Markdown Test Page
+title: Markdown test page
 description: A quick overview of all the Markdown syntax elements
 categories: test
 tags: [markdown, cheatsheet]
@@ -10,6 +10,7 @@ image:
     alt: Image by https://culturedcode.com
 toc: true
 comments: true
+mermaid: true
 math: katex # or mathjax, if set to `true` math enable use katex
 ---
 

@@ -1,0 +1,88 @@
+{% if page.collection == 'posts' or page.layout == 'post' %}
+  {% comment %} ANCHOR HEADINGS or PARAGRAPHS {% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+  <script>
+    if (window.anchors) {
+      anchors.options = { placement: 'right', visible: 'always', icon: '#', class: 'anchor-link' };
+      anchors.add(':where([itemprop=articleBody]) :where(h2,h3)').remove('.no-anchor, .no_anchor');
+    }
+  </script>
+
+  {% comment %} TABLE OF CONTENTS {% endcomment %}
+  {% if page.toc == true %}
+    <script src="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.js"></script>
+    <script>
+      if (window.tocbot) {
+        const initializeToc = () => {
+          const toc = window.innerWidth >= 768 ? '#toc' : '#toc-mobile';
+          if (!toc) return;
+          tocbot.destroy();
+          tocbot.init({
+            tocSelector: toc,
+            contentSelector: '[itemprop="articleBody"]',
+            ignoreSelector: '.no_toc, .no-toc',
+            headingSelector: 'h2, h3',
+            orderedList: false,
+          });
+          tocbot.refresh();
+        };
+        initializeToc();
+        window.addEventListener('resize', initializeToc);
+      }
+    </script>
+  {% endif %}
+
+  {% comment %} DIAGRAMMING {% endcomment %}
+  {% if page.mermaid == true %}
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+    <script>
+      if (window.mermaid) {
+        const mermaidConfig = {
+          startOnLoad: true,
+          theme: Theme.mermaid[getTheme()],
+          logLevel: 'error',
+          securityLevel: 'strict',
+          flowchart: {
+            htmlLabels: true,
+            curve: 'basis',
+          },
+          sequence: {
+            diagramMarginX: 50,
+            diagramMarginY: 10,
+          },
+          gantt: {
+            axisFormat: '%m/%d/%Y',
+          },
+        };
+        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+        mermaidBlocks.forEach((block) => {
+          const codeBlock = block.parentElement;
+          const rootDiv = document.createElement('pre');
+          const subDiv = document.createElement('code');
+          rootDiv.classList.add('mermaid-diagram');
+          subDiv.classList.add('mermaid');
+          subDiv.innerHTML = block.innerHTML;
+          rootDiv.appendChild(subDiv);
+          codeBlock.replaceWith(rootDiv);
+        });
+        mermaid.initialize(mermaidConfig);
+        mermaid.init();
+      }
+    </script>
+  {% endif %}
+
+  {% comment %} MATHEMATICS {% endcomment %}
+  {% assign mathEngine = page.math | downcase %}
+  {% if mathEngine == 'katex' or mathEngine == true %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+      defer
+      onload="renderMathInElement(document.body);"
+    ></script>
+  {% elsif mathEngine == 'mathjax' %}
+    <script id="Mathjax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" async></script>
+  {% endif %}
+{% endif %}

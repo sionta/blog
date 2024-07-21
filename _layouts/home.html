@@ -1,14 +1,14 @@
 ---
 layout: default
 ---
-<article class="home">
+<div class="home">
   <section class="hero">
-    <h1>Welcome to Our Blog</h1>
+    <h1 class="post-title larger">Welcome to Our Blog</h1>
     <p>Explore insightful articles on various topics.</p>
     <a href="{{ '/blog/' | relative_url }}" class="btn">Read More</a>
   </section>
-  <section class="blog">
-    <h1>Latest blog posts</h1>
+  <section class="blog wrapper">
+    <h1 class="post-title larger">Latest Blog Posts</h1>
     {% include blog.html total=3 %}
   </section>
-</article>
+</div>

@@ -1,0 +1,23 @@
+<footer class="footer">
+  <div class="footer__inner">
+    {% include social.html %}
+    <p>
+      &copy; {{ site.time | date: '%Y' }}
+      {{ site.title }}.
+    </p>
+    <button id="goto-top" type="button" aria-label="Go to top">
+      {% include icons.svg id='chevron-up' %}
+    </button>
+    <script>
+      (function () {
+        const gotoTop = document.getElementById('goto-top');
+        window.addEventListener('scroll', () => {
+          gotoTop.classList.toggle('visible', window.scrollY > 20);
+        });
+        gotoTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      })();
+    </script>
+  </div>
+</footer>

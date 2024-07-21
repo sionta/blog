@@ -1,14 +1,57 @@
 <div class="theme-toggle" id="theme-toggle">
   <button data-mode="system" aria-label="System mode" type="button">
-    {% include icons/device-desktop.svg %}
+    {% include icons.svg id='device-desktop' %}
     <span class="sr-only">System</span>
   </button>
   <button data-mode="light" aria-label="Light mode" type="button">
-    {% include icons/sun.svg %}
+    {% include icons.svg id='sun' %}
     <span class="sr-only">Light</span>
   </button>
   <button data-mode="dark" aria-label="Dark mode" type="button">
-    {% include icons/moon.svg %}
+    {% include icons.svg id='moon' %}
     <span class="sr-only">Dark</span>
   </button>
 </div>
+<script>
+  (function () {
+    const themeToggle = document.querySelector('#theme-toggle');
+    const themeButtons = themeToggle?.querySelectorAll('button');
+
+    initializeTheme();
+
+    function setTheme(mode) {
+      if (mode === Theme.toggle.system) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', mode);
+        localStorage.setItem('theme', mode);
+        updateFrameThemes(mode);
+      }
+
+      themeButtons?.forEach((button) => button.classList.toggle('active', button.getAttribute('data-mode') === mode));
+    }
+
+    function initializeTheme() {
+      if (!themeButtons) return;
+      const currentTheme = localStorage.getItem('theme') || Theme.toggle.system;
+      setTheme(currentTheme);
+
+      themeButtons.forEach((button) =>
+        button.addEventListener('click', () => setTheme(button.getAttribute('data-mode')))
+      );
+    }
+
+    function updateFrameThemes(t) {
+      updateFrame('.giscus-frame', { giscus: { setConfig: { theme: Theme.giscus[t] } } }, 'https://giscus.app');
+      updateFrame('.utterances-frame', { type: 'set-theme', theme: Theme.utterances[t] }, 'https://utteranc.es');
+    }
+
+    function updateFrame(selector, message, origin) {
+      const frame = document.querySelector(selector);
+      if (frame && frame.contentWindow) {
+        frame.contentWindow.postMessage(message, origin);
+      }
+    }
+  })();
+</script>

@@ -3,9 +3,7 @@
 
 //  CSS Variables
 :root {
-  @include theme(light, true);
-
-  @include alert("light");
+  @include theme(light);
 
   &[data-theme="dark"] {
     @include theme(dark);
@@ -31,6 +29,7 @@
 
 html {
   font-size: $font-size;
+  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   /* scrollbar-width: thin;
   scrollbar-color: var(--lk-1) var(--bg-3); */
@@ -64,35 +63,12 @@ html {
 } */
 
 /**
- * Reset some basic elements
- */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-hr,
-dl,
-dd,
-ol,
-ul,
-figure {
-  @include reset-gutter;
-}
-
-/**
   * Basic styling
   */
 body {
   font: $font-weight #{$font-size}/#{$line-height} $font-sans;
   color: var(--tx-1);
   background-color: var(--bg-1);
-  -webkit-text-size-adjust: 100%;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
   display: flex;
@@ -115,6 +91,7 @@ blockquote,
 pre,
 ul,
 ol,
+dd,
 dl,
 figure,
 %vertical-rhythm {
@@ -144,6 +121,10 @@ figure > img {
   max-width: 100%;
 }
 
+svg {
+  display: inline-block;
+}
+
 figcaption {
   font-size: $small-size;
   text-align: center;
@@ -152,6 +133,7 @@ figcaption {
 /**
   * Lists
   */
+dd,
 ul,
 ol {
   margin-left: $spacing-unit;
@@ -176,22 +158,20 @@ h6 {
   font-weight: $font-weight;
 }
 
-@include font-headings;
+@include font-size-headings;
 
 /**
   * Links
   */
 a {
-  color: var(--lk-1);
+  color: var(--tx-1);
   text-decoration: underline;
-
-  // &:visited {
-  //   color: var(--lk-1);
-  // }
+  text-decoration-color: var(--lk-1);
+  text-underline-offset: 1.5px;
+  text-decoration-thickness: 1.5px;
 
   &:hover {
-    color: var(--lk-2);
-    text-decoration: none;
+    color: var(--lk-1);
   }
 }
 
@@ -201,7 +181,7 @@ a {
 blockquote {
   color: var(--tx-1);
   border-left: 4px solid var(--bd-1);
-  padding-left: $spacing-unit * 0.5;
+  padding-left: $spacing-unit;
   font-size: 1.125rem;
   font-style: italic;
 
@@ -223,7 +203,7 @@ kbd,
 pre,
 code {
   background-color: var(--bg-2);
-  border-radius: 3px;
+  border-radius: 4px;
   font-family: $font-mono;
   line-height: 1.15;
 }
@@ -232,8 +212,7 @@ samp,
 kbd,
 code {
   font-size: $small-size;
-  border: 1px solid var(--bd-1);
-  padding: 1px 5px;
+  padding: 2px 4px;
 }
 
 pre {
@@ -250,7 +229,6 @@ pre {
   &,
   code {
     font-size: px-to-rem(15px);
-    line-height: 1.5rem;
   }
 
   td {
@@ -269,8 +247,16 @@ pre {
   }
 }
 
-.no_lineno td:has(.lineno) {
+/*
+  NOTE: this enable on if use triple backticks,
+  not use {% highlight %} tag
+*/
+.rouge-gutter {
   display: none;
+}
+
+.lineno .rouge-gutter {
+  display: block;
 }
 
 /**
@@ -278,7 +264,7 @@ pre {
  */
 details {
   padding: 0.5rem 1rem;
-  border-radius: var(--rounded);
+  border-radius: $border-radius;
   background-color: var(--bg-3);
   @extend %vertical-rhythm;
 
@@ -317,13 +303,15 @@ table:not(:has(pre)) {
     padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
   }
 
-  caption {
-    background-color: var(--bg-2);
-  }
-
+  caption,
   th {
     background-color: var(--bg-2);
     border: 1px solid var(--bd-1);
+  }
+
+  caption {
+    font-weight: bold;
+    border-bottom: none;
   }
 
   td {
@@ -334,7 +322,6 @@ table:not(:has(pre)) {
     background-color: var(--bg-2);
   }
 
-  /* prettier-ignore */
   @media screen and (max-width: $max-width) {
     display: block;
     overflow-x: auto;
@@ -343,13 +330,16 @@ table:not(:has(pre)) {
   }
 }
 
-/**
-  * Clearfix
-  */
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+del {
+  color: var(--red);
+}
+
+em {
+  color: var(--yellow);
+}
+
+mark {
+  background-color: var(--yellow);
 }
 
 /**
@@ -357,135 +347,103 @@ table:not(:has(pre)) {
   */
 .wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
-  margin-right: auto;
   margin-left: auto;
-  padding-right: $spacing-unit * 0.5;
-  padding-left: $spacing-unit * 0.5;
-
-  @media screen and (min-width: $max-width) {
-    max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
-  }
+  margin-right: auto;
+  padding-left: $spacing-unit;
+  padding-right: $spacing-unit;
 }
 
+.content,
 .header,
-.footer,
-.content {
+.footer {
   background-color: var(--bg-2);
-  padding: $spacing-unit;
+  padding: $spacing-unit 0;
+}
 
-  @media screen and (max-width: $max-width) {
-    padding-left: calc(#{$spacing-unit} / 2);
-    padding-right: calc(#{$spacing-unit} / 2);
-  }
+.content__inner,
+.header__inner,
+.footer__inner {
+  @extend .wrapper;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-unit;
 }
 
 .content {
   background-color: var(--bg-1);
-}
 
-.content__inner {
-  display: flex;
-  flex-direction: row;
-  gap: $spacing-unit;
-  width: 100%;
+  & &__inner {
+    .article {
+      flex: 75%;
+      line-height: 1.7;
+    }
 
-  .article {
-    flex: 75%;
-
-    header h1 {
-      font-weight: 700;
+    .sidebar {
+      flex: 25%;
     }
   }
-
-  .sidebar {
-    flex: 25%;
-  }
-
-  @media screen and (max-width: $max-width) {
-    flex-direction: column;
-    max-width: 100%;
-  }
 }
 
-.header {
-  a {
-    font-size: px-to-rem(17px);
-    text-decoration: none;
-    color: var(--tx-1);
-    font-weight: 600;
-
-    &:hover {
-      color: var(--lk-2);
-    }
-  }
-
-  p {
-    font-size: px-to-rem(17px);
-  }
-}
-
-.footer__inner,
-.header__inner {
-  display: flex;
+.header__inner,
+.footer__inner {
   align-items: center;
   justify-content: space-between;
-  gap: $spacing-unit;
 
-  @media screen and (max-width: 768px) {
-    text-align: center;
-
-    &,
-    nav {
-      flex-direction: column;
-    }
-  }
-
+  ul,
   h1,
   p,
   a {
-    padding: 0;
     margin: 0;
   }
 
   h1 a {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 2.2rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-decoration: none;
   }
 
-  div:has(ul li),
   nav {
-    display: flex;
-    align-items: center;
-    gap: $spacing-unit;
-
     ul {
       list-style: none;
-      margin: 0;
 
       li {
-        display: inline-flex;
+        display: inline-block;
         margin-right: $spacing-unit;
 
         &:last-child {
           margin-right: 0;
         }
-      }
 
-      &.social-link__inner {
-        display: flex;
-        gap: $spacing-unit;
-
-        li {
-          margin: 0;
-        }
-
-        svg {
-          display: inline-block;
-          vertical-align: middle;
+        a {
+          font-weight: 600;
+          font-size: 1rem;
         }
       }
     }
   }
+}
+
+@media screen and (max-width: $max-width) {
+  .content__inner,
+  .header__inner,
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .content__inner {
+    text-align: left;
+  }
+}
+
+.post-title {
+  font-weight: 700;
+
+  &.larger {
+    font-size: 3rem;
+  }
+}
+
+.post-meta {
+  margin-bottom: $spacing-unit;
 }

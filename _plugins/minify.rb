@@ -60,5 +60,6 @@ end
 # Register hooks to run after Jekyll site is written
 Jekyll::Hooks.register :site, :post_write do |site|
   config = site.config['minify'] || {}
-  minify_files(site.dest, config)
+  env = config.fetch('env', 'production')
+  minify_files(site.dest, config) if Jekyll.env == env
 end

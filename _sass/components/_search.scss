@@ -53,25 +53,25 @@
     width: 100%;
     padding: $spacing-unit;
     background-color: transparent;
-    // transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
 
     &:has(li, div) {
       background-color: var(--bg-2);
-      border: 1px solid var(--bd-1);
+      border: 1px solid var(--blue);
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
     }
 
+    ul {
+      list-style: decimal;
+    }
     li {
       @extend %font-size;
-
-      padding: 0 10px;
-      margin: 0;
-
+      padding: 0 $spacing-unit;
       color: var(--tx-1);
 
       &:hover {
-        color: var(--tx-1);
+        border-radius: 4px;
         background-color: var(--lk-1);
       }
     }

@@ -2,14 +2,9 @@
 
 .hero {
   text-align: center;
-  background-color: var(--bg-3);
+  background-color: var(--bg-2);
   padding: 80px $spacing-unit;
   margin-bottom: $spacing-unit;
-
-  &-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
 
   h1 {
     font-size: 3em;

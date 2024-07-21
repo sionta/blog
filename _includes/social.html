@@ -7,16 +7,16 @@
     {%- else %}
       {%- assign social_icon = 'brand-' | append: social_name | downcase %}
     {%- endif %}
-    {%- assign social_path = 'icons/' |  append: social_icon |  append: '.svg' %}
     <li class="tooltip" data-tooltip="{{ social_name }}" >
       <a href="{{ social_link | relative_url }}" target="_blank" rel="noopener noreferrer" title="{{ social_name }}">
-        {%- include {{ social_path }} %} <span class="sr-only">{{ social_name }}</span>
+        {% include icons.svg id=social_icon %}
+        <span class="sr-only">{{ social_name }}</span>
       </a>
     </li>
   {%- endfor %}
 {%- endcapture %}
-<nav class="social-link" aria-label="Social media links">
-  <ul class="social-link__inner">
+<nav aria-label="Social media links">
+  <ul>
     {{ social_items }}
   </ul>
 </nav>
