@@ -33,6 +33,7 @@
   }
 
   &:has(#toc-mobile) {
+    background-color: var(--bg-2);
     position: static;
 
     &[open] {
