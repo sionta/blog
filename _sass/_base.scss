@@ -140,7 +140,6 @@ h4,
 h5,
 h6 {
   font-weight: $font-weight;
-  font-family: $font-serif;
 }
 
 @include font-size-headings;
@@ -420,6 +419,7 @@ mark {
 
 .post-title {
   font-weight: 700;
+  font-family: $font-serif;
 
   &.larger {
     font-size: 3rem;
