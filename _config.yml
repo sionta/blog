@@ -39,7 +39,7 @@ date_format: "%b %d, %Y"
 
 # Generate social links. Icon use Tabler https://tabler.io/icons
 social_links:
-  - { title: Subcribe, icon: rss, url: /feed.xml }
+  - { title: Subcribe, icon: rss, url: feed.xml }
   - { title: Email, icon: mail, url: mailto:info@andreattamimi.com }
   - { title: GitHub, url: https://github.com/sionta }
   - { title: Mastodon, url: https://mastodon.social/@sionta }
