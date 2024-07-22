@@ -1,14 +1,12 @@
 ---
 layout: default
 ---
-<div class="home">
-  <section class="hero">
-    <h2 class="post-title larger">Welcome to Our Blog</h2>
-    <p>Explore insightful articles on various topics.</p>
-    <a href="{{ '/blog/' | relative_url }}" class="btn">Read More</a>
-  </section>
-  <section class="blog wrapper">
-    <h2 class="post-title larger">Latest Blog Posts</h2>
-    {% include blog.html total=3 %}
-  </section>
-</div>
+<section class="hero">
+  <h2 class="post-title larger">Welcome to Our Blog</h2>
+  <p>Explore insightful articles on various topics.</p>
+  <a href="{{ '/blog/' | relative_url }}" class="btn">Read More</a>
+</section>
+<section class="blog">
+  <h2 class="post-title larger" style="text-align:center;">Latest Blog Posts</h2>
+  {% include blog.html total=3 %}
+</section>

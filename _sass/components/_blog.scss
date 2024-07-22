@@ -1,12 +1,5 @@
 @use "utils" as *;
 
-.blog > h1 {
-  color: var(--lk-1);
-  text-align: center;
-  margin-top: $spacing-unit;
-  margin-bottom: $spacing-unit;
-}
-
 .blog-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(px-to-rem(250px), 1fr));

@@ -3,10 +3,11 @@
 .hero {
   text-align: center;
   background-color: var(--bg-2);
-  padding: 80px $spacing-unit;
+  padding: px-to-rem(80px) $spacing-unit;
   margin-bottom: $spacing-unit;
 
-  h1 {
+  h1,
+  h2 {
     font-size: 3em;
     margin-bottom: $spacing-unit;
   }

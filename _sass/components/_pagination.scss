@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  gap: 10px;
+  padding: 20px 0;
 
   .page-number,
   .page-previous,
@@ -15,26 +16,27 @@
     border-radius: 3px;
     color: var(--tx-1);
     text-decoration: none;
+    background: transparent;
     transition: background 0.3s ease;
 
     &:hover {
       background: var(--bg-3);
     }
-
-    &.disabled {
-      // cursor: not-allowed;
-      pointer-events: none;
-      opacity: 0.5;
-    }
   }
 
   .current {
     background: var(--lk-1);
-    color: var(--bd-1);
+    color: var(--base06);
     border-color: var(--bg-3);
 
     &:hover {
       background: var(--lk-2);
     }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
   }
 }

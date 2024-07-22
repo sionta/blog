@@ -21,11 +21,11 @@ Jekyll::Hooks.register :site, :post_write do |site|
   html_config = config['html']
   css_config = config['css']
   js_config = config['js']
-
   output_dir = site.dest
-  # 'lib/',
-  excludes = ['vendor/', '.min.css', '.min.js']
+
   current_env = Jekyll.env # Get current ENV value from Jekyll
+  excludes = ['vendor/', '.min.css', '.min.js']
+  excludes.append('lib') if current_env == 'development'
 
   Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minification for '#{output_dir}'"
 
@@ -46,24 +46,22 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
   # Minify CSS
   if css_config == true || current_env == css_config
-    css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| excludes.any? { |ex| file.include?(ex) } }
+    css_files = Dir.glob("#{output_dir}/**/*.css").reject do |file|
+      excludes.any? { |ex| file.include?(ex) }
+    end
     css_files.each do |css_file|
-      css_opts = [
-        "-i \"#{css_file}\"",
-        "-o \"#{css_file}\""
-      ]
+      css_opts = ["-i \"#{css_file}\"", "-o \"#{css_file}\""]
       run_command('csso', css_opts)
     end
   end
 
   # Minify JS
   if js_config == true || current_env == js_config
-    js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| file.include?(ex) } }
+    js_files = Dir.glob("#{output_dir}/**/*.js").reject do |file|
+      excludes.any? { |ex| file.include?(ex) }
+    end
     js_files.each do |js_file|
-      js_opts = [
-        "\"#{js_file}\"",
-        "-o \"#{js_file}\""
-      ]
+      js_opts = ["\"#{js_file}\"", "-o \"#{js_file}\""]
       run_command('uglifyjs', js_opts)
     end
   end
