@@ -67,7 +67,7 @@ comments:
 paginate: 6
 paginate_path: /blog/:num/
 
-self_host: true # `production` or `development`
+self_host: development # `production` or `development`
 
 # IMPORTANT SETTINGS *****************************************
 sass:
