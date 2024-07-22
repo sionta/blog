@@ -4,16 +4,16 @@ layout: none
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ site.title }}</title>
-  <link href="{{ site.url }}" />
+  <link href="{{ '/' | absolute_url }}" />
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>{{ site.url }}</id>
+  <id>{{ '/' | absolute_url }}</id>
   <subtitle>{{ site.description }}</subtitle>
   {%- assign post_limit = site.feed_limit | default: 10 %}
   {%- for post in site.posts limit: post_limit %}
   <entry>
     <title>{{ post.title }}</title>
-    <link href="{{ site.url }}{{ post.url | escape }}" />
-    <id>{{ site.url }}{{ post.url | escape }}</id>
+    <link href="{{ post.url | absolute_url | escape }}" />
+    <id>{{ post.url | absolute_url | escape }}</id>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
     <summary>{{ post.excerpt | strip_html | strip_newlines | escape }}</summary>
   </entry>
