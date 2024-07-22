@@ -3,11 +3,9 @@
 // Font Family
 $font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
   "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols !default;
-$font-sans: "Poppins", "Lato", "Open Sans", Arial, Helvetica, system-ui,
-  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !default;
-$font-mono: "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono",
-  monospace !default;
-$font-serif: Georgia, "Times New Roman", Times, serif !default;
+$font-sans: "Poppins", system-ui, -apple-system, sans-serif !default;
+$font-mono: "Fira Code", monospace !default;
+$font-serif: "Abril Fatface", "Georgia", "Times New Roman", Times, serif !default;
 
 $font-sizes: (
   1: 2rem,
@@ -37,6 +35,6 @@ $spacing-unit: 20px !default;
 $gutter-bottom: $spacing-unit * 0.5 !default;
 $border-radius: 4px !default;
 
-$content-width: 1080px !default;
+$content-width: 992px !default; // 1080px
 $min-width: map.get($breakpoints, sm) !default;
 $max-width: map.get($breakpoints, md) !default;

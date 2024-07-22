@@ -1,0 +1,8 @@
+/* abril-fatface-regular - latin_latin-ext */
+@font-face {
+  font-display: swap;
+  font-family: "Abril Fatface";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/abril-fatface/abril-fatface-regular.woff2") format("woff2");
+}

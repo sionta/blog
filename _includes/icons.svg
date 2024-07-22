@@ -1,6 +1,0 @@
-{% capture svg_symbol %}
-  <svg {{ include.attr }} width="24" height="24" viewBox="0 0 24 24" aria-label="{{ include.id }}">
-    <use href="{{ '/assets/icons.svg' | relative_url -}}#{{- include.id }}"></use>
-  </svg>
-{% endcapture %}
-{{ svg_symbol }}

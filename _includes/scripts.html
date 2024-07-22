@@ -1,88 +1,141 @@
-{% if page.collection == 'posts' or page.layout == 'post' %}
-  {% comment %} ANCHOR HEADINGS or PARAGRAPHS {% endcomment %}
-  <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+{%- if site.self_host == true or site.self_host == jekyll.environment %}
+  {%- assign VENDOR_ORIGIN = '/assets/lib' | relative_url %}
+{%- else %}
+  {%- assign VENDOR_ORIGIN = 'https://cdn.jsdelivr.net/npm' %}
+  {%- comment %} '@major.minor.patch' or '@latest' {%- endcomment %}
+  {%- assign __JS_ANCHOR__ = '@5.0.0' %}
+  {%- assign __JS_TOCBOT__ = '@4.28.2/dist' %}
+  {%- assign __JS_MERMAID__ = '@10.9.1/dist' %}
+  {%- assign __JS_KATEX__ = '@0.16.11/dist' %}
+  {%- assign __JS_MATHJAX__ = '@3.2.2/es5' %}
+  {%- assign __JS_SEARCH__ = '@1.10.0/dest' %}
+{%- endif %}
+
+{%- if page.url == '/blog/' %}
+  <script src="{{ VENDOR_ORIGIN }}/simple-jekyll-search{{ __JS_JEKYLL_SEARCH__ }}/simple-jekyll-search.min.js"></script>
+  <script>(function () {
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const resultTemplate = `<li class="search-item">
+      <a class="search-link" href="{url}">{title}</a>
+    </li>`;
+
+    window.SimpleJekyllSearch({
+      searchInput: searchInput,
+      resultsContainer: searchResults,
+      searchResultTemplate: resultTemplate,
+      json: [{%- for post in site.posts %}
+        {
+          "title"    : "{{- post.title | escape -}}",
+          "excerpt"  : "{{- post.excerpt | strip_html | strip_newlines | escape -}}",
+          "category" : "{{- post.categories | join: ', ' -}}",
+          "tags"     : "{{- post.tags | join: ', ' -}}",
+          "url"      : "{{- post.url | relative_url -}}",
+          "date"     : "{{- post.date | date: '%b %d %Y' -}}",
+          "description"     : "{{- post.description -}}"
+        }{% unless forloop.last %},{% endunless %}{% endfor %}
+      ],
+      noResultsText: '',
+      limit: 10,
+      fuzzy: false,
+    });
+
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value;
+      if (searchTerm === '') {
+        searchResults.innerHTML = '';
+      } else if (searchResults.innerHTML.trim() === '') {
+        searchResults.innerHTML = `<div class="no-results"><span>No results for</span> <span>"${searchTerm}</span>"</div>`;
+      }
+    });
+  })();
+  </script>
+{%- endif %}
+
+{%- if page.collection == 'posts' or page.layout == 'post' %}
+  {%- comment %} SITE COMMENTS {%- endcomment %}
+  {%- include comments.html only='script' %}
+
+  {%- comment %} ANCHOR HEADINGS or PARAGRAPHS {%- endcomment %}
+  <script src="{{ VENDOR_ORIGIN }}/anchor-js{{ __JS_ANCHOR__ }}/anchor.min.js"></script>
   <script>
     if (window.anchors) {
       anchors.options = { placement: 'right', visible: 'always', icon: '#', class: 'anchor-link' };
-      anchors.add(':where([itemprop=articleBody]) :where(h2,h3)').remove('.no-anchor, .no_anchor');
+      anchors.add(':where([itemprop=articleBody]) :where(h2)').remove('.no-anchor, .no_anchor');
     }
   </script>
 
-  {% comment %} TABLE OF CONTENTS {% endcomment %}
-  {% if page.toc == true %}
-    <script src="https://cdn.jsdelivr.net/npm/tocbot@4.28.2/dist/tocbot.min.js"></script>
+  {%- comment %} TABLE OF CONTENTS {%- endcomment %}
+  {%- if page.toc == true %}
+    <script src="{{ VENDOR_ORIGIN }}/tocbot{{ __JS_TOCBOT__ }}/tocbot.min.js"></script>
     <script>
-      if (window.tocbot) {
+      (function () {
         const initializeToc = () => {
           const toc = window.innerWidth >= 768 ? '#toc' : '#toc-mobile';
           if (!toc) return;
+
+          let ordered = false;
+          let heading = 'h2, h3';
+          if (toc == '#toc-mobile') {
+            ordered = true;
+            heading = 'h2';
+          }
+
           tocbot.destroy();
           tocbot.init({
             tocSelector: toc,
             contentSelector: '[itemprop="articleBody"]',
             ignoreSelector: '.no_toc, .no-toc',
-            headingSelector: 'h2, h3',
-            orderedList: false,
+            headingSelector: heading,
+            orderedList: ordered,
           });
           tocbot.refresh();
         };
         initializeToc();
         window.addEventListener('resize', initializeToc);
-      }
+      })();
     </script>
-  {% endif %}
+  {%- endif %}
 
-  {% comment %} DIAGRAMMING {% endcomment %}
-  {% if page.mermaid == true %}
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  {%- comment %} DIAGRAMMING {%- endcomment %}
+  {%- if page.mermaid == true %}
+    <script src="{{ VENDOR_ORIGIN }}/mermaid{{ __JS_MERMAID__ }}/mermaid.min.js"></script>
     <script>
-      if (window.mermaid) {
+      (function () {
         const mermaidConfig = {
           startOnLoad: true,
-          theme: Theme.mermaid[getTheme()],
+          theme: THEME.mermaid[localStorage.getItem('theme')],
           logLevel: 'error',
-          securityLevel: 'strict',
-          flowchart: {
-            htmlLabels: true,
-            curve: 'basis',
-          },
-          sequence: {
-            diagramMarginX: 50,
-            diagramMarginY: 10,
-          },
-          gantt: {
-            axisFormat: '%m/%d/%Y',
-          },
         };
         const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
         mermaidBlocks.forEach((block) => {
           const codeBlock = block.parentElement;
-          const rootDiv = document.createElement('pre');
-          const subDiv = document.createElement('code');
-          rootDiv.classList.add('mermaid-diagram');
-          subDiv.classList.add('mermaid');
-          subDiv.innerHTML = block.innerHTML;
-          rootDiv.appendChild(subDiv);
-          codeBlock.replaceWith(rootDiv);
+          const pre = document.createElement('pre');
+          const code = document.createElement('code');
+          pre.classList.add('mermaid-diagram');
+          code.classList.add('mermaid');
+          code.innerHTML = block.innerHTML;
+          pre.appendChild(code);
+          codeBlock.replaceWith(pre);
         });
         mermaid.initialize(mermaidConfig);
         mermaid.init();
-      }
+      })();
     </script>
-  {% endif %}
+  {%- endif %}
 
-  {% comment %} MATHEMATICS {% endcomment %}
-  {% assign mathEngine = page.math | downcase %}
-  {% if mathEngine == 'katex' or mathEngine == true %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" defer></script>
+  {%- comment %} MATHEMATICS {%- endcomment %}
+  {%- assign mathEngine = page.math | downcase %}
+  {%- if mathEngine == 'katex' or mathEngine == true %}
+    <link rel="stylesheet" href="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.css" crossorigin="anonymous">
+    <script src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.js" crossorigin="anonymous" defer></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+      src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/contrib/auto-render.min.js"
       crossorigin="anonymous"
       defer
       onload="renderMathInElement(document.body);"
     ></script>
-  {% elsif mathEngine == 'mathjax' %}
+  {%- elsif mathEngine == 'mathjax' %}
     <script id="Mathjax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" async></script>
-  {% endif %}
-{% endif %}
+  {%- endif %}
+{%- endif %}

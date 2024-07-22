@@ -1,0 +1,9 @@
+---
+layout: none
+---
+# www.robotstxt.org
+User-agent: *
+Disallow:
+Disallow: /assets/data/
+Crawl-delay: 10
+Sitemap: {{ 'sitemap.xml' | absolute_url }}

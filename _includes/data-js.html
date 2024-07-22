@@ -1,16 +1,14 @@
 {% comment %} DONT MODIFY {% endcomment %}
 <script>
-  window.getTheme = () => {
-    return (
-      document.documentElement.getAttribute('data-theme') ||
-      localStorage.getItem('theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    );
-  };
-  window.Theme = {
+  window.THEME = {
     toggle: { system: 'system', light: 'light', dark: 'dark' },
     giscus: { light: 'light', dark: 'dark_dimmed' },
     utterances: { light: 'github-light', dark: 'github-dark' },
     mermaid: { light: 'default', dark: 'dark' },
+  };
+  window.getTheme = () => {
+    return (
+      localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    );
   };
 </script>

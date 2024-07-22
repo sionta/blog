@@ -3,11 +3,11 @@
 
 @use "sass:map";
 @use "sass:math";
-@use "variables" as var;
+@use "variables" as *;
 
 @mixin font-size-clamp($key) {
-  $base-size: map.get(var.$font-sizes, $key);
-  $clamp-function: "clamp(#{var.$min-font-size}, #{$base-size}, #{var.$max-font-size})";
+  $base-size: map.get($font-sizes, $key);
+  $clamp-function: "clamp(#{$min-font-size}, #{$base-size}, #{$max-font-size})";
   font-size: #{$clamp-function};
 }
 
@@ -19,28 +19,6 @@
   }
 }
 
-// Function to convert px to rem
-@function px-to-rem($px) {
-  $fs: 16px; // Default font-size
-
-  @if var.$font-size {
-    $fs: var.$font-size;
-  }
-
-  // Convert px to rem using math.div for division
-  @return math.div($px, $fs) * 1rem;
-}
-
-// Mixin for clearfix
-@mixin clearfix {
-  &::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
-}
-
-// Mixin to reset link styles
 @mixin reset-link {
   &,
   &:hover {
@@ -48,51 +26,53 @@
   }
 }
 
-// Mixin to reset padding and margin
 @mixin reset-gutter {
   padding: 0;
   margin: 0;
 }
 
-// Mixin to reset list styles
 @mixin reset-list {
   list-style: none;
   @include reset-gutter();
 }
 
-// Mixin to center elements using flexbox
-@mixin flex-box($justify-content: "") {
-  display: flex;
-  align-items: center;
-  @if $justify-content {
-    justify-content: #{$justify-content};
+@mixin menu-item($list: false, $gutter: 10px) {
+  ul {
+    @include reset-list;
+
+    li {
+      @if $list == true {
+        display: list-item;
+        margin-bottom: $gutter;
+      } @else {
+        display: inline-block;
+        margin-right: $gutter;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+// Convert px to rem
+@function px-to-rem($px) {
+  $fs: 16px;
+
+  @if $font-size {
+    $fs: $font-size;
   }
 
-  @content;
+  @return math.div($px, $fs) * 1rem;
 }
 
 @mixin flex-center {
-  @include flex-box(center);
+  display: flex;
+  justify-content: center;
 }
 
-@mixin menu-item($inline: false, $gutter: 10px) {
-  ul {
-    @include reset-list;
-  }
-
-  li {
-    @if $inline ==true {
-      display: inline-block;
-      margin-right: $gutter;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    } @else {
-      display: list-item;
-      margin-bottom: $gutter;
-    }
-  }
-
-  @content;
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
 }

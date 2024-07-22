@@ -8,26 +8,25 @@
   margin-bottom: $spacing-unit;
   position: relative;
 
-  %font-size {
-    font-size: px-to-rem(22px);
+  %font-style {
+    font-family: inherit;
+    font-size: px-to-rem(20px);
   }
 
-  &:has(li, input) {
-    border-radius: 8px;
+  div,
+  input {
+    width: 100%;
   }
 
   input {
-    @extend %font-size;
-    padding: 1rem 2rem;
-    width: 100%;
-    color: var(--tx-1);
+    @extend %font-style;
+    padding: 0.9rem 1.8rem;
     background: var(--bg-2);
+    color: var(--tx-1);
     outline: none;
     border: 1px solid var(--bd-1);
 
     &::-webkit-search-cancel-button {
-      -webkit-appearance: none;
-      -moz-appearance: none;
       appearance: none;
     }
 
@@ -35,22 +34,22 @@
       color: var(--tx-2);
     }
 
-    &:not(:focus) {
-      border-radius: $border-radius;
-    }
-
     &:focus {
+      background: transparent;
       border: 1px solid var(--bd-1);
       border-color: var(--blue);
       border-top-left-radius: $border-radius;
       border-top-right-radius: $border-radius;
+    }
+
+    &:not(:focus) {
+      border-radius: $border-radius;
     }
   }
 
   .result-container {
     position: absolute;
     z-index: 1;
-    width: 100%;
     padding: $spacing-unit;
     background-color: transparent;
     transition: background-color 0.2s ease;
@@ -63,12 +62,11 @@
     }
 
     ul {
-      list-style: decimal;
+      list-style: disc;
     }
+
     li {
-      @extend %font-size;
-      padding: 0 $spacing-unit;
-      color: var(--tx-1);
+      padding: calc(#{$spacing-unit} / 2) $spacing-unit;
 
       &:hover {
         border-radius: 4px;
@@ -77,13 +75,13 @@
     }
 
     a {
-      color: inherit;
-      text-decoration: none;
+      @extend %font-style;
+      color: var(--tx-1);
     }
   }
 
   .no-results {
-    @extend %font-size;
+    @extend %font-style;
     color: var(--tx-2);
     text-align: center;
 

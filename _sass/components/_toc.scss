@@ -6,11 +6,12 @@
 .post-toc {
   position: sticky;
   top: 1.5rem;
+  z-index: 1;
 
   color: var(--tx-1);
 
   .toc-title {
-    font-size: px-to-rem(15px);
+    font-size: $font-size;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -18,7 +19,6 @@
   #toc,
   #toc-mobile {
     overflow-y: auto;
-    font-size: px-to-rem(15px);
 
     ul {
       margin: 0;
@@ -34,12 +34,11 @@
 
   &:has(#toc-mobile) {
     background-color: var(--bg-2);
+    width: max-content;
     position: static;
 
     &[open] {
       position: sticky;
-      top: 0;
-      z-index: 1
     }
   }
 

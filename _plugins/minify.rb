@@ -9,16 +9,28 @@ def run_command(cmd, args)
   stdout_str, error_str, status = Open3.capture3("#{tool_path} #{tool_args}")
   return if status.success?
 
-  Jekyll.logger.error "#{File.basename(__FILE__)}:", "#{tool_path}, #{status}, #{stdout_str}"
+  Jekyll.logger.error "#{File.basename(__FILE__)}:", "#{tool_path} failed with status #{status.exitstatus}"
+  Jekyll.logger.error "Error: #{error_str.strip}" unless error_str.strip.empty?
+  Jekyll.logger.error "Output: #{stdout_str.strip}" unless stdout_str.strip.empty?
 end
 
-# Function to minify HTML, CSS, and JS files
-def minify_files(output_dir, config)
+# Register hooks to run after Jekyll site is written
+Jekyll::Hooks.register :site, :post_write do |site|
+  # Configuration in _config.yml
+  config = site.config['minify'] || {}
+  html_config = config['html']
+  css_config = config['css']
+  js_config = config['js']
+
+  output_dir = site.dest
+  # 'lib/',
+  excludes = ['vendor/', '.min.css', '.min.js']
+  current_env = Jekyll.env # Get current ENV value from Jekyll
+
   Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minification for '#{output_dir}'"
-  excludes = ['vendor/', 'lib/', '.min.css', '.min.js']
 
   # Minify HTML
-  if config.fetch('html', true)
+  if html_config == true || current_env == html_config
     html_opts = [
       "--input-dir=#{output_dir}",
       "--output-dir=#{output_dir}",
@@ -33,7 +45,7 @@ def minify_files(output_dir, config)
   end
 
   # Minify CSS
-  if config.fetch('css', true)
+  if css_config == true || current_env == css_config
     css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| excludes.any? { |ex| file.include?(ex) } }
     css_files.each do |css_file|
       css_opts = [
@@ -45,21 +57,14 @@ def minify_files(output_dir, config)
   end
 
   # Minify JS
-  return unless config.fetch('js', true)
-
-  js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| file.include?(ex) } }
-  js_files.each do |js_file|
-    js_opts = [
-      "\"#{js_file}\"",
-      "-o \"#{js_file}\""
-    ]
-    run_command('uglifyjs', js_opts)
+  if js_config == true || current_env == js_config
+    js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| file.include?(ex) } }
+    js_files.each do |js_file|
+      js_opts = [
+        "\"#{js_file}\"",
+        "-o \"#{js_file}\""
+      ]
+      run_command('uglifyjs', js_opts)
+    end
   end
-end
-
-# Register hooks to run after Jekyll site is written
-Jekyll::Hooks.register :site, :post_write do |site|
-  config = site.config['minify'] || {}
-  env = config.fetch('env', 'production')
-  minify_files(site.dest, config) if Jekyll.env == env
 end

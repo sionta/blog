@@ -69,12 +69,9 @@ body {
   font: $font-weight #{$font-size}/#{$line-height} $font-sans;
   color: var(--tx-1);
   background-color: var(--bg-1);
-  font-feature-settings: "kern" 1;
-  font-kerning: normal;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
-  overflow-wrap: break-word;
+  min-height: 100vh;
 }
 
 /**
@@ -103,18 +100,10 @@ hr {
   margin-bottom: $spacing-unit;
 }
 
-/**
-  * `main` element
-  */
 main {
-  display: block;
-  /* Default value of `display` of `main` element is 'inline' in IE 11. */
+  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
-/**
-  * Images
-  */
-svg,
 img,
 figure > img {
   display: block;
@@ -123,6 +112,7 @@ figure > img {
 
 svg {
   display: inline-block;
+  vertical-align: middle;
 }
 
 figcaption {
@@ -130,9 +120,6 @@ figcaption {
   text-align: center;
 }
 
-/**
-  * Lists
-  */
 dd,
 ul,
 ol {
@@ -146,9 +133,6 @@ li {
   }
 }
 
-/**
-  * Headings
-  */
 h1,
 h2,
 h3,
@@ -156,13 +140,11 @@ h4,
 h5,
 h6 {
   font-weight: $font-weight;
+  font-family: $font-serif;
 }
 
 @include font-size-headings;
 
-/**
-  * Links
-  */
 a {
   color: var(--tx-1);
   text-decoration: underline;
@@ -202,10 +184,10 @@ samp,
 kbd,
 pre,
 code {
-  background-color: var(--bg-2);
-  border-radius: 4px;
   font-family: $font-mono;
-  line-height: 1.15;
+  letter-spacing: 0.3px;
+  border-radius: 4px;
+  background-color: var(--bg-2);
 }
 
 samp,
@@ -375,7 +357,6 @@ mark {
   & &__inner {
     .article {
       flex: 75%;
-      line-height: 1.7;
     }
 
     .sidebar {
@@ -391,35 +372,30 @@ mark {
 
   ul,
   h1,
-  p,
-  a {
+  p {
     margin: 0;
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  ul {
+    list-style: none;
+    display: inline-flex;
+    gap: $spacing-unit;
+  }
+
+  a {
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   h1 a {
     font-weight: 700;
     font-size: 1.5rem;
     text-decoration: none;
-  }
-
-  nav {
-    ul {
-      list-style: none;
-
-      li {
-        display: inline-block;
-        margin-right: $spacing-unit;
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        a {
-          font-weight: 600;
-          font-size: 1rem;
-        }
-      }
-    }
   }
 }
 
@@ -429,6 +405,12 @@ mark {
   .footer__inner {
     flex-direction: column;
     text-align: center;
+  }
+
+  .footer__inner {
+    nav:has(.social-list) {
+      order: 1;
+    }
   }
 
   .content__inner {

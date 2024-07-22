@@ -2,11 +2,13 @@
 {%- assign text = include.t | default: include.text | default: 'Lorem Ipsum' %}
 {%- assign width = include.w | default: include.width | default: 100 %}
 {%- assign height = include.h | default: include.height | default: 100 %}
-{%- assign placeholder_svg = '' %}
-{%- capture placeholder_svg %}
-<svg xmlns="http://www.w3.org/2000/svg" width="{{ width }}" height="{{ height }}" viewBox="0 0 {{ width }} {{ height }}">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="{{ width }}"
+  height="{{ height }}"
+  viewBox="0 0 {{ width }} {{ height }}"
+>
   <rect width="100%" height="100%" fill="#DDDDDD" />
-  <text style="font:bold {{ size }}/1 serif;text-anchor:middle;dominant-baseline:middle;" x="50%" y="50%" fill="#999999">{{ text }}</text>
+  <text style="font:bold {{ size }}/1 sans;text-anchor:middle;dominant-baseline:middle;" x="50%" y="50%" fill="#999999">{{ text }}</text>
 </svg>
-{%- endcapture %}
 {{ placeholder_svg }}

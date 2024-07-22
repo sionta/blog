@@ -3,93 +3,6 @@
 /**
  * Utility classes
  */
-.tooltip {
-  cursor: pointer;
-  position: relative;
-  display: inline-flex;
-  color: var(--tx-1);
-
-  &[aria-label]::after {
-    content: attr(aria-label);
-  }
-
-  &[title]::after {
-    content: attr(title);
-  }
-
-  &::after {
-    content: attr(data-tooltip);
-    font: 400 14px/1 "Arial", sans-serif;
-    position: absolute;
-    bottom: 125%; // Position the tooltip above the element
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--bg-3);
-    color: var(--tx-1);
-    padding: 0.4em;
-    border-radius: 0.25em;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 1;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 35%; // Position the arrow above the tooltip
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 12px; // Adjust the size of the arrow
-    border-style: solid;
-    border-color: var(--bg-3) transparent transparent transparent;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-  }
-
-  &:hover::after,
-  &:hover::before {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.pfixed {
-  position: fixed !important;
-  top: 0;
-}
-
-.sticky {
-  position: sticky !important;
-  top: 0;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-right {
-  text-align: right;
-}
 
 /* Hide elements using this class by default */
 .only-on-mobiles {
@@ -140,8 +53,7 @@ a[href^="#fn"] {
 }
 
 .emoji {
-  // height: var(--font-size);
-  // width: var(--font-size);
+  max-width: $font-size;
   display: inline-block;
   vertical-align: text-bottom;
 }
