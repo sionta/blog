@@ -2,7 +2,7 @@
   <nav aria-label="Social media links">
     <ul class="social-list">
       {%- for item in site.social_links %}
-        {%- assign social_link = item.link | default: item.url | relative_url %}
+        {%- assign social_link = item.link | default: item.url %}
         {%- assign social_name = item.title | default: item.platform %}
         {%- if item.icon %}
           {%- assign social_icon = item.icon | downcase %}
