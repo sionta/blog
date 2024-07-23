@@ -1,9 +1,16 @@
 <header class="header">
   <div class="header__inner">
-    <h1>
+    <h1 class="brand">
       <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
     </h1>
-    {% include navbar.html %}
-    {% include theme.html %}
+    <div class="navbar" aria-label="Navigation menu">
+      {% include navbar.html %}
+      {% include theme.html %}
+    </div>
+    <div class="hambuger" aria-label="Navigation menu on mobile">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>

@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+#
+# Build and test the site content
+#
+# Requirement: html-proofer, jekyll
+#
+# Usage: See help information
+
+set -eu
+
+SITE_DIR="_site"
+CONFIG_FILE="_config.yml"
+BASEURL=""
+
+# Print help information
+help() {
+  echo "Build and test the site content"
+  echo
+  echo "Usage:"
+  echo
+  echo "   bash ./tools/test [options]"
+  echo
+  echo "Options:"
+  echo '     -c, --config   "<config_a[,config_b[...]]>"    Specify config file(s)'
+  echo "     -h, --help               Print this information."
+}
+
+# Read baseurl from the config file(s)
+read_baseurl() {
+  local config_files=()
+  IFS=',' read -r -a config_files <<< "$CONFIG_FILE"
+
+  for config in "${config_files[@]}"; do
+    if [[ -f $config ]]; then
+      local tmp_baseurl
+      tmp_baseurl="$(grep '^baseurl:' "$config" | sed "s/.*: *//;s/['\"]//g;s/#.*//")"
+
+      if [[ -n $tmp_baseurl ]]; then
+        BASEURL="$tmp_baseurl"
+        break
+      fi
+    else
+      echo "Config file $config not found."
+      exit 1
+    fi
+  done
+}
+
+# Main script execution
+main() {
+  # Clean up
+  if [[ -d $SITE_DIR ]]; then
+    rm -rf "$SITE_DIR"
+  fi
+
+  read_baseurl
+
+  # Build
+  if ! JEKYLL_ENV=production bundle exec jekyll build -d "$SITE_DIR$BASEURL" -c "$CONFIG_FILE"; then
+    echo "Jekyll build failed."
+    exit 1
+  fi
+
+  # Test
+  if ! bundle exec htmlproofer "$SITE_DIR" \
+    --disable-external \
+    --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"; then
+    echo "HTML proofing failed."
+    exit 1
+  fi
+}
+
+# Parse options
+while (($#)); do
+  opt="$1"
+  case $opt in
+  -c | --config)
+    CONFIG_FILE="$2"
+    shift
+    shift
+    ;;
+  -h | --help)
+    help
+    exit 0
+    ;;
+  *)
+    # Unknown option
+    help
+    exit 1
+    ;;
+  esac
+done
+
+main

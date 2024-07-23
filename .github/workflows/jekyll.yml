@@ -13,7 +13,7 @@ on:
       - master
     paths-ignore:
       - ".*ignore"
-      - .editorconfig
+      - LICENSE
       - README.md
 
   # Allows you to run this workflow manually from the Actions tab
@@ -48,18 +48,20 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
+          ruby-version: 3.2
           bundler-cache: true
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
-        run: npm run build -- --baseurl "${{ steps.pages.outputs.base_path }}"
+      - name: Build site
         env:
           JEKYLL_ENV: production
+        # Outputs to the './_site' directory by default
+        run: |
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+          bundle exec htmlproofer _site
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default

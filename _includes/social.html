@@ -1,22 +1,25 @@
-{% capture social_media %}
-  <nav aria-label="Social media links">
-    <ul class="social-list">
-      {%- for item in site.social_links %}
-        {%- assign social_link = item.link | default: item.url %}
-        {%- assign social_name = item.title | default: item.platform %}
-        {%- if item.icon %}
-          {%- assign social_icon = item.icon | downcase %}
-        {%- else %}
-          {%- assign social_icon = 'brand-' | append: social_name | downcase %}
-        {%- endif %}
-        {%- assign social_icon_attr = 'class="tooltip" data-tooltip="' | append: social_name | append: '"' %}
-        <li>
-          <a {% if social_link contains 'feed.xml' %}rel="me"{% endif %} href="{{ social_link | relative_url }}" target="_blank" title="{{ social_name }}">
-            {% include svg id=social_icon attr=social_icon_attr %}
-          </a>
-        </li>
-      {%- endfor %}
-    </ul>
-  </nav>
-{% endcapture %}
-{{ social_media }}
+<nav aria-label="Social media links">
+  <ul class="social-list">
+    {%- for item in site.social_links %}
+      {%- assign link = item.link | default: item.path | default: item.url | relative_url %}
+      {%- assign name = item.title | default: item.name | default: item.platform %}
+      {%- if item.icon %}
+        {%- assign icon = item.icon | downcase %}
+      {%- else %}
+        {%- assign icon = 'brand-' | append: name | downcase %}
+      {%- endif %}
+      <li>
+        <a
+          {% if link contains 'feed.xml' %}
+            rel="me"
+          {% endif %}
+          href="{{ social_link | relative_url }}"
+          target="_blank"
+          title="{{ name }}"
+        >
+          {%- include svg_symbol.html id=icon -%}
+        </a>
+      </li>
+    {%- endfor %}
+  </ul>
+</nav>

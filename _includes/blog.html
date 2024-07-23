@@ -6,7 +6,7 @@
 
 {%- if include.search %}{% include search.html %}{% endif %}
 
-<nav class="blog-container wrapper">
+<div class="blog-container">
   <ul class="blog-list">
     {% for post in posts | limit: include.total %}
       <li class="blog-item">
@@ -27,6 +27,6 @@
       </li>
     {% endfor %}
   </ul>
-</nav>
+</div>
 
 {%- if include.pager == true %}{% include pagination.html %}{% endif %}

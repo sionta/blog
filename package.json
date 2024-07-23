@@ -1,14 +1,5 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "description": "Personal site",
-  "scripts": {
-    "serve": "bundle exec jekyll serve",
-    "clean": "bundle exec jekyll clean",
-    "build": "bundle exec jekyll build",
-    "test": "npm run clean && npm serve --watch"
-  },
-  "devDependencies": {
+  "dependencies": {
     "csso-cli": "^4.0.2",
     "html-minifier": "^4.0.0",
     "svgo": "^3.3.2",

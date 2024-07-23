@@ -1,5 +1,5 @@
 {%- assign svg_attr = include.attribute | default: include.attr %}
 {%- assign svg_path = '/assets/icons.svg' | relative_url %}
-<svg {{ svg_attr }} width="24" height="24" viewBox="0 0 24 24" aria-label="{{ include.id }} Icon">
+<svg {{ svg_attr }} width="24" height="24" viewBox="0 0 24 24" aria-label="{{ include.id }} icon">
   <use href="{{ svg_path -}}#{{- include.id }}"></use>
 </svg>
