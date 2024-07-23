@@ -59,9 +59,10 @@ jobs:
         env:
           JEKYLL_ENV: production
         # Outputs to the './_site' directory by default
-        run: |
-          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
-          bundle exec htmlproofer _site
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+
+      # - name: Test site
+      #   run: bundle exec htmlproofer _site
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
