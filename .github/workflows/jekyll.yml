@@ -34,12 +34,7 @@ concurrency:
 jobs:
   # Build job
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-20.04, windows-latest, macos-latest]
-        ruby: [2.7, 3.0, 3.2]
-        node: [14, 18, 22]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -48,12 +43,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 18
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: 3.2
           bundler-cache: false
 
       - name: Install Node and Ruby dependencies
