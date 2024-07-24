@@ -50,7 +50,7 @@ social_links:
 
 # Post comments
 comments:
-  provider: giscus # (e.g. giscus)
+  provider: disqus # (e.g. giscus)
   # The provider settings below:
   disqus:
     # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
