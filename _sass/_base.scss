@@ -1,7 +1,6 @@
 @use "sass:map";
 @use "utils" as *;
 
-//  CSS Variables
 :root {
   @include theme(light);
 
@@ -29,43 +28,11 @@
 
 html {
   scroll-behavior: smooth;
-  /* scrollbar-width: thin;
-  scrollbar-color: var(--lk-1) var(--bg-3); */
 }
 
-/* ::-webkit-scrollbar {
-  width: 11px;
-
-  &-track,
-  &-thumb {
-    border-radius: 6px;
-  }
-
-  &-track {
-    background: var(--bg-3);
-  }
-
-  &-thumb {
-    border: 2px solid var(--bg-3);
-    background: var(--tx-1);
-
-    &:hover {
-      background: var(--lk-1);
-    }
-  }
-}
-
-::selection {
-  color: $base03;
-  background: var(--lk-1);
-} */
-
-/**
-  * Basic styling
-  */
 body {
-  font-size: $font-size;
   font-family: $font-sans;
+  font-size: $font-size;
   font-weight: $font-weight;
   line-height: $line-height;
   color: var(--tx-1);
@@ -75,9 +42,10 @@ body {
   min-height: 100vh;
 }
 
-/**
-  * Set `margin-bottom` to maintain vertical rhythm
-  */
+main {
+  display: block;
+}
+
 h1,
 h2,
 h3,
@@ -85,14 +53,14 @@ h4,
 h5,
 h6,
 p,
-blockquote,
 pre,
 ul,
 ol,
 dd,
 dl,
-figure,
+blockquote,
 details,
+figure,
 %vertical-rhythm {
   margin-bottom: $spacing-unit * 0.5;
 }
@@ -100,11 +68,6 @@ details,
 hr {
   margin-top: $spacing-unit;
   margin-bottom: $spacing-unit;
-}
-
-main {
-  display: block;
-  /* Default value of `display` of `main` element is 'inline' in IE 11. */
 }
 
 img,
@@ -142,7 +105,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
+  font-family: $font-heading;
 }
 
 @include font-size-headings;
@@ -151,7 +114,7 @@ a {
   color: var(--tx-1);
   text-decoration: underline;
   text-decoration-color: var(--lk-1);
-  // text-underline-offset: 1.3px;
+  text-underline-offset: 1.45px;
   text-decoration-thickness: 1.5px;
 
   &:hover {
@@ -159,15 +122,12 @@ a {
   }
 }
 
-/**
-  * Blockquotes
-  */
 blockquote {
+  font-size: 1.125rem;
+  font-style: italic;
   color: var(--tx-1);
   border-left: 4px solid var(--bd-1);
   padding-left: $spacing-unit;
-  font-size: 1.125rem;
-  font-style: italic;
 
   > :last-child {
     margin-bottom: 0;
@@ -179,9 +139,6 @@ blockquote {
   }
 }
 
-/**
-  * Code formatting
-  */
 samp,
 kbd,
 pre,
@@ -203,16 +160,16 @@ pre {
   overflow-x: auto;
   padding: 8px 12px;
 
+  &,
+  code {
+    font-size: px-to-rem(15px);
+  }
+
   pre,
   code {
     border: none;
     background: none;
     @include reset-gutter;
-  }
-
-  &,
-  code {
-    font-size: px-to-rem(15px);
   }
 
   td {
@@ -232,8 +189,7 @@ pre {
 }
 
 /*
-  NOTE: this enable on if use triple backticks,
-  not use {% highlight %} tag
+  NOTE: this enable on if use triple backticks, not for use {% highlight %} tag
 */
 .rouge-gutter {
   display: none;
@@ -243,19 +199,17 @@ pre {
   display: block;
 }
 
-/**
- * Details
- */
-
-/**
-  * Tables
-  */
 table:not(:has(pre)) {
   margin-bottom: $spacing-unit;
   width: 100%;
   text-align: left;
   color: var(--tx-1);
   border-collapse: collapse;
+
+  caption {
+    font-weight: bold;
+    border-bottom: none;
+  }
 
   caption,
   th,
@@ -267,11 +221,6 @@ table:not(:has(pre)) {
   th {
     background-color: var(--bg-2);
     border: 1px solid var(--bd-1);
-  }
-
-  caption {
-    font-weight: bold;
-    border-bottom: none;
   }
 
   td {
@@ -395,8 +344,8 @@ mark {
   align-items: center;
   justify-content: space-between;
 
-  ul,
   h1,
+  ul,
   p {
     margin: 0;
   }
@@ -407,9 +356,9 @@ mark {
   }
 
   ul {
-    list-style: none;
     display: inline-flex;
     gap: $spacing-unit;
+    list-style: none;
 
     a {
       font-weight: 600;
@@ -419,16 +368,18 @@ mark {
 }
 
 .homepage__inner {
+  --home-gutter: #{px-to-rem(40px)};
+
   .home-title {
     font-weight: 700;
     font-size: 3rem;
-    margin-bottom: calc($spacing-unit * 2);
     text-align: center;
+    margin-bottom: calc($spacing-unit * 2);
   }
 
   .home-hero,
   .home-blog {
-    padding: px-to-rem(80px) px-to-rem(40px);
+    padding: calc(var(--home-gutter) * 2) var(--home-gutter);
   }
 
   .blog-card__item {
@@ -443,7 +394,7 @@ mark {
 
     a,
     p {
-      margin-bottom: px-to-rem(40px);
+      margin-bottom: var(--home-gutter);
     }
 
     a {
@@ -486,6 +437,7 @@ mark {
     .home-hero,
     .home-blog {
       padding: $spacing-unit;
+      padding-bottom: var(--home-gutter);
     }
   }
 

@@ -3,12 +3,12 @@
 // Font Family
 $font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
   "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols !default;
-$font-sans: "Poppins", "Lato", "Open Sans", -apple-system, system-ui,
-  BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, $font-emoji,
-  sans-serif !default;
+$font-sans: "Lato", "Open Sans", -apple-system, system-ui, BlinkMacSystemFont,
+  "Segoe UI", Roboto, Helvetica, Arial, $font-emoji, sans-serif !default;
 $font-mono: "Fira Code", "Menlo", "Inconsolata", "Consolas", "Roboto Mono",
   "Ubuntu Mono", "Liberation Mono", "Courier New", monospace !default;
 $font-serif: "Georgia", "Times New Roman", Times, serif !default;
+$font-heading: "Poppins", $font-serif !default;
 
 $font-sizes: (
   1: 2rem,
