@@ -105,6 +105,10 @@ defaults:
       type: posts
     values:
       layout: post
+      toc: false
+      comments: false
+      mermaid: false
+      math: "" # or mathjax, if set to `true` math enable use katex
 
 # https://jekyllrb.com/docs/configuration/markdown/
 markdown: kramdown
