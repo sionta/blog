@@ -3,19 +3,10 @@
 set -eu
 
 install() {
-  if [ ! -f "package-lock.json" ]; then
-    echo "Installing Node.js packages..."
-    npm install
-  else
-    echo "Node.js packages already installed."
-  fi
-
-  if [ ! -f "Gemfile.lock" ]; then
-    echo "Installing Ruby gems..."
-    bundle install
-  else
-    echo "Ruby gems already installed."
-  fi
+  echo "Installing Node.js packages..."
+  npm install
+  echo "Installing Ruby gems..."
+  bundle install
 }
 
 build() {
