@@ -28,7 +28,7 @@ help() {
 # Read baseurl from the config file(s)
 read_baseurl() {
   local config_files=()
-  IFS=',' read -r -a config_files <<< "$CONFIG_FILE"
+  IFS=',' read -r -a config_files <<<"$CONFIG_FILE"
 
   for config in "${config_files[@]}"; do
     if [[ -f $config ]]; then

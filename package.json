@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Personal site",
   "scripts": {
-    "install": "./scripts/tool install",
+    "install": "./scripts/tool init",
     "build": "./scripts/tool build",
     "test": "./scripts/tool test"
   },
