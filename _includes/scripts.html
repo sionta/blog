@@ -1,5 +1,5 @@
 {%- if site.self_host == true or site.self_host == jekyll.environment %}
-  {%- assign VENDOR_ORIGIN = '/assets/lib' | absolute_url %}
+  {%- assign VENDOR_ORIGIN = '/assets/lib' | relative_url %}
 {%- else %}
   {%- assign VENDOR_ORIGIN = 'https://cdn.jsdelivr.net/npm' %}
   {%- comment %} '@major.minor.patch' or '@latest' {%- endcomment %}
@@ -24,7 +24,7 @@
       json: [{%- for post in site.posts %}
         {
           "title"       : "{{- post.title | escape -}}",
-          "url"         : "{{- post.url | absolute_url -}}",
+          "url"         : "{{- post.url | relative_url -}}",
           "description" : "{{- post.description -}}",
           "excerpt"     : "{{- post.excerpt | strip_html | strip_newlines | escape -}}",
           "date"        : "{{- post.date | date: '%b %d %Y' -}}",

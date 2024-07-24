@@ -4,7 +4,7 @@
     {%- for crumb in breadcrumbs %}
       {% if forloop.first %}
         <li>
-          <a href="{{ '/' | absolute_url }}/">Home</a>
+          <a href="{{ '/' | relative_url }}">Home</a>
         </li>
       {%- elsif forloop.last %}
         <li>
@@ -12,7 +12,7 @@
         </li>
       {%- else %}
         <li>
-          <a href="{{ '/' | append: crumb | absolute_url }}/">{{ crumb | capitalize }}</a>
+          <a href="{{ '/' | append: crumb | relative_url }}/">{{ crumb | capitalize }}</a>
         </li>
       {% endif %}
     {%- endfor %}

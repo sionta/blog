@@ -13,10 +13,8 @@
           class="social__link"
           {% if link contains 'feed.xml' %}
             rel="me"
-            href="{{ link | absolute_url }}"
-          {% else %}
-            href="{{ link }}"
           {% endif %}
+          href="{{ link | relative_url }}"
           target="_blank"
           title="{{ name }}"
         >

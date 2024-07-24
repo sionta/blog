@@ -2,10 +2,10 @@
 {%- capture navigation %}
   <nav {%- if include.class %} class="{{ include.class }}"{%- endif %}>
     <ul class="menu-list">
-      {% comment %} <li><a href="{{ '/' | absolute_url }}">Home</a></li> {% endcomment %}
-      <li><a href="{{ '/blog/' | absolute_url }}">Articles</a></li>
+      {% comment %} <li><a href="{{ '/' | relative_url }}">Home</a></li> {% endcomment %}
+      <li><a href="{{ '/blog/' | relative_url }}">Articles</a></li>
       {%- for item in nav_items %}
-      {%- assign item_url = item.redirect_to | default: item.url | absolute_url %}
+      {%- assign item_url = item.redirect_to | default: item.url | relative_url %}
       <li><a href="{{ item_url }}"{%- if item_url contains 'http' %} target="_blank" rel="noopener noreferrer"{%- endif -%}>{{ item.title }}</a></li>
       {%- endfor %}
     </ul>
