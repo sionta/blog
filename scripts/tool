@@ -25,7 +25,7 @@ test() {
 }
 
 if [ "$#" -eq 0 ]; then
-  echo "Usage: $0 {init|test|build} [optional args...]"
+  echo "Usage: $0 {install|build|test} [optional args...]"
   exit 1
 fi
 
@@ -33,7 +33,7 @@ COMMAND=$1
 shift
 
 case "$COMMAND" in
-init)
+install)
   install
   ;;
 build)
