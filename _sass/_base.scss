@@ -361,7 +361,7 @@ mark {
     list-style: none;
 
     a {
-      font-weight: 600;
+      font-weight: bold;
       font-size: 1rem;
     }
   }
@@ -380,10 +380,6 @@ mark {
   .home-hero,
   .home-blog {
     padding: calc(var(--home-gutter) * 2) var(--home-gutter);
-  }
-
-  .blog-card__item {
-    background-color: var(--bg-1);
   }
 
   .home-hero {
@@ -438,6 +434,11 @@ mark {
     .home-blog {
       padding: $spacing-unit;
       padding-bottom: var(--home-gutter);
+    }
+    .home-blog {
+      .wrapper {
+        padding: 0;
+      }
     }
   }
 

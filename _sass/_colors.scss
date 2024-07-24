@@ -16,16 +16,31 @@ $violet:    #6c71c4;
 $blue:      #268bd2;
 $cyan:      #2aa198;
 $green:     #859900;
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3)
+{
+  background-color:$rebase03;
+  color:$rebase0;
+  * { color:$rebase0; }
+  h1,h2,h3,h4,h5,h6 { color:$rebase1; border-color: $rebase0; }
+  a, a:active, a:visited { color: $rebase1; }
+}
+@mixin accentize($accent) {
+  a, a:active, a:visited, code.url { color: $accent; }
+  h1,h2,h3,h4,h5,h6 {color:$accent}
+}
+.light { @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)}
+.dark  { @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)}
+}
 */
 
-$base00: #002b36; //#030920
-$base01: #073642; //#0f172a
-$base02: #586e75; //#334155
-$base03: #657b83; //#475569
-$base04: #839496; //#64748b
-$base05: #93a1a1; //#94a3b8
-$base06: #eee8d5; //#cbd5e1
-$base07: #fdf6e3; //#e2e8f0
+$base00: #030920; // #002b36
+$base01: #0f172a; // #073642
+$base02: #334155; // #586e75
+$base03: #475569; // #657b83
+$base04: #64748b; // #839496
+$base05: #94a3b8; // #93a1a1
+$base06: #cbd5e1; // #eee8d5
+$base07: #e2e8f0; // #fdf6e3
 
 $red: #dc322f;
 $orange: #cb4b16;
