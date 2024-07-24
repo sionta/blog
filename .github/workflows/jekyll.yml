@@ -34,7 +34,13 @@ concurrency:
 jobs:
   # Build job
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-latest, macos-latest]
+        ruby: [2.7, 3.0, 3.2]
+        node: [14, 18, 22]
+    runs-on: ${{ matrix.os }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,13 +48,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ matrix.node }}
       - run: npm install
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
       - name: Setup Pages
@@ -56,10 +62,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Build site
-        env:
-          JEKYLL_ENV: production
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
 
       # - name: Test site
       #   run: bundle exec htmlproofer _site
