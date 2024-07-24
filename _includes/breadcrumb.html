@@ -3,7 +3,9 @@
     {%- assign breadcrumbs = page.url | split: '/' %}
     {%- for crumb in breadcrumbs %}
       {% if forloop.first %}
-        <li><a href="{{ '/' | absolute_url }}/">Home</a></li>
+        <li>
+          <a href="{{ '/' | absolute_url }}/">Home</a>
+        </li>
       {%- elsif forloop.last %}
         <li>
           <a href="" aria-current="page">{{ crumb }}</a>
