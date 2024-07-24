@@ -52,7 +52,9 @@ jobs:
           bundler-cache: false
 
       - name: Install dependencies
-        run: npm run install
+        run: |
+          chmod +x ./scripts/tool
+          npm run install
 
       - name: Setup pages
         id: pages
