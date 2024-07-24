@@ -51,8 +51,10 @@ jobs:
           ruby-version: 3.2
           bundler-cache: false
 
-      - name: Install Node and Ruby dependencies
-        run: npm run install
+      - name: Install dependencies
+        run: |
+          chmod +x ./scripts/tool
+          npm run install
 
       - name: Setup pages
         id: pages
