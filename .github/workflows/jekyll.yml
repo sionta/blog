@@ -49,21 +49,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
+          bundler-cache: false
 
-      - name: Setup Pages
+      - name: Install Node and Ruby dependencies
+        run: npm run install
+
+      - name: Setup pages
         id: pages
         uses: actions/configure-pages@v5
 
       - name: Build site
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: npm run build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 

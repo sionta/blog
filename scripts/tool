@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -e
+
+install() {
+  if [ ! -f "package-lock.json" ]; then
+    echo "Installing Node.js packages..."
+    npm install
+  else
+    echo "Node.js packages already installed."
+  fi
+
+  if [ ! -f "Gemfile.lock" ]; then
+    echo "Installing Ruby gems..."
+    bundle install
+  else
+    echo "Ruby gems already installed."
+  fi
+}
+
+build() {
+  echo "Building Jekyll site..."
+  echo "bundle exec jekyll build $@"
+  bundle exec jekyll build "$@"
+}
+
+test() {
+  echo "Cleaning Jekyll site..."
+  bundle exec jekyll clean
+
+  echo "Serving Jekyll site..."
+  echo "bundle exec jekyll serve --watch $@"
+  bundle exec jekyll serve --watch "$@"
+}
+
+if [ "$#" -eq 0 ]; then
+  echo "Usage: $0 {init|test|build} [optional args...]"
+  exit 1
+fi
+
+COMMAND=$1
+shift
+
+case "$COMMAND" in
+init)
+  install
+  ;;
+build)
+  build "$@"
+  ;;
+test)
+  test "$@"
+  ;;
+*)
+  echo "Unknown command: $COMMAND"
+  exit 1
+  ;;
+esac

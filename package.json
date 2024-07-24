@@ -2,6 +2,11 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Personal site",
+  "scripts": {
+    "install": "./scripts/tool install",
+    "build": "./scripts/tool build",
+    "test": "./scripts/tool test"
+  },
   "dependencies": {
     "csso-cli": "^4.0.2",
     "html-minifier": "^4.0.0",
