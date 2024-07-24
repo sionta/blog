@@ -1,7 +1,0 @@
----
-layout: none
----
-# www.robotstxt.org
-User-agent: *
-Disallow:
-Sitemap: {{ 'sitemap.xml' | absolute_url }}
