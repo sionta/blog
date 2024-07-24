@@ -4,8 +4,8 @@
  * Search
  */
 
-.site-search {
-  padding-bottom: 80px;
+.blog-search {
+  padding-bottom: 2.5rem;
   position: relative;
 
   %font-style {
@@ -47,7 +47,7 @@
     }
   }
 
-  .result-container {
+  .blog-search__result {
     position: absolute;
     z-index: 1;
     padding: $spacing-unit;
@@ -66,6 +66,8 @@
     }
 
     li {
+      overflow: auto;
+      word-break: break-all;
       padding: calc(#{$spacing-unit} / 2) $spacing-unit;
 
       &:hover {
@@ -80,9 +82,10 @@
     }
   }
 
-  .no-results {
+  .blog-search__no-results {
     @extend %font-style;
     color: var(--tx-2);
+    list-style: none;
     text-align: center;
 
     span:nth-child(1) {

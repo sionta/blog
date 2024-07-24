@@ -1,12 +1,12 @@
 @use "../utils" as *;
 
-.code-blocks {
+.code-block {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
   margin-bottom: 1.5rem;
 
-  .code-header {
+  &__header {
     display: flex;
     align-items: center;
     justify-content: center;

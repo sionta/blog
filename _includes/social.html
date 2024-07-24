@@ -1,5 +1,5 @@
-<nav aria-label="Social media links">
-  <ul class="social-list">
+<nav class="social" aria-label="Social media links">
+  <ul class="social__list">
     {%- for item in site.social_links %}
       {%- assign link = item.link | default: item.path | default: item.url | relative_url %}
       {%- assign name = item.title | default: item.name | default: item.platform %}
@@ -8,8 +8,9 @@
       {%- else %}
         {%- assign icon = 'brand-' | append: name | downcase %}
       {%- endif %}
-      <li>
+      <li class="social__item">
         <a
+          class="social__link"
           {% if link contains 'feed.xml' %}
             rel="me"
           {% endif %}

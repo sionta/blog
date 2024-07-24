@@ -1,12 +1,12 @@
 ---
-layout: default
+layout: base
 ---
-<section class="hero">
+<section class="home-hero">
   <h2 class="home-title">Welcome to Our Blog</h2>
   <p>Explore insightful articles on various topics.</p>
   <a href="{{ '/blog/' | relative_url }}" class="btn">Read More</a>
 </section>
-<section class="blog">
+<section class="home-blog">
   <h2 class="home-title" style="text-align:center;">Latest Blog Posts</h2>
   {% include blog.html total=3 %}
 </section>

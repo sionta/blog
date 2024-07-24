@@ -13,39 +13,37 @@
 
 {%- if page.url == '/blog/' %}
   <script src="{{ VENDOR_ORIGIN }}/simple-jekyll-search{{ __JS_SEARCH__ }}/simple-jekyll-search.min.js"></script>
-  <script>(function () {
-    const searchInput = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results');
-    const resultTemplate = `<li class="search-item">
-      <a class="search-link" href="{url}">{title}</a>
-    </li>`;
-
+  <script>
+  (function () {
+    const input = document.getElementById('blog-search__input');
+    const output = document.getElementById('blog-search__list');
     window.SimpleJekyllSearch({
-      searchInput: searchInput,
-      resultsContainer: searchResults,
-      searchResultTemplate: resultTemplate,
+      searchInput: input,
+      resultsContainer: output,
+      searchResultTemplate: '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
       json: [{%- for post in site.posts %}
         {
-          "title"    : "{{- post.title | escape -}}",
-          "excerpt"  : "{{- post.excerpt | strip_html | strip_newlines | escape -}}",
-          "category" : "{{- post.categories | join: ', ' -}}",
-          "tags"     : "{{- post.tags | join: ', ' -}}",
-          "url"      : "{{- post.url | relative_url -}}",
-          "date"     : "{{- post.date | date: '%b %d %Y' -}}",
-          "description"     : "{{- post.description -}}"
-        }{% unless forloop.last %},{% endunless %}{% endfor %}
+          "title"       : "{{- post.title | escape -}}",
+          "url"         : "{{- post.url | relative_url -}}",
+          "description" : "{{- post.description -}}",
+          "excerpt"     : "{{- post.excerpt | strip_html | strip_newlines | escape -}}",
+          "date"        : "{{- post.date | date: '%b %d %Y' -}}",
+          "category"    : "{{- post.categories | join: ', ' -}}",
+          "tags"        : "{{- post.tags | join: ', ' -}}"
+        }{%- unless forloop.last %},{% endunless %}{% endfor -%}
       ],
       noResultsText: '',
-      limit: 10,
+      // limit: 10,
       fuzzy: false,
     });
 
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value;
+    /* custom noResultsText */
+    input.addEventListener('input', () => {
+      const searchTerm = input.value;
       if (searchTerm === '') {
-        searchResults.innerHTML = '';
-      } else if (searchResults.innerHTML.trim() === '') {
-        searchResults.innerHTML = `<div class="no-results"><span>No results for</span> <span>"${searchTerm}</span>"</div>`;
+        output.innerHTML = '';
+      } else if (output.innerHTML.trim() === '') {
+        output.innerHTML = `<li class="blog-search__no-results"><span>No results for</span> <span>"${searchTerm}"</span></li>`;
       }
     });
   })();
@@ -53,9 +51,6 @@
 {%- endif %}
 
 {%- if page.collection == 'posts' or page.layout == 'post' %}
-  {%- comment %} SITE COMMENTS {%- endcomment %}
-  {%- include comments.html only='script' %}
-
   {%- comment %} ANCHOR HEADINGS or PARAGRAPHS {%- endcomment %}
   <script src="{{ VENDOR_ORIGIN }}/anchor-js{{ __JS_ANCHOR__ }}/anchor.min.js"></script>
   <script>
@@ -76,6 +71,7 @@
 
           let ordered = false;
           let heading = 'h2, h3';
+
           if (toc == '#toc-mobile') {
             ordered = true;
             heading = 'h2';
@@ -88,6 +84,17 @@
             ignoreSelector: '.no_toc, .no-toc',
             headingSelector: heading,
             orderedList: ordered,
+            scrollSmooth: false,
+            collapseDepth: 0,
+            listClass: 'toc-list',
+            listItemClass: 'toc-item',
+            activeListItemClass: 'is-active-item',
+            linkClass: 'toc-link',
+            activeLinkClass: 'is-active-link',
+            isCollapsedClass: 'is-collapsed',
+            collapsibleClass: 'is-collapsible',
+            positionFixedClass: 'is-position-fixed',
+            fixedSidebarOffset: 'auto',
           });
           tocbot.refresh();
         };

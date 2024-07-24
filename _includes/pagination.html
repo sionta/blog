@@ -1,4 +1,4 @@
-<section class="pagination">
+<div class="pagination">
   {%- if paginator.total_pages > 0 %}
     {%- if paginator.previous_page %}
       <a href="{{ paginator.previous_page_path }}" class="page-previous">Previous</a>
@@ -24,4 +24,4 @@
       <span class="page-next disabled">Next</span>
     {%- endif %}
   {%- endif %}
-</section>
+</div>

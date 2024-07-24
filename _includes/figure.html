@@ -8,8 +8,8 @@
     >
   </a>
   <figcaption>
-    {%- if include.txt or include.str %}
-      {{ include.txt | default: include.str | strip | remove: '"' | remove: "'" }}
+    {%- if include.caption %}
+      {{ include.caption | strip | remove: '"' | remove: "'" }}
     {%- else %}
       {{ page.title }} Image's
     {%- endif %}

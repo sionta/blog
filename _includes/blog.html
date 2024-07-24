@@ -3,30 +3,25 @@
 {%- else -%}
   {%- assign posts = site.posts -%}
 {%- endif %}
-
-{%- if include.search %}{% include search.html %}{% endif %}
-
-<div class="blog-container">
-  <ul class="blog-list">
-    {% for post in posts | limit: include.total %}
-      <li class="blog-item">
-        <a class="blog-link" href="{{ post.url | relative_url }}">
-          {%- if include.image and post.image %}
+<div class="blog-card">
+  <ul class="blog-card__list">
+    {% for post in posts limit: include.total %}
+      <li class="blog-card__item">
+        <a class="blog-card__link" href="{{ post.url | relative_url }}">
+          {%- if include.cover and post.image %}
             {%- assign img_url = post.image.url | default: post.image | relative_url %}
             {%- assign img_alt = post.image.alt | default: post.title %}
-            <img class="blog-image" src="{{ img_url }}" alt="{{ img_alt }}">
+            <img class="blog-card__image" src="{{ img_url }}" alt="{{ img_alt }}">
           {%- endif %}
-          <h2 class="blog-title">{{ post.title }}</h2>
+          <h2 class="blog-card__title">{{ post.title }}</h2>
           {%- if post.excerpt.size > 300 -%}
             {%- assign post_excerpt = post.excerpt -%}
           {%- else -%}
             {%- assign post_excerpt = post.description | default: post.content -%}
           {%- endif %}
-          <p class="blog-description">{{ post_excerpt | strip_html | truncatewords: 50, '...' }}</p>
+          <p class="blog-card__desc">{{ post_excerpt | strip_html | truncatewords: 50, '...' }}</p>
         </a>
       </li>
     {% endfor %}
   </ul>
 </div>
-
-{%- if include.pager == true %}{% include pagination.html %}{% endif %}

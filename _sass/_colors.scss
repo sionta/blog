@@ -1,14 +1,31 @@
 @use "sass:map";
-$base00: #030920;
-$base01: #0f172a;
-$base02: #334155;
-$base03: #475569;
-$base04: #64748b;
-$base05: #94a3b8;
-$base06: #cbd5e1;
-$base07: #e2e8f0;
-$base08: #f1f5f9;
-$base09: #f8fafc;
+/*
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+*/
+
+$base00: #002b36; //#030920
+$base01: #073642; //#0f172a
+$base02: #586e75; //#334155
+$base03: #657b83; //#475569
+$base04: #839496; //#64748b
+$base05: #93a1a1; //#94a3b8
+$base06: #eee8d5; //#cbd5e1
+$base07: #fdf6e3; //#e2e8f0
 
 $red: #dc322f;
 $orange: #cb4b16;
@@ -99,8 +116,6 @@ $alerts: (
     --base05: #{$base05};
     --base06: #{$base06};
     --base07: #{$base07};
-    --base08: #{$base08};
-    --base09: #{$base09};
     --red: #{$red};
     --orange: #{$orange};
     --yellow: #{$yellow};
