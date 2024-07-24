@@ -7,9 +7,9 @@
   <ul class="blog-card__list">
     {% for post in posts limit: include.total %}
       <li class="blog-card__item">
-        <a class="blog-card__link" href="{{ post.url | relative_url }}">
+        <a class="blog-card__link" href="{{ post.url | absolute_url }}">
           {%- if include.cover and post.image %}
-            {%- assign img_url = post.image.url | default: post.image | relative_url %}
+            {%- assign img_url = post.image.url | default: post.image | absolute_url %}
             {%- assign img_alt = post.image.alt | default: post.title %}
             <img class="blog-card__image" src="{{ img_url }}" alt="{{ img_alt }}">
           {%- endif %}

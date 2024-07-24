@@ -5,6 +5,17 @@
 @use "sass:math";
 @use "variables" as *;
 
+// Convert px to rem
+@function px-to-rem($px) {
+  $fs: 16px;
+
+  @if $font-size {
+    $fs: $font-size;
+  }
+
+  @return math.div($px, $fs) * 1rem;
+}
+
 @mixin font-size-clamp($key) {
   $base-size: map.get($font-sizes, $key);
   $clamp-function: "clamp(#{$min-font-size}, #{$base-size}, #{$max-font-size})";
@@ -36,43 +47,19 @@
   @include reset-gutter();
 }
 
-@mixin menu-item($list: false, $gutter: 10px) {
+@mixin menu-item($type: list, $gutter: 20px) {
+  ol,
   ul {
     @include reset-list;
+    display: flex;
+    gap: $gutter;
+  }
 
-    li {
-      @if $list == true {
-        display: list-item;
-        margin-bottom: $gutter;
-      } @else {
-        display: inline-block;
-        margin-right: $gutter;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
+  li {
+    @if $type == list {
+      display: list-item;
+    } @else {
+      display: inline-block;
     }
   }
-}
-
-// Convert px to rem
-@function px-to-rem($px) {
-  $fs: 16px;
-
-  @if $font-size {
-    $fs: $font-size;
-  }
-
-  @return math.div($px, $fs) * 1rem;
-}
-
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  justify-content: space-between;
 }

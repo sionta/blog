@@ -1,0 +1,18 @@
+<nav aria-label="Breadcrumb" class="breadcrumb menu-line">
+  <ol>
+    {%- assign breadcrumbs = page.url | split: '/' %}
+    {%- for crumb in breadcrumbs %}
+      {% if forloop.first %}
+        <li><a href="{{ '/' | absolute_url }}/">Home</a></li>
+      {%- elsif forloop.last %}
+        <li>
+          <a href="" aria-current="page">{{ crumb }}</a>
+        </li>
+      {%- else %}
+        <li>
+          <a href="{{ '/' | append: crumb | absolute_url }}/">{{ crumb | capitalize }}</a>
+        </li>
+      {% endif %}
+    {%- endfor %}
+  </ol>
+</nav>

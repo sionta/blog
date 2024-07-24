@@ -239,18 +239,6 @@ table:not(:has(pre)) {
   }
 }
 
-del {
-  color: var(--red);
-}
-
-em {
-  color: var(--yellow);
-}
-
-mark {
-  background-color: var(--yellow);
-}
-
 .wrapper,
 %wrapper {
   max-width: calc(#{$content-width} - (#{$spacing-unit}));
@@ -445,4 +433,12 @@ mark {
   .footer__inner :has(.social__list) {
     order: 1;
   }
+}
+
+.menu-list {
+  @include menu-item(list);
+}
+
+.menu-line {
+  @include menu-item(line);
 }
