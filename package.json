@@ -1,4 +1,12 @@
 {
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Personal site",
+  "scripts": {
+    "build": "bundle exec jekyll build",
+    "github": "npm run build -- --config _config.yml,_github.yml",
+    "vercel": "npm run build -- --config _config.yml,_vercel.yml"
+  },
   "dependencies": {
     "csso-cli": "^4.0.2",
     "html-minifier": "^4.0.0",
