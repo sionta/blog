@@ -1,7 +1,7 @@
 <nav class="social" aria-label="Social media links">
   <ul class="social__list">
     {%- for item in site.social_links %}
-      {%- assign link = item.link | default: item.path | default: item.url | absolute_url %}
+      {%- assign link = item.link | default: item.path | default: item.url %}
       {%- assign name = item.title | default: item.name | default: item.platform %}
       {%- if item.icon %}
         {%- assign icon = item.icon | downcase %}
@@ -13,8 +13,10 @@
           class="social__link"
           {% if link contains 'feed.xml' %}
             rel="me"
+            href="{{ link | absolute_url }}"
+          {% else %}
+            href="{{ link }}"
           {% endif %}
-          href="{{ link | absolute_url }}"
           target="_blank"
           title="{{ name }}"
         >

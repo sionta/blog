@@ -2,8 +2,8 @@
 title: Andre Attamimi
 description: >-
   run, study, modify, and share.
-url: # the base hostname & protocol for your site (e.g. http://example.com)
-baseurl: # the subpath of your site (e.g. /blog)
+url: "" # the base hostname & protocol of the site (e.g. http://example.com)
+baseurl: "" # if deploy in github-pages the subpath of the site (e.g. /blog)
 
 timezone: Asia/Tokyo
 
@@ -11,13 +11,16 @@ timezone: Asia/Tokyo
 analytics:
   google:
     id: "G-31WRW155T4" # fill in your Google Analytics ID
+  cloudflare:
+    id: "" # fill in your Cloudflare Web Analytics token
   goatcounter:
     id: "" # fill in your GoatCounter ID
   umami:
     id: "" # fill in your Umami ID
     domain: "" # fill in your Umami domain
-  cloudflare:
-    id: "" # fill in your Cloudflare Web Analytics token
+  matomo:
+    id: # fill in your Matomo ID
+    domain: # fill in your Matomo domain
 
 # Web verifications
 verifications:
@@ -39,11 +42,11 @@ date_format: "%b %d, %Y"
 
 # Generate social links. Icon use Tabler https://tabler.io/icons
 social_links:
-  - { title: Subcribe, icon: rss, url: feed.xml }
-  - { title: Email, icon: mail, url: mailto:info@andreattamimi.com }
-  - { title: GitHub, url: https://github.com/sionta }
-  - { title: Mastodon, url: https://mastodon.social/@sionta }
-  - { title: Twitter, url: https://twitter.com/r007mmxv }
+  - { name: Subcribe, icon: rss, url: feed.xml }
+  - { name: Email, icon: mail, url: mailto:info@andreattamimi.com }
+  - { name: GitHub, url: https://github.com/sionta }
+  - { name: Mastodon, url: https://mastodon.social/@sionta }
+  - { name: Twitter, url: https://twitter.com/r007mmxv }
 
 # Post comments
 comments:

@@ -1,5 +1,5 @@
-{% if jekyll.environment == 'production' %}
-  {% if site.analytics.google.id %}
+{%- if jekyll.environment == 'production' %}
+  {%- if site.analytics.google.id != empty %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.id }}"></script>
     <script>
@@ -10,38 +10,38 @@
       gtag('js', new Date());
       gtag('config', '{{ site.analytics.google.id }}');
     </script>
-  {% endif %}
+  {%- endif %}
 
   <!-- GoatCounter -->
-  {% if site.analytics.goatcounter.id %}
+  {%- if site.analytics.goatcounter.id != empty %}
     <script
       data-goatcounter="https://{{ site.analytics.goatcounter.id }}.goatcounter.com/count"
       async
       src="//gc.zgo.at/count.js"
     ></script>
-  {% endif %}
+  {%- endif %}
 
   <!-- Umami -->
-  {% if site.analytics.umami.id and site.analytics.umami.domain %}
+  {%- if site.analytics.umami.id != empty and site.analytics.umami.domain != empty %}
     <script
       async
       defer
       data-website-id="{{ site.analytics.umami.id }}"
       src="{{ site.analytics.umami.domain }}/umami.js"
     ></script>
-  {% endif %}
+  {%- endif %}
 
   <!-- Cloudflare Web Analytics -->
-  {% if site.analytics.cloudflare.id %}
+  {%- if site.analytics.cloudflare.id != empty %}
     <script
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token": "{{ site.analytics.cloudflare.id }}"}'
     ></script>
-  {% endif %}
+  {%- endif %}
 
   <!-- Matomo -->
-  {% if site.analytics.matomo.id and site.analytics.matomo.domain %}
+  {%- if site.analytics.matomo.id and site.analytics.matomo.domain != empty %}
     <script>
       var _paq = (window._paq = window._paq || []);
       _paq.push(['trackPageView']);
@@ -58,5 +58,5 @@
         s.parentNode.insertBefore(g, s);
       })();
     </script>
-  {% endif %}
-{% endif %}
+  {%- endif %}
+{%- endif %}

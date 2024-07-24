@@ -1,12 +1,12 @@
 {%- if page.comments == true and site.comments.provider %}
-  {%- assign ELEMENT_TAG = 'site-comment' %}
+  {%- assign PROVIDER_TAG = 'site-comment' %}
   {%- assign PROVIDER_NAME = site.comments.provider %}
   {%- assign PROVIDER_DATA = site.comments[PROVIDER_NAME] %}
   <div
     {%- if PROVIDER_NAME == 'disqus' %}
       id="disqus_thread"
     {%- else %}
-      id="{{ ELEMENT_TAG }}"
+      id="{{ PROVIDER_TAG }}"
     {%- endif %}
     class="{{ PROVIDER_NAME }}"
     itemscope
@@ -15,20 +15,17 @@
   {%- case PROVIDER_NAME %}
     {%- when 'disqus' %}
       <script>
-        /**
-         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
         var disqus_config = function () {
           this.page.url = '{{ page.url | absolute_url }}';
           this.page.identifier = '{{ page.id }}';
+          this.page.title = '{{ page.title }}';
         };
         (function () {
-          // DON'T EDIT BELOW THIS LINE
           var d = document,
             s = d.createElement('script');
           s.src = 'https://{{ PROVIDER_DATA.shortname }}.disqus.com/embed.js';
           s.setAttribute('data-timestamp', +new Date());
-          (d.getElementById('{{ ELEMENT_TAG }}') || d.head || d.body).appendChild(s);
+          (d.head || d.body).appendChild(s);
         })();
       </script>
       <noscript
@@ -57,7 +54,7 @@
           };
           const giscusScript = document.createElement('script');
           Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
-          document.getElementById('{{ ELEMENT_TAG }}').appendChild(giscusScript);
+          document.getElementById('{{ PROVIDER_TAG }}').appendChild(giscusScript);
         })();
       </script>
     {%- when 'utterances' %}
@@ -75,7 +72,7 @@
           };
           const utterancesScript = document.createElement('script');
           Object.entries(utterancesAttributes).forEach(([key, value]) => utterancesScript.setAttribute(key, value));
-          document.getElementById('{{ ELEMENT_TAG }}').appendChild(utterancesScript);
+          document.getElementById('{{ PROVIDER_TAG }}').appendChild(utterancesScript);
         })();
       </script>
   {%- endcase %}

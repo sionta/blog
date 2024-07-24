@@ -1,20 +1,20 @@
-{% if jekyll.environment == 'production' %}
-  {% if site.verifications.google %}
+{%- if jekyll.environment == 'production' %}
+  {%- if site.verifications.google != empty %}
     <meta name="google-site-verification" content="{{ site.verifications.google }}">
-  {% endif %}
-  {% if site.verifications.bing %}
+  {%- endif %}
+  {%- if site.verifications.bing != empty %}
     <meta name="msvalidate.01" content="{{ site.verifications.bing }}">
-  {% endif %}
-  {% if site.verifications.yandex %}
+  {%- endif %}
+  {%- if site.verifications.yandex != empty %}
     <meta name="yandex-verification" content="{{ site.verifications.yandex }}">
-  {% endif %}
-  {% if site.verifications.apple %}
+  {%- endif %}
+  {%- if site.verifications.apple != empty %}
     <meta name="apple-domain-verification" content="{{ site.verifications.apple }}">
-  {% endif %}
-  {% if site.verifications.facebook %}
+  {%- endif %}
+  {%- if site.verifications.facebook != empty %}
     <meta name="facebook-domain-verification" content="{{ site.verifications.facebook }}">
-  {% endif %}
-  {% if site.verifications.pinterest %}
+  {%- endif %}
+  {%- if site.verifications.pinterest != empty %}
     <meta name="p:domain_verify" content="{{ site.verifications.pinterest }}">
-  {% endif %}
-{% endif %}
+  {%- endif %}
+{%- endif %}
