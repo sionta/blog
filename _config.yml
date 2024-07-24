@@ -50,22 +50,22 @@ social_links:
 
 # Post comments
 comments:
-  provider: disqus # (e.g. giscus)
+  provider: "giscus" # (e.g. giscus)
   # The provider settings below:
   disqus:
     # What is `shortname` see https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-    shortname: andreattamimi
+    shortname: ""
   giscus:
     # For more settings see https://giscus.app/
-    repo: sionta/blog # e.g. sionta/blog
-    repo_id: R_kgDOLxRA-w
-    category: Q&A
-    category_id: DIC_kwDOLxRA-84CfGPN
+    repo: "sionta/blog" # e.g. sionta/blog
+    repo_id: "R_kgDOLxRA-w"
+    category: "Q&A"
+    category_id: "DIC_kwDOLxRA-84CfGPN"
   utterances:
     # For more setting see to https://utteranc.es/
-    repo: sionta/blog # e.g. sionta/blog
-    label: Q&A
-    issue_term: pathname
+    repo: "sionta/blog" # e.g. sionta/blog
+    label: "Q&A"
+    issue_term: "pathname"
 
 paginate: 6
 paginate_path: /blog/:num/
