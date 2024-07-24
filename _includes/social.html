@@ -14,7 +14,7 @@
           {% if link contains 'feed.xml' %}
             rel="me"
           {% endif %}
-          href="{{ social_link | relative_url }}"
+          href="{{ link | relative_url }}"
           target="_blank"
           title="{{ name }}"
         >
