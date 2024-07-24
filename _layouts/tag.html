@@ -1,0 +1,23 @@
+---
+layout: base
+---
+{%- assign date_format = site.date_format | default: '%B %d, %Y' %}
+<article>
+  <h1 class="post-title">Tag #{{ page.tag }}</h1>
+  <nav>
+    <ul>
+      {%- for post in site.posts %}
+        {%- if post.tags contains page.tag %}
+          <li>
+            <div>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+            </div>
+            <div>
+              <a href="{{ post.url }}">{{ post.title }}</a>
+            </div>
+          </li>
+        {%- endif %}
+      {%- endfor %}
+    </ul>
+  </nav>
+</article>

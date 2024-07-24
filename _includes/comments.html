@@ -1,5 +1,5 @@
 {%- if page.comments == true and site.comments.provider %}
-  {%- assign ELEMENT_TAG = '{{ ELEMENT_TAG }}' %}
+  {%- assign ELEMENT_TAG = 'site-comment' %}
   {%- assign PROVIDER_NAME = site.comments.provider %}
   {%- assign PROVIDER_DATA = site.comments[PROVIDER_NAME] %}
   <div

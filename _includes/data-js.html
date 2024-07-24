@@ -8,9 +8,7 @@
   };
   window.getTheme = () => {
     return (
-      document.documentElement.getAttribute('data-theme') ||
-      localStorage.getItem('theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+      localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
     );
   };
 </script>
