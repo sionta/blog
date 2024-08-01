@@ -1,0 +1,6 @@
+{% comment %}
+  {% assign tags = site.posts | where_exp: 'i', 'i.tags contains "rouge"' %}
+  {% for tag in tags %}
+    {{ tag.url }}
+  {% endfor %}
+{% endcomment %}

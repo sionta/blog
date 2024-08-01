@@ -41,8 +41,8 @@ author:
 date_format: "%b %d, %Y"
 
 # Generate social links. Icon use Tabler https://tabler.io/icons
-social_links:
-  - { name: Subcribe, icon: rss, url: feed.xml }
+social_media:
+  - { name: Subcribe, icon: rss, url: /feed.xml }
   - { name: Email, icon: mail, url: mailto:info@andreattamimi.com }
   - { name: GitHub, url: https://github.com/sionta }
   - { name: Mastodon, url: https://mastodon.social/@sionta }
@@ -68,47 +68,35 @@ comments:
     issue_term: "pathname"
 
 paginate: 6
-paginate_path: /blog/:num/
+paginate_path: "/blog/:num/"
+
+# IMPORTANT SETTINGS *****************************************
 
 self_host: development # `production` or `development`
 
-# IMPORTANT SETTINGS *****************************************
 sass:
   style: expanded
   sourcemap: development
 
-# Options minify css and `_plugins/minify.rb`
+# Options minify => _plugins/minify.rb`
 # if set `true` running on development and production.
 minify:
   html: true
   css: production
   js: true
 
-# https://jekyllrb.com/docs/collections/
-collections:
-  menus: # navigation pages
-    output: true
-    permalink: /:name/
-  posts:
-    output: true
-    permalink: /blog/:title/
-
 # https://jekyllrb.com/docs/configuration/front-matter-defaults/
 defaults:
-  - scope:
-      path: _menus
-      type: menus
-    values:
-      layout: page
   - scope:
       path: _posts
       type: posts
     values:
       layout: post
+      permalink: "/blog/:title/"
       toc: false
       comments: false
       mermaid: false
-      math: "" # or mathjax, if set to `true` math enable use katex
+      math: "" # katex or mathjax, if set to `true` math enable to katex
 
 # https://jekyllrb.com/docs/configuration/markdown/
 markdown: kramdown

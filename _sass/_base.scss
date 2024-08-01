@@ -1,8 +1,10 @@
-@use "sass:map";
 @use "utils" as *;
 
 :root {
   @include theme(light);
+
+  --content-width: #{$content-width};
+  --border-radius: #{$border-radius};
 
   &[data-theme="dark"] {
     @include theme(dark);
@@ -15,88 +17,57 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
 html {
-  scroll-behavior: smooth;
-}
-
-body {
   font-family: $font-sans;
   font-size: $font-size;
   font-weight: $font-weight;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  text-size-adjust: 100%;
   line-height: $line-height;
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
   color: var(--tx-1);
   background-color: var(--bg-1);
   display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  flex-direction: column;
+  overflow-wrap: break-word;
 }
 
 main {
   display: block;
 }
 
+body,
+%reset {
+  padding: 0;
+  margin: 0;
+}
+
+p,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-p,
-pre,
+hr,
 ul,
 ol,
-dd,
 dl,
-blockquote,
-details,
-figure,
-%vertical-rhythm {
-  margin-bottom: $spacing-unit * 0.5;
-}
-
-hr {
-  margin-top: $spacing-unit;
-  margin-bottom: $spacing-unit;
-}
-
-img,
-figure > img {
-  display: block;
-  max-width: 100%;
-}
-
-svg {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-figcaption {
-  font-size: $small-size;
-  text-align: center;
-}
-
 dd,
-ul,
-ol {
-  margin-left: $spacing-unit;
-}
-
-li {
-  > ul,
-  > ol {
-    margin-bottom: 0;
-  }
+pre,
+figure,
+blockquote,
+%bottom {
+  @extend %reset;
+  margin-bottom: $spacing-unit * 0.5;
 }
 
 h1,
@@ -106,36 +77,63 @@ h4,
 h5,
 h6 {
   font-family: $font-heading;
+  font-weight: $font-weight;
 }
 
 @include font-size-headings;
 
-a {
-  color: var(--tx-1);
-  text-decoration: underline;
-  text-decoration-color: var(--lk-1);
-  text-underline-offset: 1.45px;
-  text-decoration-thickness: 1.5px;
+ul,
+ol,
+dd {
+  margin-left: $spacing-unit;
+}
 
-  &:hover {
-    color: var(--lk-1);
+ul,
+ol {
+  & & {
+    margin-bottom: 0;
   }
 }
 
-blockquote {
-  font-size: 1.125rem;
-  font-style: italic;
+a {
   color: var(--tx-1);
-  border-left: 4px solid var(--bd-1);
-  padding-left: $spacing-unit;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+  text-decoration-color: var(--lk-2);
+  text-underline-offset: 1.5px;
 
-  > :last-child {
-    margin-bottom: 0;
+  &:hover {
+    color: var(--lk-1);
+    text-decoration-color: var(--lk-1);
   }
+}
 
-  i,
-  em {
-    font-style: normal;
+svg,
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.button,
+button {
+  --button-color: #{$blue};
+  --button-color-hover: #{darken($blue, 5%)};
+  --button-color-text: var(--base07);
+  --button-padding: 0.5em 1em;
+  --button-border-radius: 0.5em;
+  --button-border-radius-md: 1em;
+  --button-border-radius-xl: 2em;
+
+  cursor: pointer;
+  padding: var(--button-padding);
+  border: 1px solid transparent;
+  border-radius: var(--button-border-radius);
+  color: var(--button-color-text);
+  background: var(--button-color);
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: var(--button-color-hover);
   }
 }
 
@@ -144,43 +142,38 @@ kbd,
 pre,
 code {
   font-family: $font-mono;
-  letter-spacing: 0.3px;
-  border-radius: 4px;
+  font-size: 0.95rem;
+  line-height: 1.15;
+  padding: $spacing-unit * 0.125 $spacing-unit * 0.2;
   background-color: var(--bg-2);
-}
-
-samp,
-kbd,
-code {
-  font-size: $small-size;
-  padding: 2px 4px;
+  border-radius: $border-radius;
 }
 
 pre {
   overflow-x: auto;
-  padding: 8px 12px;
+  letter-spacing: 0.75px;
+  line-height: 2rem;
+  padding: $spacing-unit;
 
-  &,
-  code {
-    font-size: px-to-rem(15px);
-  }
-
-  pre,
-  code {
+  code,
+  pre {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
     border: none;
     background: none;
-    @include reset-gutter;
+    line-height: inherit;
   }
 
-  td {
-    &:nth-child(1) {
-      user-select: none;
-      padding-right: $spacing-unit;
-    }
+  /* .gutter, .rouge-gutter  */
+  td:nth-child(1) {
+    user-select: none;
+    padding-right: $spacing-unit;
+  }
 
-    &:nth-child(2) {
-      width: 100%;
-    }
+  /* .code, .rouge-code  */
+  td:nth-child(2) {
+    width: 100%;
   }
 
   .lineno {
@@ -188,257 +181,16 @@ pre {
   }
 }
 
-/*
-  NOTE: this enable on if use triple backticks, not for use {% highlight %} tag
+/**
+  1. Only use for triple backticks not for {% highlight %} tag.
+  2. By default "lineos" is disable, to enable add triple backticks {:.lineos}
 */
 .rouge-gutter {
   display: none;
-}
 
-.lineno .rouge-gutter {
-  display: block;
-}
-
-table:not(:has(pre)) {
-  margin-bottom: $spacing-unit;
-  width: 100%;
-  text-align: left;
-  color: var(--tx-1);
-  border-collapse: collapse;
-
-  caption {
-    font-weight: bold;
-    border-bottom: none;
-  }
-
-  caption,
-  th,
-  td {
-    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
-  }
-
-  caption,
-  th {
-    background-color: var(--bg-2);
-    border: 1px solid var(--bd-1);
-  }
-
-  td {
-    border: 1px solid var(--bd-1);
-  }
-
-  tr:nth-child(even) {
-    background-color: var(--bg-2);
-  }
-
-  @media screen and (max-width: $max-width) {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
-  }
-}
-
-.wrapper,
-%wrapper {
-  max-width: calc(#{$content-width} - (#{$spacing-unit}));
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: $spacing-unit;
-  padding-right: $spacing-unit;
-}
-
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.content__inner,
-.header__inner,
-.footer__inner {
-  @extend %wrapper;
-  display: flex;
-  flex-direction: row;
-  gap: $spacing-unit;
-}
-
-.content,
-.header {
-  background-color: var(--bg-2);
-  padding: $spacing-unit 0;
-}
-
-.footer {
-  background-color: var(--bg-2);
-  padding: px-to-rem(80px) 0;
-}
-
-.content {
-  background-color: inherit;
-
-  & &__inner {
-    .article {
-      flex: 2;
-    }
-
-    .sidebar {
-      flex: 1;
-      max-width: 200px;
+  @at-root {
+    .lineno & {
+      display: block !important;
     }
   }
-
-  &:has(.homepage__inner) {
-    padding-top: 0;
-  }
-}
-
-.header__inner {
-  align-items: center;
-  justify-content: space-between;
-
-  .brand a {
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-
-  h1,
-  ul,
-  p {
-    margin: 0;
-  }
-
-  .navbar {
-    &,
-    ul {
-      display: inline-flex;
-      align-items: center;
-      gap: $spacing-unit;
-    }
-
-    ul {
-      list-style: none;
-    }
-  }
-
-  /* TODO */
-  .hambuger {
-    display: none;
-  }
-}
-
-.footer__inner {
-  align-items: center;
-  justify-content: space-between;
-
-  h1,
-  ul,
-  p {
-    margin: 0;
-  }
-
-  svg {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  ul {
-    display: inline-flex;
-    gap: $spacing-unit;
-    list-style: none;
-
-    a {
-      font-weight: bold;
-      font-size: 1rem;
-    }
-  }
-}
-
-.homepage__inner {
-  --home-gutter: #{px-to-rem(40px)};
-
-  .home-title {
-    font-weight: 700;
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: calc($spacing-unit * 2);
-  }
-
-  .home-hero,
-  .home-blog {
-    padding: calc(var(--home-gutter) * 2) var(--home-gutter);
-  }
-
-  .home-hero {
-    font-size: 1.2em;
-    text-align: center;
-    color: var(--base06);
-    background-color: var(--bd-1);
-
-    a,
-    p {
-      margin-bottom: var(--home-gutter);
-    }
-
-    a {
-      text-decoration: none;
-      padding: 10px $spacing-unit;
-      color: var(--base06);
-      background-color: var(--lk-1);
-      border-radius: 5px;
-      transition: background-color 0.3s ease-in;
-
-      &:hover {
-        background-color: var(--lk-2);
-      }
-    }
-  }
-}
-
-.post-title {
-  font-weight: 700;
-}
-
-.post-meta {
-  margin-bottom: $spacing-unit;
-}
-
-@media screen and (max-width: $max-width) {
-  .content__inner,
-  .header__inner,
-  .footer__inner,
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .content__inner {
-    text-align: left !important;
-  }
-
-  .homepage__inner {
-    .home-hero,
-    .home-blog {
-      padding: $spacing-unit;
-      padding-bottom: var(--home-gutter);
-    }
-    .home-blog {
-      .wrapper {
-        padding: 0;
-      }
-    }
-  }
-
-  .footer__inner :has(.social__list) {
-    order: 1;
-  }
-}
-
-.menu-list {
-  @include menu-item(list);
-}
-
-.menu-line {
-  @include menu-item(line);
 }

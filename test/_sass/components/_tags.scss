@@ -1,0 +1,26 @@
+@use "../utils" as *;
+
+.keywords {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: $spacing-unit * 0.5;
+
+  a {
+    color: var(--tx-1);
+    text-decoration: none;
+    padding: 4px 8px;
+    line-height: 1.15;
+    border-radius: 2px;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    margin-right: 5px;
+
+    &:last-child {
+      border: 1px solid var(--violet);
+      color: var(--violet);
+      margin-right: 0;
+    }
+  }
+}

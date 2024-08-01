@@ -1,0 +1,12 @@
+{%- if site.self_host == true or site.self_host == jekyll.environment %}
+  {%- assign VENDOR_ORIGIN = '/assets/lib' | relative_url %}
+{%- else %}
+  {%- assign VENDOR_ORIGIN = 'https://cdn.jsdelivr.net/npm' %}
+  {%- comment %} '@major.minor.patch' or '@latest' {%- endcomment %}
+  {%- assign __VENDOR_ANCHOR-JS__ = '@5.0.0' %}
+  {%- assign __VENDOR_TOCBOT__ = '@4.28.2/dist' %}
+  {%- assign __VENDOR_MERMAID__ = '@10.9.1/dist' %}
+  {%- assign __VENDOR_KATEX__ = '@0.16.11/dist' %}
+  {%- assign __VENDOR_MATHJAX__ = '@3.2.2/es5' %}
+  {%- assign __VENDOR_SIMPLE-JEKYLL-SEARCH__ = '@1.10.0/dest' %}
+{%- endif %}

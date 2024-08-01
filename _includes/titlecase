@@ -1,0 +1,8 @@
+{%- comment -%} eg. include titlecase str='lorem-ipsum' sep='-' {%- endcomment -%}
+{%- assign t = include.str | split: include.sep -%}
+{%- assign o = '' -%}
+{%- for i in t limit: t.size -%}
+  {%- assign c = i | capitalize -%}
+  {%- assign o = o | append: c | append: ' ' -%}
+{%- endfor -%}
+{{- o | strip | strip_newlines -}}

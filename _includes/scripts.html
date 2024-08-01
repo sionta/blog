@@ -1,147 +1,29 @@
-{%- if site.self_host == true or site.self_host == jekyll.environment %}
-  {%- assign VENDOR_ORIGIN = '/assets/lib' | relative_url %}
-{%- else %}
-  {%- assign VENDOR_ORIGIN = 'https://cdn.jsdelivr.net/npm' %}
-  {%- comment %} '@major.minor.patch' or '@latest' {%- endcomment %}
-  {%- assign __JS_ANCHOR__ = '@5.0.0' %}
-  {%- assign __JS_TOCBOT__ = '@4.28.2/dist' %}
-  {%- assign __JS_MERMAID__ = '@10.9.1/dist' %}
-  {%- assign __JS_KATEX__ = '@0.16.11/dist' %}
-  {%- assign __JS_MATHJAX__ = '@3.2.2/es5' %}
-  {%- assign __JS_SEARCH__ = '@1.10.0/dest' %}
-{%- endif %}
-
-{%- if page.url == '/blog/' %}
-  <script src="{{ VENDOR_ORIGIN }}/simple-jekyll-search{{ __JS_SEARCH__ }}/simple-jekyll-search.min.js"></script>
-  <script>
-  (function () {
-    const input = document.getElementById('blog-search__input');
-    const output = document.getElementById('blog-search__list');
-    window.SimpleJekyllSearch({
-      searchInput: input,
-      resultsContainer: output,
-      searchResultTemplate: '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
-      json: [{%- for post in site.posts %}
-        {
-          "title"       : "{{- post.title | escape -}}",
-          "url"         : "{{- post.url | relative_url -}}",
-          "description" : "{{- post.description -}}",
-          "excerpt"     : "{{- post.excerpt | strip_html | strip_newlines | escape -}}",
-          "date"        : "{{- post.date | date: '%b %d %Y' -}}",
-          "category"    : "{{- post.categories | join: ', ' -}}",
-          "tags"        : "{{- post.tags | join: ', ' -}}"
-        }{%- unless forloop.last %},{% endunless %}{% endfor -%}
-      ],
-      noResultsText: '',
-      // limit: 10,
-      fuzzy: false,
-    });
-
-    /* custom noResultsText */
-    input.addEventListener('input', () => {
-      const searchTerm = input.value;
-      if (searchTerm === '') {
-        output.innerHTML = '';
-      } else if (output.innerHTML.trim() === '') {
-        output.innerHTML = `<li class="blog-search__no-results"><span>No results for</span> <span>"${searchTerm}"</span></li>`;
-      }
-    });
-  })();
-  </script>
-{%- endif %}
-
+{%- include cors.html -%}
 {%- if page.collection == 'posts' or page.layout == 'post' %}
-  {%- comment %} ANCHOR HEADINGS or PARAGRAPHS {%- endcomment %}
-  <script src="{{ VENDOR_ORIGIN }}/anchor-js{{ __JS_ANCHOR__ }}/anchor.min.js"></script>
-  <script>
-    if (window.anchors) {
-      anchors.options = { placement: 'right', visible: 'always', icon: '#', class: 'anchor-link' };
-      anchors.add(':where([itemprop=articleBody]) :where(h2)').remove('.no-anchor, .no_anchor');
-    }
-  </script>
-
-  {%- comment %} TABLE OF CONTENTS {%- endcomment %}
-  {%- if page.toc == true %}
-    <script src="{{ VENDOR_ORIGIN }}/tocbot{{ __JS_TOCBOT__ }}/tocbot.min.js"></script>
-    <script>
-      (function () {
-        const initializeToc = () => {
-          const toc = window.innerWidth >= 768 ? '#toc' : '#toc-mobile';
-          if (!toc) return;
-
-          let ordered = false;
-          let heading = 'h2, h3';
-
-          if (toc == '#toc-mobile') {
-            ordered = true;
-            heading = 'h2';
-          }
-
-          tocbot.destroy();
-          tocbot.init({
-            tocSelector: toc,
-            contentSelector: '[itemprop="articleBody"]',
-            ignoreSelector: '.no_toc, .no-toc',
-            headingSelector: heading,
-            orderedList: ordered,
-            collapseDepth: 0,
-            listClass: 'toc-list',
-            listItemClass: 'toc-item',
-            activeListItemClass: 'is-active-item',
-            linkClass: 'toc-link',
-            activeLinkClass: 'is-active-link',
-            isCollapsedClass: 'is-collapsed',
-            collapsibleClass: 'is-collapsible',
-            positionFixedClass: 'is-position-fixed',
-            fixedSidebarOffset: 'auto',
-          });
-          tocbot.refresh();
-        };
-        initializeToc();
-        window.addEventListener('resize', initializeToc);
-      })();
-    </script>
-  {%- endif %}
-
-  {%- comment %} DIAGRAMMING {%- endcomment %}
-  {%- if page.mermaid == true %}
-    <script src="{{ VENDOR_ORIGIN }}/mermaid{{ __JS_MERMAID__ }}/mermaid.min.js"></script>
-    <script>
-      (function () {
-        const mermaidConfig = {
-          startOnLoad: true,
-          theme: THEME.mermaid[localStorage.getItem('theme')],
-          logLevel: 'error',
-        };
-        const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
-        mermaidBlocks.forEach((block) => {
-          const codeBlock = block.parentElement;
-          const pre = document.createElement('pre');
-          const code = document.createElement('code');
-          pre.classList.add('mermaid-diagram');
-          code.classList.add('mermaid');
-          code.innerHTML = block.innerHTML;
-          pre.appendChild(code);
-          codeBlock.replaceWith(pre);
-        });
-        mermaid.initialize(mermaidConfig);
-        mermaid.init();
-      })();
-    </script>
-  {%- endif %}
-
-  {%- comment %} MATHEMATICS {%- endcomment %}
-  {%- assign mathEngine = page.math | downcase %}
-  {%- if mathEngine == 'katex' or mathEngine == true %}
-    <link rel="stylesheet" href="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.css" crossorigin="anonymous">
-    <script src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/katex.min.js" crossorigin="anonymous" defer></script>
+  {%- assign math = page.math | downcase %}
+  {%- if math == 'katex' or math == true %}
+    <link rel="stylesheet" href="{{ VENDOR_ORIGIN }}/katex{{ __VENDOR_KATEX__ }}/katex.min.css" crossorigin="anonymous">
+    <script src="{{ VENDOR_ORIGIN }}/katex{{ __VENDOR_KATEX__ }}/katex.min.js" crossorigin="anonymous" defer></script>
     <script
-      src="{{ VENDOR_ORIGIN }}/katex{{ __JS_KATEX__ }}/contrib/auto-render.min.js"
+      src="{{ VENDOR_ORIGIN }}/katex{{ __VENDOR_KATEX__ }}/contrib/auto-render.min.js"
       crossorigin="anonymous"
       defer
       onload="renderMathInElement(document.body);"
     ></script>
-  {%- elsif mathEngine == 'mathjax' %}
-    <script id="Mathjax-script" src="{{ VENDOR_ORIGIN }}/mathjax{{ __JS_MATHJAX__ }}/tex-mml-chtml.js" async></script>
+  {%- elsif math == 'mathjax' %}
+    <script
+      id="Mathjax-script"
+      src="{{ VENDOR_ORIGIN }}/mathjax{{ __VENDOR_MATHJAX__ }}/tex-mml-chtml.js"
+      async
+    ></script>
   {%- endif %}
+  {%- if page.mermaid == true %}
+    <script src="{{ VENDOR_ORIGIN }}/mermaid{{ __VENDOR_MERMAID__ }}/mermaid.min.js"></script>
+  {%- endif %}
+  {%- if page.toc == true %}
+    <script src="{{ VENDOR_ORIGIN }}/tocbot{{ __VENDOR_TOCBOT__ }}/tocbot.min.js"></script>
+  {%- endif %}
+  <script src="{{ VENDOR_ORIGIN }}/anchor-js{{ __VENDOR_ANCHOR-JS__ }}/anchor.min.js"></script>
 {%- endif %}
+
+<script src="{{'/assets/js/main.js' | relative_url }}"></script>

@@ -1,0 +1,25 @@
+<nav aria-label="Navigation">
+  <ul class="navigation">
+    {%- assign navigation = site.pages | where: 'navigation', true | sort: 'order' %}
+    {%- if navigation.size > 0 %}
+      {%- for nav in navigation %}
+        <li>
+          <a
+            href="{{ nav.url | relative_url }}"
+            {%- if nav.url contains 'http' -%}
+              target="_blank" rel="noopener noreferrer"
+            {%- endif -%}
+          >
+            {%- if nav.title.size > 0 -%}
+              {{- nav.title -}}
+            {%- elsif nav.path contains 'index.html' -%}
+              Home
+            {%- else -%}
+              {{ nav.path | split: '/' | first | capitalize }}
+            {%- endif -%}
+          </a>
+        </li>
+      {%- endfor %}
+    {%- endif %}
+  </ul>
+</nav>

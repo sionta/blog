@@ -1,4 +1,4 @@
-<div class="theme-toggle" id="theme-toggle">
+<div id="theme-toggle">
   <button data-mode="system" aria-label="System mode" type="button" class="active">
     {% include svg_symbol.html id='device-desktop' %}
   </button>
@@ -11,10 +11,15 @@
 </div>
 <script>
   (function () {
-    const themeToggle = document.querySelector('#theme-toggle');
-    const themeButtons = themeToggle?.querySelectorAll('button');
+    THEME = THEME || {
+      toggle: { system: 'system', light: 'light', dark: 'dark' },
+      giscus: { light: 'light', dark: 'dark_dimmed' },
+      utterances: { light: 'github-light', dark: 'github-dark' },
+      mermaid: { light: 'default', dark: 'dark' },
+    };
 
-    initialTheme();
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeButtons = themeToggle?.querySelectorAll('button');
 
     function setupTheme(mode) {
       if (mode === THEME.toggle.system) {
@@ -51,5 +56,7 @@
       sendMessage('.giscus-frame', { giscus: { setConfig: { theme: THEME.giscus[theme] } } }, 'https://giscus.app');
       sendMessage('.utterances-frame', { type: 'set-theme', theme: THEME.utterances[theme] }, 'https://utteranc.es');
     }
+
+    initialTheme();
   })();
 </script>

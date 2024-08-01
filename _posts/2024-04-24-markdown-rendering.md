@@ -6,7 +6,7 @@ categories: test
 tags: [markdown, cheatsheet]
 author: Andre Attamimi
 image:
-    url: /assets/img/hero-markdown-guide.p128.png
+    src: /assets/img/hero-markdown-guide.p128.png
     alt: Image by https://culturedcode.com
 toc: true
 comments: true
@@ -118,13 +118,9 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
 The [Result Footnotes](#result-footnotes)
 
-<!-- ### Images
+### Images
 
-![alt text]({% include placeholder.svg w=100 h=100 s='10px' %})
-
-![alt text]({% include placeholder.svg w=128 h=256 s='0.75em' %})
-
-![alt text]({% include placeholder.svg w=512 h=256 s='2rem' %}) -->
+TODO: image
 
 ### Codes
 

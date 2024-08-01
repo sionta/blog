@@ -1,0 +1,20 @@
+{%- assign img_ref = include.url | default: page.url -%}
+{%- assign img_src = include.src | default: page.image.src | default: page.image -%}
+{%- assign img_alt = include.alt | default: page.image.alt | default: page.title -%}
+{%- assign img_cap = include.caption | default: img_alt -%}
+{%- assign img_max = include.max | remove: '"' | remove: "'" | default: '100%' -%}
+{%- if img_src %}
+  <figure>
+    <a href="{{- img_ref | relative_url -}}">
+      <img
+        itemprop="image"
+        src="{{- img_src | relative_url -}}"
+        alt="{{- img_alt | strip -}}"
+        {% if img_max %}
+          style="max-width:{{- img_max -}};"
+        {% endif %}
+      >
+    </a>
+    <figcaption>{{- img_cap | strip -}}</figcaption>
+  </figure>
+{%- endif %}

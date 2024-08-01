@@ -1,0 +1,78 @@
+{%- if paginator.posts.size > 0 -%}
+  {%- assign posts = paginator.posts -%}
+{%- else -%}
+  {%- assign posts = site.posts -%}
+{%- endif %}
+{%- assign searchData = '' %}
+{%- if page.url == '/blog/' %}
+  <input
+    id="blog-search"
+    type="search"
+    autocomplete="off"
+    spellcheck="false"
+    placeholder="Search blog posts.."
+  >
+{%- endif %}
+<div class="blog-card">
+  <ul id="blog-result" class="blog-card-list"></ul>
+  <ul class="blog-card-list hide-on-search">
+    {%- for post in posts limit: include.total %}
+      <li class="blog-card-item">
+        <a class="blog-card-link" href="{{ post.url | relative_url }}">
+          {%- assign img_alt = '' %}
+          {%- assign img_src = '' %}
+          {%- if include.cover and post.image %}
+            {%- assign img_src = post.image.src | default: post.image | relative_url %}
+            {%- assign img_alt = post.image.alt | default: post.title %}
+            <img class="blog-card-image" src="{{ img_src }}" alt="{{ img_alt }}">
+          {%- endif %}
+          <h2 class="blog-card-title">{{ post.title }}</h2>
+        </a>
+        {%- if post.excerpt.size > 300 -%}
+          {%- assign post_excerpt = post.excerpt -%}
+        {%- else -%}
+          {%- assign post_excerpt = post.description | default: post.content -%}
+        {%- endif %}
+        {%- assign post_excerpt = post_excerpt | strip_html | strip_newlines | truncatewords: 50, '...' -%}
+        <p class="blog-card-desc">{{ post_excerpt }}</p>
+      </li>
+      {%- capture jsonData %}{"title":"{{- post.title | escape -}}","url":"{{- post.url | relative_url -}}","img":"{{- img_src -}}","img_alt":"{{- img_alt -}}","desc":"{{- post_excerpt -}}","date":"{{- post.date -}}","category":"{{- post.categories | join: ', ' -}}","tag":"{{- post.tags | join: ', ' -}}"}{%- unless forloop.last %},{% endunless -%}{%- endcapture %}
+      {%- assign searchData = searchData | append: jsonData %}
+    {%- endfor %}
+  </ul>
+</div>
+{%- if include.paginate == true %}
+  {% include pagination.html paginate=true %}
+{%- endif %}
+{%- include cors.html -%}
+
+<script
+  src="{{ VENDOR_ORIGIN }}/simple-jekyll-search{{ __VENDOR_SIMPLE-JEKYLL-SEARCH__ }}/simple-jekyll-search.min.js"
+></script>
+<script>
+  if (window.SimpleJekyllSearch) {
+    const postSearch = document.getElementById("blog-search");
+    const postSearchResult = document.getElementById("blog-result");
+    if (postSearch && postSearchResult ) {
+      SimpleJekyllSearch({
+        searchInput: postSearch,
+        resultsContainer: postSearchResult,
+        searchResultTemplate: `<li class="blog-card-item search-item"><a class="blog-card-link blog-card-title" href="{url}" title="{title}">{title}</a><p class="blog-card-desc">{desc}</p></li>`,
+        json: [{{ searchData }}],
+        noResultsText: "",
+        // limit: 10,
+        fuzzy: false,
+      });
+
+      // custom noResultsText
+      postSearch.addEventListener("input", () => {
+        const searchTerm = postSearch.value;
+        if (searchTerm === "") {
+          postSearchResult.innerHTML = "";
+        } else if (postSearchResult.innerHTML.trim() === "") {
+          postSearchResult.innerHTML = `<li class="blog-card-item no-results"><span>No results for </span><span>"${searchTerm}"</span></li>`;
+        }
+      });
+    }
+  }
+</script>

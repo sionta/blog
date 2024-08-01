@@ -1,0 +1,70 @@
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 100;
+  src: url("../fonts/lato/lato-100.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 100;
+  src: url("../fonts/lato/lato-100italic.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/lato/lato-300.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 300;
+  src: url("../fonts/lato/lato-300italic.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/lato/lato-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/lato/lato-italic.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/lato/lato-700.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 700;
+  src: url("../fonts/lato/lato-700italic.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 900;
+  src: url("../fonts/lato/lato-900.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: Lato;
+  font-style: italic;
+  font-weight: 900;
+  src: url("../fonts/lato/lato-900italic.woff2") format("woff2");
+}

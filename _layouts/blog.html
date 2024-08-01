@@ -1,9 +1,6 @@
 ---
 layout: base
-title: Articles
 ---
-<article class="blogger">
-  {% include search.html %}
-  {% include blog.html cover=true %}
-  {% include pagination.html %}
+<article class="unit w-12 blog">
+  {% include blog-card.html cover=true paginate=true %}
 </article>

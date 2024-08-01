@@ -1,14 +1,12 @@
 ---
 layout: base
 ---
-<section class="home-hero">
+<section class="unit w-12 home-hero">
   <h2 class="home-title">Welcome to Our Blog</h2>
   <p>Explore insightful articles on various topics.</p>
   <a href="{{ '/blog/' | relative_url }}" class="btn">Read More</a>
 </section>
-<section class="home-blog">
-  <h2 class="home-title" style="text-align:center;">Latest Blog Posts</h2>
-  <div class="wrapper">
-    {% include blog.html total=3 %}
-  </div>
+<section class="unit w-12 home-card">
+  <h2 class="home-title">Latest Blog Posts</h2>
+  {% include blog-card.html total=3 %}
 </section>

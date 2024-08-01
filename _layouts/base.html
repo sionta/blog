@@ -2,13 +2,38 @@
 <html lang="en">
   {% include head.html %}
   <body>
-    {% include header.html %}
-    <main class="content">
-      <div class="{% if page.layout == 'home' %}homepage__inner{% else %}content__inner{% endif %}">
-        {{ content }}
+    <header id="site-head">
+      <div class="grid wrap">
+        <div class="unit w-12 header">
+          <h1 class="logo">
+            <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+          </h1>
+          {% include navigation.html %}
+          {% include theme.html %}
+        </div>
+      </div>
+    </header>
+    <main id="site-main">
+      <div class="{%- if page.layout == 'home' %}homepage{% else %}wrap{% endif -%}">
+        <div class="grid">
+          {{ content }}
+        </div>
       </div>
     </main>
-    {% include footer.html %}
+    <footer id="site-foot">
+      <div class="grid wrap">
+        <div class="unit w-12 footer">
+          {% include social.html %}
+          <p class="copyright">
+            &copy; {{ site.time | date: '%Y' }}
+            {{ site.title }}.
+          </p>
+          <button id="goto-top" type="button" aria-label="Back to top">
+            {% include svg_symbol.html id='chevron-up' %}
+          </button>
+        </div>
+      </div>
+    </footer>
     {% include scripts.html %}
   </body>
 </html>

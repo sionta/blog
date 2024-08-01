@@ -16,8 +16,7 @@
     text-transform: uppercase;
   }
 
-  #toc,
-  #toc-mobile {
+  [id^="toc"] {
     overflow: auto;
 
     ul {
@@ -30,7 +29,7 @@
       }
 
       li {
-        margin-left: 15px;
+        margin-left: $spacing-unit * 0.85;
       }
     }
   }

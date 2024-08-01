@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'open3'
-
 # Function to run a command and handle errors
 def run_command(cmd, args)
   tool_path = File.absolute_path("./node_modules/.bin/#{cmd}")
@@ -61,8 +59,19 @@ Jekyll::Hooks.register :site, :post_write do |site|
       excludes.any? { |ex| file.include?(ex) }
     end
     js_files.each do |js_file|
-      js_opts = ["\"#{js_file}\"", "-o \"#{js_file}\""]
+      js_opts = [
+        "\"#{js_file}\"",
+        "-o \"#{js_file}\"",
+        # '--beautify',
+        '--compress',
+        '--mangle',
+        '--validate'
+      ]
       run_command('uglifyjs', js_opts)
     end
   end
+
+  # Remove self_host from build
+  self_host = site.config['self_host'] || false
+  FileUtils.rmtree("#{output_dir}/assets/lib") if self_host == false || current_env != self_host
 end

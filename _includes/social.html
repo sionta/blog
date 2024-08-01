@@ -1,20 +1,20 @@
-<nav class="social" aria-label="Social media links">
-  <ul class="social__list">
-    {%- for item in site.social_links %}
-      {%- assign link = item.link | default: item.path | default: item.url %}
-      {%- assign name = item.title | default: item.name | default: item.platform %}
-      {%- if item.icon %}
-        {%- assign icon = item.icon | downcase %}
+<nav aria-label="Social media">
+  <ul class="social">
+    {%- for social in site.social_media %}
+      {%- assign link = social.link | default: social.path | default: social.url %}
+      {%- assign name = social.title | default: social.name | default: social.platform %}
+      {%- if social.icon %}
+        {%- assign icon = social.icon | downcase %}
       {%- else %}
         {%- assign icon = 'brand-' | append: name | downcase %}
       {%- endif %}
-      <li class="social__item">
+      <li>
         <a
-          class="social__link"
-          {% if link contains 'feed.xml' %}
-            rel="me"
-          {% endif %}
-          href="{{ link | relative_url }}"
+          {% if link contains 'feed.xml' -%}
+            href="{{ link | absolute_url }}" rel="me"
+          {%- else -%}
+            href="{{ link }}" rel="noopener noreferrer"
+          {%- endif %}
           target="_blank"
           title="{{ name }}"
         >

@@ -104,7 +104,7 @@ kramdown:
   input: GFM
 
 # Generate social links.
-social_links:
+social_media:
   - { title: GitHub, url: "https://github.com/sionta" }
   - { title: Twitter, url: "https://twitter.com/r007mmxv" }
 ```
@@ -113,7 +113,7 @@ social_links:
 ### TOML
 
 ```toml
-[social_links]
+[social_media]
   name = "Andre Attamimi"
   github = "https://github.com/sionta"
 
