@@ -22,8 +22,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
   output_dir = site.dest
 
   current_env = Jekyll.env # Get current ENV value from Jekyll
-  excludes = ['vendor/', '.min.css', '.min.js']
-  excludes.append('lib/') if current_env == 'development'
+  excludes = ['lib/', 'vendor/', '.min.css', '.min.js']
+  # excludes.append('lib/') if current_env == 'development'
 
   Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minification for '#{output_dir}'"
 
