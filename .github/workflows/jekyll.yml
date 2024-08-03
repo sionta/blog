@@ -52,7 +52,7 @@ jobs:
           bundler-cache: false
 
       - name: Install dependencies
-        run: npm run install
+        run: npm install && bundle install
 
       - name: Setup pages
         id: pages
@@ -60,7 +60,7 @@ jobs:
 
       - name: Build site
         # Outputs to the './_site' directory by default
-        run: npm run build -- --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
 
