@@ -1,11 +1,4 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node"
-    }
-  ],
   "buildCommand": "npm install && bundle install && bundle exec jekyll build",
   "outputDirectory": "_site",
   "env": {
