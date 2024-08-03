@@ -2,7 +2,7 @@
 title: Andre Attamimi
 description: >-
   run, study, modify, and share.
-url: "" # the base hostname & protocol of the site (e.g. http://example.com)
+url: "andreattamimi.com" # the base hostname & protocol of the site (e.g. http://example.com)
 baseurl: "" # if deploy in github-pages the subpath of the site (e.g. /blog)
 
 timezone: Asia/Tokyo
