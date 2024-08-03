@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
+require 'open3'
+require 'fileutils'
+require 'jekyll'
+
 # Function to run a command and handle errors
 def run_command(cmd, args)
   tool_path = File.absolute_path("./node_modules/.bin/#{cmd}")
-  tool_args = args.join(' ')
-  stdout_str, error_str, status = Open3.capture3("#{tool_path} #{tool_args}")
+  command = "#{tool_path} #{args.join(' ')}"
+
+  stdout_str, error_str, status = Open3.capture3(command)
+
   return if status.success?
 
   Jekyll.logger.error "#{File.basename(__FILE__)}:", "#{tool_path} failed with status #{status.exitstatus}"
@@ -14,24 +20,23 @@ end
 
 # Register hooks to run after Jekyll site is written
 Jekyll::Hooks.register :site, :post_write do |site|
-  # Configuration in _config.yml
+  current_env = Jekyll.env
+  output_dir = site.dest
+
+  # Configuration for minification
   config = site.config['minify'] || {}
   html_config = config['html']
   css_config = config['css']
   js_config = config['js']
-  output_dir = site.dest
 
-  # env from jekyll
-  current_env = Jekyll.env
-
-  # Filter file dan directory to excludes
+  # Exclude patterns for files and directories
   excludes = ['lib/', 'vendor/', '.min.css', '.min.js']
-  # excludes.append('lib/') if current_env == 'development'
 
-  Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minification for '#{output_dir}'"
+  # Log information about the minification process
+  Jekyll.logger.info "#{File.basename(__FILE__)}:", "Starting minification for '#{output_dir}'"
 
-  # Minify HTML
-  if html_config == (true || current_env)
+  # Minify HTML files
+  if html_config == true || html_config == current_env
     html_opts = [
       "--input-dir=#{output_dir}",
       "--output-dir=#{output_dir}",
@@ -45,8 +50,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
     run_command('html-minifier', html_opts)
   end
 
-  # Minify CSS
-  if css_config == (true || current_env)
+  # Minify CSS files
+  if css_config == true || css_config == current_env
     css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| excludes.any? { |ex| file.include?(ex) } }
     css_files.each do |css_file|
       css_opts = ["-i \"#{css_file}\"", "-o \"#{css_file}\""]
@@ -54,14 +59,13 @@ Jekyll::Hooks.register :site, :post_write do |site|
     end
   end
 
-  # Minify JS
-  if js_config == (true || current_env)
+  # Minify JS files
+  if js_config == true || js_config == current_env
     js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| file.include?(ex) } }
     js_files.each do |js_file|
       js_opts = [
         "\"#{js_file}\"",
         "-o \"#{js_file}\"",
-        # '--beautify',
         '--compress',
         '--mangle',
         '--validate'
@@ -70,7 +74,9 @@ Jekyll::Hooks.register :site, :post_write do |site|
     end
   end
 
-  # Remove self_host from build if enable
+  # Remove 'assets/lib' directory if 'self_host' configuration doesn't match
   self_host = site.config['self_host'] || false
-  FileUtils.rmtree("#{output_dir}/assets/lib") if self_host == false || current_env != self_host
+  if (self_host == false || self_host != current_env) && Dir.exist?("#{output_dir}/assets/lib")
+    FileUtils.rmtree("#{output_dir}/assets/lib")
+  end
 end
