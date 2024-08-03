@@ -24,8 +24,7 @@
   }
 
   &:has(.page) .wrap {
-    // max-width: $min-width;
-    min-width: $min-width;
+    max-width: $min-width;
   }
 }
 
