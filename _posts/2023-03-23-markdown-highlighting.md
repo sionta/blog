@@ -12,7 +12,22 @@ toc: true
 or ANSI 256-color text. Its HTML output is compatible with
 stylesheets designed for [Pygments][pygments].
 
+<!-- markdownlint-disable -->
+
+## Overview
+
 This is code block language unrecognized by [Rouge][rouge]:
+
+````markdown
+```unknown
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+````
 
 ```unknown
 {
@@ -25,6 +40,7 @@ This is code block language unrecognized by [Rouge][rouge]:
 
 This is code block without syntax highlighting or `plaintext` (default):
 
+````markdown
 ```plaintext
 {
   "thisSyntax": error
@@ -33,10 +49,9 @@ This is code block without syntax highlighting or `plaintext` (default):
   "age": 25
 }
 ```
+````
 
-This is code block with syntax highlighting use triple backticks:
-
-```json
+```plaintext
 {
   "thisSyntax": error
   "firstName": "John",
@@ -47,7 +62,6 @@ This is code block with syntax highlighting use triple backticks:
 
 By default "lineos" is disabled, to enable it add `{:.lineno}` after end triple backticks.
 
-<!-- markdownlint-disable -->
 ````markdown
 ```json
 {
@@ -59,7 +73,21 @@ By default "lineos" is disabled, to enable it add `{:.lineno}` after end triple 
 ```
 {:.lineno} <!-- like this -->
 ````
+
+```json
+{
+  "thisSyntax": error
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
 {:.lineno}
+
+<!-- TODO -->
+<!-- {:.lineno mark_lines='1 2'} -->
+
+### With Liquid tag
 
 {% raw %}This is code block with syntax highlighting use liquid `{% highlight %}` tag in markdown:{% endraw %}
 
@@ -75,8 +103,6 @@ print_hi('Tom')
 ```
 {% endraw %}
 
-Output like this:
-
 {% highlight ruby linenos mark_lines="1 2" %}
 def print_hi(name)
   puts "Hi, #{name}"
@@ -84,9 +110,8 @@ end
 print_hi('Tom')
 #=> prints 'Hi, Tom' to STDOUT.
 {% endhighlight %}
-<!-- markdownlint-restore -->
 
-## Mores
+## Languages
 
 ### Diff
 
@@ -108,7 +133,6 @@ social_media:
   - { title: GitHub, url: "https://github.com/sionta" }
   - { title: Twitter, url: "https://twitter.com/r007mmxv" }
 ```
-{: mark_lines='2'}
 
 ### TOML
 

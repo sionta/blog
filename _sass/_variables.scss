@@ -2,14 +2,15 @@
 
 // Font Family
 $font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-  "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols !default;
+  "Noto Color Emoji", "Noto Emoji", EmojiOne, "Android Emoji", EmojiSymbols;
 $font-sans: "Lato", "Open Sans", -apple-system, system-ui, BlinkMacSystemFont,
-  "Segoe UI", Roboto, Helvetica, Arial, $font-emoji, sans-serif !default;
+  "Segoe UI", Roboto, Helvetica, Arial, $font-emoji, sans-serif;
 $font-mono: "Fira Code", "Menlo", "Monaco", "Inconsolata", "Consolas",
-  "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace !default;
-$font-serif: "Georgia", "Times New Roman", Times, serif !default;
-$font-heading: "Poppins", $font-serif !default;
+  "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
+$font-serif: "Georgia", "Times New Roman", Times, serif;
+$font-heading: "Poppins", $font-sans;
 
+/* Font Sizes */
 $font-sizes: (
   1: 2rem,
   2: 1.75rem,
@@ -17,27 +18,24 @@ $font-sizes: (
   4: 1.25rem,
   5: 1rem,
   6: 0.875rem,
-) !default;
+);
+$font-weight: 400;
+$font-size: 16px;
+$font-size-min: 0.75rem;
+$font-size-max: 2.5rem;
+$font-size-small: $font-size * 0.875;
 
-$min-font-size: 0.75rem;
-$max-font-size: 2.5rem;
-
-$font-size: 16px !default;
-$font-weight: 400 !default;
-$line-height: 1.5 !default;
-$font-small: $font-size * 0.875 !default;
-
+/* Spacings */
+$border-radius: 4px;
+$spacing-unit: 20px;
+$line-height: 1.5;
 $breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
+  xl-s: 1080px,
   xl: 1200px,
-) !default;
+);
 
-$border-radius: 4px !default;
-$spacing-unit: 20px !default;
-$gutter-bottom: $spacing-unit * 0.5 !default;
-
-$content-width: 992px !default; // 1080px
-$min-width: map.get($breakpoints, sm) !default;
-$max-width: map.get($breakpoints, md) !default;
+$min-width: map.get($breakpoints, md);
+$max-width: map.get($breakpoints, lg);

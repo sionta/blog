@@ -1,42 +1,42 @@
 <nav aria-label="Pagination">
   <ul class="pagination">
-    {% if include.paginate == true %}
+    {%- if include.paginate == true %}
       <li class="page-previous">
-        {% if paginator.previous_page %}
+        {%- if paginator.previous_page %}
           <a href="{{ paginator.previous_page_path }}">Previous</a>
-        {% else %}
+        {%- else %}
           <span class="disabled">Previous</span>
-        {% endif %}
+        {%- endif %}
       </li>
       <li class="page-number">
-        {% for page in (1..paginator.total_pages) %}
-          {% if page == paginator.page %}
-            <span class="current">{{ page }}</span>
-          {% elsif page == 1 %}
-            <a href="{{ '/blog/' | relative_url }}">{{ page }}</a>
-          {% else %}
-            <a href="{{ page }}">{{ page }} </a>
-          {% endif %}
-        {% endfor %}
+        {%- for num in (1..paginator.total_pages) %}
+          {%- if num == paginator.page %}
+            <span class="current">{{ num }}</span>
+          {%- elsif num == 1 %}
+            <a href="{{ '/blog/' | relative_url }}">{{ num }}</a>
+          {%- else %}
+            <a href="{{ num }}">{{ num }} </a>
+          {%- endif %}
+        {%- endfor %}
       </li>
       <li class="page-next">
-        {% if paginator.next_page %}
+        {%- if paginator.next_page %}
           <a href="{{ paginator.next_page_path }}">Next</a>
-        {% else %}
+        {%- else %}
           <span class="disabled">Next</span>
-        {% endif %}
+        {%- endif %}
       </li>
-    {% else %}
-      {% if page.previous %}
-        <li class="page-previous">
+    {%- else %}
+      {%- if page.previous %}
+        <li class="page-previous is-not-paginate">
           <a href="{{ page.previous | relative_url }}">{{ page.previous.title }}</a>
         </li>
-      {% endif %}
-      {% if page.next %}
-        <li class="page-next">
+      {%- endif %}
+      {%- if page.next %}
+        <li class="page-next is-not-paginate">
           <a href="{{ page.next | relative_url }}">{{ page.next.title }}</a>
         </li>
-      {% endif %}
-    {% endif %}
+      {%- endif %}
+    {%- endif %}
   </ul>
 </nav>

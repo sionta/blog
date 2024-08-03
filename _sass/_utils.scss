@@ -18,7 +18,7 @@
 
 @mixin font-size-clamp($key) {
   $base-size: map.get($font-sizes, $key);
-  $clamp-function: "clamp(#{$min-font-size}, #{$base-size}, #{$max-font-size})";
+  $clamp-function: "clamp(#{$font-size-min}, #{$base-size}, #{$font-size-max})";
   font-size: #{$clamp-function};
 }
 

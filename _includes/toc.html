@@ -1,13 +1,13 @@
 {% if page.toc == true %}
   {% if include.mobile %}
-    <details class="post-toc only-on-mobiles">
-      <summary class="toc-title">Page Contents</summary>
+    <details class="toc only-on-mobiles">
+      <summary class="toc-heading">Page Contents</summary>
       <nav id="toc-mobile" role="doc-toc" aria-label="Table of Content"></nav>
     </details>
   {% else %}
-    <div class="post-toc hide-on-mobiles">
-      <h2 class="toc-title">Page Contents</h2>
+    <section class="toc hide-on-mobiles">
+      <h2 class="toc-heading">Page Contents</h2>
       <nav id="toc" role="doc-toc" aria-label="Table of Content"></nav>
-    </div>
+    </section>
   {% endif %}
 {% endif %}

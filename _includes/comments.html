@@ -1,4 +1,4 @@
-{%- if page.comments == true and site.comments.provider %}
+{%- if page.comments == true and site.comments.provider != empty %}
   {%- assign PROVIDER_TAG = 'site-comment' %}
   {%- assign PROVIDER_NAME = site.comments.provider %}
   {%- assign PROVIDER_DATA = site.comments[PROVIDER_NAME] %}

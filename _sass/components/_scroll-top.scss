@@ -1,0 +1,23 @@
+@use "utils" as *;
+
+/**
+ * Scroll top
+ */
+#goto-top {
+  --button-padding: 0.7em 0.75em;
+  position: fixed;
+  z-index: 1;
+  right: $spacing-unit * 2;
+  bottom: $spacing-unit * 2;
+  border-radius: var(--button-border-radius-xl);
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+
+  svg {
+    display: block;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+}

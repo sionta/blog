@@ -1,0 +1,113 @@
+@use "utils" as *;
+
+/**
+ * Table of content
+ */
+// TODO: toc on mobile background has blur
+//
+// main:has(.toc[open]) {
+//   background: red;
+// }
+.toc {
+  color: var(--tx-1);
+  position: sticky;
+  top: 3rem;
+  z-index: 1;
+  margin-bottom: $spacing-unit;
+
+  #toc {
+    border-left: 1px solid rgba($base03, 0.5);
+  }
+
+  &:has(#toc-mobile) {
+    position: static;
+    padding: 0.5rem 1rem;
+    width: max-content;
+    border-radius: $border-radius;
+    background-color: var(--bg-2);
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    &[open] {
+      position: sticky;
+      top: $spacing-unit;
+
+      > summary {
+        margin-bottom: 10px;
+      }
+    }
+
+    .toc-link::before {
+      height: px-to-rem(32px);
+    }
+  }
+
+  [role="doc-toc"] {
+    overflow: auto;
+
+    ol.toc-list {
+      list-style: decimal !important;
+    }
+
+    .toc-list {
+      list-style: none;
+      margin: 0;
+
+      > .toc-list {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .toc-item {
+        margin-left: $spacing-unit * 0.85;
+      }
+    }
+  }
+
+  .toc-heading {
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .toc-link {
+    text-decoration: none;
+    color: currentColor;
+
+    &::before {
+      content: " ";
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      height: px-to-rem(24px);
+      width: px-to-rem(3px);
+      border-radius: 0 px-to-rem(3px) px-to-rem(3px) 0;
+    }
+  }
+
+  .is-active-link {
+    font-weight: bold;
+    color: var(--lk-1);
+
+    &::before {
+      background-color: var(--lk-1);
+    }
+  }
+
+  .is-collapsible {
+    overflow: hidden;
+    transition: 300ms ease-in-out;
+  }
+
+  .is-collapsed {
+    max-height: 0;
+  }
+
+  .is-position-fixed {
+    position: fixed;
+    top: 0;
+  }
+}

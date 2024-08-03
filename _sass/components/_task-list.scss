@@ -1,0 +1,23 @@
+@use "utils" as *;
+
+/**
+ * Task list
+ */
+.task-list {
+  list-style: none;
+  margin-left: 0;
+
+  svg {
+    width: 1.1em;
+    height: 1.1em;
+    color: currentColor;
+    display: inline-block;
+    vertical-align: text-bottom;
+  }
+
+  svg,
+  input {
+    margin: 0;
+    margin-right: $spacing-unit * 0.5;
+  }
+}

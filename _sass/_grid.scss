@@ -1,116 +1,103 @@
 @use "utils" as *;
 
-/* Preserve some sanity */
+/**
+ * Base on Gridism by @cobyism
+ * https://github.com/cobyism/gridism
+ */
+
+.wrap,
 .grid,
 .unit {
   box-sizing: border-box;
 }
 
-/* Set up the grid container */
-.grid {
-  display: flex;
-  flex-wrap: wrap; /* Allow items to wrap */
-  flex-direction: row;
-
-  .wrap &,
-  &.wrap {
-    max-width: $content-width;
-    margin: 0 auto;
-  }
-
-  @media screen and (min-width: 1180px) {
-    .wider &,
-    &.wider {
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-  }
+.wrap {
+  max-width: $max-width;
+  margin: 0 auto;
 }
 
-/* Unit styling */
-.unit {
-  flex: 0 0 calc(100% / 12); /* Basis for each unit */
-  width: calc(100% / 12); /* Default width for each unit */
-  padding: $spacing-unit * 0.5; /* Padding around units */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
 
-  /* Responsive width classes */
-  @for $i from 1 through 12 {
-    &.w-#{$i} {
-      flex: 0 0 calc(100% / 12 * $i);
-      width: calc(100% / 12 * $i);
-    }
+.unit {
+  padding: $spacing-unit * 0.5;
+  flex: 0 0 100%;
+  width: 100%;
+
+  &.post {
+    flex: 0 0 75%;
+    width: 75%;
   }
 
-  /* Adjust padding for the first and last child in the grid */
+  &.side {
+    @extend .hide-on-mobiles;
+    flex: 0 0 25%;
+    width: 25%;
+  }
+
+  // @for $i from 1 through 12 {
+  //   &.w-#{$i} {
+  //     flex: 0 0 calc(100% / 12 * $i);
+  //     width: calc(100% / 12 * $i);
+  //   }
+  // }
+
   &:first-child {
-    padding-left: $spacing-unit; /* Outer gutter */
+    padding-left: $spacing-unit;
   }
   &:last-child {
-    padding-right: $spacing-unit; /* Outer gutter */
+    padding-right: $spacing-unit;
   }
-  .unit:first-child {
-    padding-left: 0; /* Inner gutter */
+  & &:first-child {
+    padding-left: 0;
   }
-  .unit:last-child {
-    padding-right: 0; /* Inner gutter */
+  & &:last-child {
+    padding-right: 0;
   }
 
-  /* Remove padding in nested grids */
-  .grid > .unit:first-child {
+  & .grid:first-child > & {
     padding-top: 0;
   }
-  .grid > .unit:last-child {
+  & .grid:last-child > & {
     padding-bottom: 0;
   }
 
-  /* Remove gutters completely if needed */
   .no-gutters &,
   &.no-gutters {
     padding: 0 !important;
   }
-
-  /* Ensure images are responsive */
-  img,
-  svg {
-    max-width: 100%;
-  }
 }
 
-/* Utility classes */
-.align-center {
-  text-align: center;
-}
-.align-left {
-  text-align: left;
-}
-.align-right {
-  text-align: right;
-}
+.hide-on-desktop,
 .only-on-mobiles {
   display: none !important;
 }
 
-/* Responsive adjustments for mobile */
-@media screen and (max-width: $max-width) {
+@media screen and (max-width: $min-width) {
   .grid {
-    flex-direction: column; /* Stack units vertically */
+    flex-direction: column;
   }
+
   .grid:not(.no-stacking-on-mobiles) > .unit {
-    width: 100% !important; /* Full width for mobile */
-    // padding: $spacing-unit;
+    width: 100% !important;
     padding-left: $spacing-unit;
     padding-right: $spacing-unit;
   }
+
   .unit .grid .unit {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0px;
+    padding-right: 0px;
   }
-  .center-on-mobiles {
-    text-align: center !important;
-  }
+
+  .only-on-desktop,
   .hide-on-mobiles {
     display: none !important;
   }
+
+  .hide-on-desktop,
   .only-on-mobiles {
     display: block !important;
   }

@@ -78,12 +78,12 @@ sass:
   style: expanded
   sourcemap: development
 
-# Options minify => _plugins/minify.rb`
+# Options minify `_plugins/minify.rb`
 # if set `true` running on development and production.
 minify:
-  html: true
+  html: production
   css: production
-  js: true
+  js: production
 
 # https://jekyllrb.com/docs/configuration/front-matter-defaults/
 defaults:

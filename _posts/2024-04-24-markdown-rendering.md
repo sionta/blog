@@ -16,7 +16,11 @@ math: katex # or mathjax, if set to `true` math enable use katex
 
 This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can’t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
-<!-- NOTE: for generated page.excerpt dont use comment after front-matter -->
+> 1. For generated `page.excerpt` put first paragraphs and/or don't use comment after front-matter.
+>
+> 2. Please disable auto-format (*prettier, etc.*). Why? because if you use `{: ... }` that no have effect after rendering.
+>
+{:.alert.alert-caution}
 
 <!-- markdownlint-disable MD022 MD025 MD033 MD036 -->
 
@@ -54,9 +58,7 @@ Officia aute duis pariatur magna occaecat duis culpa est veniam. Amet do ea null
 
 **bold text**
 
-_italicized text_
-
-**Bold** and _Italic_
+*italicized text*
 
 ~~strikethrough~~
 

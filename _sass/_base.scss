@@ -3,9 +3,6 @@
 :root {
   @include theme(light);
 
-  --content-width: #{$content-width};
-  --border-radius: #{$border-radius};
-
   &[data-theme="dark"] {
     @include theme(dark);
   }
@@ -18,13 +15,13 @@
 }
 
 html {
+  line-height: $line-height;
+  text-size-adjust: 100%;
   font-family: $font-sans;
   font-size: $font-size;
   font-weight: $font-weight;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
-  text-size-adjust: 100%;
-  line-height: $line-height;
   scroll-behavior: smooth;
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
@@ -40,6 +37,9 @@ body {
   overflow-wrap: break-word;
 }
 
+article,
+section,
+aside,
 main {
   display: block;
 }
@@ -64,8 +64,7 @@ dl,
 dd,
 pre,
 figure,
-blockquote,
-%bottom {
+blockquote {
   @extend %reset;
   margin-bottom: $spacing-unit * 0.5;
 }
@@ -165,13 +164,13 @@ pre {
     line-height: inherit;
   }
 
-  /* .gutter, .rouge-gutter  */
+  // .gutter, .rouge-gutter,
   td:nth-child(1) {
     user-select: none;
     padding-right: $spacing-unit;
   }
 
-  /* .code, .rouge-code  */
+  // .code, .rouge-code,
   td:nth-child(2) {
     width: 100%;
   }
@@ -183,14 +182,14 @@ pre {
 
 /**
   1. Only use for triple backticks not for {% highlight %} tag.
-  2. By default "lineos" is disable, to enable add triple backticks {:.lineos}
+  2. By default "lineos" is disable, to enable use {:.lineos}
 */
 .rouge-gutter {
-  display: none;
+  display: none; /* 1 */
 
   @at-root {
     .lineno & {
-      display: block !important;
+      display: block !important; /* 2 */
     }
   }
 }

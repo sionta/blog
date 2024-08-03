@@ -1,13 +1,24 @@
 (function () {
   const gotoTop = document.getElementById("goto-top");
-  window.addEventListener("scroll", () => {
-    gotoTop.classList.toggle("active", window.scrollY > 350);
-  });
-  gotoTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  if (gotoTop) {
+    window.addEventListener("scroll", () => {
+      gotoTop.classList.toggle("active", window.scrollY > 350);
+    });
+    gotoTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  if (window.location.pathname !== "/blog/") {
+    document.addEventListener("keydown", function (event) {
+      if (event.ctrlKey && event.shiftKey && event.key === "F") {
+        window.location.href = "/blog/";
+      }
+    });
+  }
 
   const articleBody = "[itemprop=articleBody]";
+  const articleHeadings = "h2, h3";
 
   if (window.anchors) {
     anchors.options = {
@@ -17,30 +28,21 @@
       class: "anchor-link",
     };
     anchors
-      .add(`:where(${articleBody}) :where(h2)`)
+      .add(`${articleBody} :where(${articleHeadings})`)
       .remove(".no-anchor, .no_anchor");
   }
 
   if (window.tocbot) {
-    const initializeToc = function () {
-      const toc = window.innerWidth >= 768 ? "#toc" : "#toc-mobile";
-      if (!toc) return;
+    const initializeToc = () => {
+      const tocTag = window.innerWidth >= 768 ? "#toc" : "#toc-mobile";
+      if (!tocTag) return;
 
-      let ordered = false;
-      let heading = "h2, h3";
-
-      if (toc == "#toc-mobile") {
-        ordered = true;
-        heading = "h2";
-      }
-
-      tocbot.destroy();
-      tocbot.init({
-        tocSelector: toc,
+      const config = {
+        tocSelector: tocTag,
         contentSelector: articleBody,
         ignoreSelector: ".no_toc, .no-toc",
-        headingSelector: heading,
-        orderedList: ordered,
+        headingSelector: articleHeadings,
+        orderedList: false,
         collapseDepth: 0,
         listClass: "toc-list",
         listItemClass: "toc-item",
@@ -51,36 +53,46 @@
         collapsibleClass: "is-collapsible",
         positionFixedClass: "is-position-fixed",
         fixedSidebarOffset: "auto",
-      });
+      };
+
+      if (tocTag == "#toc-mobile") {
+        config.orderedList = true;
+        config.headingSelector = "h2";
+      }
+
+      tocbot.destroy();
+      tocbot.init(config);
       tocbot.refresh();
     };
+
     initializeToc();
     window.addEventListener("resize", initializeToc);
   }
 
   if (window.mermaid) {
-    const mermaidConfig = {
-      startOnLoad: true,
-      theme:
-        THEME.mermaid[localStorage.getItem("theme") || THEME.mermaid.light],
-      logLevel: "error",
+    const initializeMermaid = () => {
+      const mermaidTag = document.querySelectorAll(".language-mermaid");
+      if (!mermaidTag) return;
+
+      mermaidTag.forEach((block) => {
+        const pre = block.parentElement; // pre
+        const a = document.createElement("figure");
+        const b = document.createElement("pre");
+        a.classList.add("diagram");
+        b.classList.add("mermaid");
+        b.innerHTML = pre.innerText;
+        a.appendChild(b);
+        pre.replaceWith(a);
+      });
+
+      mermaid.initialize({
+        startOnLoad: true,
+        theme:
+          THEME.mermaid[localStorage.getItem("theme") || THEME.mermaid.light],
+        logLevel: "warn",
+      });
     };
-    const mermaidBlocks = document.querySelectorAll(
-      "pre code.language-mermaid"
-    );
-    /* mermaidBlocks.forEach((block) => {
-      const codeBlock = block.parentElement;
-      const pre = document.createElement("pre");
-      const code = document.createElement("code");
-      pre.classList.add("mermaid-diagram");
-      code.classList.add("mermaid");
-      code.innerHTML = block.innerHTML;
-      pre.appendChild(code);
-      codeBlock.replaceWith(pre);
-    }); */
-    if (mermaidBlocks) {
-      mermaid.initialize(mermaidConfig);
-      mermaid.init(undefined, mermaidBlocks);
-    }
+
+    initializeMermaid();
   }
 })();

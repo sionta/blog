@@ -1,0 +1,45 @@
+@use "utils" as *;
+
+/**
+ * Theme toggle
+ */
+#theme-toggle {
+  --border-radius: 2em;
+  --border-size: 0.0625em;
+  display: inline-flex;
+  background: inherit;
+  border: var(--border-size) solid var(--bd-1);
+  border-radius: var(--border-radius);
+
+  button {
+    cursor: pointer;
+    padding: 0.4em;
+    color: currentColor;
+    background: transparent;
+    transition: 0.3s ease;
+    border: var(--border-size) solid transparent;
+    border-radius: calc(var(--border-radius) * 2);
+
+    // &:nth-child(1) {
+    //   border-radius: var(--border-radius) 0 0 var(--border-radius);
+    // }
+    // &:nth-child(2) {
+    //   border-radius: 0;
+    // }
+    // &:nth-child(3) {
+    //   border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    // }
+
+    &:hover,
+    &.active {
+      background: var(--bg-3);
+    }
+  }
+
+  span,
+  svg {
+    pointer-events: none;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

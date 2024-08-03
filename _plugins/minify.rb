@@ -21,14 +21,17 @@ Jekyll::Hooks.register :site, :post_write do |site|
   js_config = config['js']
   output_dir = site.dest
 
-  current_env = Jekyll.env # Get current ENV value from Jekyll
+  # env from jekyll
+  current_env = Jekyll.env
+
+  # Filter file dan directory to excludes
   excludes = ['lib/', 'vendor/', '.min.css', '.min.js']
   # excludes.append('lib/') if current_env == 'development'
 
   Jekyll.logger.info "#{File.basename(__FILE__)}:", "Minification for '#{output_dir}'"
 
   # Minify HTML
-  if html_config == true || current_env == html_config
+  if html_config == (true || current_env)
     html_opts = [
       "--input-dir=#{output_dir}",
       "--output-dir=#{output_dir}",
@@ -43,10 +46,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
   end
 
   # Minify CSS
-  if css_config == true || current_env == css_config
-    css_files = Dir.glob("#{output_dir}/**/*.css").reject do |file|
-      excludes.any? { |ex| file.include?(ex) }
-    end
+  if css_config == (true || current_env)
+    css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| excludes.any? { |ex| file.include?(ex) } }
     css_files.each do |css_file|
       css_opts = ["-i \"#{css_file}\"", "-o \"#{css_file}\""]
       run_command('csso', css_opts)
@@ -54,10 +55,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
   end
 
   # Minify JS
-  if js_config == true || current_env == js_config
-    js_files = Dir.glob("#{output_dir}/**/*.js").reject do |file|
-      excludes.any? { |ex| file.include?(ex) }
-    end
+  if js_config == (true || current_env)
+    js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| file.include?(ex) } }
     js_files.each do |js_file|
       js_opts = [
         "\"#{js_file}\"",
@@ -71,7 +70,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
     end
   end
 
-  # Remove self_host from build
+  # Remove self_host from build if enable
   self_host = site.config['self_host'] || false
   FileUtils.rmtree("#{output_dir}/assets/lib") if self_host == false || current_env != self_host
 end

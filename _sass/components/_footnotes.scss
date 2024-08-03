@@ -1,0 +1,36 @@
+@use "utils" as *;
+
+/**
+ * Footnotes
+ */
+.footnotes {
+  background-color: rgba(mix($base03, $base07), 0.1);
+  border-radius: $border-radius;
+  padding: $spacing-unit * 0.5 $spacing-unit;
+  margin-top: $spacing-unit;
+  margin-bottom: $spacing-unit;
+  display: block;
+  max-width: max-content;
+
+  &::before {
+    content: "Footnotes:";
+    font-weight: bold;
+  }
+}
+
+a[href^="#fn"] {
+  font-family: sans-serif;
+  line-height: 1;
+  padding: 2px 3px;
+  margin-left: 2px;
+  border-radius: 2px;
+
+  text-decoration: none;
+  background-color: var(--bg-3);
+  color: var(--tx-1);
+
+  &:hover {
+    background-color: var(--lk-1);
+    color: var(--bg-1);
+  }
+}

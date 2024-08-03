@@ -6,7 +6,7 @@
 {%- assign searchData = '' %}
 {%- if page.url == '/blog/' %}
   <input
-    id="blog-search"
+    id="site-search"
     type="search"
     autocomplete="off"
     spellcheck="false"
@@ -51,7 +51,7 @@
 ></script>
 <script>
   if (window.SimpleJekyllSearch) {
-    const postSearch = document.getElementById("blog-search");
+    const postSearch = document.getElementById("site-search");
     const postSearchResult = document.getElementById("blog-result");
     if (postSearch && postSearchResult ) {
       SimpleJekyllSearch({
