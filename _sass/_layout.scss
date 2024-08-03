@@ -102,15 +102,13 @@
   padding: $spacing-unit * 2 0;
 
   @media screen and (max-width: $min-width) {
-    .footer,
-    .header {
-      flex-direction: column;
-    }
+    flex-direction: column;
 
     .copyright {
       order: -1;
     }
   }
+
 
   h1,
   p {
