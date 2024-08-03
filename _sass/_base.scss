@@ -37,13 +37,6 @@ body {
   overflow-wrap: break-word;
 }
 
-article,
-section,
-aside,
-main {
-  display: block;
-}
-
 body,
 %reset {
   padding: 0;
@@ -98,7 +91,7 @@ a {
   color: var(--tx-1);
   transition: color 0.3s ease;
   text-decoration: underline;
-  text-decoration-color: var(--lk-2);
+  text-decoration-color: var(--lk-1);
   text-underline-offset: 1.5px;
 
   &:hover {
@@ -113,26 +106,76 @@ img {
   max-width: 100%;
 }
 
-.button,
-button {
-  --button-color: #{$blue};
-  --button-color-hover: #{darken($blue, 5%)};
-  --button-color-text: var(--base07);
-  --button-padding: 0.5em 1em;
-  --button-border-radius: 0.5em;
-  --button-border-radius-md: 1em;
-  --button-border-radius-xl: 2em;
+blockquote:not(.alert) {
+  font-family: $font-serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--tx-1);
+  border-left: 4px solid var(--bd-1);
+  padding: $spacing-unit * 1 $spacing-unit * 1.25;
 
-  cursor: pointer;
-  padding: var(--button-padding);
-  border: 1px solid transparent;
-  border-radius: var(--button-border-radius);
-  color: var(--button-color-text);
-  background: var(--button-color);
-  transition: background 0.3s ease;
+  > :last-child {
+    margin-bottom: 0;
+  }
 
-  &:hover {
-    background: var(--button-color-hover);
+  cite {
+    // font-weight: bold;
+
+    &::before {
+      content: "\2014 \0020";
+    }
+  }
+
+  i,
+  em {
+    font-style: normal;
+  }
+}
+
+table:not(:has(pre)) {
+  margin-bottom: $spacing-unit;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+
+  caption,
+  th,
+  td {
+    padding: ($spacing-unit * 33.3333333333 * 0.01) ($spacing-unit * 0.5);
+  }
+
+  caption,
+  th {
+    background-color: var(--bg-3);
+    border: 1px solid var(--bd-1);
+  }
+
+  caption {
+    font-weight: bold;
+    border-bottom: none !important;
+  }
+
+  /* th {
+    &[scope="col"] {
+      background-color: var(--bg-3);
+    }
+
+    &[scope="row"] {
+      background-color: var(--bg-2);
+    }
+  } */
+
+  td {
+    border: 1px solid var(--bd-1);
+  }
+
+  tr:nth-child(even) {
+    background-color: var(--bg-2);
+  }
+
+  @media screen and (max-width: $max-width) {
+    display: block;
+    overflow-x: auto;
   }
 }
 

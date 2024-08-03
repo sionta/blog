@@ -1,0 +1,17 @@
+---
+layout: base
+---
+{%- assign date_format = site.date_format | default: '%B %d, %Y' %}
+<article>
+  <h1>Archive of posts with {{ page.type }} '{{ page.title }}'</h1>
+  <nav>
+    <ul class="tags">
+      {%- for post in page.posts %}
+        <li>
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: date_format }}</time>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+      {%- endfor %}
+    </ul>
+  </nav>
+</article>

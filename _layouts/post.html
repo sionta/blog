@@ -10,7 +10,15 @@ layout: base
 >
   <header>
     {% include breadcrumb.html %}
-    <span class="keywords" itemprop="keywords" hidden>{{ page.tags | join: ', ' }}</span>
+    {% comment %} <span class="keywords" itemprop="keywords" hidden>{{ page.tags | join: ', ' }}</span> {% endcomment %}
+    <span class="keywords" itemprop="keywords">
+      {%- for tag in page.tags %}
+        <a href="{{ '/tags/' | append: tag | relative_url }}">{{ tag }}</a>
+        {%- unless forloop.last -%}
+          <span>,</span>
+        {%- endunless -%}
+      {%- endfor %}
+    </span>
     <h1 class="page-heading" itemprop="headline">{{ page.title }}</h1>
     <div class="post-meta">
       <p>

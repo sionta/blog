@@ -85,6 +85,18 @@ minify:
   css: production
   js: production
 
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  # layouts:
+  #   category: category
+  #   tag: tag
+  permalinks:
+    tag: "/tags/:name/"
+    category: "/categories/:name/"
+
 # https://jekyllrb.com/docs/configuration/front-matter-defaults/
 defaults:
   - scope:

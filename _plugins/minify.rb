@@ -2,9 +2,7 @@
 
 require 'open3'
 require 'fileutils'
-require 'jekyll'
 
-# Function to run a command and handle errors
 def run_command(cmd, args)
   tool_path = File.absolute_path("./node_modules/.bin/#{cmd}")
   command = "#{tool_path} #{args.join(' ')}"
@@ -52,7 +50,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
   # Minify CSS files
   if css_config == true || css_config == current_env
-    css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| excludes.any? { |ex| file.include?(ex) } }
+    css_files = Dir.glob("#{output_dir}/**/*.css").reject { |file| excludes.any? { |ex| File.fnmatch?(ex, file) } }
     css_files.each do |css_file|
       css_opts = ["-i \"#{css_file}\"", "-o \"#{css_file}\""]
       run_command('csso', css_opts)
@@ -61,7 +59,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
   # Minify JS files
   if js_config == true || js_config == current_env
-    js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| file.include?(ex) } }
+    js_files = Dir.glob("#{output_dir}/**/*.js").reject { |file| excludes.any? { |ex| File.fnmatch?(ex, file) } }
     js_files.each do |js_file|
       js_opts = [
         "\"#{js_file}\"",
@@ -76,7 +74,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
 
   # Remove 'assets/lib' directory if 'self_host' configuration doesn't match
   self_host = site.config['self_host'] || false
-  if (self_host == false || self_host != current_env) && Dir.exist?("#{output_dir}/assets/lib")
-    FileUtils.rmtree("#{output_dir}/assets/lib")
+  if (self_host == false || self_host != current_env) && Dir.exist?(File.join(output_dir, 'assets', 'lib'))
+    FileUtils.rm_rf(File.join(output_dir, 'assets', 'lib'))
   end
 end

@@ -4,39 +4,37 @@
  * Theme toggle
  */
 #theme-toggle {
-  --border-radius: 2em;
-  --border-size: 0.0625em;
+  --box-shadow: 0 0 0 1px var(--bd-1);
+
   display: inline-flex;
-  background: inherit;
-  border: var(--border-size) solid var(--bd-1);
-  border-radius: var(--border-radius);
+  gap: 3px;
+  background: none;
+  box-shadow: var(--box-shadow);
+
+  &,
+  button {
+    border-radius: 2em;
+  }
 
   button {
     cursor: pointer;
-    padding: 0.4em;
-    color: currentColor;
-    background: transparent;
-    transition: 0.3s ease;
-    border: var(--border-size) solid transparent;
-    border-radius: calc(var(--border-radius) * 2);
-
-    // &:nth-child(1) {
-    //   border-radius: var(--border-radius) 0 0 var(--border-radius);
-    // }
-    // &:nth-child(2) {
-    //   border-radius: 0;
-    // }
-    // &:nth-child(3) {
-    //   border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    // }
+    padding: 0.2em;
+    border: none;
+    background: none;
+    color: var(--bd-1);
+    transition: color 0.3s ease;
 
     &:hover,
     &.active {
+      color: var(--tx-1);
+    }
+
+    &.active {
       background: var(--bg-3);
+      box-shadow: var(--box-shadow);
     }
   }
 
-  span,
   svg {
     pointer-events: none;
     display: inline-block;

@@ -1,13 +1,15 @@
 @use "sass:map";
 
-$base00: #030920;
-$base01: #0f172a;
-$base02: #334155;
-$base03: #475569;
-$base04: #64748b;
-$base05: #94a3b8;
-$base06: #cbd5e1;
-$base07: #e2e8f0;
+$base00: #020617; // #030920;
+$base01: #0f172a; // #0f172a;
+$base02: #334155; // #334155;
+$base03: #475569; // #475569;
+$base04: #64748b; // #64748b;
+$base05: #94a3b8; // #94a3b8;
+$base06: #cbd5e1; // #cbd5e1;
+$base07: #e2e8f0; // #e2e8f0;
+$base08: #f1f5f9;
+$base09: #f8fafc;
 $red: #dc322f;
 $orange: #cb4b16;
 $yellow: #b58900;
@@ -36,17 +38,17 @@ $themes: (
     "tx-1": var(--base02),
     "tx-2": var(--base03),
     "tx-3": var(--base04),
-    "bd-1": var(--base03),
-    "bd-2": var(--base04),
-    "bd-3": var(--base05),
+    "bd-1": var(--base04),
+    "bd-2": var(--base05),
+    "bd-3": var(--base06),
   ),
   "dark": (
     "bg-1": var(--base00),
     "bg-2": var(--base01),
     "bg-3": var(--base02),
-    "tx-1": var(--base05),
-    "tx-2": var(--base04),
-    "tx-3": var(--base03),
+    "tx-1": var(--base06),
+    "tx-2": var(--base05),
+    "tx-3": var(--base04),
     "bd-1": var(--base03),
     "bd-2": var(--base04),
     "bd-3": var(--base05),
@@ -61,7 +63,14 @@ $alerts: (
     "warning",
     "caution",
   ),
-  "color": (
+  "light": (
+    "note": $dark-blue,
+    "tip": $dark-green,
+    "important": $dark-violet,
+    "warning": $dark-yellow,
+    "caution": $dark-red,
+  ),
+  "dark": (
     "note": $blue,
     "tip": $green,
     "important": $violet,
@@ -71,11 +80,16 @@ $alerts: (
 );
 
 @mixin alert($mode) {
-  $alert: map.get($alerts, "color");
+  $alert: map.get($alerts, $mode);
   @each $name, $color in $alert {
     --alert-tx-#{$name}: #{$color};
-    --alert-bg-#{$name}: #{rgba($color, 0.5)};
-    --alert-bd-#{$name}: #{rgba($color, 0.65)};
+    @if $mode == dark {
+      --alert-bg-#{$name}: #{rgba($color, 0.5)};
+      --alert-bd-#{$name}: #{rgba($color, 0.75)};
+    } @else {
+      --alert-bg-#{$name}: #{rgba($color, 0.75)};
+      --alert-bd-#{$name}: #{rgba($color, 0.95)};
+    }
   }
 }
 
@@ -96,6 +110,8 @@ $alerts: (
     --base05: #{$base05};
     --base06: #{$base06};
     --base07: #{$base07};
+    --base08: #{$base08};
+    --base09: #{$base09};
     --red: #{$red};
     --orange: #{$orange};
     --yellow: #{$yellow};
@@ -104,6 +120,6 @@ $alerts: (
     --blue: #{$blue};
     --violet: #{$violet};
     --magenta: #{$magenta};
-    @include alert($mode);
   }
+  @include alert($mode);
 }

@@ -5,10 +5,19 @@
  * Alerts
  */
 .alert {
-  font-size: normal;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: inherit;
+  // color: var(--base06);
   background-color: var(--bg-2);
   padding: 10px 15px;
   border-left: 5px solid var(--bd-1);
+
+  &:not(:has(p:nth-child(2))) {
+    p {
+      margin-bottom: 0;
+    }
+  }
 
   &__header {
     display: flex;
@@ -28,6 +37,7 @@
   $alerts: map.get($alerts, "class");
   @each $name in $alerts {
     &.alert-#{$name} {
+      // color: var(--alert-tx-#{$name});
       background-color: var(--alert-bg-#{$name});
       border-left: 5px solid var(--alert-bd-#{$name});
     }

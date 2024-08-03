@@ -28,7 +28,9 @@
   }
 }
 
-[itemprop="articleBody"] {
+.tags,
+.page,
+.post {
   font-size: large;
   line-height: 1.8;
 }
@@ -75,8 +77,8 @@
     }
 
     a.btn {
-      color: var(--base06);
-      background-color: var(--blue);
+      color: var(--base07);
+      background-color: var(--lk-1);
       text-decoration: none;
       font-size: 1.15rem;
       border-radius: 5px;
@@ -109,7 +111,6 @@
     }
   }
 
-
   h1,
   p {
     margin-bottom: 0;
@@ -139,7 +140,8 @@
 
   li {
     display: inline-block;
-    margin-right: $spacing-unit * 0.5;
+    // margin-right: $spacing-unit * 0.5;
+    margin-right: $spacing-unit;
 
     &:last-child {
       margin-right: 0;
