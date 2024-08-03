@@ -98,8 +98,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: $spacing-unit * 0.5;
+  gap: $spacing-unit;
   padding: $spacing-unit * 2 0;
+
+  @media screen and (max-width: $min-width) {
+    .footer,
+    .header {
+      flex-direction: column;
+    }
+
+    .copyright {
+      order: -1;
+    }
+  }
 
   h1,
   p {
@@ -117,29 +128,6 @@
 
   a {
     text-decoration: none;
-  }
-}
-
-.only-on-mobiles {
-  display: none !important;
-}
-
-@media screen and (max-width: $min-width) {
-  .hide-on-mobiles {
-    display: none !important;
-  }
-
-  .only-on-mobiles {
-    display: block !important;
-  }
-
-  .footer,
-  .header {
-    flex-direction: column;
-  }
-
-  .copyright {
-    order: -1;
   }
 }
 
