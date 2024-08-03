@@ -19,7 +19,8 @@
   background-color: var(--bg-1);
 
   &:has(.page) .wrap {
-    max-width: $min-width;
+    // max-width: $min-width;
+    min-width: $min-width;
   }
 
   &:has(.home) {
