@@ -3,6 +3,11 @@
 @use "base" as *;
 @use "grid" as *;
 
+.page-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
 #site-head,
 #site-foot {
   background-color: var(--bg-2);
@@ -19,89 +24,81 @@
 
   &:has(.home) {
     margin-top: 0;
-
-    font-family: $font-heading;
-
-    %align-center,
-    .page-heading {
-      text-align: center;
-    }
-
-    .page-heading {
-      @extend %align-center;
-      font-weight: bold;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .home-hero,
-    .home-card {
-      padding: $spacing-unit * 4;
-
-      @media screen and (max-width: $min-width) {
-        padding: $spacing-unit * 4 $spacing-unit;
-      }
-    }
-
-    .home-hero {
-      @extend %align-center;
-      background-color: var(--bg-3);
-
-      p {
-        font-family: $font-serif;
-        font-size: 1.5rem;
-        padding-bottom: 2rem;
-      }
-
-      a.btn {
-        color: var(--base06);
-        background-color: var(--blue);
-        text-decoration: none;
-        font-size: 1.15rem;
-        border-radius: 5px;
-        padding: 1rem 1.5rem;
-        transition: 0.3s ease;
-
-        &:hover {
-          background-color: var(--bd-1);
-        }
-      }
-    }
   }
 }
 
-.header,
-.footer,
-.page,
-.post {
+[itemprop="articleBody"] {
   font-size: large;
   line-height: 1.8;
 }
 
-.page-heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-}
+.home {
+  font-family: $font-heading;
 
-.header {
-  .logo {
-    font-size: 1.8rem;
+  %align-center,
+  .page-heading {
+    text-align: center;
+  }
+
+  .page-heading {
+    @extend %align-center;
     font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
 
-    a {
+  .home-hero,
+  .home-card {
+    padding: $spacing-unit * 4;
+
+    @media screen and (max-width: $min-width) {
+      padding: $spacing-unit * 4 $spacing-unit;
+    }
+  }
+
+  .home-card {
+    background-color: var(--bg-2);
+
+    .blog-card-item {
+      background-color: var(--bg-1);
+    }
+  }
+
+  .home-hero {
+    @extend %align-center;
+
+    p {
+      font-family: $font-serif;
+      font-size: 1.5rem;
+      padding-bottom: 2rem;
+    }
+
+    a.btn {
+      color: var(--base06);
+      background-color: var(--blue);
       text-decoration: none;
+      font-size: 1.15rem;
+      border-radius: 5px;
+      padding: 1rem 1.5rem;
+      transition: 0.3s ease;
+
+      &:hover {
+        background-color: var(--bd-1);
+      }
     }
   }
 }
 
 .footer,
 .header {
+  font-size: large;
+  font-family: $font-heading;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-unit * 0.5;
   padding: $spacing-unit * 2 0;
-  font-family: $font-heading;
 
   h1,
   p {
@@ -110,6 +107,15 @@
 
   a {
     text-decoration-thickness: 1.5px;
+  }
+}
+
+.header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+
+  a {
+    text-decoration: none;
   }
 }
 
