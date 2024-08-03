@@ -1,7 +1,13 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  {%- comment %}
+    See https://github.com/orgs/community/discussions/52356 for information about this:
+    "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'."
+  {%- endcomment %}
+  <meta http-equiv="Permissions-Policy" content="interest-cohort=(), user-id=()">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   {%- seo %}
   {%- feed_meta %}
   {%- include verifications.html %}
@@ -11,7 +17,6 @@
   {% comment %} <link rel="stylesheet" href="{{ '/assets/fonts/lato/lato.min.css' | relative_url }}"> {% endcomment %}
   {% comment %} <link rel="stylesheet" href="{{ '/assets/fonts/poppins/poppins.min.css' | relative_url }}"> {% endcomment %}
   {% comment %} <link rel="stylesheet" href="{{ '/assets/fonts/fira-code/fira_code.min.css' | relative_url }}"> {% endcomment %}
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   {%- include data-js.html %}
   {%- include analytics.html %}
 </head>
