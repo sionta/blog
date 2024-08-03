@@ -2,10 +2,14 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "Personal site",
+  "scripts": {
+    "install": "bash ./scripts/tool install",
+    "build": "bash ./scripts/tool build",
+    "test": "bash ./scripts/tool test"
+  },
   "dependencies": {
     "csso-cli": "^4.0.2",
     "html-minifier": "^4.0.0",
-    "svgo": "^3.3.2",
     "uglify-js": "^3.18.0"
   }
 }

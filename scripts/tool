@@ -2,29 +2,55 @@
 
 set -eu
 
+if [ -f '../Gemfile' ]; then
+  ROOT="$PWD/.."
+elif [ -f 'Gemfile' ]; then
+  ROOT="$PWD"
+else
+  echo "Gemfile not found. Exiting."
+  exit 1
+fi
+
+cd "$ROOT"
+
+TOOLS=("csso" "html-minifier" "uglifyjs")
+export PATH="$ROOT/node_modules/.bin:$PATH"
+
+check() {
+  for tool in "${TOOLS[@]}"; do
+    if ! command -v "$tool" &>/dev/null; then
+      echo "$tool is not installed, try running: $0 install"
+      exit 1
+    fi
+  done
+}
+
 install() {
   echo "Installing Node.js packages..."
   npm install
+
   echo "Installing Ruby gems..."
   bundle install
 }
 
 build() {
+  check
   echo "Building Jekyll site..."
-  echo "bundle exec jekyll build $@"
   bundle exec jekyll build "$@"
 }
 
 test() {
+  check
+
   echo "Cleaning Jekyll site..."
   bundle exec jekyll clean
 
   echo "Serving Jekyll site..."
-  echo "bundle exec jekyll serve --watch $@"
   bundle exec jekyll serve --watch "$@"
 }
 
-if [ "$#" -eq 0 ]; then
+# Periksa apakah setidaknya satu argumen disediakan
+if [ "$#" -lt 1 ]; then
   echo "Usage: $0 {install|build|test} [optional args...]"
   exit 1
 fi
