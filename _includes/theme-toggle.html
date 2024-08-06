@@ -10,8 +10,9 @@
   </button>
 </div>
 <script>
+  // document.addEventListener('DOMContentLoaded', () => {
   (function () {
-    THEME = THEME || {
+    THEME = window.THEME || {
       toggle: { system: 'system', light: 'light', dark: 'dark' },
       giscus: { light: 'light', dark: 'dark_dimmed' },
       utterances: { light: 'github-light', dark: 'github-dark' },
@@ -19,7 +20,7 @@
     };
 
     const themeToggle = document.getElementById('theme-toggle');
-    const themeButtons = themeToggle?.querySelectorAll('button');
+    const themeButtons = themeToggle.querySelectorAll('button');
 
     function setupTheme(mode) {
       if (mode === THEME.toggle.system) {
@@ -28,8 +29,10 @@
       } else {
         document.documentElement.setAttribute('data-theme', mode);
         localStorage.setItem('theme', mode);
-        updateFrameThemes(mode);
       }
+
+      updateFrameThemes(mode);
+
       if (themeButtons) {
         themeButtons.forEach((button) => button.classList.toggle('active', button.getAttribute('data-mode') === mode));
       }
@@ -53,10 +56,19 @@
           frame.contentWindow.postMessage(message, origin);
         }
       }
-      sendMessage('.giscus-frame', { giscus: { setConfig: { theme: THEME.giscus[theme] } } }, 'https://giscus.app');
-      sendMessage('.utterances-frame', { type: 'set-theme', theme: THEME.utterances[theme] }, 'https://utteranc.es');
+      sendMessage(
+        '.giscus-frame',
+        { giscus: { setConfig: { theme: THEME.giscus[theme] || 'preferred_color_scheme' } } },
+        'https://giscus.app'
+      );
+      sendMessage(
+        '.utterances-frame',
+        { type: 'set-theme', theme: THEME.utterances[theme] || 'preferred-color-scheme' },
+        'https://utteranc.es'
+      );
     }
 
     initialTheme();
   })();
+  // });
 </script>

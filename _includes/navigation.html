@@ -1,5 +1,6 @@
-<nav aria-label="Navigation">
-  <ul class="navigation">
+<nav class="site-menu" aria-label="Navigation">
+  <input id="menu-toggle" type="checkbox" name="Hamburger menu">
+  <ul class="navigation menu-list">
     {%- assign navigation = site.pages | where: 'navigation', true | sort: 'order' %}
     {%- if navigation.size > 0 %}
       {%- for nav in navigation %}
@@ -22,4 +23,5 @@
       {%- endfor %}
     {%- endif %}
   </ul>
+  <label for="menu-toggle" class="menu-icon"></label>
 </nav>

@@ -3,9 +3,21 @@
 @use "base" as *;
 @use "grid" as *;
 
+.brand {
+  font-size: 1.8rem;
+  font-weight: 600;
+
+  a {
+    text-decoration: none;
+  }
+}
+
 .page-heading {
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-family: $font-heading;
+  font-size: 2.625;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -1px;
 }
 
 #site-head,
@@ -94,22 +106,13 @@
 
 .footer,
 .header {
-  font-size: large;
-  font-family: $font-heading;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: $spacing-unit;
   padding: $spacing-unit * 2 0;
-
-  @media screen and (max-width: $min-width) {
-    flex-direction: column;
-
-    .copyright {
-      order: -1;
-    }
-  }
+  font-size: large;
+  font-family: $font-heading;
 
   h1,
   p {
@@ -121,32 +124,29 @@
   }
 }
 
-.header .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
+@media screen and (max-width: $min-width) {
+  .footer {
+    flex-direction: column;
 
-  a {
-    text-decoration: none;
+    .copyright {
+      order: -1;
+    }
   }
+}
+
+.inline-item {
+  display: inline-flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: $spacing-unit;
 }
 
 .breadcrumb,
 .navigation,
 .pagination,
 .social {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li {
-    display: inline-block;
-    // margin-right: $spacing-unit * 0.5;
-    margin-right: $spacing-unit;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+  @extend .inline-item;
 }
 
 .pagination {

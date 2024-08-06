@@ -1,4 +1,4 @@
-{%- include cors.html -%}
+{%- include vendor.html -%}
 {%- if page.collection == 'posts' or page.layout == 'post' %}
   {%- assign math = page.math | downcase %}
   {%- if math == 'katex' or math == true %}

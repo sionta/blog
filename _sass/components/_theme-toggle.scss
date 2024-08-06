@@ -1,4 +1,4 @@
-@use "utils" as *;
+@use "../utils" as *;
 
 /**
  * Theme toggle
@@ -6,7 +6,7 @@
 #theme-toggle {
   --box-shadow: 0 0 0 1px var(--bd-1);
 
-  display: inline-flex;
+  display: inline-block;
   gap: 3px;
   background: none;
   box-shadow: var(--box-shadow);

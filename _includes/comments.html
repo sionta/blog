@@ -45,7 +45,7 @@
             'data-strict': '{{ PROVIDER_DATA.strict | default: 0 }}',
             'data-reactions-enabled': '{{ PROVIDER_DATA.reactions_enabled | default: 1 }}',
             'data-emit-metadata': '{{ PROVIDER_DATA.metadata | default: 0 }}',
-            'data-theme': giscusTheme,
+            'data-theme': giscusTheme || 'preferred_color_scheme',
             'data-lang': "{{ PROVIDER_DATA.lang | default: site.lang | default: 'en' }}",
             'data-loading': 'lazy',
             crossorigin: 'anonymous',
@@ -65,7 +65,7 @@
             label: '{{ PROVIDER_DATA.label }}',
             repo: '{{ PROVIDER_DATA.repo }}',
             'issue-term': "{{ PROVIDER_DATA.issue_term | default: 'pathname' }}",
-            theme: utterancesTheme,
+            theme: utterancesTheme || 'preferred-color-scheme',
             crossorigin: 'anonymous',
             async: true,
           };
