@@ -9,7 +9,7 @@ layout: base
   itemid="{{ page.url | relative_url }}"
 >
   <header>
-    {% include breadcrumb.html %}
+    {% comment %} {% include breadcrumb.html %} {% endcomment %}
     {% comment %} <span class="keywords" itemprop="keywords" hidden>{{ page.tags | join: ', ' }}</span> {% endcomment %}
     <span class="keywords" itemprop="keywords">
       {%- for tag in page.tags %}
