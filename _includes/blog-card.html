@@ -1,8 +1,4 @@
-{%- if paginator.posts.size > 0 -%}
-  {%- assign posts = paginator.posts -%}
-{%- else -%}
-  {%- assign posts = site.posts -%}
-{%- endif %}
+{%- include post-data.html %}
 {%- assign searchData = '' %}
 {%- if page.url == '/blog/' %}
   <input

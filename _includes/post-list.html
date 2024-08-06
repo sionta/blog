@@ -1,0 +1,17 @@
+{%- include post-data.html %}
+{%- for post in posts %}
+  <article class="post-item">
+    <h1 class="post-title">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h1>
+    {%- assign post_date = post.date | date: date_format %}
+    <p class="post-meta">
+      <time datetime="{{ post_date }}">{{ post_date }}</time>
+    </p>
+    {%- assign post_excerpt = post.excerpt | default: post.content | strip_html | strip_newlines | truncatewords: 30 %}
+    <p class="post-excerpt">{{ post_excerpt }}</p>
+    <a class="read-more" aria-label="Read more about {{ page.title }}" href="{{ post.url | relative_url }}"
+      >Read More</a
+    >
+  </article>
+{%- endfor %}

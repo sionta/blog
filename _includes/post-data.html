@@ -1,0 +1,6 @@
+{%- if paginator.posts.size > 0 -%}
+  {%- assign posts = paginator.posts -%}
+{%- else -%}
+  {%- assign posts = site.posts -%}
+{%- endif %}
+{%- assign date_format = site.date_format | default: '%b %d, %Y' %}

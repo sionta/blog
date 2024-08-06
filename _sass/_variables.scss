@@ -19,16 +19,17 @@ $font-sizes: (
   5: 1rem,
   6: 0.875rem,
 );
+
 $font-weight: 400;
-$font-size: 16px;
+$font-size: 17px;
 $font-size-min: 0.75rem;
 $font-size-max: 2.5rem;
 $font-size-small: $font-size * 0.875;
 
 /* Spacings */
+$line-height: 1.6;
 $border-radius: 4px;
 $spacing-unit: 20px;
-$line-height: 1.5;
 $breakpoints: (
   sm: 576px,
   md: 768px,

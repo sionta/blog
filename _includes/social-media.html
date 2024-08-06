@@ -1,0 +1,26 @@
+<nav aria-label="Social media">
+  <ul class="social-media">
+    {% for social in site.social_media %}
+      {% assign link = social.link | default: social.path | default: social.url %}
+      {% assign name = social.title | default: social.name | default: social.platform %}
+      {% if social.icon != empty %}
+        {% assign icon = social.icon | downcase %}
+      {% else %}
+        {% assign icon = 'brand-' | append: name | downcase %}
+      {% endif %}
+      <li>
+        <a
+          {% if link contains 'feed.xml' %}
+            href="{{ link | absolute_url }}" rel="me"
+          {% else %}
+            href="{{ link | relative_url }}" rel="noopener noreferrer"
+          {% endif %}
+          target="_blank"
+          title="{{ name }}"
+        >
+          {% include svg_symbol.html id=icon %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
