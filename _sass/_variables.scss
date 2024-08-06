@@ -12,6 +12,7 @@ $font-heading: "Poppins", $font-sans;
 
 /* Font Sizes */
 $font-sizes: (
+  0: 18px,
   1: 2rem,
   2: 1.75rem,
   3: 1.5rem,
@@ -20,14 +21,14 @@ $font-sizes: (
   6: 0.875rem,
 );
 
+$line-height: 1.6;
 $font-weight: 400;
-$font-size: 17px;
+$font-size: map.get($font-sizes, 0);
 $font-size-min: 0.75rem;
 $font-size-max: 2.5rem;
 $font-size-small: $font-size * 0.875;
 
 /* Spacings */
-$line-height: 1.6;
 $border-radius: 4px;
 $spacing-unit: 20px;
 $breakpoints: (

@@ -1,6 +1,8 @@
 @use "utils" as *;
 
 :root {
+  --logo: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzJiNGQ1OSIvPjxwYXRoIGQ9Ik0zMDMuMzUsMzYyLjY5YTEyMy40OCwxMjMuNDgsMCwwLDEtOTEuNTUsMi40M2wtNy4yMywxMi4yN2ExMzcuODksMTM3Ljg5LDAsMCwwLDEwNS45My0yLjUyWiIgZmlsbD0iI2ZmZGM3YyIvPjxwYXRoIGQ9Ik0zMTguMzMsMTI3LjQybDUuMDYsMTkuMzZBMTIzLjM5LDEyMy4zOSwwLDAsMSwzNjQuNywzMDVsNS4wNSwxOS4zMWExMzcuNTgsMTM3LjU4LDAsMCwwLTUxLjQyLTE5Ni44OVoiIGZpbGw9IiNmZmRjN2MiLz48cGF0aCBkPSJNMTE3LDI0OS4yNWExMzcsMTM3LDAsMCwwLDI3Ljc3LDgyLjg3bDQuNy0xOGExMjMuMzcsMTIzLjM3LDAsMCwxLDQ1LjEzLTE3Mi44Nmw0LjY5LTE4QTEzNy41NCwxMzcuNTQsMCwwLDAsMTE3LDI0OS4yNVoiIGZpbGw9IiNmZmRjN2MiLz48cGF0aCBkPSJNMzQwLjg5LDI1My40Yy0yMSw5LjQ0LTMwLTI0LjQ4LTYuODMtMjYuMjFMMjg4LjE4LDUxLjVIMjYzLjUydjc0LjljMjYsMTEuMTIsMjYsNzQuNTcsMCw4NS42OHYxNi4xOGMxNS4wNi40OSwxNS4wNSwyMy41OCwwLDI0LjA3bDEwLDM5Ljg5TDM3Mi40NCw0NjAuNUgzOTVaIiBmaWxsPSIjZmZkYzdjIi8+PHBhdGggZD0iTTI1My4wNSwxMjYuNFY1MS41SDIyOC4zOUwxODIuNTEsMjI3LjE5YzIzLjIsMS43NCwxNC4xMywzNS42NS02LjgzLDI2LjIxTDEyMS42LDQ2MC41aDIyLjUybDk4LjkzLTE2OC4yOCwxMC0zOS44OWMtMTUuMDYtLjQ5LTE1LjA2LTIzLjU5LDAtMjQuMDdWMjEyLjA4QzIyNywyMDEsMjI3LDEzNy41MSwyNTMuMDUsMTI2LjRaIiBmaWxsPSIjZmZkYzdjIi8+PC9zdmc+");
+
   @include theme(light);
 
   &[data-theme="dark"] {
@@ -12,18 +14,11 @@
       @include theme(dark);
     }
   }
-  --logo: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" fill="%232b4d59"/><path d="M303.35,362.69a123.48,123.48,0,0,1-91.55,2.43l-7.23,12.27a137.89,137.89,0,0,0,105.93-2.52Z" fill="%23ffdc7c"/><path d="M318.33,127.42l5.06,19.36A123.39,123.39,0,0,1,364.7,305l5.05,19.31a137.58,137.58,0,0,0-51.42-196.89Z" fill="%23ffdc7c"/><path d="M117,249.25a137,137,0,0,0,27.77,82.87l4.7-18a123.37,123.37,0,0,1,45.13-172.86l4.69-18A137.54,137.54,0,0,0,117,249.25Z" fill="%23ffdc7c"/><path d="M340.89,253.4c-21,9.44-30-24.48-6.83-26.21L288.18,51.5H263.52v74.9c26,11.12,26,74.57,0,85.68v16.18c15.06.49,15.05,23.58,0,24.07l10,39.89L372.44,460.5H395Z" fill="%23ffdc7c"/><path d="M253.05,126.4V51.5H228.39L182.51,227.19c23.2,1.74,14.13,35.65-6.83,26.21L121.6,460.5h22.52l98.93-168.28,10-39.89c-15.06-.49-15.06-23.59,0-24.07V212.08C227,201,227,137.51,253.05,126.4Z" fill="%23ffdc7c"/></svg>');
-  --logo-base64: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzJiNGQ1OSIvPjxwYXRoIGQ9Ik0zMDMuMzUsMzYyLjY5YTEyMy40OCwxMjMuNDgsMCwwLDEtOTEuNTUsMi40M2wtNy4yMywxMi4yN2ExMzcuODksMTM3Ljg5LDAsMCwwLDEwNS45My0yLjUyWiIgZmlsbD0iI2ZmZGM3YyIvPjxwYXRoIGQ9Ik0zMTguMzMsMTI3LjQybDUuMDYsMTkuMzZBMTIzLjM5LDEyMy4zOSwwLDAsMSwzNjQuNywzMDVsNS4wNSwxOS4zMWExMzcuNTgsMTM3LjU4LDAsMCwwLTUxLjQyLTE5Ni44OVoiIGZpbGw9IiNmZmRjN2MiLz48cGF0aCBkPSJNMTE3LDI0OS4yNWExMzcsMTM3LDAsMCwwLDI3Ljc3LDgyLjg3bDQuNy0xOGExMjMuMzcsMTIzLjM3LDAsMCwxLDQ1LjEzLTE3Mi44Nmw0LjY5LTE4QTEzNy41NCwxMzcuNTQsMCwwLDAsMTE3LDI0OS4yNVoiIGZpbGw9IiNmZmRjN2MiLz48cGF0aCBkPSJNMzQwLjg5LDI1My40Yy0yMSw5LjQ0LTMwLTI0LjQ4LTYuODMtMjYuMjFMMjg4LjE4LDUxLjVIMjYzLjUydjc0LjljMjYsMTEuMTIsMjYsNzQuNTcsMCw4NS42OHYxNi4xOGMxNS4wNi40OSwxNS4wNSwyMy41OCwwLDI0LjA3bDEwLDM5Ljg5TDM3Mi40NCw0NjAuNUgzOTVaIiBmaWxsPSIjZmZkYzdjIi8+PHBhdGggZD0iTTI1My4wNSwxMjYuNFY1MS41SDIyOC4zOUwxODIuNTEsMjI3LjE5YzIzLjIsMS43NCwxNC4xMywzNS42NS02LjgzLDI2LjIxTDEyMS42LDQ2MC41aDIyLjUybDk4LjkzLTE2OC4yOCwxMC0zOS44OWMtMTUuMDYtLjQ5LTE1LjA2LTIzLjU5LDAtMjQuMDdWMjEyLjA4QzIyNywyMDEsMjI3LDEzNy41MSwyNTMuMDUsMTI2LjRaIiBmaWxsPSIjZmZkYzdjIi8+PC9zdmc+");
 }
 
 html {
-  line-height: $line-height;
-  text-size-adjust: 100%;
-  font-family: $font-sans;
   font-size: $font-size;
-  font-weight: $font-weight;
-  font-feature-settings: "kern" 1;
-  font-kerning: normal;
+  text-size-adjust: 100%;
   scroll-behavior: smooth;
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
@@ -31,6 +26,9 @@ html {
 }
 
 body {
+  font: $font-weight #{$font-size}/#{$line-height} $font-sans;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
   color: var(--tx-1);
   background-color: var(--bg-1);
   display: flex;

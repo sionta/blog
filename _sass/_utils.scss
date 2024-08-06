@@ -7,25 +7,26 @@
 
 // Convert px to rem
 @function px-to-rem($px) {
-  $fs: 16px;
-
-  @if $font-size {
-    $fs: $font-size;
-  }
-
-  @return math.div($px, $fs) * 1rem;
+  @return math.div($px, 16px) * 1rem;
 }
 
 @mixin font-size-clamp($key) {
-  $base-size: map.get($font-sizes, $key);
-  $clamp-function: "clamp(#{$font-size-min}, #{$base-size}, #{$font-size-max})";
-  font-size: #{$clamp-function};
+  $min: $font-size-min;
+  $max: $font-size-max;
+  $base: map.get($font-sizes, $key);
+  $clamp: "clamp(#{$min}, #{$base}, #{$max})";
+  font-size: #{$clamp};
 }
 
 @mixin font-size-headings {
   @for $i from 1 through 6 {
     h#{$i} {
-      @include font-size-clamp($i);
+      font-size: math.clamp(
+        $font-size-min,
+        map.get($font-sizes, $i),
+        $font-size-max
+      );
+      // @include font-size-clamp($i);
     }
   }
 }

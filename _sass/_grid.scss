@@ -1,3 +1,5 @@
+@use "sass:map";
+@use "sass:math";
 @use "utils" as *;
 
 /**
@@ -12,7 +14,8 @@
 }
 
 .wrap {
-  max-width: $max-width;
+  // width: map.get($breakpoints, xl);
+  max-width: map.get($breakpoints, xl-s);
   margin: 0 auto;
 }
 
