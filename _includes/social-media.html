@@ -3,7 +3,7 @@
     {% for social in site.social_media %}
       {% assign link = social.link | default: social.path | default: social.url %}
       {% assign name = social.title | default: social.name | default: social.platform %}
-      {% if social.icon != empty %}
+      {% if social.icon %}
         {% assign icon = social.icon | downcase %}
       {% else %}
         {% assign icon = 'brand-' | append: name | downcase %}
